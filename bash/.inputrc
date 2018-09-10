@@ -1,0 +1,4 @@
+
+# Ignore case while tab completing
+set completion-ignore-case on
+
