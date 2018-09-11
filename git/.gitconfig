@@ -1,0 +1,9 @@
+# This is Git's per-user configuration file.
+[user]
+	name = Guillermo Rodriguez
+	email = guillermor@mail.usf.edu
+# Please adapt and uncomment the following lines:
+#	name = Guillermo Rodriguez
+#	email = tetsuko@Guillermos-MacBook-Pro.local
+[core]
+	excludesfile = /Users/tetsuko/.gitignore_global

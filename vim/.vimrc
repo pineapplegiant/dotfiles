@@ -1,11 +1,8 @@
 """"""Required for Vim Plug
 set nocompatible              " be iMproved, required
 
-" Set U as (Ctrl R) which means Redo
+" Set U as Ctrl R which means Redo
 nnoremap U <C-R>
-
-" Tell Vim to quit it's shit 
-nnoremap Q :
 
 " Turn off search highlight bullshit to Comma and then Space
 nnoremap ,<space> :nohlsearch<CR>
@@ -26,11 +23,11 @@ nnoremap dE d$
 nnoremap cE c$
 
 """""Basic Preference Things
-syntax on		              " Turn on Syntax highlighting
-set nu                        " Turn on Line Number
+syntax enable		              " Turn on Syntax highlighting
+set number                    " Turn on Line Number
 set mouse=a		              " Allow Mouse to work (I know, I suck)
 set autoindent			      " Makes it so that things are  indented when needed (i think)
-set smarttab		          " Turn on smart tabs
+"set cursorline                " Cursorline in vim 
 set expandtab		          " Tabs are spaces 
 set tabstop=4			      " TAB becomes 4 spaces 
 set softtabstop=4	          " TAB becomes 4 spaces in Vim operations
@@ -43,4 +40,5 @@ set backspace=indent,eol,start " Allow backspace in insert mode
 set scrolloff=3               " When scrolling, keep cursor 3 lines away from screen border
 set wrap                      " Wrap lines when they are too long
 set title                     " Update the title of the window or the terminal  
-
+let python_hightlight_all = 1 " Who knows if this really works
+filetype indent on

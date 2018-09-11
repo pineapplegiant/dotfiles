@@ -30,6 +30,3 @@ function time_now() {
   echo "The time right now is:" "${TIME}"
 }
 
-# Notes
-# declare -F 	-> Will show all functions
-# alias 	-> Will show all aliases
