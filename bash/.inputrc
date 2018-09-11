@@ -2,3 +2,5 @@
 # Ignore case while tab completing
 set completion-ignore-case on
 
+# Set editing mode to vi since it's default in emacs
+# set editing-mode vi
