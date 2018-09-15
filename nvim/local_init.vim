@@ -26,10 +26,11 @@ nnoremap cE c$
 """""Basic Preference Things
 syntax enable		          " Turn on Syntax highlighting
 set number                    " Turn on Line Number
-"set relativenumber            " Relative Numbering  
+"set relativenumber           " Relative Numbering  
 set mouse=a		              " Allow Mouse to work (I know, I suck)
 set autoindent			      " Makes it so that things are  indented when needed (i think)
-"set cursorline               " Cursorline in vim 
+set cursorline                " Cursorline in vim 
+hi cursorline cterm=none term=none
 set expandtab		          " Tabs are spaces 
 set tabstop=4			      " TAB becomes 4 spaces 
 set softtabstop=4	          " TAB becomes 4 spaces in Vim operations

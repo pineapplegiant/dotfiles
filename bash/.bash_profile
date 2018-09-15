@@ -3,6 +3,14 @@ echo "Hey, welcome back my dude ^‿^"
 
 # All of my aliases
 
+# Nvim Stuff so that the haters know 
+export VISUAL=nvim
+alias vim=nvim
+#alias vi=nvim
+
+# Neovim-Remote add to Path
+export PATH=/Users/Gmo/Library/Python/3.7/bin:$PATH 
+
 # ls stuff
 alias ls="ls -FG"				 # Make ls pretty
 alias ll="ls -l"				 # ls long tag
@@ -133,3 +141,6 @@ fmt_time ()
 
  # Tell bash to execute this function just before displaying its prompt.
  PROMPT_COMMAND=set_bash_prompt
+
+ # John says this will make you not have to type 'CD' to  change dircetory
+ shopt -s autocd
