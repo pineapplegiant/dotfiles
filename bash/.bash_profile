@@ -1,10 +1,11 @@
-# Friendly Message
-echo "Hey, welcome back my dude ^‿^"
+# Friendly Message to myself
+echo "Hey, $USER welcome back my dude ^‿^"
 
-# All of my aliases
+# All of my aliases ******************************************************
 
 # Nvim Stuff so that the haters know 
 export VISUAL=nvim
+alias v=nvim
 alias vim=nvim
 #alias vi=nvim
 
@@ -29,9 +30,9 @@ alias cd..="cd .."				 # Typo
 
 # Laziness at its finest
 alias c="clear"
-alias s="ls"                     
+alias s="ls -al"                     
 
-# Useful Functions!
+# Useful Functions! ******************************************************
 
 # This will open manpages in Preview!
 function preman() 
@@ -39,7 +40,9 @@ function preman()
     man -t $@ | open -f -a "Preview"
 }
 
-
+# PS1 Stuff
+# ************************************************************************
+# John did all of this ->
 # Prompt Colors PS1 Stuff
 # The various escape codes that we can use to color our prompt.
         RED="\[\033[0;31m\]"
@@ -141,6 +144,6 @@ fmt_time ()
 
  # Tell bash to execute this function just before displaying its prompt.
  PROMPT_COMMAND=set_bash_prompt
-
+# ************************************************************************
  # John says this will make you not have to type 'CD' to  change dircetory
  shopt -s autocd
