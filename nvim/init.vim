@@ -1,7 +1,4 @@
-""""""Required 
-set nocompatible              " be iMproved, required
-filetype plugin indent on
-
+""""""No Compatible and plugin on by default thx neovim
 
 "" Map leader to ,
 let mapleader=','
@@ -34,7 +31,7 @@ set number                    " Turn on Line Number
 set mouse=a		              " Allow Mouse to work (I know, I suck)
 set autoindent			      " Makes it so that things are  indented when needed (i think)
 set cursorline                " Cursorline in vim 
-hi cursorline cterm=none term=none
+" hi cursorline cterm=none term=none
 set expandtab		          " Tabs are spaces 
 set tabstop=4			      " TAB becomes 4 spaces 
 set softtabstop=4	          " TAB becomes 4 spaces in Vim operations
@@ -48,3 +45,15 @@ set scrolloff=3               " When scrolling, keep cursor 3 lines away from sc
 set wrap                      " Wrap lines when they are too long
 set title                     " Update the title of the window or the terminal  
 let python_hightlight_all = 1 " Who knows if this really works
+
+
+" Press F5 in normal/insert mode to paste timestamp
+nnoremap <F5> "=strftime("#### %H:%M:%S")<CR>P 
+inoremap <F5> "=strftime("#### %H:%M:%S")<CR>P
+
+" List all buffers and jump to them using 'gb'
+nnoremap gb :ls<CR>:b<Space>
+
+" List all recently opened files and open a new buffer
+
+nnoremap gs :browse oldfiles<CR>

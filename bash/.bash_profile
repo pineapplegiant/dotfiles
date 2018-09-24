@@ -30,7 +30,7 @@ alias cd..="cd .."				 # Typo
 
 # Laziness at its finest
 alias c="clear"
-alias s="ls -al"                     
+alias s="ls -ahl" 
 
 # Useful Functions! ******************************************************
 
