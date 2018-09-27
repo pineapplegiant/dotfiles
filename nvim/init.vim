@@ -1,13 +1,35 @@
 """"""No Compatible and plugin on by default thx neovim
 
-"" Map leader to ,
-let mapleader=','
+" Map leader to '<space>'
+let mapleader=' '
+
+" Quicksave in vim! 
+noremap <Leader>s :update<CR>
+
+" Quick quit in vim
+noremap <leader>q :q!<cr>
+
+" Paste into vim in normal mode
+noremap <leader>p  "+p
+
+" Copy into Clipboard from vim
+noremap <leader>y  "+y
+
+" Make leader+w = ctrl + w to move between windows
+noremap <leader>w <C-w>
+
+" Remap Capital J/K to move up and down blocks
+noremap J }
+nnoremap K {
+
+" Remap leader + nn to autocomplete
+inoremap <leader>nn <C-w>
 
 " Set U as Ctrl R which means Redo
 nnoremap U <C-R>
 
 " Turn off search highlight bullshit to Comma and then Space
-nnoremap <leader><space> :nohlsearch<CR>
+nnoremap ,<leader> :nohlsearch<CR>
 
 " Split window
 nmap ss :split<Return><C-w>w
@@ -55,5 +77,4 @@ inoremap <F5> "=strftime("#### %H:%M:%S")<CR>P
 nnoremap gb :ls<CR>:b<Space>
 
 " List all recently opened files and open a new buffer
-
 nnoremap gs :browse oldfiles<CR>

@@ -1,26 +1,32 @@
 # Friendly Message to myself
 echo "Hey, $USER welcome back my dude ^‿^"
 
+journal='/Users/Gmo/Github/Optimizations/gmo/optimizations.md' # Path to my journal
+
 # All of my aliases ******************************************************
 
 # Nvim Stuff so that the haters know 
 export VISUAL=nvim
 alias v=nvim
 alias vim=nvim
-#alias vi=nvim
+alias vi=nvim
+
+# Vimr application alias
+VimR='open -a vimr .'
 
 # Neovim-Remote add to Path
 export PATH=/Users/Gmo/Library/Python/3.7/bin:$PATH 
 
 # ls stuff
 alias ls="ls -FG"				 # Make ls pretty
+alias l="ls"                     # Just make it chill   
 alias ll="ls -l"				 # ls long tag
 
 # Save me from myself
 alias rm="rm -i"				 # Make rm more safe
 alias cp="cp -i"				 # Make cp more safe
 alias mv="mv -i"				 # Make mv more safe
-alias refresh="source ~/.bash_profile"		 # Source bash profile
+alias rr="source ~/.bash_profile && tmux source-file ~/.tmux.conf"		 # Source bash profile & Tmux
 
 # Moving around
 alias ..="cd .."				 # Shortcut up a directory
@@ -32,6 +38,9 @@ alias cd..="cd .."				 # Typo
 alias c="clear"
 alias s="ls -ahl" 
 
+## Journal aliasi
+alias opt='vim $journal'
+
 # Useful Functions! ******************************************************
 
 # This will open manpages in Preview!
@@ -40,7 +49,8 @@ function preman()
     man -t $@ | open -f -a "Preview"
 }
 
-# PS1 Stuff
+
+# PS1 Stuff that john made =>
 # ************************************************************************
 # John did all of this ->
 # Prompt Colors PS1 Stuff
@@ -142,8 +152,26 @@ fmt_time ()
 
 }
 
- # Tell bash to execute this function just before displaying its prompt.
- PROMPT_COMMAND=set_bash_prompt
-# ************************************************************************
- # John says this will make you not have to type 'CD' to  change dircetory
- shopt -s autocd
+# Tell bash to execute this function just before displaying its prompt.
+PROMPT_COMMAND=set_bash_prompt
+
+# Next Level Functions****************************************************
+
+# Bash 4.0 no 'CD' to  change dircetory
+shopt -s autocd
+
+# Directory movement mk. 2
+alias gtd='function _gtd(){ dp="$1";fdp=$(find . -iname $dp -type d); cd $fdp; };_gtd'
+alias f='find . -iname'
+
+# Go up 'x' number of directories
+ uu() 
+{
+    start=1
+    end=$1
+    for ((i=start; i<=end; i++));
+        do
+        cd ..
+        done
+}
+
