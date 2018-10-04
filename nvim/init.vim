@@ -3,8 +3,11 @@
 " Find stuff in vanilla vim? Wow
 set path+=**
 
-" Map leader to '<space>'
+"""""Map leader to '<space>' All things Leader
 let mapleader=' '
+
+" Turn off search highlight bullshit to Comma and then Space
+nnoremap ,<leader> :nohlsearch<CR>
 
 " Quicksave in vim! 
 noremap <Leader>s :update<CR>
@@ -23,19 +26,15 @@ noremap <leader>w <C-w>
 
 " Make Leader j = captil J--> not good but screw it
 noremap <leader>j J
+""""""""
+
 
 " Remap Capital J/K to move up and down blocks
 noremap J }
 nnoremap K {
 
-" Remap leader + nn to autocomplete
-inoremap <leader>nn <C-w>
-
 " Set U as Ctrl R which means Redo
 nnoremap U <C-R>
-
-" Turn off search highlight bullshit to Comma and then Space
-nnoremap ,<leader> :nohlsearch<CR>
 
 " Split window
 nmap ss :split<Return><C-w>w
@@ -51,6 +50,7 @@ nnoremap E $
 nnoremap vE v$
 nnoremap dE d$
 nnoremap cE c$
+
 
 """""Basic Preference Things
 syntax enable		          " Turn on Syntax highlighting
@@ -84,3 +84,12 @@ nnoremap gb :ls<CR>:b<Space>
 
 " List all recently opened files and open a new buffer
 nnoremap gs :browse oldfiles<CR>
+
+
+"""""Snippets!o
+
+" Basic HTML Snippet!
+nnoremap ,html :1-read $HOME/.config/nvim/snippets/skeleton.html<CR>4j3w>a
+
+
+
