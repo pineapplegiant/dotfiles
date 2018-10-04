@@ -40,6 +40,7 @@ alias s="ls -ahl"
 
 ## Journal aliasi
 alias opt='vim $journal'
+alias optt='cd /Users/Gmo/Github/Optimizations/gmo'
 
 # Useful Functions! ******************************************************
 
@@ -174,4 +175,3 @@ alias f='find . -iname'
         cd ..
         done
 }
-

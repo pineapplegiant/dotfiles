@@ -1,5 +1,8 @@
 """"""No Compatible and plugin on by default thx neovim
 
+" Find stuff in vanilla vim? Wow
+set path+=**
+
 " Map leader to '<space>'
 let mapleader=' '
 
@@ -17,6 +20,9 @@ noremap <leader>y  "+y
 
 " Make leader+w = ctrl + w to move between windows
 noremap <leader>w <C-w>
+
+" Make Leader j = captil J--> not good but screw it
+noremap <leader>j J
 
 " Remap Capital J/K to move up and down blocks
 noremap J }
