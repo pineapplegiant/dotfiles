@@ -89,7 +89,7 @@ nnoremap gs :browse oldfiles<CR>
 """""Snippets!o
 
 " Basic HTML Snippet!
-nnoremap ,html :1-read $HOME/.config/nvim/snippets/skeleton.html<CR>4j3w>a
+nnoremap ,html :1-read $HOME/.config/nvim/snippets/skeleton.html<CR>4j3wa
 
 
 

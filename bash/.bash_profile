@@ -11,6 +11,9 @@ alias v=nvim
 alias vim=nvim
 alias vi=nvim
 
+# Get to bash-profile faster
+alias bashp='vim ~/.bash_profile'
+
 # Vimr application alias
 VimR='open -a vimr .'
 
@@ -38,22 +41,25 @@ alias cd..="cd .."				 # Typo
 alias c="clear"
 alias s="ls -ahl" 
 
-## Journal aliasi
+## Journal alias
 alias opt='vim $journal'
 alias optt='cd /Users/Gmo/Github/Optimizations/gmo'
 
 # Useful Functions! ******************************************************
 
-# This will open manpages in Preview!
+# CD && LS idk
+cs() { builtin cd "$@" && ls;}
+
+# This will open manpages in preview!
 function preman() 
 {
-    man -t $@ | open -f -a "Preview"
+    man -t $@ | open -f -a "preview"
 }
 
 
-# PS1 Stuff that john made =>
+# PS1 Stuff that John made =>
 # ************************************************************************
-# John did all of this ->
+# NOTE TO SELF -> Play with the colors u know
 # Prompt Colors PS1 Stuff
 # The various escape codes that we can use to color our prompt.
         RED="\[\033[0;31m\]"
@@ -175,3 +181,4 @@ alias f='find . -iname'
         cd ..
         done
 }
+
