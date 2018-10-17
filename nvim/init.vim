@@ -1,5 +1,9 @@
 """"""No Compatible and plugin on by default thx neovim
 
+" Optional colorsheme
+" colorscheme spacedirt
+
+
 " Find stuff in vanilla vim? Wow
 set path+=**
 

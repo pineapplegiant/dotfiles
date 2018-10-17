@@ -2,8 +2,14 @@
 echo "Hey, $USER welcome back my dude ^‿^"
 
 journal='/Users/Gmo/Github/Optimizations/gmo/optimizations.md' # Path to my journal
+dotfiles='/Users/Gmo/Github/dotfiles/'
 
 # All of my aliases ******************************************************
+
+# Safe-RM
+# Brew install 'safe-rm'
+alias rm='safe-rm'
+
 
 # Nvim Stuff so that the haters know 
 export VISUAL=nvim
@@ -45,10 +51,13 @@ alias s="ls -ahl"
 alias opt='vim $journal'
 alias optt='cd /Users/Gmo/Github/Optimizations/gmo'
 
+## Dotfiles alias
+alias dot='cd $dotfiles'
+
 # Useful Functions! ******************************************************
 
 # CD && LS idk
-cs() { builtin cd "$@" && ls;}
+cd() { builtin cd "$@" && ls;}
 
 # This will open manpages in preview!
 function preman() 
