@@ -1,58 +1,62 @@
+#    ██████╗  █████╗ ███████╗██╗  ██╗    ██████╗ ██████╗  ██████╗ ███████╗██╗██╗     ███████╗
+#    ██╔══██╗██╔══██╗██╔════╝██║  ██║    ██╔══██╗██╔══██╗██╔═══██╗██╔════╝██║██║     ██╔════╝
+#    ██████╔╝███████║███████╗███████║    ██████╔╝██████╔╝██║   ██║█████╗  ██║██║     █████╗  
+#    ██╔══██╗██╔══██║╚════██║██╔══██║    ██╔═══╝ ██╔══██╗██║   ██║██╔══╝  ██║██║     ██╔══╝  
+# ██╗██████╔╝██║  ██║███████║██║  ██║    ██║     ██║  ██║╚██████╔╝██║     ██║███████╗███████╗
+# ╚═╝╚═════╝ ╚═╝  ╚═╝╚══════╝╚═╝  ╚═╝    ╚═╝     ╚═╝  ╚═╝ ╚═════╝ ╚═╝     ╚═╝╚══════╝╚══════╝
+                                                                                           
 # Friendly Message to myself
-echo "Hey, $USER welcome back my dude ^‿^"
+    echo "Hey, $USER welcome back my dude ^‿^"
+
 
 journal='/Users/Gmo/Github/Optimizations/gmo/optimizations.md' # Path to my journal
-dotfiles='/Users/Gmo/Github/dotfiles/'
+dotfiles='/Users/Gmo/Github/dotfiles/'                         # Path to my dotfiles
 
 # All of my aliases ******************************************************
-
-# Safe-RM
-# Brew install 'safe-rm'
-alias rm='safe-rm'
-
+    alias rm='safe-rm' # Safe-RM
 
 # Nvim Stuff so that the haters know 
-export VISUAL=nvim
-alias v=nvim
-alias vim=nvim
-alias vi=nvim
+    export VISUAL=nvim
+    alias v=nvim
+    alias vim=nvim
+    alias vi=nvim
 
 # Get to bash-profile faster
-alias bashp='vim ~/.bash_profile'
+    alias bp='vim ~/.bash_profile'
 
 # Vimr application alias
-VimR='open -a vimr .'
+    VimR='open -a vimr .'
 
 # Neovim-Remote add to Path
-export PATH=/Users/Gmo/Library/Python/3.7/bin:$PATH 
+    export PATH=/Users/Gmo/Library/Python/3.7/bin:$PATH 
 
 # ls stuff
-alias ls="ls -FG"				 # Make ls pretty
-alias l="ls"                     # Just make it chill   
-alias ll="ls -l"				 # ls long tag
+    alias ls="ls -FG"				 # Make ls pretty
+    alias l="ls"                     # Just make it chill   
+    alias ll="ls -l"				 # ls long tag
 
 # Save me from myself
-alias rm="rm -i"				 # Make rm more safe
-alias cp="cp -i"				 # Make cp more safe
-alias mv="mv -i"				 # Make mv more safe
-alias rr="source ~/.bash_profile && tmux source-file ~/.tmux.conf"		 # Source bash profile & Tmux
+    alias rm="rm -i"				 # Make rm more safe
+    alias cp="cp -i"				 # Make cp more safe
+    alias mv="mv -i"				 # Make mv more safe
+    alias rr="source ~/.bash_profile && tmux source-file ~/.tmux.conf"		 # Source bash profile & Tmux
 
 # Moving around
-alias ..="cd .."				 # Shortcut up a directory
-alias ...="cd ../.."	         # Shorcut 2 directory
-alias cd..="cd .."				 # Typo
+    alias ..="cd .."				 # Shortcut up a directory
+    alias ...="cd ../.."	         # Shorcut 2 directory
+    alias cd..="cd .."				 # Typo
 
 
 # Laziness at its finest
-alias c="clear"
-alias s="ls -ahl" 
+    alias c="clear"
+    alias s="ls -ahl" 
 
 ## Journal alias
-alias opt='vim $journal'
-alias optt='cd /Users/Gmo/Github/Optimizations/gmo'
+    alias opt='vim $journal'
+    alias optt='cd /Users/Gmo/Github/Optimizations/gmo'
 
 ## Dotfiles alias
-alias dot='cd $dotfiles'
+    alias dot='cd $dotfiles'
 
 # Useful Functions! ******************************************************
 
@@ -66,7 +70,7 @@ function preman()
 }
 
 
-# PS1 Stuff that John made =>
+# Prompt PS1 Stuff that John made =>
 # ************************************************************************
 # NOTE TO SELF -> Play with the colors u know
 # Prompt Colors PS1 Stuff
@@ -171,14 +175,14 @@ fmt_time ()
 # Tell bash to execute this function just before displaying its prompt.
 PROMPT_COMMAND=set_bash_prompt
 
-# Next Level Functions****************************************************
+# Next Level Functions ****************************************************
 
 # Bash 4.0 no 'CD' to  change dircetory
-shopt -s autocd
+    shopt -s autocd
 
 # Directory movement mk. 2
-alias gtd='function _gtd(){ dp="$1";fdp=$(find . -iname $dp -type d); cd $fdp; };_gtd'
-alias f='find . -iname'
+    alias gtd='function _gtd(){ dp="$1";fdp=$(find . -iname $dp -type d); cd $fdp; };_gtd'
+    alias f='find . -iname'
 
 # Go up 'x' number of directories
  uu() 

@@ -1,10 +1,16 @@
-""""""No Compatible and plugin on by default thx neovim
-
-
+"  ________    ___      ___  ___   _____ ______    ________   ________     
+" |\   ___  \ |\  \    /  /||\  \ |\   _ \  _   \ |\   __  \ |\   ____\    
+" \ \  \\ \  \\ \  \  /  / /\ \  \\ \  \\\__\ \  \\ \  \|\  \\ \  \___|    
+"  \ \  \\ \  \\ \  \/  / /  \ \  \\ \  \\|__| \  \\ \   _  _\\ \  \       
+"   \ \  \\ \  \\ \    / /    \ \  \\ \  \    \ \  \\ \  \\  \|\ \  \____  
+"    \ \__\\ \__\\ \__/ /      \ \__\\ \__\    \ \__\\ \__\\ _\ \ \_______\
+"     \|__| \|__| \|__|/        \|__| \|__|     \|__| \|__|\|__| \|_______|
+"                                                                          
+                                                                         
 " Find stuff in vanilla vim? Wow
     set path+=**
 
-"""""Map Leader to '<space>' All things Leader
+""""" Map Leader to '<space>' All things Leader
     let mapleader=' '
 
 " Turn off search highlight bullshit to Comma and then Space
@@ -51,11 +57,10 @@
 """""Basic Preference Things
     syntax enable		          " Turn on Syntax highlighting
     set number                    " Turn on Line Number
-"set relativenumber           " Relative Numbering  
+    "set relativenumber           " Relative Numbering  
     set mouse=a		              " Allow Mouse to work (I know, I suck)
     set autoindent			      " Makes it so that things are  indented when needed (i think)
     set cursorline                " Cursorline in vim 
-" hi cursorline cterm=none term=none
     set expandtab		          " Tabs are spaces 
     set tabstop=4			      " TAB becomes 4 spaces 
     set softtabstop=4	          " TAB becomes 4 spaces in Vim operations
