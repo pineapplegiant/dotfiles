@@ -1,10 +1,77 @@
-# Git NOTES:
+# Git Cheatsheet:
 
-> This document is intended for people who suffer from chronic lower back pain and the occasional bacterial scoliotic menigiosis . I just made that-up that last thing.
+> This document is intended for people who suffer from chronic lower back pain and the occasional bacterial scoliotic menigiosis ... I just made that-up that last thing. It's really just notes about git. 
 
 
-This is just meant to be a shitty cheat sheet to print out and have posted in your lonely-ass cubicle somewhere. 
-Because there's always the [comprehensive book thing]("https://git-scm.com/book/en/v2/Getting-Started-About-Version-Control")!
+> "Git is the open source distributed version control system that facilitates GitHub activites on your laptop or desktop.
+
+## Install git:
+
+[Download git!](https://git-scm.com/downloads)
+
+# Basics:
+
+## Configure Git
+            $ git config  --global user.name "[name]"           --> Sets the name you want attached to your commits
+            $ git config  --global user.email "[email address]" --> Sets the email you want attached to your commits
+            $ git config  --global color.ui auto                --> Enables helpful colorization of command line output
+
+## Create repositories
+            $ git init [project-name] --> Creates new local repository with the specified theme
+            $ git clone [url]         --> Downloads a project and its entire version history
+
+## Make changes
+            $ git status  --> Lists all new or modified files to be committed 
+            $ git diff    --> Shows all the file differences not yet staged
+            $ git diff    --> Shows all the file differences not yet staged
+
+## Group Changes
+
+            $ git branch                  --> Lists all local branches in the current repository
+            $ git branch[branch-name]     --> Creates a new branch
+            $ git checkout [branch-name]  --> Switches to the specified branch and updates the working directory
+            $ git merge [branch]          --> Combines the specified branch's history into the current branch
+            $ git branch -d [branch-name] --> Deletes the specified branch
+
+# More interesting things:
+
+## Refactor filenames
+            $ git rm [file]                         --> Shows all the file differences not yet staged
+            $ git rm --cached [file]                --> Removes the file from version control but preserves the file locally.
+            $ git mv [file-original] [file-renamed] --> Changes the file name and prepares it for commit
+
+## Suppress Tracking -> .gitignore file suppresses accidental versioning of files & paths
+            *.log
+            build/
+            temp
+
+`$ git ls-files --other --ignored --exclude-standard`
+
+## Save Fragments
+            $ git stash       --> Temporarily stores all modified tracked files
+            $ git stash pop   --> Restores the most recently stashed files
+            $ git stash list  --> List all stashed changesets
+            $ git stash drop  --> Discards the most recently stashed changeset
+
+## Review History 
+            $ git log                                   --> Lists all version history for the current branch
+            $ git log                                   --> Lists version history for a file, including renames
+            $ git diff [first-branch]...[second-branch] --> Shows contents differences between two branches
+            $ git show [commit]                         --> Outputs metadata and content changes of the specified commit
+            
+## Redo commits
+            $ git reset [commit]        --> Undoes all commits after [commit] preserving changes locally
+            $ git reset --hard [commit] --> Discards all the history and changes back to the specified commit
+
+## Syncronize Changes
+            $ git fetch [bookmark]          --> Downloads all history from the repository bookmark
+            $ git merge [bookmark]/[branch] --> Combines bookmark's branch into the current local branch
+            $ git push [alias] [branch]     --> Uploads all local branch commits to GitHub 
+            $ git pull                      --> Downloads bookmark history and incorporates changes
+
+
+
+There's always the [comprehensive book thing]("https://git-scm.com/book/en/v2/Getting-Started-About-Version-Control") if you're unsure of what you're doing.
 
 
 Also if you want chill open-source projects search this in Github: 
@@ -14,10 +81,11 @@ Also if you want chill open-source projects search this in Github:
 [http://up-for-grabs.net/#/tags/python
 ]("http://up-for-grabs.net/#/tags/python")
 
-## SIDE NOTE:
 
-[Download git!](https://git-scm.com/downloads)
 
+# "Notes"
+
+The rest is just notes i took way back when on trying to learn git. Nothing fancy, really. 
 
 ### Git vs Github:
 
