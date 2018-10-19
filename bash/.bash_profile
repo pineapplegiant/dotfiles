@@ -6,8 +6,7 @@
 # ╚═╝╚═════╝ ╚═╝  ╚═╝╚══════╝╚═╝  ╚═╝    ╚═╝     ╚═╝  ╚═╝ ╚═════╝ ╚═╝     ╚═╝╚══════╝╚══════╝
                                                                                            
 # Friendly Message to myself
-    echo "Hey, $USER welcome back my dude ^‿^"
-
+    echo "$USER welcome back my dude ^‿^"
 
 journal='/Users/Gmo/Github/Optimizations/gmo/optimizations.md' # Path to my journal
 dotfiles='/Users/Gmo/Github/dotfiles/'                         # Path to my dotfiles
@@ -46,19 +45,21 @@ dotfiles='/Users/Gmo/Github/dotfiles/'                         # Path to my dotf
     alias ...="cd ../.."	         # Shorcut 2 directory
     alias cd..="cd .."				 # Typo
 
+# Time is verbose
+    alias time="time -lp"
 
 # Laziness at its finest
     alias c="clear"
     alias s="ls -ahl" 
 
-## Journal alias
+# Journal alias
     alias opt='vim $journal'
     alias optt='cd /Users/Gmo/Github/Optimizations/gmo'
 
 ## Dotfiles alias
     alias dot='cd $dotfiles'
 
-# Useful Functions! ******************************************************
+# All of my Functions! ******************************************************
 
 # CD && LS idk
 cd() { builtin cd "$@" && ls;}

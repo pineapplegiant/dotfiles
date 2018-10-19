@@ -6,18 +6,18 @@
 "    \ \__\\ \__\\ \__/ /      \ \__\\ \__\    \ \__\\ \__\\ _\ \ \_______\
 "     \|__| \|__| \|__|/        \|__| \|__|     \|__| \|__|\|__| \|_______|
 "                                                                          
-                                                                         
+
 " Find stuff in vanilla vim? Wow
     set path+=**
 
-""""" Map Leader to '<space>' All things Leader
+""""" Map Leader to '<space>' All things Leader ->
     let mapleader=' '
 
 " Turn off search highlight bullshit to Comma and then Space
     nnoremap ,<leader> :nohlsearch<CR>
 
 " Quicksave and Quit in vim! 
-    noremap <Leader>s :update<CR>
+    noremap <leader>s :update<CR>
     noremap <leader>q :q!<cr>
 
 " Copy & Paste into vim in normal mode
@@ -27,10 +27,21 @@
 " Make leader+w = ctrl + w to move between windows
     noremap <leader>w <C-w>
 
-" Make Leader j = captil J--> not good but screw it
+" Make leader j = captil J--> not good but screw it
     noremap <leader>j J
-""""""""
 
+" leader r is open register
+    noremap <leader>r :reg<CR>
+    
+" Autocomplete word in insert mode
+    inoremap <Leader>nn <C-n>
+    
+" Go to to previous buffer
+    noremap <Leader>h :bp<CR>
+
+" Go to to next buffer
+    noremap <Leader>l :bn<CR>
+""""""""
 " Remap Capital J/K to move up and down blocks
     noremap J }
     nnoremap K {
@@ -42,22 +53,25 @@
     nmap ss :split<Return><C-w>w
     nmap sv :vsplit<Return><C-w>w
 
-" Move to beginning
+" Use B to move to beginning of line
     nnoremap B ^
     nnoremap vB v^
     nnoremap dB d^
     nnoremap cB c^
-" Move to end of line
+" Use E to move to end of line
     nnoremap E $
     nnoremap vE v$
     nnoremap dE d$
     nnoremap cE c$
 
-
 """""Basic Preference Things
+    set background=light
+    set spelllang=en_us           " Turn on spell check?
+    let &t_SI = "\<Esc>[5 q"      " Turn on blinking-block normal mode
+    let &t_EI = "\<Esc>[1 q"      " Turn on blinking-line insert mode 
     syntax enable		          " Turn on Syntax highlighting
-    set number                    " Turn on Line Number
-    "set relativenumber           " Relative Numbering  
+    set number
+    set nospell                   " Turn on Line Number
     set mouse=a		              " Allow Mouse to work (I know, I suck)
     set autoindent			      " Makes it so that things are  indented when needed (i think)
     set cursorline                " Cursorline in vim 
@@ -96,6 +110,6 @@
 " Basic HTML Snippet!
     nnoremap ,html :1-read $HOME/.config/nvim/snippets/skeleton.html<CR>4j3wa
 
-" Basic yaml snippen
+" Basic yaml snippet
     " nnoremap ,post :1-read $HOME/.config/nvim/snippets/post.html<CR>4j3wa
 
