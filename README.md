@@ -1,14 +1,10 @@
 # Welcome to My MacOSX dotfiles (⌐■_■)
-    .___      __    _____.__.__                 
-  __| _/_____/  |__/ ____\__|  |   ____   ______
- / __ |/  _ \   __\   __\|  |  | _/ __ \ /  ___/
-/ /_/ (  <_> )  |  |  |  |  |  |_\  ___/ \___ \ 
-\____ |\____/|__|  |__|  |__|____/\___  >____  >
-     \/                               \/     \/ 
 
-This is mainly just my safekeeping of my terminal environment. However additional settings will eventually "git"into here ( ͡° ͜ʖ ͡°).
+This is mainly just my safekeeping of my terminal environment. However additional settings will eventually "git"into here.
 
-## Programs I "use"
+( ͡° ͜ʖ ͡°)
+
+## Programs I use:
 * [Iterm2](https://www.iterm2.com "Iterm's homepage") - Terminal Replacement for Mac. Terminal app is still good, I'm just trying something new dude.
 * [Neovim](https://neovim.io "NeoVim's Homepage") - I'm still a very novice user of Vim, however Neovim is definitely the future and I'm trying to make it my daily driver. 
 * [Tmux]("https://github.com/tmux/tmux/wiki") - Terminal multiplexer. Still trying to get the hold of everything on this one. 
