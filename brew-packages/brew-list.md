@@ -3,7 +3,7 @@
 * autoconf
 * bash
 * cmake
-* emacs
+* ctags
 * fish
 * freetype
 * gcc

@@ -6,7 +6,7 @@
 # ╚═╝╚═════╝ ╚═╝  ╚═╝╚══════╝╚═╝  ╚═╝    ╚═╝     ╚═╝  ╚═╝ ╚═════╝ ╚═╝     ╚═╝╚══════╝╚══════╝
                                                                                            
 # Friendly Message to myself
-    echo "$USER welcome back my dude ^‿^"
+    echo "$USER, welcome back my dude ^‿^"
 
 journal='/Users/Gmo/Github/Optimizations/gmo/optimizations.md' # Path to my journal
 dotfiles='/Users/Gmo/Github/dotfiles/'                         # Path to my dotfiles
@@ -19,6 +19,8 @@ dotfiles='/Users/Gmo/Github/dotfiles/'                         # Path to my dotf
     alias v=nvim
     alias vim=nvim
     alias vi=nvim
+    alias vimrc='vim ~/.config/nvim/init.vim'
+    alias ctags="`brew --prefix`/bin/ctags"
 
 # Get to bash-profile faster
     alias bp='vim ~/.bash_profile'
