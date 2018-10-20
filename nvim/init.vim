@@ -100,7 +100,7 @@ map <C-H> 20zh " Scroll 20 characters to the left
     set nowrap                    " Wrap lines when they are too long
     set title                     " Update the title of the window or the terminal  
     let python_hightlight_all = 1 " Who knows if this really works
-    set wildmenu=list:full        " Visual autocomplete for command menu
+    set wildmenu                  " Visual autocomplete for command menu
     set wildignorecase
     set wildignore=*.swp,*.bak
     set wildignore+=*.pyc,*.class,*.sln,*.Master,*.csproj,*.csproj.user,*.cache,*.dll,*.pdb,*.min.*
