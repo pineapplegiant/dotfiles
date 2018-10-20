@@ -1,5 +1,5 @@
 # Notes on Bash
-**[Taken from bash academy!]("https://guide.bash.academy/inception/")**
+**[Taken from bash academy!](https://guide.bash.academy/inception/)**
 
 tl;dr just go to the bash academy if u wanna learn stuff
 

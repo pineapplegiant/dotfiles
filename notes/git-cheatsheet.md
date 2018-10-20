@@ -71,7 +71,7 @@
 
 
 
-There's always the [comprehensive book thing]("https://git-scm.com/book/en/v2/Getting-Started-About-Version-Control") if you're unsure of what you're doing.
+There's always the [comprehensive book thing](https://git-scm.com/book/en/v2/Getting-Started-About-Version-Control) if you're unsure of what you're doing.
 
 
 Also if you want chill open-source projects search this in Github: 
@@ -79,7 +79,7 @@ Also if you want chill open-source projects search this in Github:
 ```label:first-timers-only is:open```
 
 [http://up-for-grabs.net/#/tags/python
-]("http://up-for-grabs.net/#/tags/python")
+](http://up-for-grabs.net/#/tags/python)
 
 
 
