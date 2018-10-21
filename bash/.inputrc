@@ -19,3 +19,7 @@ set editing-mode vi
 # Enable Readline not waiting for additional input when a key is pressed.
 # Needed for the mappings below.
 set keyseq-timeout 0
+
+# Allow for history-search-backward and history search forward
+"\e[A": history-search-backward
+"\e[B": history-search-forward

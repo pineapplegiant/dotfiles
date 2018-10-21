@@ -5,6 +5,8 @@
 # ██╗██████╔╝██║  ██║███████║██║  ██║    ██║     ██║  ██║╚██████╔╝██║     ██║███████╗███████╗
 # ╚═╝╚═════╝ ╚═╝  ╚═╝╚══════╝╚═╝  ╚═╝    ╚═╝     ╚═╝  ╚═╝ ╚═════╝ ╚═╝     ╚═╝╚══════╝╚══════╝
                                                                                            
+#sudo rm /var/log/asl/*.asl -> delete Macosx system log files
+
 # Friendly Message to myself
     echo "$USER, welcome back my dude ^‿^"
 
@@ -28,7 +30,7 @@ dotfiles='/Users/Gmo/Github/dotfiles/'                         # Path to my dotf
 # Vimr application alias
     VimR='open -a vimr .'
 
-# Neovim-Remote add to Path
+# Neovim-Remote add to Path Python3
     export PATH=/Users/Gmo/Library/Python/3.7/bin:$PATH 
 
 # ls stuff
@@ -198,3 +200,11 @@ PROMPT_COMMAND=set_bash_prompt
         done
 }
 
+# Use bash-completion, if available
+[[ $PS1 && -f /usr/share/bash-completion/bash_completion ]] && \
+    . /usr/share/bash-completion/bash_completion
+
+# FOR BASH-COMPLETION
+# if [ -f /sw/etc/bash_completion ]; then
+#    . /sw/etc/bash_completion
+# fi

@@ -80,8 +80,6 @@ map <C-H> 20zh " Scroll 20 characters to the left
     set background=light
     set ignorecase                " Ignorecase when searching stuff  
     set spelllang=en_us           " Turn on spell check?
-    let &t_SI = "\<Esc>[5 q"      " Turn on blinking-block normal mode
-    let &t_EI = "\<Esc>[1 q"      " Turn on blinking-line insert mode 
     syntax enable		          " Turn on Syntax highlighting
     set number                    " Turn on Line Number
     set nospell                   " Allow for spellcheck?

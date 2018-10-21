@@ -42,5 +42,20 @@ FreeBSD users can use ports, Windows users can use  cygwin, but there are altern
 
 ## Commands
 
-If 
+
+## PATH to a program
+
+On a standard UNIX system, there are a few standardized locations for programs to go.
+Some programs will be installed in /bin, others in /usr/bin, yet others in /sbin and so on. 
+It would be a real bother if we had to remember the exact location of our programs, especially since they may vary between systems. 
+To the rescue comes the PATH environment variable. 
+Your PATH variable contains a set of directories that should be searched for programs.
+
+You can find the location of a command with the *type* command.
+
+```$ type -a ping```
+
+Bash only performs a PATH search on command names that do not contain a / character.
+Command names with a slash are always considered direct pathnames to the program to execute.
+
 
