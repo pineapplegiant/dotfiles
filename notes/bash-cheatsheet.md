@@ -58,4 +58,35 @@ You can find the location of a command with the *type* command.
 Bash only performs a PATH search on command names that do not contain a / character.
 Command names with a slash are always considered direct pathnames to the program to execute.
 
+## Quoting Literals
 
+If you want to not have things messy, use literals.
+
+**Note** Bash differentiates between single quotes and double quotes. Double quotes allow more freedom in including variables. 
+
+ 
+> The golden rule on quoting is very simple:
+> If there is whitespace or a symbol in your argument, you must quote it.
+> If there isn't, quotes are usually optional, but you can still quote it to be safe.
+> The golden rule on quoting is very simple:
+> If there is whitespace or a symbol in your argument, you must quote it.
+> If there isn't, quotes are usually optional, but you can still quote it to be safe.
+
+An example of a good way to quote literals is such:
+```$ rm -vr "/home/$username"```
+
+## Redirection
+
+
+## Pathname Expansion
+            $ cd ~/Downloads
+            $ rm -v *
+            removed '05 Between Angels and Insects.ogg'
+            removed '07 Wake Up.ogg'
+            $ ls
+
+tl;dr
+
+* star is the wildcard symbol, tilde is the home directory symbol. 
+            $ echo "The file <hello.txt> contains: $(cat hello.txt)"
+            The file <hello.txt> contains: Hello world.

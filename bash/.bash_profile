@@ -39,7 +39,7 @@ dotfiles='/Users/Gmo/Github/dotfiles/'                         # Path to my dotf
     alias ll="ls -l"				 # ls long tag
 
 # Save me from myself
-    alias rm="rm -i"				 # Make rm more safe
+    alias rm="rm -iv"				 # Make rm more safe
     alias cp="cp -i"				 # Make cp more safe
     alias mv="mv -i"				 # Make mv more safe
     alias rr="source ~/.bash_profile && tmux source-file ~/.tmux.conf"		 # Source bash profile & Tmux
