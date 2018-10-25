@@ -83,13 +83,17 @@ function preman()
         RED="\[\033[0;31m\]"
      YELLOW="\[\033[38;5;221m\]"
       GREEN="\[\033[0;32m\]"
-       BLUE="\[\033[38;5;27m\]"
+       BLUE="\[\033[38;5;33m\]"
   LIGHT_RED="\[\033[1;31m\]"
 LIGHT_BOLD_CYAN="\[\033[38;5;51m\]"
 LIGHT_GREEN="\[\033[38;5;208m\]"
       WHITE="\[\033[1;37m\]"
  LIGHT_GRAY="\[\033[0;37m\]"
  COLOR_NONE="\[\e[0m\]"
+# Colors I made 
+PURPLE="\[\033[38;5;147m\]"
+BROWN="\[\033[38;5;130m\]"
+
 
 # Detect whether the current directory is a git repository.
 function is_git_repository 
@@ -136,7 +140,7 @@ fmt_time ()
    if test $1 -eq 0 ; then
        PROMPT_SYMBOL="\$"
    else
-       PROMPT_SYMBOL="${LIGHT_RED}\$${COLOR_NONE}"
+       PROMPT_SYMBOL="${RED}\$${COLOR_NONE}"
    fi
  }
 
@@ -170,8 +174,9 @@ fmt_time ()
 
    	 GIT="${LIGHT_GREEN}${BRANCH}"
 	 PY="${COLOR_NONE}${PYTHON_VIRTUALENV}"
-	 PS=" ${BLUE}${PROMPT_SYMBOL}${COLOR_NONE} "
+	 PS=" ${PURPLE}${PROMPT_SYMBOL}${COLOR_NONE} "
 	 INDICTORS="\n${GIT}${PY}${PS}"
+
      # Set the bash prompt variable.
 	 PS1="\n${BLUE}\u${RED}@${LIGHT_BOLD_CYAN}\h:${RED}\w${INDICTORS}"
 
@@ -208,3 +213,6 @@ PROMPT_COMMAND=set_bash_prompt
 # if [ -f /sw/etc/bash_completion ]; then
 #    . /sw/etc/bash_completion
 # fi
+
+# Unzip command
+export PATH="/usr/local/opt/unzip/bin:$PATH"

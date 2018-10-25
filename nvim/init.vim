@@ -11,6 +11,9 @@
 "zL and zH let you view to the left and right for long lines
 "zt lets you make the current line up at the top
 "Find stuff in vanilla vim? Wow
+
+" colorscheme Dracula
+
     set path+=**
 
 """""Map Leader to '<space>' All things Leader ->
@@ -21,7 +24,7 @@
 
 "Quicksave and Quickquit in vim! 
     noremap <leader>s :update<cr>
-    noremap <leader>q :q!<cr>
+    noremap <leader>q :q!<CR>
 
 "Copy & Paste into vim in normal mode
     noremap <leader>p  "+p
@@ -35,23 +38,31 @@
     noremap <leader>r :reg<CR>
     
 "Autocomplete word in insert mode
-    inoremap <Leader>nn <C-n>
+    inoremap <leader>nn <C-n>
     
 "Go to to previous buffer
-    noremap <Leader>h :bp<CR>
+    noremap <leader>h :bp<CR>
 
 "Go to to next buffer
-    noremap <Leader>l :bn<CR>
+    noremap <leader>l :bn<CR>
 
 "Juggling with buffers 
     set wildcharm=<C-z>
     nnoremap <leader>d :bd<CR>
 
+"Preview Marks!
+    nnoremap  <leader>m :marks<CR>
+
+"Jumplist stuff -> Forward and back in vim jumps
+nnoremap <leader>o <C-o>
+nnoremap <leader>i <C-i>
+
+
 """""""""End of all things leader"""""""""""""
 
 "Remap ctrl-L and ctrl-H to scroll left & right
-map <C-L> 20zl " Scroll 20 characters to the right
-map <C-H> 20zh " Scroll 20 characters to the left
+map <C-L> 20zl 
+map <C-H> 20zh
 
 "Remap Capital J/K to move up and down blocks
     noremap J }
@@ -105,6 +116,7 @@ map <C-H> 20zh " Scroll 20 characters to the left
     set wildignore+=*/.git/**/*,*/.hg/**/*,*/.svn/**/*
     set wildignore+=tags
     set wildignore+=*.tar.*
+    set noswapfile " NO SWAP FILES
 
 "Commenting blocks of code.
     autocmd FileType c,cpp,java,scala let b:comment_leader = '// '
