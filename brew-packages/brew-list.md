@@ -1,7 +1,9 @@
-# List of all my Brew Packages
+# List of all my brew list packages!
 
 * autoconf
 * bash
+* bash-completion
+* bfs
 * cmake
 * ctags
 * fish
@@ -12,6 +14,7 @@
 * git
 * gmp
 * gnutls
+* h2o
 * htop
 * icu4c
 * imagemagick
@@ -46,7 +49,7 @@
 * pcre2
 * pkg-config
 * python
-* iri
+* r
 * rbenv
 * readline
 * ruby
@@ -59,8 +62,10 @@
 * trash
 * tree
 * unibilium
+* unzip
 * xz
 
-# List of all Brew-cask list Packages
-* firefox
-* keycastr
+
+# List of all my brew cask list packages!
+firefox
+keycastr

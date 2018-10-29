@@ -1,4 +1,4 @@
-"  ________    ___      ___  ___   _____ ______    ________   ________     
+" ________    ___      ___  ___   _____ ______    ________   ________     
 " |\   ___  \ |\  \    /  /||\  \ |\   _ \  _   \ |\   __  \ |\   ____\    
 " \ \  \\ \  \\ \  \  /  / /\ \  \\ \  \\\__\ \  \\ \  \|\  \\ \  \___|    
 "  \ \  \\ \  \\ \  \/  / /  \ \  \\ \  \\|__| \  \\ \   _  _\\ \  \       
@@ -37,9 +37,6 @@
 "leader r is open register
     noremap <leader>r :reg<CR>
     
-"Autocomplete word in insert mode
-    inoremap <leader>nn <C-n>
-    
 "Go to to previous buffer
     noremap <leader>h :bp<CR>
 
@@ -48,7 +45,7 @@
 
 "Juggling with buffers 
     set wildcharm=<C-z>
-    nnoremap <leader>d :bd<CR>
+    nnoremap <leader>d :bd!<CR>
 
 "Preview Marks!
     nnoremap  <leader>m :marks<CR>
