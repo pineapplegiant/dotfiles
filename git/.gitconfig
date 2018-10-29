@@ -5,6 +5,7 @@
 
 [core]
 	excludesfile = /Users/tetsuko/.gitignore_global
+    editor = nvim
 
 [color]
     ui = true
