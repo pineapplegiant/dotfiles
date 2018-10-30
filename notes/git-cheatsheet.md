@@ -27,11 +27,13 @@
 
 ## Group Changes
 
-            $ git branch                  --> Lists all local branches in the current repository
-            $ git branch[branch-name]     --> Creates a new branch
-            $ git checkout [branch-name]  --> Switches to the specified branch and updates the working directory
-            $ git merge [branch]          --> Combines the specified branch's history into the current branch
-            $ git branch -d [branch-name] --> Deletes the specified branch
+            $ git branch                                --> Lists all local branches in the current repository
+            $ git branch[branch-name]                   --> Creates a new branch
+            $ git checkout [branch-name]                --> Switches to the specified branch and updates the working directory
+            $ git merge [branch]                        --> Combines the specified branch's history into the current branch
+            $ git branch -d [branch-name]               --> Deletes the specified branch
+            $ git branch -m oldBranchName newBranchName --> Rename a branch while currently not in the branch to be renamed:
+
 
 # More interesting things:
 
@@ -101,6 +103,12 @@ Git uses a "SHA" to save everything. It's basically a long ass sequence of numbe
 
 > Also did you know that cows can't walk downstairs, but they can walk upstairs.
 
+### There are 3 main areas in git:
+
+1) Working Directory - Place you're working, with all of your files.
+2) Staging Directory - Place you add your changes.
+3) Repository - Place where all the commits are stored. Literally. All of them since the start of the project.
+ 
 
 ### Git uses the 'Less navigation' Scheme 
 
@@ -115,7 +123,6 @@ You can do this a few ways. And you can *really* go all out with it too. You can
 
 1) Use the command line
 
-
             $ git config --global user.name "Your Weirdname"
             $ git config --global user.email weirdname@example.com-user.name="Yourweirdname"
 
@@ -128,31 +135,6 @@ You can do this a few ways. And you can *really* go all out with it too. You can
 
         [core] 
             excludesfile = location/ofyour/.gitignore_global
-
-
-### So there's this thing called branches.
-
-> Female kangaroos have 3 vaginas.
-
-Uhm, branches are just versions of your project that you'd make if you don't wanna mess everything up.
-
-Usually the name of the game is:
-
-1) You have your main sexy branch  (**master**)
-2) You want to add something that could be potentially not sexy at all (**potentially-shitty-feature-**).
-*How do you reconcile this*? You make a branch biiiitch. That way you keep your sexy code and you can eat it too. Yes git is that cool.
-
-        $ git checkout -b potentially-shitty-feature
-
-Now you've made a branch and switched to it. Go on and mess around in good faith.
-
-            git branch <name of branch> - creates a new branch of your project under that name.
-            git checkout <name of branch> - switches into that branch so you can do stuff!
-            git reset --hard - tells the branch to not be created
-            git merge <name of branch> - this merges the branch with the existing main branch. Merging isn't that hard don't freak out.
-
-Note: if there are conflicts git won't merge the branches, unless you ignore it. So it'll still kinda do it. Git will show you where the conflicts are by adding these bracket things: "<<<" around the conflict. If you're uncertain where it is just search for that sequence, the "<<<".
-
 
 
 ## Colloborating:
@@ -172,42 +154,18 @@ It's used for sharing.
 The "SOURCE" Repository. What if they updates their codes? Your forked version will be a forked version of the old shit. You'll want to fetch the original dude's repo and then commit it to your brance via that upstream remote.
 
 Remember that the names origin and upstream are just the default or de facto names that are used. If it's clearer for you to name your origin "remote mine" and the upstream remote "source-repo", then by all means, go ahead and rename them. What you name your remote repositories in your local repository does not affect the source repository at all.
-Did you know the Romans used to whiten their teeth with urine. It worked. But don't pls do it.
-**git remote add <origin> <url> - This is what you'll use on your forked version of the repo.
+Did you know the Romans used to whiten their teeth with urine. It worked. Pls don't do it.
+
+            git remote add <origin> <url> - This is what you'll use on your forked version of the repo.
+
 Note that when you've added a connection to the new upstream remote repository, if you run git fetch upstream master it won't update your forked shit on github.
 git push - send changes to the your forked remote repository
 git push <remote-shortname> <branch> -Sending Commmits!
-
-
-### There are 3 main areas in git:
-1) Working Directory - Place you're working, with all of your files.
-2) Staging Directory - Place you add your changes.
-3) Repository - Place where all the commits are stored. Literally. All of them since the start of the project.
- 
- 
  
  
  
 # Git Commands (Finally)
 Also: You can make Aliases (shortened versions of your commands by editing your .gitconfig file, I suggest this!)
-
-### Introduction:
-
-        git init - brand new repo on computer
-        git clone "http://github/repo.com" - copy existing repo over onto ur shit
-        git status - check status of the repo
-        git add . - adds things to your staging directory
-        git commit - adds things from your staging directory to your repository
-        git commit -m "Message" (the -m flag skips your favorite)
-
-
-### Basics:
-
-        git log - shows ALL of the commits ever. You gotta scroll a lot if u gotta a lot of commits.
-        git show - shows DIFFERENCE between the versions of each commit
-        git diff - Shows CURRENT difference between your working directory and the last commit. This command along with git log & git status will be your slut commands.
-
-
 
 ### Next level: FLAGS!
 
@@ -254,7 +212,6 @@ HEAD^^
         git reset --mixed Head~1 - moves the previous commit & changes to the working index
         git reset --soft Head~1 - moves the previous commit & changes to the staging index
         git reset --hard Head~1 - moves the previous commit & changes to the trash
-
 
 ### Working with other Devs:
 Forking: To split it into an identical copy -- like a fork in the road, but an identical road subl
