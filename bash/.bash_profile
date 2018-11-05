@@ -80,18 +80,19 @@ function preman()
 # NOTE TO SELF -> Play with the colors u know
 # Prompt Colors PS1 Stuff
 # The various escape codes that we can use to color our prompt.
-        RED="\[\033[0;31m\]"
-     YELLOW="\[\033[38;5;221m\]"
+        RED="\[\033[38;5;202m\]"
+     YELLOW="\[\033[38;5;220m\]"
       GREEN="\[\033[0;32m\]"
-       BLUE="\[\033[38;5;33m\]"
-  LIGHT_RED="\[\033[1;31m\]"
+       BLUE="\[\033[38;5;24m\]"
+  LIGHT_RED="\[\033[38;5;202m\]"
 LIGHT_BOLD_CYAN="\[\033[38;5;51m\]"
 LIGHT_GREEN="\[\033[38;5;208m\]"
       WHITE="\[\033[1;37m\]"
- LIGHT_GRAY="\[\033[0;37m\]"
+ LIGHT_GRAY="\[\033[38;5;188m\]"
  COLOR_NONE="\[\e[0m\]"
-# Colors I made 
-PURPLE="\[\033[38;5;147m\]"
+
+# Colors I made, note i made light-red & red the same rip
+PURPLE="\[\033[38;5;99m\]" 
 BROWN="\[\033[38;5;130m\]"
 
 
@@ -149,7 +150,7 @@ fmt_time ()
    if test -z "$VIRTUAL_ENV" ; then
        PYTHON_VIRTUALENV=""
    else
-       PYTHON_VIRTUALENV="${YELLOW}(`basename \"$VIRTUAL_ENV\"`)${COLOR_NONE}"
+       PYTHON_VIRTUALENV="${LIGHT_GRAY}(`basename \"$VIRTUAL_ENV\"`)${COLOR_NONE}"
    fi
  }
 
@@ -172,13 +173,13 @@ fmt_time ()
      BRANCH=''
    fi
 
-   	 GIT="${LIGHT_GREEN}${BRANCH}"
+   	 GIT="${YELLOW}${BRANCH}"
 	 PY="${COLOR_NONE}${PYTHON_VIRTUALENV}"
 	 PS=" ${PURPLE}${PROMPT_SYMBOL}${COLOR_NONE} "
 	 INDICTORS="\n${GIT}${PY}${PS}"
 
      # Set the bash prompt variable.
-	 PS1="\n${BLUE}\u${RED}@${LIGHT_BOLD_CYAN}\h:${RED}\w${INDICTORS}"
+	 PS1="\n${BLUE}\u${RED}@${LIGHT_BOLD_CYAN}\h:${GREEN}\w${INDICTORS}"
 
 }
 
@@ -214,5 +215,3 @@ PROMPT_COMMAND=set_bash_prompt
 #    . /sw/etc/bash_completion
 # fi
 
-# Unzip command
-export PATH="/usr/local/opt/unzip/bin:$PATH"

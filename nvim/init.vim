@@ -10,12 +10,27 @@
 "Remember kids 'gd' for searching under ur cursor is ur friend
 "zL and zH let you view to the left and right for long lines
 "zt lets you make the current line up at the top
-"Find stuff in vanilla vim? Wow
 
-" colorscheme Dracula
+" colorscheme spacedust
 
-    set path+=**
+" Comments for a rainy day
+    "set t_Co=256
+    "colorscheme Dracula
+    "set path+=**
 
+"""""PLUGINS RIP ->
+" Fuzzy Find?
+    set rtp+=/usr/local/opt/fzf
+
+" Airline & Themes enabled
+    let g:airline_powerline_fonts = 1
+    "let g:airline#extensions#tabline#enabled = 1
+    let g:airline_section_b = '%{strftime("%c")}'
+    let g:airline_section_y = 'BN: %{bufnr("%")}'
+    let g:airline#extensions#tabline#formatter = 'default'
+    let g:airline_theme='base16'
+
+""""""<- PlUGINS
 """""Map Leader to '<space>' All things Leader ->
     let mapleader=' '
 
@@ -32,7 +47,6 @@
 
 "Make leader+w = ctrl + w to move between windows
     noremap <leader>w <C-w>
-    noremap <leader>j J
 
 "leader r is open register
     noremap <leader>r :reg<CR>
@@ -51,19 +65,25 @@
     nnoremap  <leader>m :marks<CR>
 
 "Jumplist stuff -> Forward and back in vim jumps
-nnoremap <leader>o <C-o>
-nnoremap <leader>i <C-i>
+    nnoremap <leader>o <C-o>
+    nnoremap <leader>i <C-i>
+
+" FZF to leader+f
+    nnoremap  <leader>f :FZF<CR>
 
 
-"""""""""End of all things leader"""""""""""""
+"""""""""<--End of all things leader"""""""""""""
 
 "Remap ctrl-L and ctrl-H to scroll left & right
-map <C-L> 20zl 
-map <C-H> 20zh
+    map <C-L> 20zl 
+    map <C-H> 20zh
+
+" Fixing vim because I break it in the next block
+    noremap <leader>j J
 
 "Remap Capital J/K to move up and down blocks
     noremap J }
-    nnoremap K {
+    noremap K {
 
 "Set U as Ctrl R which means Redo
     nnoremap U <C-R>
@@ -133,7 +153,6 @@ map <C-H> 20zh
 "Press F5 in normal/insert mode to paste timestamp and F4 To Date Stamp
     nnoremap <F4> "=strftime("%Y-%m-%d")<CR>P
     nnoremap <F5> "=strftime("%H:%M:%S")<CR>P 
-    inoremap <F5> "=strftime("%H:%M:%S")<CR>P
 
 "List all buffers and jump to them using 'gb'
     nnoremap gb :ls<CR>:b<Space>
@@ -145,8 +164,7 @@ map <C-H> 20zh
 """""Snippets!
 
 "Basic HTML Snippet!
-    nnoremap ,html :1-read $HOME/.config/nvim/snippets/skeleton.html<CR>4j3wa
+    nnoremap ,html :-read $HOME/.config/nvim/snippets/skeleton.html<CR>4j3wa
 
 "Basic yaml snippet
-    " nnoremap ,post :1-read $HOME/.config/nvim/snippets/post.html<CR>4j3wa
-
+     nnoremap ,post :-read $HOME/.config/nvim/snippets/post.md<CR>8ja
