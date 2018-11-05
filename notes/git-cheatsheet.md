@@ -241,3 +241,8 @@ Inside the interactive list of commits, all commits start out as pick, but you c
             use f or fixup – to combine this commit's change into the previous one but drop the commit message
             use x or exec – to run a shell command
             use d or drop – to delete the commit
+
+
+## Github change name of repo
+
+```git remote set-url origin new_url```
