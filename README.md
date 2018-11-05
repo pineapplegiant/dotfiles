@@ -5,7 +5,7 @@ This is mainly just my safekeeping of my terminal environment. However additiona
 ( ͡° ͜ʖ ͡°)
 
 
-[sysinfo]: https://github.com/pineapplegiant/dotfiles/raw/master/neofetch.png "Neofetch of my mac system"
+[sysinfo]: https://github.com/pineapplegiant/dotfiles/raw/master/neofetch1.png "Neofetch of my mac system"
 
 ![Neofewch information][sysinfo]
 
