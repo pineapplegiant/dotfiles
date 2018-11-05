@@ -85,7 +85,7 @@ function preman()
       GREEN="\[\033[0;32m\]"
        BLUE="\[\033[38;5;24m\]"
   LIGHT_RED="\[\033[38;5;202m\]"
-LIGHT_BOLD_CYAN="\[\033[38;5;51m\]"
+LIGHT_BOLD_CYAN="\[\033[38;5;39m\]"
 LIGHT_GREEN="\[\033[38;5;208m\]"
       WHITE="\[\033[1;37m\]"
  LIGHT_GRAY="\[\033[38;5;188m\]"
