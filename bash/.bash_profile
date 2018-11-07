@@ -12,6 +12,9 @@
 
 journal='/Users/Gmo/Github/Optimizations/gmo/optimizations.md' # Path to my journal
 dotfiles='/Users/Gmo/Github/dotfiles/'                         # Path to my dotfiles
+githubz='/Users/Gmo/Github/'                                   # Path to my github
+pluginz='/Users/Gmo/.local/share/nvim/site/pack/git-plugins'   # Path to my vim-plugins
+
 
 # All of my aliases ******************************************************
     alias rm='safe-rm' # Safe-RM
@@ -26,6 +29,15 @@ dotfiles='/Users/Gmo/Github/dotfiles/'                         # Path to my dotf
 
 # Get to bash-profile faster
     alias bp='vim ~/.bash_profile'
+
+# Get to Dotfiles alias
+    alias dot='cd $dotfiles'
+
+# Get to Github alias
+    alias github='cd $githubz'
+
+# Get to nvim/plugins alias
+    alias plug='cd $pluginz'
 
 # Vimr application alias
     VimR='open -a vimr .'
@@ -60,8 +72,6 @@ dotfiles='/Users/Gmo/Github/dotfiles/'                         # Path to my dotf
     alias opt='vim $journal'
     alias optt='cd /Users/Gmo/Github/Optimizations/gmo'
 
-## Dotfiles alias
-    alias dot='cd $dotfiles'
 
 # All of my Functions! ******************************************************
 
@@ -102,26 +112,30 @@ function is_git_repository
     git branch > /dev/null 2>&1
 }
 
-
-function set_git_branch 
-{
-    # Set the final branch string
-    BRANCH=`parse_git_branch`
-    local TIME=`fmt_time` # format time for prompt string
-}
-
-function parse_git_branch() 
-{
-   git branch --no-color 2> /dev/null           \
-					 | sed -e '/^[^*]/d'                  \
-					 -e 's/* /*/'                         \
-					 -e "s/* \(.*\)/\1$(parse_git_dirty)/"
+ function set_git_branch {
+   # Set the final branch string
+   BRANCH=`parse_git_dirty``parse_git_branch`
+   local TIME=`fmt_time` # format time for prompt string
  }
 
+
+ function parse_git_branch() {
+   git branch --no-color 2> /dev/null           \
+					 | sed -e '/^[^*]/d'                  \
+					 -e 's/* //'
+ }
+
+
  function parse_git_dirty() 
-{
-   [[ $(git status 2> /dev/null | tail -n1) != *"working directory clean"* ]] && echo "*"
-}
+ {
+    GIT_STATE=$(git status 2> /dev/null | tail -n1)
+    if [ "$GIT_STATE" != "nothing to commit, working tree clean" ]
+    then
+        echo "*"
+    else
+        echo ''
+    fi
+ }
 
 
 fmt_time () 
@@ -168,18 +182,18 @@ fmt_time ()
    # Set the BRANCH variable.
    if is_git_repository ; then
      set_git_branch
-		 BRANCH={$BRANCH}
+     BRANCH={$BRANCH}
    else
      BRANCH=''
    fi
 
    	 GIT="${YELLOW}${BRANCH}"
 	 PY="${COLOR_NONE}${PYTHON_VIRTUALENV}"
-	 PS=" ${PURPLE}${PROMPT_SYMBOL}${COLOR_NONE} "
+	 PS=" ${PURPLE}${PROMPT_SYMBOL}${COLOR_NONE}"
 	 INDICTORS="\n${GIT}${PY}${PS}"
 
      # Set the bash prompt variable.
-	 PS1="\n${BLUE}\u${RED}@${LIGHT_BOLD_CYAN}\h:${GREEN}\w${INDICTORS}"
+     PS1="\n${BLUE}\u${RED}@${LIGHT_BOLD_CYAN}\h:${GREEN}\w${INDICTORS} "
 
 }
 
@@ -191,27 +205,5 @@ PROMPT_COMMAND=set_bash_prompt
 # Bash 4.0 no 'CD' to  change dircetory
     shopt -s autocd
 
-# Directory movement mk. 2
-    alias gtd='function _gtd(){ dp="$1";fdp=$(find . -iname $dp -type d); cd $fdp; };_gtd'
-    alias f='find . -iname'
 
-# Go up 'x' number of directories
- uu() 
-{
-    start=1
-    end=$1
-    for ((i=start; i<=end; i++));
-        do
-        cd ..
-        done
-}
-
-# Use bash-completion, if available
-[[ $PS1 && -f /usr/share/bash-completion/bash_completion ]] && \
-    . /usr/share/bash-completion/bash_completion
-
-# FOR BASH-COMPLETION
-# if [ -f /sw/etc/bash_completion ]; then
-#    . /sw/etc/bash_completion
-# fi
-
+source .bashrc
