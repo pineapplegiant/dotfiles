@@ -10,25 +10,29 @@
 "Remember kids 'gd' for searching under ur cursor is ur friend
 "zL and zH let you view to the left and right for long lines
 "zt lets you make the current line up at the top
+" guu  : Change current line from upper to lower.  
+" gUU  : Change current LINE from lower to upper.
 
-" colorscheme spacedust
 
 " Comments for a rainy day
     "set t_Co=256
     "colorscheme Dracula
     "set path+=**
+    colorscheme peachpuff
+
 
 """""PLUGINS RIP ->
 " Fuzzy Find?
     set rtp+=/usr/local/opt/fzf
 
 " Airline & Themes enabled
-    let g:airline_powerline_fonts = 1
+    "let g:airline_powerline_fonts = 1
     "let g:airline#extensions#tabline#enabled = 1
-    let g:airline_section_b = '%{strftime("%c")}'
-    let g:airline_section_y = 'BN: %{bufnr("%")}'
-    let g:airline#extensions#tabline#formatter = 'default'
-    let g:airline_theme='base16'
+    "let g:airline_section_b = '%{strftime("%c")}'
+    "let g:airline_section_y = 'BN: %{bufnr("%")}'
+    "let g:airline#extensions#tabline#formatter = 'default'
+    "let g:spaceduck_airline = 1
+    "let g:airline_theme = 'spaceduck'
 
 """"""<- PlUGINS
 """""Map Leader to '<space>' All things Leader ->
@@ -103,6 +107,9 @@
     nnoremap dE d$
     nnoremap cE c$
 
+" Map ,, to % because i like cycling brackets a lot
+    nnoremap ,, %
+
 """""Basic Preference Things
     set hidden 
     set background=light
@@ -113,7 +120,7 @@
     set nospell                   " Allow for spellcheck?
     set mouse=a		              " Allow Mouse to work (I know, I suck)
     set autoindent			      " Makes it so that things are  indented when needed (i think)
-    set cursorline                " Cursorline in vim 
+    "set cursorline                " Cursorline in vim 
     set expandtab		          " Tabs are spaces 
     set tabstop=4			      " TAB becomes 4 spaces 
     set softtabstop=4	          " TAB becomes 4 spaces in Vim operations
@@ -160,11 +167,11 @@
 "List all recently opened files and open a new buffer
     nnoremap gs :browse oldfiles<CR>
 
-
 """""Snippets!
 
 "Basic HTML Snippet!
     nnoremap ,html :-read $HOME/.config/nvim/snippets/skeleton.html<CR>4j3wa
 
 "Basic yaml snippet
-     nnoremap ,post :-read $HOME/.config/nvim/snippets/post.md<CR>8ja
+     nnoremap ,post :-read $HOME/.config/nvim/snippets/post.md<CR>5ja
+
