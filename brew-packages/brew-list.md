@@ -1,16 +1,18 @@
-# List of all my brew list packages!
-
+# BREW LIST AS OF: Thu Nov 15 14:58:39 2018 
 * autoconf
 * bash
 * bash-completion
 * bfs
 * cmake
 * ctags
+* ffmpeg
 * fish
 * freetype
+* fzf
 * gcc
 * gdbm
 * gettext
+* gifsicle
 * git
 * gmp
 * gnutls
@@ -21,9 +23,11 @@
 * isl
 * jemalloc
 * jpeg
+* lame
 * libevent
 * libffi
 * libmpc
+* libogg
 * libpng
 * libtasn1
 * libtermkey
@@ -31,6 +35,8 @@
 * libtool
 * libunistring
 * libuv
+* libvorbis
+* libvpx
 * libvterm
 * libyaml
 * luajit
@@ -43,6 +49,7 @@
 * ninja
 * node
 * openssl
+* opus
 * p11-kit
 * pandoc
 * pcre
@@ -57,15 +64,26 @@
 * safe-rm
 * sc-im
 * screenresolution
+* sdl2
+* snappy
 * sqlite
+* theora
 * tmux
 * trash
 * tree
 * unibilium
 * unzip
+* x264
+* x265
+* xvid
 * xz
+* yarn
 
+# BREW CASK LIST AS OF: Thu Nov 15 14:58:39 2018 
 
-# List of all my brew cask list packages!
-firefox
-keycastr
+* calibre
+* firefox
+* gimp
+* keycastr
+* powershell
+* xquartz

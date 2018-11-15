@@ -1,4 +1,4 @@
-" Dracula Theme: {{{
+" Dracula Theme: 
 "
 " https://github.com/zenorocha/dracula-theme
 "
@@ -12,9 +12,9 @@
 " @author Derek Sifford <dereksifford@gmail.com>
 " @author Zeno Rocha <hi@zenorocha.com>
 scriptencoding utf8
-" }}}
+" 
 
-" Configuration: {{{
+" Configuration: 
 
 if v:version > 580
   highlight clear
@@ -29,7 +29,7 @@ if !(has('termguicolors') && &termguicolors) && !has('gui_running') && &t_Co != 
   finish
 endif
 
-" Palette: {{{2
+" Palette: 
 
 let s:fg        = ['#F8F8F2', 255]
 
@@ -92,8 +92,8 @@ if has('nvim')
   let g:terminal_color_15 = '#FFFFFF'
 endif
 
-" }}}2
-" User Configuration: {{{2
+" 
+" User Configuration: 
 
 if !exists('g:dracula_bold')
   let g:dracula_bold = 1
@@ -119,8 +119,8 @@ if !exists('g:dracula_colorterm')
   let g:dracula_colorterm = 1
 endif
 
-"}}}2
-" Script Helpers: {{{2
+
+" Script Helpers: 
 
 let s:attrs = {
       \ 'bold': g:dracula_bold == 1 ? 'bold' : 0,
@@ -164,8 +164,8 @@ function! s:Background()
   endif
 endfunction
 
-"}}}2
-" Dracula Highlight Groups: {{{2
+
+" Dracula Highlight Groups: 
 
 call s:h('DraculaBgLight', s:none, s:bglight)
 call s:h('DraculaBgLighter', s:none, s:bglighter)
@@ -225,10 +225,10 @@ call s:h('DraculaDiffChange', s:none, s:none)
 call s:h('DraculaDiffText', s:bg, s:orange)
 call s:h('DraculaDiffDelete', s:red, s:bgdark)
 
-" }}}2
+" 
 
-" }}}
-" User Interface: {{{
+" 
+" User Interface: 
 
 set background=dark
 
@@ -272,8 +272,8 @@ hi! link Visual       DraculaSelection
 hi! link VisualNOS    Visual
 hi! link WarningMsg   DraculaOrangeInverse
 
-" }}}
-" Syntax: {{{
+" 
+" Syntax: 
 
 " Required as some plugins will overwrite
 call s:h('MatchParen', s:fg, s:pink, [s:attrs.underline])
@@ -335,6 +335,6 @@ hi! link helpCommand DraculaPurple
 hi! link helpExample DraculaGreen
 hi! link helpBacktick Special
 
-"}}}
+
 
 " vim: fdm=marker ts=2 sts=2 sw=2:

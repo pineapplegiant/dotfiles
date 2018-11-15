@@ -13,8 +13,9 @@
 journal='/Users/Gmo/Github/Optimizations/gmo/optimizations.md' # Path to my journal
 dotfiles='/Users/Gmo/Github/dotfiles/'                         # Path to my dotfiles
 githubz='/Users/Gmo/Github/'                                   # Path to my github
-pluginz='/Users/Gmo/.local/share/nvim/site/pack/git-plugins'   # Path to my vim-plugins
-
+pluginz='/Users/Gmo/.local/share/nvim/site/pack/git-plugins/start/'   # Path to my vim-plugins
+config='/Users/Gmo/.config/nvim/'                                   # Path to nvim config
+sillyy='/Users/Gmo/Github/silly-coding-things/'
 
 # All of my aliases ******************************************************
     alias rm='safe-rm' # Safe-RM
@@ -37,7 +38,13 @@ pluginz='/Users/Gmo/.local/share/nvim/site/pack/git-plugins'   # Path to my vim-
     alias github='cd $githubz'
 
 # Get to nvim/plugins alias
+    alias conf='cd $config'
+
+# Get to nvim/plugins alias
     alias plug='cd $pluginz'
+
+# Get to silly/directory alias
+    alias silly='cd $sillyy'
 
 # Vimr application alias
     VimR='open -a vimr .'
