@@ -4,83 +4,78 @@
 #    ██╔══██╗██╔══██║╚════██║██╔══██║    ██╔═══╝ ██╔══██╗██║   ██║██╔══╝  ██║██║     ██╔══╝  
 # ██╗██████╔╝██║  ██║███████║██║  ██║    ██║     ██║  ██║╚██████╔╝██║     ██║███████╗███████╗
 # ╚═╝╚═════╝ ╚═╝  ╚═╝╚══════╝╚═╝  ╚═╝    ╚═╝     ╚═╝  ╚═╝ ╚═════╝ ╚═╝     ╚═╝╚══════╝╚══════╝
-                                                                                           
-#sudo rm /var/log/asl/*.asl -> delete Macosx system log files
 
-# Friendly Message to myself
+
+#----------------------------------------------------------------------
+# Notes for a healthy reminder
+#----------------------------------------------------------------------
+    #sudo rm /var/log/asl/*.asl -> delete Macosx system log files
+
+
+#----------------------------------------------------------------------
+# Start off with a friendly hello
+#----------------------------------------------------------------------
     echo "$USER, welcome back my dude ^‿^"
 
-journal='/Users/Gmo/Github/Optimizations/gmo/optimizations.md' # Path to my journal
-dotfiles='/Users/Gmo/Github/dotfiles/'                         # Path to my dotfiles
-githubz='/Users/Gmo/Github/'                                   # Path to my github
-pluginz='/Users/Gmo/.local/share/nvim/site/pack/git-plugins/start/'   # Path to my vim-plugins
-config='/Users/Gmo/.config/nvim/'                                   # Path to nvim config
-sillyy='/Users/Gmo/Github/silly-coding-things/'
 
-# All of my aliases ******************************************************
-    alias rm='safe-rm' # Safe-RM
+#----------------------------------------------------------------------
+# Location of things i go to a lot
+#----------------------------------------------------------------------
+    journal='/Users/Gmo/Github/Optimizations/gmo/optimizations.md'      # my journal
+    dotfiles='/Users/Gmo/Github/dotfiles/'                              # my dotfiles
+    githubz='/Users/Gmo/Github/'                                        # my github
+    pluginz='/Users/Gmo/.local/share/nvim/site/pack/git-plugins/start/' # my vim-plugins
+    config='/Users/Gmo/.config/nvim/'                                   # nvim config
+    sillyy='/Users/Gmo/Github/silly-coding-things/'
 
-# Nvim Stuff so that the haters know 
-    export VISUAL=nvim
-    alias v=nvim
-    alias vim=nvim
-    alias vi=nvim
-    alias vimrc='vim ~/.config/nvim/init.vim'
-    alias ctags="`brew --prefix`/bin/ctags"
 
-# Get to bash-profile faster
-    alias bp='vim ~/.bash_profile'
+#----------------------------------------------------------------------
+# ALIASES
+#----------------------------------------------------------------------
 
-# Get to Dotfiles alias
-    alias dot='cd $dotfiles'
+    alias rm='safe-rm'                       # Safe-RM
+    export VISUAL=nvim                       # Nvim Stuff so that the haters know
+    alias v=nvim                             # Nvim Stuff so that the haters know 
+    alias vim=nvim                           # Nvim Stuff so that the haters know
+    alias vi=nvim                            # Nvim Stuff so that the haters know
+    alias vimrc='vim ~/.config/nvim/init.vim' # Open nvimrc in nvim
+    alias ctags="`brew --prefix`/bin/ctags"  # Ctags alias
+    alias bp='vim ~/.bash_profile'           # Get to bash-profile faster
+    alias dot='cd $dotfiles'                 # Get to Dotfiles alias
+    alias github='cd $githubz'               # Get to Github alias
+    alias conf='cd $config'                  # Get to nvim/conf alias 
+    alias plug='cd $pluginz'                 # Get to nvim/plugins alias
+    alias silly='cd $sillyy'                 # Get to silly/directory alias
+#ls more nice
+    alias ls="ls -FG"                        # Make ls pretty
+    alias l="ls"                             # Just make ls  chill
+    alias ll="ls -l"                         # ls long tag
+    alias s="ls -ahl"
+#safety aliases
+    alias rm="rm -iv"                        # Make rm more safe
+    alias cp="cp -i"                         # Make cp more safe
+    alias mv="mv -i"                         # Make mv more safe
+# Laziness at its finest
+    alias rr="source ~/.bash_profile && tmux source-file ~/.tmux.conf"		 # Source bash profile & Tmux
+    alias ..="cd .."                         # Shortcut up a directory
+    alias ...="cd ../.."                     # Shorcut 2 directory
+    alias time="time -lp"                    # Time is verbose
+    alias c="clear"
+    alias opt='vim $journal'                 # vim Journal alias
+    alias optt='cd /Users/Gmo/Github/Optimizations/gmo'
 
-# Get to Github alias
-    alias github='cd $githubz'
 
-# Get to nvim/plugins alias
-    alias conf='cd $config'
-
-# Get to nvim/plugins alias
-    alias plug='cd $pluginz'
-
-# Get to silly/directory alias
-    alias silly='cd $sillyy'
-
-# Vimr application alias
-    VimR='open -a vimr .'
+#----------------------------------------------------------------------
+# PATH
+#----------------------------------------------------------------------
 
 # Neovim-Remote add to Path Python3
     export PATH=/Users/Gmo/Library/Python/3.7/bin:$PATH 
 
-# ls stuff
-    alias ls="ls -FG"				 # Make ls pretty
-    alias l="ls"                     # Just make it chill   
-    alias ll="ls -l"				 # ls long tag
 
-# Save me from myself
-    alias rm="rm -iv"				 # Make rm more safe
-    alias cp="cp -i"				 # Make cp more safe
-    alias mv="mv -i"				 # Make mv more safe
-    alias rr="source ~/.bash_profile && tmux source-file ~/.tmux.conf"		 # Source bash profile & Tmux
-
-# Moving around
-    alias ..="cd .."				 # Shortcut up a directory
-    alias ...="cd ../.."	         # Shorcut 2 directory
-    alias cd..="cd .."				 # Typo
-
-# Time is verbose
-    alias time="time -lp"
-
-# Laziness at its finest
-    alias c="clear"
-    alias s="ls -ahl" 
-
-# Journal alias
-    alias opt='vim $journal'
-    alias optt='cd /Users/Gmo/Github/Optimizations/gmo'
-
-
-# All of my Functions! ******************************************************
+#----------------------------------------------------------------------
+# Functions
+#----------------------------------------------------------------------
 
 # CD && LS idk
 cd() { builtin cd "$@" && ls;}
@@ -91,26 +86,28 @@ function preman()
     man -t $@ | open -f -a "preview"
 }
 
+# Bash 4.0 no 'CD' to  change dircetory
+    shopt -s autocd
 
-# Prompt PS1 Stuff that John made =>
-# ************************************************************************
-# NOTE TO SELF -> Play with the colors u know
-# Prompt Colors PS1 Stuff
+
+#----------------------------------------------------------------------
+# PS1 PROMPT VARIABLE <THANKS JOHN>
+#----------------------------------------------------------------------
 # The various escape codes that we can use to color our prompt.
-        RED="\[\033[38;5;202m\]"
-     YELLOW="\[\033[38;5;220m\]"
-      GREEN="\[\033[0;32m\]"
-       BLUE="\[\033[38;5;24m\]"
-  LIGHT_RED="\[\033[38;5;202m\]"
-LIGHT_BOLD_CYAN="\[\033[38;5;39m\]"
-LIGHT_GREEN="\[\033[38;5;208m\]"
-      WHITE="\[\033[1;37m\]"
- LIGHT_GRAY="\[\033[38;5;188m\]"
- COLOR_NONE="\[\e[0m\]"
+    RED="\[\033[38;5;202m\]"
+    YELLOW="\[\033[38;5;220m\]"
+    GREEN="\[\033[0;32m\]"
+    BLUE="\[\033[38;5;24m\]"
+    LIGHT_RED="\[\033[38;5;202m\]"
+    LIGHT_BOLD_CYAN="\[\033[38;5;39m\]"
+    LIGHT_GREEN="\[\033[38;5;208m\]"
+    WHITE="\[\033[1;37m\]"
+    LIGHT_GRAY="\[\033[38;5;188m\]"
+    COLOR_NONE="\[\e[0m\]"
 
 # Colors I made, note i made light-red & red the same rip
-PURPLE="\[\033[38;5;99m\]" 
-BROWN="\[\033[38;5;130m\]"
+    PURPLE="\[\033[38;5;99m\]" 
+    BROWN="\[\033[38;5;130m\]"
 
 
 # Detect whether the current directory is a git repository.
@@ -207,10 +204,9 @@ fmt_time ()
 # Tell bash to execute this function just before displaying its prompt.
 PROMPT_COMMAND=set_bash_prompt
 
-# Next Level Functions ****************************************************
 
-# Bash 4.0 no 'CD' to  change dircetory
-    shopt -s autocd
+#----------------------------------------------------------------------
+# Final Source
+#----------------------------------------------------------------------
+    source .bashrc
 
-
-source .bashrc
