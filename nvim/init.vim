@@ -1,11 +1,12 @@
-
-" |\   ___  \ |\  \    /  /||\  \ |\   _ \  _   \ |\   __  \ |\   ____\    
-" \ \  \\ \  \\ \  \  /  / /\ \  \\ \  \\\__\ \  \\ \  \|\  \\ \  \___|    
-"  \ \  \\ \  \\ \  \/  / /  \ \  \\ \  \\|__| \  \\ \   _  _\\ \  \       
-"   \ \  \\ \  \\ \    / /    \ \  \\ \  \    \ \  \\ \  \\  \|\ \  \____  
+" ________    ___      ___  ___   _____ ______    ________   ________
+" |\   ___  \ |\  \    /  /||\  \ |\   _ \  _   \ |\   __  \ |\   ____\
+" \ \  \\ \  \\ \  \  /  / /\ \  \\ \  \\\__\ \  \\ \  \|\  \\ \  \___|
+"  \ \  \\ \  \\ \  \/  / /  \ \  \\ \  \\|__| \  \\ \   _  _\\ \  \
+"   \ \  \\ \  \\ \    / /    \ \  \\ \  \    \ \  \\ \  \\  \|\ \  \____
 "    \ \__\\ \__\\ \__/ /      \ \__\\ \__\    \ \__\\ \__\\ _\ \ \_______\
 "     \|__| \|__| \|__|/        \|__| \|__|     \|__| \|__|\|__| \|_______|
-"                                                                          
+"
+
 
 "----------------------------------------------------------------------
 " Notes for a healthy reminder
@@ -16,12 +17,13 @@
     " gu  : Change current line from UPPER to lower.
     " gU  : Change current line from lower to UPPER.
     " nnoremap is for normal mode - map for all and noremap for most
+    " Plugin for writing -> :GOYO to minimize distraction
+        " Limelight [0.0 ~ 1.0] Turn Limelight on with additional tint
 
 
 "----------------------------------------------------------------------
 " Colors for a rainy day
 "----------------------------------------------------------------------
-
     "colorscheme Dracula
     "colorscheme peachpuff
     "colorscheme spaceduck
@@ -35,27 +37,26 @@
 "----------------------------------------------------------------------
 " Basic Preference Things
 "----------------------------------------------------------------------
-
-    set hidden                     " Ignorecase when searching stuff  
-    set ignorecase                 " Ignorecase when searching stuff  
+    set hidden                     " Ignorecase when searching stuff
+    set ignorecase                 " Ignorecase when searching stuff
     set spelllang=en_us            " Turn on spell check?
     syntax enable                  " Turn on Syntax highlighting
     set number                     " Turn on Line Number
-    set nospell                    " Allow for spellcheck?
+    set nospell                    " Turn off spellcheck
     set mouse=a                    " Allow Mouse to work (I know, I suck)
     set autoindent                 " Makes it so that things are  indented when needed (i think)
-    set cursorline                 " Cursorline in vim 
-    set expandtab                  " Tabs are spaces 
-    set tabstop=4                  " TAB becomes 4 spaces 
+    set cursorline                 " Cursorline in vim
+    set expandtab                  " Tabs are spaces
+    set tabstop=4                  " TAB becomes 4 spaces
     set softtabstop=4              " TAB becomes 4 spaces in Vim operations
-    set shiftwidth=4               " Number of spaces for indentation 
+    set shiftwidth=4               " Number of spaces for indentation
     set hlsearch                   " Highlight search results
     set incsearch                  " Turn on incremental searching
     set showcmd                    " Turn on Cmd as typed on the bottom-bar
     set backspace=indent,eol,start " Allow backspace in insert mode
     set scrolloff=3                " When scrolling, keep cursor 3 lines away from screen border
     set nowrap                     " Wrap lines when they are too long
-    set title                      " Update the title of the window or the terminal  
+    set title                      " Update the title of the window or the terminal
     let python_hightlight_all = 1  " Who knows if this really works
     set wildmenu                   " Visual autocomplete for command menu
     set wildignorecase
@@ -70,41 +71,78 @@
 
 
 "----------------------------------------------------------------------
-" PLUGINS RIP
+"                        PLUGINS RIP
 "----------------------------------------------------------------------
+    set rtp+=/usr/local/opt/fzf                      " Fuzzy Find?
+    set rtp+=~/.vim-plugins/LanguageClient-neovim
 
-" Fuzzy Find?
-    set rtp+=/usr/local/opt/fzf
-
-" Airline & Themes enabled
-    let g:airline_powerline_fonts = 1
-    let g:airline_section_b = '%{strftime("%c")}'
-    let g:airline_section_y = 'BN: %{bufnr("%")}'
-    let g:airline_theme='tokyometro'
-
-" Tabs for airline
-    "let g:airline#extensions#tabline#enabled = 1
-    let g:airline#extensions#tabline#formatter = 'default'
-
-" Set this -> Airline will handle the rest.
-    let g:airline#extensions#ale#enabled = 1
-
-" Show Indentation lines and make them pretty-gray-lines
-    let g:indentLine_char = '▏'
-    let g:indentLine_color_gui = '#474747'
-
-" Markdown preview to the world
-    let g:mkdp_open_to_the_world = 1
-
-" Let deoplete do it's thing!
-    let g:deoplete#enable_at_startup = 1
-
-" Let ALE autocomplete :)
-    let g:ale_completion_enabled = 1
 
 
 "----------------------------------------------------------------------
-" Map Leader to '<space>' All things Leader
+" Deoplete.
+"----------------------------------------------------------------------
+    "let g:loaded_python3_provider=1
+    "let g:deoplete#enable_at_startup = 1
+
+" neosnippet
+    "let g:neosnippet#enable_completed_snippet = 1
+
+"----------------------------------------------------------------------
+" Ale
+"----------------------------------------------------------------------
+    "let g:airline#extensions#ale#enabled = 1        " Airline will handle the 'rest'
+    "let g:ale_echo_msg_error_str = 'E'              " Airline messages
+    "let g:ale_echo_msg_warning_str = 'W'            " Airline messages
+    "let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
+    "let g:ale_change_sign_column_color = 1
+    "let g:ale_cursor_detail = 0              " Keeps ALE window closed
+    "let g:ale_close_preview_on_insert = 1    " Preview Window close on insert
+
+" ALE Linting
+"     let g:ale_linters = {
+"          \ 'sh': ['language_server'],
+"          \ 'javascript': ['prettier'],
+"          \ }
+"     let g:ale_linter_aliases = {'html': ['html', 'javascript', 'css']} " Let ALE LINT HTML and the crew too
+
+
+"----------------------------------------------------------------------
+" Airline
+"----------------------------------------------------------------------
+    let g:airline_theme='tokyometro'                " Airline & Themes enabled
+    let g:airline_powerline_fonts = 1               " Let there be powerline for pretty arrow
+    "let g:airline_section_b = '%{strftime("%c")}'
+    "let g:airline_section_y = 'BN: %{bufnr("%")}'
+    "let g:airline#extensions#tabline#enabled = 1   " Tabs for airline
+
+
+
+"----------------------------------------------------------------------
+" Markdown Preview
+"----------------------------------------------------------------------
+    let g:mkdp_open_to_the_world = 1        " Markdown preview to the world
+
+
+"----------------------------------------------------------------------
+" Indent-Line
+"----------------------------------------------------------------------
+    let g:indentLine_char = '▏'             " Show Indentation lines
+    let g:indentLine_color_gui = '#474747'  " Make them pretty-gray-lines
+
+
+"----------------------------------------------------------------------
+" GOYO && LIMELIGHT FOR WRITING
+"----------------------------------------------------------------------
+    let g:limelight_default_coefficient = 0.7
+    autocmd! User GoyoEnter Limelight
+    autocmd! User GoyoLeave Limelight!
+
+
+
+
+
+"----------------------------------------------------------------------
+"               Map Leader to '<space>' All things Leader
 "----------------------------------------------------------------------
 
     let mapleader=' '
@@ -132,9 +170,9 @@
 "Go to to next buffer
     nnoremap <leader>l :bn<CR>
 
-"Juggling with buffers 
+"Juggling with buffers
     set wildcharm=<C-z>
-    nnoremap <leader>d :bd!<CR>
+    "nnoremap <leader>d :bd!<CR>
 
 "Preview Marks!
     nnoremap  <leader>m :marks<CR>
@@ -152,7 +190,7 @@
     nnoremap <leader>vv :vsplit<Return><C-w>w
 
 
-" Fixing vim because I break it Later
+" Fixing vim because I break it Later -> Move better lol
     noremap <leader>j J
 
 "----------------------------------------------------------------------
@@ -164,7 +202,7 @@
     noremap K {
 
 "Remap ctrl-L and ctrl-H to scroll left & right
-    map <C-L> 20zl 
+    map <C-L> 20zl
     map <C-H> 20zh
 
 "Set U as Ctrl R which means Redo
@@ -209,6 +247,8 @@
 
 "List all recently opened files and open a new buffer
     nnoremap gs :browse oldfiles<CR>
+
+
 "----------------------------------------------------------------------
 " Snippets!
 "----------------------------------------------------------------------
@@ -219,3 +259,12 @@
 "Basic yaml snippet
     nnoremap ,post :-read $HOME/.config/nvim/snippets/post.md<CR>5ja
 
+"----------------------------------------------------------------------
+" Endings
+"----------------------------------------------------------------------
+" Put these lines at the very end of your vimrc file.  Load all plugins now
+" for ale
+" Plugins need to be added to runtimepath before helptags can be generated.
+    packloadall
+" Load all of the helptags now, after plugins have been loaded.All messages and errors will be ignored.
+    silent! helptags ALL
