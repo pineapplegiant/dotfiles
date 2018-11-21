@@ -77,35 +77,6 @@
     set rtp+=~/.vim-plugins/LanguageClient-neovim
 
 
-
-"----------------------------------------------------------------------
-" Deoplete.
-"----------------------------------------------------------------------
-    "let g:loaded_python3_provider=1
-    "let g:deoplete#enable_at_startup = 1
-
-" neosnippet
-    "let g:neosnippet#enable_completed_snippet = 1
-
-"----------------------------------------------------------------------
-" Ale
-"----------------------------------------------------------------------
-    "let g:airline#extensions#ale#enabled = 1        " Airline will handle the 'rest'
-    "let g:ale_echo_msg_error_str = 'E'              " Airline messages
-    "let g:ale_echo_msg_warning_str = 'W'            " Airline messages
-    "let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
-    "let g:ale_change_sign_column_color = 1
-    "let g:ale_cursor_detail = 0              " Keeps ALE window closed
-    "let g:ale_close_preview_on_insert = 1    " Preview Window close on insert
-
-" ALE Linting
-"     let g:ale_linters = {
-"          \ 'sh': ['language_server'],
-"          \ 'javascript': ['prettier'],
-"          \ }
-"     let g:ale_linter_aliases = {'html': ['html', 'javascript', 'css']} " Let ALE LINT HTML and the crew too
-
-
 "----------------------------------------------------------------------
 " Airline
 "----------------------------------------------------------------------
@@ -131,13 +102,44 @@
 
 
 "----------------------------------------------------------------------
-" GOYO && LIMELIGHT FOR WRITING
+" GOYO && LIMELIGHT && PENCIL FOR WRITING TODO- { still in progress }
 "----------------------------------------------------------------------
     let g:limelight_default_coefficient = 0.7
-    autocmd! User GoyoEnter Limelight
-    autocmd! User GoyoLeave Limelight!
+    let g:limelight_paragraph_span = 1
+    let g:pencil#wrapModeDefault = 'soft'   " default is 'hard
 
+    function! s:goyo_enter()
+        silent !tmux set status off
+        silent !tmux list-panes -F '\#F' | grep -q Z || tmux resize-pane -Z
+        set noshowmode
+        set noshowcmd
+        set scrolloff=999
+        set spell
+        colorscheme pencil
+        set background=light
+        Limelight
+        call pencil#init()
 
+    endfunction
+
+    function! s:goyo_leave()
+        silent !tmux set status on
+        silent !tmux list-panes -F '\#F' | grep -q Z && tmux resize-pane -Z
+        set showmode
+        set showcmd
+        set scrolloff=3
+        set nospell
+        colorscheme tokyo-metro
+        set background=dark
+        Limelight!
+        PencilOff
+        IndentLinesReset
+        AirlineRefresh
+
+    endfunction
+
+    autocmd! User GoyoEnter nested call <SID>goyo_enter()
+    autocmd! User GoyoLeave nested call <SID>goyo_leave()
 
 
 
@@ -189,9 +191,12 @@
     nnoremap <leader>vs :split<Return><C-w>w
     nnoremap <leader>vv :vsplit<Return><C-w>w
 
+" Fixing vim because I break it Later -> Move better lol
+    nnoremap <leader>G :Goyo<CR>
 
 " Fixing vim because I break it Later -> Move better lol
     noremap <leader>j J
+
 
 "----------------------------------------------------------------------
 " General Re-mappings
