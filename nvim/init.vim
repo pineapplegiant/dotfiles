@@ -12,16 +12,13 @@
 " Notes for a healthy reminder
 "----------------------------------------------------------------------
     "Remember kids 'gd' for searching under cursor is ur friend
-    i"zL and zH let you view to the left and right for long lines
+    "zL and zH let you view to the left and right for long lines
     "zt lets you make the current line up at the top of viewport
     " gu  : Change current line from UPPER to lower.
     " gU  : Change current line from lower to UPPER.
     " nnoremap is for normal mode - map for all and noremap for most
     " Plugin for writing -> :GOYO to minimize distraction
         " Limelight [0.0 ~ 1.0] Turn Limelight on with additional tint
-    " For writing use ']s' to cyle between misspelled words
-        " Also use  'zg' (for good words) and 'zw' (for wrong words) dict
-        " 'z=' for checking for suggestions
 
 
 "----------------------------------------------------------------------
@@ -70,7 +67,6 @@
     set wildignore+=*.tar.*
     set noswapfile                 " NO SWAP FILES
     set list                       " Show indentations
-    set guicursor=n-v-c:block-Cursor " Color the cursor in insert mode
     "set listchars=tab:\|\<Space
 
 
@@ -78,43 +74,17 @@
 "                        PLUGINS RIP
 "----------------------------------------------------------------------
     set rtp+=/usr/local/opt/fzf                      " Fuzzy Find?
-    "set rtp+=~/.vim-plugins/LanguageClient-neovim
-    set omnifunc=syntaxcomplete#Complete
+    set rtp+=~/.vim-plugins/LanguageClient-neovim
 
 
 "----------------------------------------------------------------------
 " Airline
 "----------------------------------------------------------------------
-    "let g:airline_theme='tokyometro'                " Airline & Themes enabled
-    "let g:airline_powerline_fonts = 1               " Let there be powerline for pretty arrow
+    let g:airline_theme='tokyometro'                " Airline & Themes enabled
+    let g:airline_powerline_fonts = 1               " Let there be powerline for pretty arrow
     "let g:airline_section_b = '%{strftime("%c")}'
     "let g:airline_section_y = 'BN: %{bufnr("%")}'
     "let g:airline#extensions#tabline#enabled = 1   " Tabs for airline
-
-"----------------------------------------------------------------------
-" Lightline
-"----------------------------------------------------------------------
-    let g:lightline = {
-          \ 'colorscheme': 'tokyometro',
-          \ }
-
-
-
-
-"----------------------------------------------------------------------
-" Nerdtree
-"----------------------------------------------------------------------
-
-" CLose vim if nerdtree is the only thing open
-    autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
-
-" Let Nerd-tree be a bit smaller 
-    let g:NERDTreeWinSize=15
-
-" Nerdtree re-map Toggle to Control+n & comma + n in normal mode
-    map <C-n> :NERDTreeToggle<CR> 
-"    nnoremap ,n :NERDTreeToggle<CR> 
-
 
 
 
@@ -135,18 +105,10 @@
 " GOYO && LIMELIGHT && PENCIL FOR WRITING TODO- { still in progress }
 "----------------------------------------------------------------------
     let g:limelight_default_coefficient = 0.7
-    let g:limelight_paragraph_span = 1      " Let limelight span multiple paragrahs so not too much in dark
+    let g:limelight_paragraph_span = 1
     let g:pencil#wrapModeDefault = 'soft'   " default is 'hard
-    let g:pencil#conceallevel = 3           " Not too dark
-    let g:pencil#concealcursor = 'c'        " IDk
 
     function! s:goyo_enter()
-        " Let goyo quit too
-        "let b:quitting = 0
-        "let b:quitting_bang = 0
-        "autocmd QuitPre <buffer> let b:quitting = 1
-        "cabbrev <buffer> q! let b:quitting_bang = 1 <bar> q!
-        Goyo 72
         silent !tmux set status off
         silent !tmux list-panes -F '\#F' | grep -q Z || tmux resize-pane -Z
         set noshowmode
@@ -157,17 +119,10 @@
         set background=light
         Limelight
         call pencil#init()
+
     endfunction
 
     function! s:goyo_leave()
-        " Quit Vim if this is the only remaining buffer
-        "if b:quitting && len(filter(range(1, bufnr('$')), 'buflisted(v:val)')) == 1
-        "    if b:quitting_bang
-        "        qa!
-        "    else
-        "        qa
-        "    endif
-        "endif
         silent !tmux set status on
         silent !tmux list-panes -F '\#F' | grep -q Z && tmux resize-pane -Z
         set showmode
@@ -179,7 +134,7 @@
         Limelight!
         PencilOff
         IndentLinesReset
-        "AirlineRefresh
+        AirlineRefresh
 
     endfunction
 
@@ -207,9 +162,6 @@
 
 "Make leader+w = ctrl + w to move between windows
     noremap <leader>w <C-w>
-    "
-" look up the word under the cursor in Apple's dictionary
-    nnoremap <silent> <leader>di :!open dict://<cword><cr><cr>
 
 "leader r is open register
     nnoremap <leader>r :reg<CR>
@@ -268,7 +220,7 @@
     noremap E $
 
 " Map ,, to % because i like cycling brackets a lot
-    noremap ,, %
+    nnoremap ,, %
 
 "Commenting blocks of code.
     autocmd FileType c,cpp,java,scala let b:comment_leader = '// '
@@ -287,13 +239,10 @@
 "Lots of Time-Stamp Options here in normal/insert mode to paste timestamp and F4 To Date Stamp
     nnoremap <F4> "=strftime("%Y-%m-%d")<CR>P
     inoremap <F4> <C-R>=strftime("%Y-%m-%d")<CR>
-
     nnoremap <F5> "=strftime("%H:%M:%S")<CR>P
     inoremap <F5> <C-R>=strftime("%H:%M:%S")<CR>
-
     nnoremap <F6> "=strftime("%c")<CR>P
     inoremap <F6> <C-R>=strftime("%c")<CR>
-
     nnoremap <F7> "=strftime("%A %B %d, at%l:%M %Z")<CR>P
     inoremap <F7> <C-R>=strftime("%A %B %d, at%l:%M %Z")<CR>
 
