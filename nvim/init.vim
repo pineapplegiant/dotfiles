@@ -80,11 +80,22 @@
 "----------------------------------------------------------------------
 " Airline
 "----------------------------------------------------------------------
-    let g:airline_theme='tokyometro'                " Airline & Themes enabled
-    let g:airline_powerline_fonts = 1               " Let there be powerline for pretty arrow
+    "let g:airline_theme='tokyometro'                " Airline & Themes enabled
+    "let g:airline_powerline_fonts = 1               " Let there be powerline for pretty arrow
     "let g:airline_section_b = '%{strftime("%c")}'
     "let g:airline_section_y = 'BN: %{bufnr("%")}'
     "let g:airline#extensions#tabline#enabled = 1   " Tabs for airline
+
+
+"----------------------------------------------------------------------
+" Lightline
+"----------------------------------------------------------------------
+
+let g:lightline = {
+      \ 'colorscheme': 'tokyometro',
+      \ }
+
+
 
 
 
