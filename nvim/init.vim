@@ -37,6 +37,7 @@
 "----------------------------------------------------------------------
 " Basic Preference Things
 "----------------------------------------------------------------------
+    set guicursor=n-v-c:block-Cursor " Hopefully make cursor better in insert
     set hidden                     " Ignorecase when searching stuff
     set ignorecase                 " Ignorecase when searching stuff
     set spelllang=en_us            " Turn on spell check?
@@ -96,9 +97,6 @@ let g:lightline = {
       \ }
 
 
-
-
-
 "----------------------------------------------------------------------
 " Markdown Preview
 "----------------------------------------------------------------------
@@ -120,11 +118,12 @@ let g:lightline = {
     let g:pencil#wrapModeDefault = 'soft'   " default is 'hard
 
     function! s:goyo_enter()
+        Goyo 72
         silent !tmux set status off
         silent !tmux list-panes -F '\#F' | grep -q Z || tmux resize-pane -Z
         set noshowmode
         set noshowcmd
-        set scrolloff=999
+        "set scrolloff=999
         set spell
         colorscheme pencil
         set background=light
@@ -145,7 +144,6 @@ let g:lightline = {
         Limelight!
         PencilOff
         IndentLinesReset
-        AirlineRefresh
 
     endfunction
 
