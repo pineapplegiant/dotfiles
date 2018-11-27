@@ -87,6 +87,11 @@
     "let g:airline_section_y = 'BN: %{bufnr("%")}'
     "let g:airline#extensions#tabline#enabled = 1   " Tabs for airline
 
+"----------------------------------------------------------------------
+" Nerdtree
+"----------------------------------------------------------------------
+" Map nerdtree to Ctrl+n
+    map <C-n> :NERDTreeToggle<CR>
 
 "----------------------------------------------------------------------
 " Lightline
@@ -114,7 +119,7 @@ let g:lightline = {
 " GOYO && LIMELIGHT && PENCIL FOR WRITING TODO- { still in progress }
 "----------------------------------------------------------------------
     let g:limelight_default_coefficient = 0.7
-    let g:limelight_paragraph_span = 1
+    "let g:limelight_paragraph_span = 1
     let g:pencil#wrapModeDefault = 'soft'   " default is 'hard
 
     function! s:goyo_enter()
