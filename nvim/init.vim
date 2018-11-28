@@ -126,7 +126,7 @@ let g:lightline = {
 " RMD
 "----------------------------------------------------------------------
 
-    autocmd Filetype rmd map 
+    "autocmd Filetype rmd map <F10> :!echo<space>"require(rmarkdown>;<space>render
 
 
 "----------------------------------------------------------------------
@@ -308,8 +308,11 @@ let g:lightline = {
 "Basic HTML Snippet!
     nnoremap ,html :-read $HOME/.config/nvim/snippets/skeleton.html<CR>4j3wa
 
-"Basic yaml snippet
-    nnoremap ,post :-read $HOME/.config/nvim/snippets/post.md<CR>5ja
+"Post snippet
+    nnoremap ,post :-read $HOME/.config/nvim/snippets/post.md<CR>
+
+"YAML snippet
+    nnoremap ,yaml :-read $HOME/.config/nvim/snippets/yaml.md<CR>
 
 "----------------------------------------------------------------------
 " Endings
