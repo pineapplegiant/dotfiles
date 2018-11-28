@@ -46,6 +46,8 @@
     alias conf='cd $config'                  # Get to nvim/conf alias 
     alias plug='cd $pluginz'                 # Get to nvim/plugins alias
     alias silly='cd $sillyy'                 # Get to silly/directory alias
+    alias dog='ccat'                         # Use that new ccat plugin
+
 #ls more nice
     alias ls="ls -FG"                        # Make ls pretty
     alias l="ls"                             # Just make ls  chill
@@ -56,7 +58,7 @@
     alias cp="cp -i"                         # Make cp more safe
     alias mv="mv -i"                         # Make mv more safe
 # Laziness at its finest
-    alias rr="source ~/.bash_profile && tmux source-file ~/.tmux.conf"		 # Source bash profile & Tmux
+    alias rr="source ~/.bash_profile && tmux source-file ~/.tmux.conf" # Source bash profile & Tmux
     alias ..="cd .."                         # Shortcut up a directory
     alias ...="cd ../.."                     # Shorcut 2 directory
     alias time="time -lp"                    # Time is verbose

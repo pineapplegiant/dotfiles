@@ -1,8 +1,9 @@
-# BREW LIST AS OF: Thu Nov 15 14:58:39 2018 
+# Brew Packages 2018-11-27
 * autoconf
 * bash
 * bash-completion
 * bfs
+* ccat
 * cmake
 * ctags
 * ffmpeg
@@ -39,7 +40,10 @@
 * libvpx
 * libvterm
 * libyaml
+* lua
+* lua@5.1
 * luajit
+* luarocks
 * mpfr
 * msgpack
 * ncurses
@@ -55,6 +59,7 @@
 * pcre
 * pcre2
 * pkg-config
+* proselint
 * python
 * r
 * rbenv
@@ -79,11 +84,13 @@
 * xz
 * yarn
 
-# BREW CASK LIST AS OF: Thu Nov 15 14:58:39 2018 
-
+## Brew Cask Packages 2018-11-27
 * calibre
 * firefox
 * gimp
+* intellij-idea
 * keycastr
+* oni
 * powershell
+* rstudio
 * xquartz
