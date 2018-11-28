@@ -19,6 +19,8 @@
     " nnoremap is for normal mode - map for all and noremap for most
     " Plugin for writing -> :GOYO to minimize distraction
         " Limelight [0.0 ~ 1.0] Turn Limelight on with additional tint
+    " 'z=' is for checking spell suggestions
+    " s] is for checking the next spelling suggestion
 
 
 "----------------------------------------------------------------------
@@ -60,6 +62,8 @@
     set title                      " Update the title of the window or the terminal
     let python_hightlight_all = 1  " Who knows if this really works
     set wildmenu                   " Visual autocomplete for command menu
+    set splitbelow                 " Splits open at the bottom, which is non-retarded, unlike vim defaults.
+    set splitright                 " Splits open at the right, which is non-retarded, unlike vim defaults.
     set wildignorecase
     set wildignore=*.swp,*.bak
     set wildignore+=*.pyc,*.class,*.sln,*.Master,*.csproj,*.csproj.user,*.cache,*.dll,*.pdb,*.min.*
@@ -92,6 +96,9 @@
 "----------------------------------------------------------------------
 " Map nerdtree to Ctrl+n
     map <C-n> :NERDTreeToggle<CR>
+    
+" Nerdtree size smaller
+    let g:NERDTreeWinSize=18
 
 "----------------------------------------------------------------------
 " Lightline
@@ -116,13 +123,26 @@ let g:lightline = {
 
 
 "----------------------------------------------------------------------
+" RMD
+"----------------------------------------------------------------------
+
+    autocmd Filetype rmd map 
+
+
+"----------------------------------------------------------------------
 " GOYO && LIMELIGHT && PENCIL FOR WRITING TODO- { still in progress }
 "----------------------------------------------------------------------
     let g:limelight_default_coefficient = 0.7
     "let g:limelight_paragraph_span = 1
     let g:pencil#wrapModeDefault = 'soft'   " default is 'hard
 
+" GOYO start!
     function! s:goyo_enter()
+        let b:quitting = 0
+        let b:quitting_bang = 0
+        autocmd QuitPre <buffer> let b:quitting = 1
+        cabbrev <buffer> q! let b:quitting_bang = 1 <bar> q!
+
         Goyo 72
         silent !tmux set status off
         silent !tmux list-panes -F '\#F' | grep -q Z || tmux resize-pane -Z
@@ -132,12 +152,24 @@ let g:lightline = {
         set spell
         colorscheme pencil
         set background=light
+        set nocursorline
         Limelight
         call pencil#init()
 
     endfunction
 
+
+" Let GOYO quit
     function! s:goyo_leave()
+        " Quit Vim if this is the only remaining buffer
+        if b:quitting && len(filter(range(1, bufnr('$')), 'buflisted(v:val)')) == 1
+          if b:quitting_bang
+            qa!
+          else
+            qa
+          endif
+        endif
+
         silent !tmux set status on
         silent !tmux list-panes -F '\#F' | grep -q Z && tmux resize-pane -Z
         set showmode
@@ -146,6 +178,7 @@ let g:lightline = {
         set nospell
         colorscheme tokyo-metro
         set background=dark
+        set cursorline
         Limelight!
         PencilOff
         IndentLinesReset
@@ -251,14 +284,14 @@ let g:lightline = {
     vmap > >gv
 
 "Lots of Time-Stamp Options here in normal/insert mode to paste timestamp and F4 To Date Stamp
-    nnoremap <F4> "=strftime("%Y-%m-%d")<CR>P
-    inoremap <F4> <C-R>=strftime("%Y-%m-%d")<CR>
-    nnoremap <F5> "=strftime("%H:%M:%S")<CR>P
-    inoremap <F5> <C-R>=strftime("%H:%M:%S")<CR>
-    nnoremap <F6> "=strftime("%c")<CR>P
+    nnoremap <F4> "=strftime("%H:%M:%S")<CR>p
+    inoremap <F4> <C-R>=strftime("%H:%M:%S")<CR>
+    nnoremap <F5> "=strftime("%Y-%m-%d")<CR>p
+    inoremap <F5> <C-R>=strftime("%Y-%m-%d")<CR>
+    nnoremap <F6> "=strftime("%c")<CR>p
     inoremap <F6> <C-R>=strftime("%c")<CR>
-    nnoremap <F7> "=strftime("%A %B %d, at%l:%M %Z")<CR>P
-    inoremap <F7> <C-R>=strftime("%A %B %d, at%l:%M %Z")<CR>
+    nnoremap <F7> "=strftime("%A %B %d, at %l:%M %Z")<CR>P
+    inoremap <F7> <C-R>=strftime("%A %B %d, at %l:%M %Z")<CR>
 
 
 "List all buffers and jump to them using 'gb'
@@ -281,9 +314,4 @@ let g:lightline = {
 "----------------------------------------------------------------------
 " Endings
 "----------------------------------------------------------------------
-" Put these lines at the very end of your vimrc file.  Load all plugins now
-" for ale
-" Plugins need to be added to runtimepath before helptags can be generated.
-    packloadall
-" Load all of the helptags now, after plugins have been loaded.All messages and errors will be ignored.
-    silent! helptags ALL
+
