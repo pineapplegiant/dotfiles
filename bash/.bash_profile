@@ -26,7 +26,8 @@
     githubz='/Users/Gmo/Github/'                                        # my github
     pluginz='/Users/Gmo/.local/share/nvim/site/pack/git-plugins/start/' # my vim-plugins
     config='/Users/Gmo/.config/nvim/'                                   # nvim config
-    sillyy='/Users/Gmo/Github/silly-coding-things/'
+    sillyy='/Users/Gmo/Github/silly-coding-things/'                     # code playground 
+    resume='/Users/Gmo/Github/markdown-resume'                          # markdown-resume
 
 
 #----------------------------------------------------------------------
@@ -45,8 +46,10 @@
     alias github='cd $githubz'               # Get to Github alias
     alias conf='cd $config'                  # Get to nvim/conf alias 
     alias plug='cd $pluginz'                 # Get to nvim/plugins alias
-    alias silly='cd $sillyy'                 # Get to silly/directory alias
+    alias silly='cd $sillyy'                 # Get to silly/dir alias
+    alias res='cd $resume'                   # Get to resume dir alias
     alias dog='ccat'                         # Use that new ccat plugin
+    alias python='python3'                   # Fuck python 2 -> Hopefully it don't make it not work
 
 #ls more nice
     alias ls="ls -FG"                        # Make ls pretty
@@ -73,6 +76,7 @@
 
 # Neovim-Remote add to Path Python3
     export PATH=/Users/Gmo/Library/Python/3.7/bin:$PATH 
+    export PATH+=$PATH:/Users/Gmo/.scripts/
 
 
 #----------------------------------------------------------------------

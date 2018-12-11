@@ -1,4 +1,4 @@
-# Brew Packages 2018-11-27
+# Brew List
 * autoconf
 * bash
 * bash-completion
@@ -13,6 +13,7 @@
 * gcc
 * gdbm
 * gettext
+* ghostscript
 * gifsicle
 * git
 * gmp
@@ -56,6 +57,7 @@
 * opus
 * p11-kit
 * pandoc
+* pandoc-citeproc
 * pcre
 * pcre2
 * pkg-config
@@ -84,13 +86,15 @@
 * xz
 * yarn
 
-## Brew Cask Packages 2018-11-27
+# Brew Cask List
 * calibre
 * firefox
 * gimp
 * intellij-idea
 * keycastr
+* mactex
 * oni
 * powershell
 * rstudio
+* wkhtmltopdf
 * xquartz

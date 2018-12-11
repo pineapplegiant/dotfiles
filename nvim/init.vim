@@ -21,12 +21,15 @@
         " Limelight [0.0 ~ 1.0] Turn Limelight on with additional tint
     " 'z=' is for checking spell suggestions
     " s] is for checking the next spelling suggestion
+    " [count]<leader>cc |NERDComComment| Comment out the current line or text selected in visual mode.
+    " [count]<leader>cn |NERDComNestedComment| Force Comment
+    " [count]<leader>c<space> |NERDComNestedComment| Force Comment
 
 
 "----------------------------------------------------------------------
 " Colors for a rainy day
 "----------------------------------------------------------------------
-    "colorscheme Dracula
+    "colorscheme dracula
     "colorscheme peachpuff
     "colorscheme spaceduck
     colorscheme tokyo-metro
@@ -72,8 +75,10 @@
     set wildignore+=*.tar.*
     set noswapfile                 " NO SWAP FILES
     set list                       " Show indentations
-    "set listchars=tab:\|\<Space
+    set wildcharm=<C-z>             "Juggling with buffers
 
+    autocmd Filetype css setlocal  tabstop=2 shiftwidth=2 softtabstop=2 " Set tabs to 2 spaces in html and css
+    autocmd Filetype html setlocal tabstop=2 shiftwidth=2 softtabstop=2 " Set tabs to 2 spaces in html and css
 
 "----------------------------------------------------------------------
 "                        PLUGINS RIP
@@ -100,6 +105,8 @@
 " Nerdtree size smaller
     let g:NERDTreeWinSize=18
 
+" Let Nerdtree close if it's the last window open!
+    autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 "----------------------------------------------------------------------
 " Lightline
 "----------------------------------------------------------------------
@@ -121,12 +128,13 @@ let g:lightline = {
     let g:indentLine_char = '▏'             " Show Indentation lines
     let g:indentLine_color_gui = '#474747'  " Make them pretty-gray-lines
 
+    autocmd FileType markdown let g:indentLine_enabled=0
 
 "----------------------------------------------------------------------
-" RMD
+" RMD map for compiling
 "----------------------------------------------------------------------
 
-    "autocmd Filetype rmd map <F10> :!echo<space>"require(rmarkdown>;<space>render
+    autocmd Filetype rmd map <F10> :!echo<space>"require(rmarkdown);<space>render('<c-r>%')"<space>\|<space>R<space>--vanilla<enter>
 
 
 "----------------------------------------------------------------------
@@ -155,6 +163,7 @@ let g:lightline = {
         set nocursorline
         Limelight
         call pencil#init()
+        set conceallevel=2
 
     endfunction
 
@@ -182,6 +191,7 @@ let g:lightline = {
         Limelight!
         PencilOff
         IndentLinesReset
+        set conceallevel=0
 
     endfunction
 
@@ -199,50 +209,45 @@ let g:lightline = {
 "Turn off search highlight bullshit to Comma and then Leader/space
     nnoremap ,<leader> :nohlsearch<CR>
 
-"Quicksave and Quickquit in vim!
-    nnoremap <leader>s :update<cr>
-    nnoremap <leader>q :q!<CR>
+" FZF to leader+f
+    nnoremap <leader>f :FZF<CR>
+
+" Goyo start Writing!
+    nnoremap <leader>G :Goyo<CR>
+
+"Go to to previous buffer
+    nnoremap <leader>h :bp<CR>
+
+"Jumplist stuff -> Backward and forward in vim jumps
+    nnoremap <leader>i <C-i>
+    nnoremap <leader>o <C-o>
+
+" Fixing vim because I break it Later -> Move better lol
+    noremap <leader>j J
+
+"Go to to next buffer
+    nnoremap <leader>l :bn<CR>
+
+"Preview Marks!
+    nnoremap  <leader>m :marks<CR>
 
 "Copy & Paste into vim in normal mode
     noremap <leader>p  "+p
     noremap <leader>y  "+y
 
-"Make leader+w = ctrl + w to move between windows
-    noremap <leader>w <C-w>
-
 "leader r is open register
     nnoremap <leader>r :reg<CR>
 
-"Go to to previous buffer
-    nnoremap <leader>h :bp<CR>
-
-"Go to to next buffer
-    nnoremap <leader>l :bn<CR>
-
-"Juggling with buffers
-    set wildcharm=<C-z>
-    "nnoremap <leader>d :bd!<CR>
-
-"Preview Marks!
-    nnoremap  <leader>m :marks<CR>
-
-"Jumplist stuff -> Forward and back in vim jumps
-    nnoremap <leader>o <C-o>
-    nnoremap <leader>i <C-i>
-
-" FZF to leader+f
-    nnoremap <leader>f :FZF<CR>
-
+"Quicksave and Quickquit in vim!
+    nnoremap <leader>s :update<cr>
+    nnoremap <leader>q :q!<CR>
 
 "Split window
     nnoremap <leader>vs :split<Return><C-w>w
     nnoremap <leader>vv :vsplit<Return><C-w>w
 
-" Fixing vim because I break it Later -> Move better lol
-    nnoremap <leader>G :Goyo<CR>
-
-" Fixing vim because I break it Later -> Move better lol
-    noremap <leader>j J
+"Make leader+w = ctrl + w to move between windows
+    noremap <leader>w <C-w>
 
 
 "----------------------------------------------------------------------
@@ -261,37 +266,25 @@ let g:lightline = {
     nnoremap U <C-R>
 
 "Use B to move to beginning of line in most modes
-    noremap B ^
+    map B 0
 
 " Use E to move to end of line in most modes
-    noremap E $
+    map E $
 
 " Map ,, to % because i like cycling brackets a lot
     nnoremap ,, %
-
-"Commenting blocks of code.
-    autocmd FileType c,cpp,java,scala let b:comment_leader = '// '
-    autocmd FileType sh,ruby,python   let b:comment_leader = '# '
-    autocmd FileType conf,fstab       let b:comment_leader = '# '
-    autocmd FileType tex              let b:comment_leader = '% '
-    autocmd FileType mail             let b:comment_leader = '> '
-    autocmd FileType vim              let b:comment_leader = '" '
-    noremap gcc :<C-B>silent <C-E>s/^/<C-R>=escape(b:comment_leader,'\/')<CR>/<CR>:nohlsearch<CR>
-    noremap gcu :<C-B>silent <C-E>s/^\V<C-R>=escape(b:comment_leader,'\/')<CR>//e<CR>:nohlsearch<CR>
 
 "Align blocks of text and keep them selected
     vmap < <gv
     vmap > >gv
 
 "Lots of Time-Stamp Options here in normal/insert mode to paste timestamp and F4 To Date Stamp
-    nnoremap <F4> "=strftime("%H:%M:%S")<CR>p
-    inoremap <F4> <C-R>=strftime("%H:%M:%S")<CR>
-    nnoremap <F5> "=strftime("%Y-%m-%d")<CR>p
-    inoremap <F5> <C-R>=strftime("%Y-%m-%d")<CR>
-    nnoremap <F6> "=strftime("%c")<CR>p
-    inoremap <F6> <C-R>=strftime("%c")<CR>
-    nnoremap <F7> "=strftime("%A %B %d, at %l:%M %Z")<CR>P
-    inoremap <F7> <C-R>=strftime("%A %B %d, at %l:%M %Z")<CR>
+    nnoremap <F4> "=strftime("%Y-%m-%d")<CR>p
+    inoremap <F4> <C-R>=strftime("%Y-%m-%d")<CR>
+    nnoremap <F5> "=strftime("%A %B %d, at %l:%M %Z")<CR>P
+    inoremap <F5> <C-R>=strftime("%A %B %d, at %l:%M %Z")<CR>
+    nnoremap <F6> "=strftime("%H:%M:%S")<CR>p
+    inoremap <F6> <C-R>=strftime("%H:%M:%S")<CR>
 
 
 "List all buffers and jump to them using 'gb'
@@ -300,6 +293,8 @@ let g:lightline = {
 "List all recently opened files and open a new buffer
     nnoremap gs :browse oldfiles<CR>
 
+"Set F12 as Make in VIM!
+    map <F12> :!make<CR>
 
 "----------------------------------------------------------------------
 " Snippets!
