@@ -27,7 +27,7 @@
     pluginz='/Users/Gmo/.local/share/nvim/site/pack/git-plugins/start/' # my vim-plugins
     config='/Users/Gmo/.config/nvim/'                                   # nvim config
     sillyy='/Users/Gmo/Github/silly-coding-things/'                     # code playground 
-    resume='/Users/Gmo/Github/markdown-resume'                          # markdown-resume
+    resume='/Users/Gmo/Github/resume-pandoc'                            # markdown-resume
 
 
 #----------------------------------------------------------------------

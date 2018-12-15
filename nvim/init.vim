@@ -9,7 +9,7 @@
 
 
 "----------------------------------------------------------------------
-" Notes for a healthy reminder
+" NOTES FOR A HEALTHY REMINDER
 "----------------------------------------------------------------------
     "Remember kids 'gd' for searching under cursor is ur friend
     "zL and zH let you view to the left and right for long lines
@@ -296,12 +296,15 @@ let g:lightline = {
 "Set F12 as Make in VIM!
     map <F12> :!make<CR>
 
+"Set ctrlq as jump out of vim terminal mode
+    tnoremap hh <C-\><C-n>
+
 "----------------------------------------------------------------------
 " Snippets!
 "----------------------------------------------------------------------
 
 "Basic HTML Snippet!
-    nnoremap ,html :-read $HOME/.config/nvim/snippets/skeleton.html<CR>4j3wa
+    nnoremap ,html :-read $HOME/.config/nvim/snippets/skeleton.html<CR>7jf>a
 
 "Post snippet
     nnoremap ,post :-read $HOME/.config/nvim/snippets/post.md<CR>
