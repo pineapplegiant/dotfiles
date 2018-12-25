@@ -19,22 +19,45 @@
 
 
 #----------------------------------------------------------------------
-# Location of things i go to a lot
+# Location of places i go to a lot
 #----------------------------------------------------------------------
-    journal='/Users/Gmo/Github/Optimizations/gmo/optimizations.md'      # my journal
+    journal='/Users/Gmo/Github/Optimizations/gmo/'                      # my journal
     dotfiles='/Users/Gmo/Github/dotfiles/'                              # my dotfiles
-    githubz='/Users/Gmo/Github/'                                        # my github
+    github='/Users/Gmo/Github/'                                         # my github
     pluginz='/Users/Gmo/.local/share/nvim/site/pack/git-plugins/start/' # my vim-plugins
     config='/Users/Gmo/.config/nvim/'                                   # nvim config
     sillyy='/Users/Gmo/Github/silly-coding-things/'                     # code playground 
     resume='/Users/Gmo/Github/resume-pandoc'                            # markdown-resume
+    document='/Users/Gmo/Documents'                                     # Documents
+    desktop='/Users/Gmo/Desktop'                                        # Desktop
+    school='/Users/Gmo/Documents/School'                                # School
+    work='/Users/Gmo/Documents/Work'                                    # Work
 
 
 #----------------------------------------------------------------------
 # ALIASES
 #----------------------------------------------------------------------
 
+# Cd to places i go to a lot
+    alias gh='cd $github'                    # Github alias
+    alias dot='cd $dotfiles'                 # Dotfiles alias
+    alias conf='cd $config'                  # Nvim/conf alias 
+    alias plug='cd $pluginz'                 # Nvim/plugins alias
+    alias silly='cd $sillyy'                 # Silly/dir alias
+    alias res='cd $resume'                   # Resume dir alias
+    alias doc='cd $document'                 # Documents dir alias
+    alias des='cd $desktop'                  # Desktop dir alias
+    alias sch='cd $school'                   # School dir alias
+    alias wor='cd $work'                     # Work dir alias
+    alias opt=' $journal'                    # Journal alias
+    alias optt='nvim /Users/Gmo/Github/Optimizations/gmo/optimizations.md'
+
+# System Stuff
     alias rm='safe-rm'                       # Safe-RM
+    alias dog='ccat'                         # Use that new ccat plugin
+    alias python='python3'                   # Python 3 FTW
+
+# Nvim Stuff
     export VISUAL=nvim                       # Nvim Stuff so that the haters know
     alias v=nvim                             # Nvim Stuff so that the haters know 
     alias vim=nvim                           # Nvim Stuff so that the haters know
@@ -42,32 +65,24 @@
     alias vimrc='vim ~/.config/nvim/init.vim' # Open nvimrc in nvim
     alias ctags="`brew --prefix`/bin/ctags"  # Ctags alias
     alias bp='vim ~/.bash_profile'           # Get to bash-profile faster
-    alias dot='cd $dotfiles'                 # Get to Dotfiles alias
-    alias github='cd $githubz'               # Get to Github alias
-    alias conf='cd $config'                  # Get to nvim/conf alias 
-    alias plug='cd $pluginz'                 # Get to nvim/plugins alias
-    alias silly='cd $sillyy'                 # Get to silly/dir alias
-    alias res='cd $resume'                   # Get to resume dir alias
-    alias dog='ccat'                         # Use that new ccat plugin
-    alias python='python3'                   # Fuck python 2 -> Hopefully it don't make it not work
 
-#ls more nice
+# ls more nice
     alias ls="ls -FG"                        # Make ls pretty
     alias l="ls"                             # Just make ls  chill
     alias ll="ls -l"                         # ls long tag
     alias s="ls -ahl"
-#safety aliases
+
+# Safety aliases
     alias rm="rm -iv"                        # Make rm more safe
     alias cp="cp -i"                         # Make cp more safe
     alias mv="mv -i"                         # Make mv more safe
+
 # Laziness at its finest
     alias rr="source ~/.bash_profile && tmux source-file ~/.tmux.conf" # Source bash profile & Tmux
     alias ..="cd .."                         # Shortcut up a directory
     alias ...="cd ../.."                     # Shorcut 2 directory
     alias time="time -lp"                    # Time is verbose
     alias c="clear"
-    alias opt='vim $journal'                 # vim Journal alias
-    alias optt='cd /Users/Gmo/Github/Optimizations/gmo'
 
 
 #----------------------------------------------------------------------
