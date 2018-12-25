@@ -203,6 +203,8 @@ let g:lightline = {
 "----------------------------------------------------------------------
 "               Map Leader to '<space>' All things Leader
 "----------------------------------------------------------------------
+" List of used leader combo: 
+" f G h i o j l m p y r s q vs vv w cc cn c<space> z
 
     let mapleader=' '
 
@@ -215,57 +217,59 @@ let g:lightline = {
 " Goyo start Writing!
     nnoremap <leader>G :Goyo<CR>
 
-"Go to to previous buffer
+" Go to to previous buffer
     nnoremap <leader>h :bp<CR>
 
-"Jumplist stuff -> Backward and forward in vim jumps
+" Jumplist stuff -> Backward and forward in vim jumps
     nnoremap <leader>i <C-i>
     nnoremap <leader>o <C-o>
 
 " Fixing vim because I break it Later -> Move better lol
     noremap <leader>j J
 
-"Go to to next buffer
+" Go to to next buffer
     nnoremap <leader>l :bn<CR>
 
-"Preview Marks!
+" Preview Marks!
     nnoremap  <leader>m :marks<CR>
 
-"Copy & Paste into vim in normal mode
+" Copy & Paste into vim in normal mode
     noremap <leader>p  "+p
     noremap <leader>y  "+y
 
-"leader r is open register
+" leader r is open register
     nnoremap <leader>r :reg<CR>
 
-"Quicksave and Quickquit in vim!
+" Quicksave and Quickquit in vim!
     nnoremap <leader>s :update<cr>
     nnoremap <leader>q :q!<CR>
 
-"Split window
+" Split window
     nnoremap <leader>vs :split<Return><C-w>w
     nnoremap <leader>vv :vsplit<Return><C-w>w
 
-"Make leader+w = ctrl + w to move between windows
+" Make leader+w = ctrl + w to move between windows
     noremap <leader>w <C-w>
 
+" Make leader+z = create new terminal window
+    nnoremap <leader>z :new<CR>:terminal<CR>A source $HOME/.bash_profile<CR>c<CR>
 
 "----------------------------------------------------------------------
 " General Re-mappings
 "----------------------------------------------------------------------
 
-"Remap Capital J/K to move up and down blocks
+" Remap Capital J/K to move up and down blocks
     noremap J }
     noremap K {
 
-"Remap ctrl-L and ctrl-H to scroll left & right
+" Remap ctrl-L and ctrl-H to scroll left & right
     map <C-L> 20zl
     map <C-H> 20zh
 
-"Set U as Ctrl R which means Redo
+" Set U as Ctrl R which means Redo
     nnoremap U <C-R>
 
-"Use B to move to beginning of line in most modes
+" Use B to move to beginning of line in most modes
     map B 0
 
 " Use E to move to end of line in most modes
@@ -274,11 +278,11 @@ let g:lightline = {
 " Map ,, to % because i like cycling brackets a lot
     nnoremap ,, %
 
-"Align blocks of text and keep them selected
+" Align blocks of text and keep them selected
     vmap < <gv
     vmap > >gv
 
-"Lots of Time-Stamp Options here in normal/insert mode to paste timestamp and F4 To Date Stamp
+" Lots of Time-Stamp Options here in normal/insert mode to paste timestamp and F4 To Date Stamp
     nnoremap <F4> "=strftime("%Y-%m-%d")<CR>p
     inoremap <F4> <C-R>=strftime("%Y-%m-%d")<CR>
     nnoremap <F5> "=strftime("%A %B %d, at %l:%M %Z")<CR>P
@@ -287,30 +291,33 @@ let g:lightline = {
     inoremap <F6> <C-R>=strftime("%H:%M:%S")<CR>
 
 
-"List all buffers and jump to them using 'gb'
+" List all buffers and jump to them using 'gb'
     nnoremap gb :ls<CR>:b<Space>
 
-"List all recently opened files and open a new buffer
+" List all recently opened files and open a new buffer
     nnoremap gs :browse oldfiles<CR>
 
-"Set F12 as Make in VIM!
+" Set F12 as Make in VIM!
     map <F12> :!make<CR>
 
-"Set ctrlq as jump out of vim terminal mode
+" Set ctrlq as jump out of vim terminal mode
     tnoremap hh <C-\><C-n>
 
 "----------------------------------------------------------------------
 " Snippets!
 "----------------------------------------------------------------------
 
-"Basic HTML Snippet!
+" Basic HTML Snippet!
     nnoremap ,html :-read $HOME/.config/nvim/snippets/skeleton.html<CR>7jf>a
 
-"Post snippet
+" Post snippet
     nnoremap ,post :-read $HOME/.config/nvim/snippets/post.md<CR>
 
-"YAML snippet
+" YAML snippet
     nnoremap ,yaml :-read $HOME/.config/nvim/snippets/yaml.md<CR>
+
+" MLK's Dream Speech
+    nnoremap ,mlk :-read $HOME/.config/nvim/snippets/mlk.txt<CR>
 
 "----------------------------------------------------------------------
 " Endings
