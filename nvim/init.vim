@@ -308,16 +308,21 @@ let g:lightline = {
 "----------------------------------------------------------------------
 
 " Basic HTML Snippet!
-    nnoremap ,html :-read $HOME/.config/nvim/snippets/skeleton.html<CR>7jf>a
+    nnoremap ,html :-1read $HOME/.config/nvim/snippets/skeleton.html<CR>7jf>a
+
+" HTML completion snippets
 
 " Post snippet
-    nnoremap ,post :-read $HOME/.config/nvim/snippets/post.md<CR>
+    nnoremap ,post :-1read $HOME/.config/nvim/snippets/post.md<CR>
 
 " YAML snippet
-    nnoremap ,yaml :-read $HOME/.config/nvim/snippets/yaml.md<CR>
+    nnoremap ,yaml :-1read $HOME/.config/nvim/snippets/yaml.md<CR>
 
 " MLK's Dream Speech
-    nnoremap ,mlk :-read $HOME/.config/nvim/snippets/mlk.txt<CR>
+    nnoremap ,mlk :-1read $HOME/.config/nvim/snippets/mlk.txt<CR>
+
+" Job snippet
+    nnoremap ,job :-1read $HOME/.config/nvim/snippets/job.txt<CR>
 
 "----------------------------------------------------------------------
 " Endings

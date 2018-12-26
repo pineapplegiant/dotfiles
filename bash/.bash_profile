@@ -32,6 +32,7 @@
     desktop='/Users/Gmo/Desktop'                                        # Desktop
     school='/Users/Gmo/Documents/School'                                # School
     work='/Users/Gmo/Documents/Work'                                    # Work
+    jobs='/Users/Gmo/Documents/Work/JOBS'                                    # Jobs
 
 
 #----------------------------------------------------------------------
@@ -49,6 +50,7 @@
     alias des='cd $desktop'                  # Desktop dir alias
     alias sch='cd $school'                   # School dir alias
     alias wor='cd $work'                     # Work dir alias
+    alias job='cd $jobs'                     # Jobs dir alias
     alias opt=' $journal'                    # Journal alias
     alias optt='nvim /Users/Gmo/Github/Optimizations/gmo/optimizations.md'
 
