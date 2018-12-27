@@ -93,8 +93,13 @@
 
 # Neovim-Remote add to Path Python3
     export PATH=/Users/Gmo/Library/Python/3.7/bin:$PATH 
-    export PATH+=$PATH:/Users/Gmo/.scripts/
 
+# Add path to my scripts
+    export PATH=$PATH:/Users/Gmo/.scripts/
+
+
+# YARN PATH stuff
+    export PATH=$PATH:/usr/local/opt/go/libexec/bin
 
 #----------------------------------------------------------------------
 # Functions
@@ -134,8 +139,7 @@ function preman()
 
 
 # Detect whether the current directory is a git repository.
-function is_git_repository 
-{
+function is_git_repository {
     git branch > /dev/null 2>&1
 }
 
@@ -231,5 +235,5 @@ PROMPT_COMMAND=set_bash_prompt
 #----------------------------------------------------------------------
 # Final Source
 #----------------------------------------------------------------------
-    source .bashrc
+    #source .bashrc
 

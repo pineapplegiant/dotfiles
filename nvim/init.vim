@@ -203,12 +203,12 @@ let g:lightline = {
 "----------------------------------------------------------------------
 "               Map Leader to '<space>' All things Leader
 "----------------------------------------------------------------------
-" List of used leader combo: 
-" f G h i o j l m p y r s q vs vv w cc cn c<space> z
+" List of used leader combo:
+" d f G h i o j l m n p y r s q vs vv w cc cn c<space> z
 
     let mapleader=' '
 
-"Turn off search highlight bullshit to Comma and then Leader/space
+" Turn off search highlight bullshit to Comma + Leader/space
     nnoremap ,<leader> :nohlsearch<CR>
 
 " FZF to leader+f
@@ -216,6 +216,9 @@ let g:lightline = {
 
 " Goyo start Writing!
     nnoremap <leader>G :Goyo<CR>
+
+" Delete Buffer, but keep the window open
+    nnoremap <leader>d :bp\|bd! #<CR>
 
 " Go to to previous buffer
     nnoremap <leader>h :bp<CR>
@@ -232,6 +235,9 @@ let g:lightline = {
 
 " Preview Marks!
     nnoremap  <leader>m :marks<CR>
+
+" Make leader+n = ctrl + w to move between windows
+    nnoremap  <leader>n :NERDTreeRefreshRoot<CR>
 
 " Copy & Paste into vim in normal mode
     noremap <leader>p  "+p
@@ -252,7 +258,7 @@ let g:lightline = {
     noremap <leader>w <C-w>
 
 " Make leader+z = create new terminal window
-    nnoremap <leader>z :new<CR>:terminal<CR>A source $HOME/.bash_profile<CR>c<CR>
+    nnoremap <leader>z :new<CR>:resize 10<CR>:set nonumber<CR>:terminal<CR>A source $HOME/.bash_profile<CR>clear<CR>
 
 "----------------------------------------------------------------------
 " General Re-mappings
@@ -308,9 +314,16 @@ let g:lightline = {
 "----------------------------------------------------------------------
 
 " Basic HTML Snippet!
-    nnoremap ,html :-1read $HOME/.config/nvim/snippets/skeleton.html<CR>7jf>a
+    nnoremap ,html :read $HOME/.config/nvim/snippets/skeleton.html<CR>7jf>a
 
-" HTML completion snippets
+" List of HTML completion snippets
+"nnoremap ,h1 :r! sed -n 1,1p /$HOME/.config/nvim/snippets/html.txt<CR>f>a { stupid me }
+    "autocmd FileType html inoremap h1 <h1></h1><ESC>F>a
+    "autocmd FileType html inoremap h2 <h2></h2><ESC>F>a
+    "autocmd FileType html inoremap h3 <h3></h3><ESC>F>a
+    "autocmd FileType html inoremap h4 <h4></h4><ESC>F>a
+    "autocmd FileType html inoremap h5 <h5></h5><ESC>F>a
+    "autocmd FileType html inoremap h6 <h6></h6><ESC>F>a
 
 " Post snippet
     nnoremap ,post :-1read $HOME/.config/nvim/snippets/post.md<CR>
@@ -319,10 +332,10 @@ let g:lightline = {
     nnoremap ,yaml :-1read $HOME/.config/nvim/snippets/yaml.md<CR>
 
 " MLK's Dream Speech
-    nnoremap ,mlk :-1read $HOME/.config/nvim/snippets/mlk.txt<CR>
+    nnoremap ,mlk :read $HOME/.config/nvim/snippets/mlk.txt<CR>
 
 " Job snippet
-    nnoremap ,job :-1read $HOME/.config/nvim/snippets/job.txt<CR>
+    nnoremap ,job :read $HOME/.config/nvim/snippets/job.txt<CR>
 
 "----------------------------------------------------------------------
 " Endings
