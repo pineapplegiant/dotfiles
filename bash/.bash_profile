@@ -30,9 +30,10 @@
     resume='/Users/Gmo/Github/resume-pandoc'                            # markdown-resume
     document='/Users/Gmo/Documents'                                     # Documents
     desktop='/Users/Gmo/Desktop'                                        # Desktop
+    download='/Users/Gmo/Desktop'                                       # Downloads
     school='/Users/Gmo/Documents/School'                                # School
     work='/Users/Gmo/Documents/Work'                                    # Work
-    jobs='/Users/Gmo/Documents/Work/JOBS'                                    # Jobs
+    jobs='/Users/Gmo/Documents/Work/JOBS'                               # Jobs
 
 
 #----------------------------------------------------------------------
@@ -47,6 +48,7 @@
     alias silly='cd $sillyy'                 # Silly/dir alias
     alias res='cd $resume'                   # Resume dir alias
     alias doc='cd $document'                 # Documents dir alias
+    alias dow='cd $download'                 # Downloads dir alias
     alias des='cd $desktop'                  # Desktop dir alias
     alias sch='cd $school'                   # School dir alias
     alias wor='cd $work'                     # Work dir alias
