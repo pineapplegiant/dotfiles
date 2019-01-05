@@ -80,7 +80,7 @@ filetype plugin indent on
     set wildcharm=<C-z>             "Juggling with buffers
 
 " Leader Things
-    let mapleader=' '
+    let mapleader=" "
 
 "Turn off search highlight bullshit to Comma and then Leader/space
     nnoremap ,<leader> :nohlsearch<CR>

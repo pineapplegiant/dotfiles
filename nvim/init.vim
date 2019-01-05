@@ -317,13 +317,12 @@ let g:lightline = {
     nnoremap ,html :read $HOME/.config/nvim/snippets/skeleton.html<CR>7jf>a
 
 " List of HTML completion snippets
-"nnoremap ,h1 :r! sed -n 1,1p /$HOME/.config/nvim/snippets/html.txt<CR>f>a { stupid me }
-    "autocmd FileType html inoremap h1 <h1></h1><ESC>F>a
-    "autocmd FileType html inoremap h2 <h2></h2><ESC>F>a
-    "autocmd FileType html inoremap h3 <h3></h3><ESC>F>a
-    "autocmd FileType html inoremap h4 <h4></h4><ESC>F>a
-    "autocmd FileType html inoremap h5 <h5></h5><ESC>F>a
-    "autocmd FileType html inoremap h6 <h6></h6><ESC>F>a
+    autocmd FileType html inoremap h1 <h1></h1><ESC>F>a
+    autocmd FileType html inoremap h2 <h2></h2><ESC>F>a
+    autocmd FileType html inoremap h3 <h3></h3><ESC>F>a
+    autocmd FileType html inoremap h4 <h4></h4><ESC>F>a
+    autocmd FileType html inoremap h5 <h5></h5><ESC>F>a
+    autocmd FileType html inoremap h6 <h6></h6><ESC>F>a
 
 " Post snippet
     nnoremap ,post :-1read $HOME/.config/nvim/snippets/post.md<CR>
@@ -336,6 +335,12 @@ let g:lightline = {
 
 " Job snippet
     nnoremap ,job :read $HOME/.config/nvim/snippets/job.txt<CR>
+
+" School's C++ top snippet
+    nnoremap ,top :read $HOME/.config/nvim/snippets/top.txt<CR>
+
+" School's Function block snippet
+    nnoremap ,block :read $HOME/.config/nvim/snippets/block.txt<CR>
 
 "----------------------------------------------------------------------
 " Endings

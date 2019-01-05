@@ -40,6 +40,9 @@
 # ALIASES
 #----------------------------------------------------------------------
 
+# Login to school!
+    alias loginz='ssh rodrguil@access.engr.oregonstate.edu'
+
 # Cd to places i go to a lot
     alias gh='cd $github'                    # Github alias
     alias dot='cd $dotfiles'                 # Dotfiles alias
