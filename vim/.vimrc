@@ -51,7 +51,6 @@ filetype plugin indent on
 
 
 """""Basic Preference Things
-    set guicursor=n-v-c:block-Cursor " Hopefully make cursor better in insert
     set hidden                     " Ignorecase when searching stuff
     set ignorecase                 " Ignorecase when searching stuff
     "set spelllang=en_us            " Turn on spell check?
