@@ -1,56 +1,18 @@
+"        _                    
+"       (_)                   
+" __   ___ _ __ ___  _ __ ___ 
+" \ \ / / | '_ ` _ \| '__/ __|
+"  \ V /| | | | | | | | | (__ 
+"   \_/ |_|_| |_| |_|_|  \___|
+"                             
+
 """"""Gotta have it
 set nocompatible              " be iMproved, required
 filetype plugin indent on
 
-"General Re-maps
-
-"Remap Capital J/K to move up and down blocks
-    noremap J }
-    noremap K {
-
-"Remap ctrl-L and ctrl-H to scroll left & right
-    map <C-L> 20zl
-    map <C-H> 20zh
-
-"Set U as Ctrl R which means Redo
-    nnoremap U <C-R>
-
-"Use B to move to beginning of line in most modes
-    map B 0
-
-" Use E to move to end of line in most modes
-    map E $
-
-" Map ,, to % because i like cycling brackets a lot
-    nnoremap ,, %
-
-"Align blocks of text and keep them selected
-    vmap < <gv
-    vmap > >gv
-
-"Lots of Time-Stamp Options here in normal/insert mode to paste timestamp and F4 To Date Stamp
-    nnoremap <F4> "=strftime("%Y-%m-%d")<CR>p
-    inoremap <F4> <C-R>=strftime("%Y-%m-%d")<CR>
-    nnoremap <F5> "=strftime("%A %B %d, at %l:%M %Z")<CR>P
-    inoremap <F5> <C-R>=strftime("%A %B %d, at %l:%M %Z")<CR>
-    nnoremap <F6> "=strftime("%H:%M:%S")<CR>p
-    inoremap <F6> <C-R>=strftime("%H:%M:%S")<CR>
-
-
-"List all buffers and jump to them using 'gb'
-    nnoremap gb :ls<CR>:b<Space>
-
-"List all recently opened files and open a new buffer
-    nnoremap gs :browse oldfiles<CR>
-
-"Set F12 as Make in VIM!
-    map <F12> :!make<CR>
-
-"Set ctrlq as jump out of vim terminal mode
-"    tnoremap hh <C-\><C-n>
-
-
-"""""Basic Preference Things
+"----------------------------------------------------------------------
+" Basic Preference Things 
+"----------------------------------------------------------------------
     set hidden                     " Ignorecase when searching stuff
     set ignorecase                 " Ignorecase when searching stuff
     "set spelllang=en_us            " Turn on spell check?
@@ -77,6 +39,10 @@ filetype plugin indent on
     set noswapfile                 " NO SWAP FILES
     "set list                       " Show indentations
     set wildcharm=<C-z>             "Juggling with buffers
+
+"----------------------------------------------------------------------
+" Leader && Remaps
+"----------------------------------------------------------------------
 
 " Leader Things
     let mapleader=" "
@@ -124,3 +90,82 @@ filetype plugin indent on
 "Make leader+w = ctrl + w to move between windows
     noremap <leader>w <C-w>
 
+"Remap Capital J/K to move up and down blocks
+    noremap J }
+    noremap K {
+
+"Remap ctrl-L and ctrl-H to scroll left & right
+    map <C-L> 20zl
+    map <C-H> 20zh
+
+"Set U as Ctrl R which means Redo
+    nnoremap U <C-R>
+
+"Use B to move to beginning of line in most modes
+    map B 0
+
+" Use E to move to end of line in most modes
+    map E $
+
+" Map ,, to % because i like cycling brackets a lot
+    nnoremap ,, %
+
+"Align blocks of text and keep them selected
+    vmap < <gv
+    vmap > >gv
+
+"Lots of Time-Stamp Options here in normal/insert mode to paste timestamp and F4 To Date Stamp
+    nnoremap <F4> "=strftime("%Y-%m-%d")<CR>p
+    inoremap <F4> <C-R>=strftime("%Y-%m-%d")<CR>
+    nnoremap <F5> "=strftime("%A %B %d, at %l:%M %Z")<CR>P
+    inoremap <F5> <C-R>=strftime("%A %B %d, at %l:%M %Z")<CR>
+    nnoremap <F6> "=strftime("%H:%M:%S")<CR>p
+    inoremap <F6> <C-R>=strftime("%H:%M:%S")<CR>
+
+
+"List all buffers and jump to them using 'gb'
+    nnoremap gb :ls<CR>:b<Space>
+
+"List all recently opened files and open a new buffer
+    nnoremap gs :browse oldfiles<CR>
+
+"Set F12 as Make in VIM!
+    map <F12> :!make<CR>
+
+"Set ctrlq as jump out of vim terminal mode
+"    tnoremap hh <C-\><C-n>
+
+
+
+"----------------------------------------------------------------------
+" Snippets!
+"----------------------------------------------------------------------
+
+" Basic HTML Snippet!
+    nnoremap ,html :read $HOME/.config/nvim/snippets/skeleton.html<CR>7jf>a
+
+" List of HTML completion snippets
+    autocmd FileType html inoremap h1 <h1></h1><ESC>F>a
+    autocmd FileType html inoremap h2 <h2></h2><ESC>F>a
+    autocmd FileType html inoremap h3 <h3></h3><ESC>F>a
+    autocmd FileType html inoremap h4 <h4></h4><ESC>F>a
+    autocmd FileType html inoremap h5 <h5></h5><ESC>F>a
+    autocmd FileType html inoremap h6 <h6></h6><ESC>F>a
+
+" Post snippet
+    nnoremap ,post :-1read $HOME/.config/nvim/snippets/post.md<CR>
+
+" YAML snippet
+    nnoremap ,yaml :-1read $HOME/.config/nvim/snippets/yaml.md<CR>
+
+" MLK's Dream Speech
+    nnoremap ,mlk :read $HOME/.config/nvim/snippets/mlk.txt<CR>
+
+" Job snippet
+    nnoremap ,job :read $HOME/.config/nvim/snippets/job.txt<CR>
+
+" School's C++ top snippet
+    nnoremap ,top :read $HOME/.config/nvim/snippets/top.txt<CR>
+
+" School's Function block snippet
+    nnoremap ,block :read $HOME/.config/nvim/snippets/block.txt<CR>
