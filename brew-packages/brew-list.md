@@ -1,100 +1,118 @@
-# Brew List
-* autoconf
-* bash
-* bash-completion
-* bfs
-* ccat
-* cmake
-* ctags
-* ffmpeg
-* fish
-* freetype
-* fzf
-* gcc
-* gdbm
-* gettext
-* ghostscript
-* gifsicle
-* git
-* gmp
-* gnutls
-* h2o
-* htop
-* icu4c
-* imagemagick
-* isl
-* jemalloc
-* jpeg
-* lame
-* libevent
-* libffi
-* libmpc
-* libogg
-* libpng
-* libtasn1
-* libtermkey
-* libtiff
-* libtool
-* libunistring
-* libuv
-* libvorbis
-* libvpx
-* libvterm
-* libyaml
-* lua
-* lua@5.1
-* luajit
-* luarocks
-* mpfr
-* msgpack
-* ncurses
-* neofetch
-* neovim
-* nettle
-* ninja
-* node
-* openssl
-* opus
-* p11-kit
-* pandoc
-* pandoc-citeproc
-* pcre
-* pcre2
-* pkg-config
-* proselint
-* python
-* r
-* rbenv
-* readline
-* ruby
-* ruby-build
-* safe-rm
-* sc-im
-* screenresolution
-* sdl2
-* snappy
-* sqlite
-* theora
-* tmux
-* trash
-* tree
-* unibilium
-* unzip
-* x264
-* x265
-* xvid
-* xz
-* yarn
-
-# Brew Cask List
-* calibre
-* firefox
-* gimp
-* intellij-idea
-* keycastr
-* mactex
-* oni
-* powershell
-* rstudio
-* wkhtmltopdf
-* xquartz
+adns
+autoconf
+bash
+bash-completion
+bfs
+ccat
+cmake
+ctags
+ffmpeg
+fish
+freetype
+fzf
+gcc
+gdbm
+gettext
+ghostscript
+gifsicle
+git
+gmp
+gnu-getopt
+gnupg
+gnutls
+go
+groff
+h2o
+htop
+hugo
+icu4c
+imagemagick
+isl
+jemalloc
+jpeg
+lame
+libassuan
+libevent
+libffi
+libgcrypt
+libgpg-error
+libksba
+libmpc
+libogg
+libpng
+libtasn1
+libtermkey
+libtiff
+libtool
+libunistring
+libusb
+libuv
+libvorbis
+libvpx
+libvterm
+libyaml
+lua
+lua@5.1
+luajit
+luarocks
+mpfr
+msgpack
+ncurses
+neofetch
+neovim
+nettle
+ninja
+node
+npth
+openssl
+opus
+p11-kit
+pandoc
+pandoc-citeproc
+pass
+pcre
+pcre2
+perl
+pinentry
+pkg-config
+proselint
+python
+qrencode
+r
+rbenv
+readline
+ruby
+ruby-build
+safe-rm
+sc-im
+screenresolution
+sdl2
+snappy
+sqlite
+theora
+tmux
+trash
+tree
+unibilium
+unzip
+vim
+x264
+x265
+xvid
+xz
+yarn
+calibre
+cyberduck
+firefox
+gimp
+hyper
+intellij-idea
+keycastr
+mactex
+oni
+powershell
+pycharm
+rstudio
+spectacle
+wkhtmltopdf
+xquartz

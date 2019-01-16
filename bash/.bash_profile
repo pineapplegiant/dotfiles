@@ -10,7 +10,10 @@
 # Notes for a healthy reminder
 #----------------------------------------------------------------------
     #sudo rm /var/log/asl/*.asl -> delete Macosx system log files
-
+    #convert to pdf via groff
+    #groff -ms document.ms -T pdf
+    #convert to pdf via groff via pandoc
+    #pandoc document.md -t ms -o document.pdf
 
 #----------------------------------------------------------------------
 # Start off with a friendly hello

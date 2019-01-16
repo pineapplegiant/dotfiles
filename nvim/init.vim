@@ -291,11 +291,10 @@ let g:lightline = {
 " Lots of Time-Stamp Options here in normal/insert mode to paste timestamp and F4 To Date Stamp
     nnoremap <F4> "=strftime("%Y-%m-%d")<CR>p
     inoremap <F4> <C-R>=strftime("%Y-%m-%d")<CR>
-    nnoremap <F5> "=strftime("%A %B %d, at %l:%M %Z")<CR>P
-    inoremap <F5> <C-R>=strftime("%A %B %d, at %l:%M %Z")<CR>
+    nnoremap <F5> "=strftime("%A %B %d %Y, at %I:%M %p %Z")<CR>P
+    inoremap <F5> <C-R>=strftime("%A %B %d, at %I:%M %p %Z")<CR>
     nnoremap <F6> "=strftime("%H:%M:%S")<CR>p
     inoremap <F6> <C-R>=strftime("%H:%M:%S")<CR>
-
 
 " List all buffers and jump to them using 'gb'
     nnoremap gb :ls<CR>:b<Space>
@@ -337,12 +336,11 @@ let g:lightline = {
     nnoremap ,job :read $HOME/.config/nvim/snippets/job.txt<CR>
 
 " School's C++ top snippet
-    nnoremap ,top :read $HOME/.config/nvim/snippets/top.txt<CR>
+    nnoremap ,top :-1read $HOME/.config/nvim/snippets/top.txt<CR>2jA <C-R>=strftime("%A %B %d %Y, at %I:%M %p %Z")<CR><ESC>jA 
 
 " School's Function block snippet
-    nnoremap ,block :read $HOME/.config/nvim/snippets/block.txt<CR>
+    nnoremap ,block :read $HOME/.config/nvim/snippets/block.txt<CR>jA
 
 "----------------------------------------------------------------------
 " Endings
 "----------------------------------------------------------------------
-
