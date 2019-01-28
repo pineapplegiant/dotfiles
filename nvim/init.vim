@@ -341,6 +341,10 @@ let g:lightline = {
 " School's Function block snippet
     nnoremap ,block :read $HOME/.config/nvim/snippets/block.txt<CR>jA
 
+" C++ int main()
+    nnoremap ,c++ :read $HOME/.config/nvim/snippets/c++.txt<CR>jo<tab>
+
+
 "----------------------------------------------------------------------
 " Endings
 "----------------------------------------------------------------------
