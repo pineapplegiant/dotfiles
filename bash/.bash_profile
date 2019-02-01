@@ -19,23 +19,6 @@
     echo "Hey $USER, welcome back my dude ^‿^"
 
 
-#----------------------------------------------------------------------
-#                       PATH
-#----------------------------------------------------------------------
-
-# Neovim-Remote add to Path Python3
-    export PATH=/Users/Gmo/Library/Python/3.7/bin:$PATH 
-
-# Add Personal Scripts to my path
-    export PATH=$PATH:/Users/Gmo/.scripts/
-
-
-# YARN PATH stuff
-    export PATH=$PATH:/usr/local/opt/go/libexec/bin
-
-# Z cd Command Jumping -> IN bashrc
-. /usr/local/etc/profile.d/z.sh
-
 
 #----------------------------------------------------------------------
 # Location of places i go to a lot
@@ -256,6 +239,23 @@ fmt_time ()
 # Tell bash to execute this function just before displaying its prompt.
 PROMPT_COMMAND=set_bash_prompt
 
+
+#----------------------------------------------------------------------
+#                       PATH
+#----------------------------------------------------------------------
+
+# Neovim-Remote add to Path Python3
+    export PATH=/Users/Gmo/Library/Python/3.7/bin:$PATH 
+
+# Add Personal Scripts to my path
+    export PATH=$PATH:/Users/Gmo/.scripts/
+
+
+# YARN PATH stuff
+    export PATH=$PATH:/usr/local/opt/go/libexec/bin
+
+# Z cd Command Jumping -> IN bashrc
+. /usr/local/etc/profile.d/z.sh
 
 #----------------------------------------------------------------------
 #                       Final
