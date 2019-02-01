@@ -9,11 +9,13 @@
 
 
 "----------------------------------------------------------------------
-" NOTES FOR A HEALTHY REMINDER
+"               NOTES FOR A HEALTHY REMINDER
 "----------------------------------------------------------------------
+    " H, M, L, Gives you
     "Remember kids 'gd' for searching under cursor is ur friend
     "zL and zH let you view to the left and right for long lines
-    "zt lets you make the current line up at the top of viewport
+    "zt lets you make the current line up at the TOP of viewport
+    "zb lets you make the current line up at the BOTTOM of viewport
     " gu  : Change current line from UPPER to lower.
     " gU  : Change current line from lower to UPPER.
     " nnoremap is for normal mode - map for all and noremap for most
@@ -27,7 +29,7 @@
 
 
 "----------------------------------------------------------------------
-" Colors for a rainy day
+"               Colors for a rainy day
 "----------------------------------------------------------------------
     "colorscheme dracula
     "colorscheme peachpuff
@@ -40,7 +42,7 @@
 
 
 "----------------------------------------------------------------------
-" Basic Preference Things
+"               Basic Preference Things
 "----------------------------------------------------------------------
     set guicursor=n-v-c:block-Cursor " Hopefully make cursor better in insert
     set hidden                     " Ignorecase when searching stuff
@@ -77,8 +79,9 @@
     set list                       " Show indentations
     set wildcharm=<C-z>             "Juggling with buffers
 
-    autocmd Filetype css setlocal  tabstop=2 shiftwidth=2 softtabstop=2 " Set tabs to 2 spaces in html and css
-    autocmd Filetype html setlocal tabstop=2 shiftwidth=2 softtabstop=2 " Set tabs to 2 spaces in html and css
+    autocmd Filetype css  setlocal  tabstop=2 shiftwidth=2 softtabstop=2 " Set tabs to 2 spaces in html and css
+    autocmd Filetype html setlocal  tabstop=2 shiftwidth=2 softtabstop=2 " Set tabs to 2 spaces in html and css
+    autocmd FileType tex let g:indentLine_enabled=0
 
 "----------------------------------------------------------------------
 "                        PLUGINS RIP
@@ -88,7 +91,7 @@
 
 
 "----------------------------------------------------------------------
-" Airline
+"                       Airline
 "----------------------------------------------------------------------
     "let g:airline_theme='tokyometro'                " Airline & Themes enabled
     "let g:airline_powerline_fonts = 1               " Let there be powerline for pretty arrow
@@ -97,7 +100,7 @@
     "let g:airline#extensions#tabline#enabled = 1   " Tabs for airline
 
 "----------------------------------------------------------------------
-" Nerdtree
+"                       Nerdtree
 "----------------------------------------------------------------------
 " Map nerdtree to Ctrl+n
     map <C-n> :NERDTreeToggle<CR>
@@ -108,7 +111,7 @@
 " Let Nerdtree close if it's the last window open!
     autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 "----------------------------------------------------------------------
-" Lightline
+"                       Lightline
 "----------------------------------------------------------------------
 
 let g:lightline = {
@@ -117,13 +120,13 @@ let g:lightline = {
 
 
 "----------------------------------------------------------------------
-" Markdown Preview
+"                   Markdown Preview
 "----------------------------------------------------------------------
     let g:mkdp_open_to_the_world = 1        " Markdown preview to the world
 
 
 "----------------------------------------------------------------------
-" Indent-Line
+"                       Indent-Line
 "----------------------------------------------------------------------
     let g:indentLine_char = '▏'             " Show Indentation lines
     let g:indentLine_color_gui = '#474747'  " Make them pretty-gray-lines
@@ -131,14 +134,14 @@ let g:lightline = {
     autocmd FileType markdown let g:indentLine_enabled=0
 
 "----------------------------------------------------------------------
-" RMD map for compiling
+"                   RMD map for compiling
 "----------------------------------------------------------------------
 
     autocmd Filetype rmd map <F10> :!echo<space>"require(rmarkdown);<space>render('<c-r>%')"<space>\|<space>R<space>--vanilla<enter>
 
 
 "----------------------------------------------------------------------
-" GOYO && LIMELIGHT && PENCIL FOR WRITING TODO- { still in progress }
+" GOYO && LIMELIGHT && PENCIL optimization WRITING TODO- { still in progress }
 "----------------------------------------------------------------------
     let g:limelight_default_coefficient = 0.7
     "let g:limelight_paragraph_span = 1
@@ -204,7 +207,7 @@ let g:lightline = {
 "               Map Leader to '<space>' All things Leader
 "----------------------------------------------------------------------
 " List of used leader combo:
-" d f G h i o j l m n p y r s q vs vv w cc cn c<space> z
+" d f G h i o j l m n p y r s q vs vv w cc cn c<space> z zb
 
     let mapleader=' '
 
@@ -227,7 +230,7 @@ let g:lightline = {
     nnoremap <leader>i <C-i>
     nnoremap <leader>o <C-o>
 
-" Fixing vim because I break it Later -> Move better lol
+" Fixing vim because I break it Later -> Move between blocks 'better'
     noremap <leader>j J
 
 " Go to to next buffer
@@ -258,10 +261,13 @@ let g:lightline = {
     noremap <leader>w <C-w>
 
 " Make leader+z = create new terminal window
-    nnoremap <leader>z :new<CR>:resize 10<CR>:set nonumber<CR>:terminal<CR>A source $HOME/.bash_profile<CR>clear<CR>
+    nnoremap <leader>z :new<CR>:resize 10<CR>:set nonumber<CR>:terminal<CR>:file terminal0<CR>A source $HOME/.bash_profile<CR>clear<CR>
+
+" Make leader+zb = new terminal in a new buffer
+    nnoremap <leader>zb :terminal<CR>:set nonumber<CR>:file terminal1<CR>A source $HOME/.bash_profile<CR>clear<CR>
 
 "----------------------------------------------------------------------
-" General Re-mappings
+"                   General Re-mappings
 "----------------------------------------------------------------------
 
 " Remap Capital J/K to move up and down blocks
@@ -305,23 +311,30 @@ let g:lightline = {
 " Set F12 as Make in VIM!
     map <F12> :!make<CR>
 
-" Set ctrlq as jump out of vim terminal mode
+" Set hh as jump out of 'vim' terminal mode
     tnoremap hh <C-\><C-n>
 
 "----------------------------------------------------------------------
-" Snippets!
+"                           Snippets!
 "----------------------------------------------------------------------
 
 " Basic HTML Snippet!
-    nnoremap ,html :read $HOME/.config/nvim/snippets/skeleton.html<CR>7jf>a
+    nnoremap ,html :-1read $HOME/.config/nvim/snippets/skeleton.html<CR>7jf>a
 
 " List of HTML completion snippets
-    autocmd FileType html inoremap h1 <h1></h1><ESC>F>a
-    autocmd FileType html inoremap h2 <h2></h2><ESC>F>a
-    autocmd FileType html inoremap h3 <h3></h3><ESC>F>a
-    autocmd FileType html inoremap h4 <h4></h4><ESC>F>a
-    autocmd FileType html inoremap h5 <h5></h5><ESC>F>a
-    autocmd FileType html inoremap h6 <h6></h6><ESC>F>a
+    autocmd FileType html inoremap ,h1 <h1></h1><ESC>F>a
+    autocmd FileType html inoremap ,h2 <h2></h2><ESC>F>a
+    autocmd FileType html inoremap ,h3 <h3></h3><ESC>F>a
+    autocmd FileType html inoremap ,h4 <h4></h4><ESC>F>a
+    autocmd FileType html inoremap ,h5 <h5></h5><ESC>F>a
+    autocmd FileType html inoremap ,h6 <h6></h6><ESC>F>a
+    autocmd FileType html inoremap ,h7 <h7></h7><ESC>F>a
+    autocmd FileType html inoremap ,pp <p></p><ESC>F>a
+    autocmd FileType html inoremap ,ol <ol></ol><ESC>F>i
+    autocmd FileType html inoremap ,ul <ul></ul><ESC>F>a
+    autocmd FileType html inoremap ,img <img src=""><ESC>F"i
+    autocmd FileType html inoremap ,aa <a href=""><ESC>F"i
+    autocmd FileType html inoremap ,li <li></li><ESC>F>a
 
 " Post snippet
     nnoremap ,post :-1read $HOME/.config/nvim/snippets/post.md<CR>
@@ -346,5 +359,5 @@ let g:lightline = {
 
 
 "----------------------------------------------------------------------
-" Endings
+"                       Endings
 "----------------------------------------------------------------------
