@@ -5,69 +5,84 @@
 # ██╗██████╔╝██║  ██║███████║██║  ██║    ██║     ██║  ██║╚██████╔╝██║     ██║███████╗███████╗
 # ╚═╝╚═════╝ ╚═╝  ╚═╝╚══════╝╚═╝  ╚═╝    ╚═╝     ╚═╝  ╚═╝ ╚═════╝ ╚═╝     ╚═╝╚══════╝╚══════╝
 
-
 #----------------------------------------------------------------------
-# Notes for a healthy reminder
+# Notes to self for a healthy reminder
 #----------------------------------------------------------------------
     #sudo rm /var/log/asl/*.asl -> delete Macosx system log files
     #convert to pdf via groff
-    #groff -ms document.ms -T pdf
-    #convert to pdf via groff via pandoc
-    #pandoc document.md -t ms -o document.pdf
+        #groff -ms document.ms -T pdf
+        #pandoc document.md -t ms -o document.pdf
 
 #----------------------------------------------------------------------
-# Start off with a friendly hello
+#               Start off with a friendly hello
 #----------------------------------------------------------------------
-    echo "$USER, welcome back my dude ^‿^"
+    echo "Hey $USER, welcome back my dude ^‿^"
+
+
+#----------------------------------------------------------------------
+#                       PATH
+#----------------------------------------------------------------------
+
+# Neovim-Remote add to Path Python3
+    export PATH=/Users/Gmo/Library/Python/3.7/bin:$PATH 
+
+# Add Personal Scripts to my path
+    export PATH=$PATH:/Users/Gmo/.scripts/
+
+
+# YARN PATH stuff
+    export PATH=$PATH:/usr/local/opt/go/libexec/bin
+
+# Z cd Command Jumping -> IN bashrc
+. /usr/local/etc/profile.d/z.sh
 
 
 #----------------------------------------------------------------------
 # Location of places i go to a lot
 #----------------------------------------------------------------------
-    journal='/Users/Gmo/Github/Optimizations/gmo/'                      # my journal
-    dotfiles='/Users/Gmo/Github/dotfiles/'                              # my dotfiles
-    github='/Users/Gmo/Github/'                                         # my github
-    pluginz='/Users/Gmo/.local/share/nvim/site/pack/git-plugins/start/' # my vim-plugins
-    config='/Users/Gmo/.config/nvim/'                                   # nvim config
-    sillyy='/Users/Gmo/Github/silly-coding-things/'                     # code playground 
-    resume='/Users/Gmo/Github/resume-pandoc'                            # markdown-resume
-    document='/Users/Gmo/Documents'                                     # Documents
-    desktop='/Users/Gmo/Desktop'                                        # Desktop
-    download='/Users/Gmo/Desktop'                                       # Downloads
-    school='/Users/Gmo/Documents/School'                                # School
-    work='/Users/Gmo/Documents/Work'                                    # Work
-    jobs='/Users/Gmo/Documents/Work/JOBS'                               # Jobs
+    journal="$HOME/Github/Optimizations/gmo/"                      # my journal
+    dotfiles="$HOME/Github/dotfiles/"                              # my dotfiles
+    github="$HOME/Github/"                                         # my github
+    pluginz="$HOME/.local/share/nvim/site/pack/git-plugins/start/" # my vim-plugins
+    config="$HOME/.config/nvim/"                                   # nvim config
+    sillyy="$HOME/Github/silly-coding-things/"                     # code playground 
+    resume="$HOME/Github/resume-pandoc"                            # markdown-resume
+    document="$HOME/Documents"                                     # Documents
+    desktop="$HOME/Desktop"                                        # Desktop
+    download="$HOME/Download"                                      # Downloads
+    school="$HOME/Documents/School"                                # School
+    work="$HOME/Documents/Work"                                    # Work
+    jobs="$HOME/Documents/Work/JOBS"                               # Job applications
 
 
 #----------------------------------------------------------------------
-# ALIASES
+#                       ALIASES
 #----------------------------------------------------------------------
 
 # Login to school!
-    alias loginz='ssh rodrguil@access.engr.oregonstate.edu'
+    alias log='ssh rodrguil@access.engr.oregonstate.edu'
 
 # Cd to places i go to a lot
-    alias gh='cd $github'                    # Github alias
-    alias dot='cd $dotfiles'                 # Dotfiles alias
-    alias conf='cd $config'                  # Nvim/conf alias 
-    alias plug='cd $pluginz'                 # Nvim/plugins alias
-    alias silly='cd $sillyy'                 # Silly/dir alias
-    alias res='cd $resume'                   # Resume dir alias
-    alias doc='cd $document'                 # Documents dir alias
-    alias dow='cd $download'                 # Downloads dir alias
-    alias des='cd $desktop'                  # Desktop dir alias
-    alias sch='cd $school'                   # School dir alias
-    alias wor='cd $work'                     # Work dir alias
-    alias job='cd $jobs'                     # Jobs dir alias
-    alias opt=' $journal'                    # Journal alias
-    alias optt='nvim /Users/Gmo/Github/Optimizations/gmo/optimizations.md'
+    alias gh="cd $github"                    # Github alias
+    alias dot="cd $dotfiles"                 # Dotfiles alias
+    alias conf="cd $config"                  # Nvim/conf alias 
+    alias plug="cd $pluginz"                 # Nvim/plugins alias
+    alias silly="cd $sillyy"                 # Silly/dir alias
+    alias res="cd $resume"                   # Resume dir alias
+    alias doc="cd $document"                 # Documents dir alias
+    alias dow="cd $download"                 # Downloads dir alias
+    alias des="cd $desktop"                  # Desktop dir alias
+    alias sch="cd $school"                   # School dir alias
+    alias wor="cd $work"                     # Work dir alias
+    alias job="cd $jobs"                     # Jobs dir alias
+    alias opt="cd $journal"                    # Journal alias
+    alias optt="vim $journal/optimizations.md"
 
 # System Stuff
     alias rm='safe-rm'                       # Safe-RM
     alias dog='ccat'                         # Use that new ccat plugin
-    alias python='python3'                   # Python 3 FTW
 
-# Nvim Stuff
+# Vim to Nvim 
     export VISUAL=nvim                       # Nvim Stuff so that the haters know
     alias v=nvim                             # Nvim Stuff so that the haters know 
     alias vim=nvim                           # Nvim Stuff so that the haters know
@@ -76,11 +91,12 @@
     alias ctags="`brew --prefix`/bin/ctags"  # Ctags alias
     alias bp='vim ~/.bash_profile'           # Get to bash-profile faster
 
+# I HAVE SWITCHED TO EXA
 # ls more nice
-    alias ls="ls -FG"                        # Make ls pretty
-    alias l="ls"                             # Just make ls  chill
-    alias ll="ls -l"                         # ls long tag
-    alias s="ls -ahl"
+    alias ls="exa -FG"                        # Make ls pretty
+    alias l="exa"                             # Just make ls  chill
+    alias ll="exa -l"                         # ls long tag
+    alias s="exa -ahl"
 
 # Safety aliases
     alias rm="rm -iv"                        # Make rm more safe
@@ -96,38 +112,36 @@
 
 
 #----------------------------------------------------------------------
-# PATH
+#                   Functions
 #----------------------------------------------------------------------
 
-# Neovim-Remote add to Path Python3
-    export PATH=/Users/Gmo/Library/Python/3.7/bin:$PATH 
-
-# Add path to my scripts
-    export PATH=$PATH:/Users/Gmo/.scripts/
-
-
-# YARN PATH stuff
-    export PATH=$PATH:/usr/local/opt/go/libexec/bin
-
-#----------------------------------------------------------------------
-# Functions
-#----------------------------------------------------------------------
-
-# CD && LS idk
-cd() { builtin cd "$@" && ls;}
+# CD && LS all at once 
+    cd() { builtin cd "$@" && ls;}
 
 # This will open manpages in preview!
-function preman() 
-{
-    man -t $@ | open -f -a "preview"
-}
+    function preman()
+    {
+        man -t $@ | open -f -a "preview"
+    }
 
-# Bash 4.0 no 'CD' to  change dircetory
+# Open in google
+    function google()
+    {
+        open $@ -a "Google Chrome"
+    }
+
+# Open in firefox
+    function firefox()
+    {
+        open $@ -a "Firefox"
+    }
+
+# Bash 4.0 no 'CD' neccassary to  change dircetory
     shopt -s autocd
 
 
 #----------------------------------------------------------------------
-# PS1 PROMPT VARIABLE <THANKS JOHN>
+#               PS1 PROMPT VARIABLE <THANKS JOHN>
 #----------------------------------------------------------------------
 # The various escape codes that we can use to color our prompt.
     RED="\[\033[38;5;202m\]"
@@ -141,24 +155,27 @@ function preman()
     LIGHT_GRAY="\[\033[38;5;188m\]"
     COLOR_NONE="\[\e[0m\]"
 
-# Colors I made, note i made light-red & red the same rip
+# I made these, but don't use them lol
     PURPLE="\[\033[38;5;99m\]" 
     BROWN="\[\033[38;5;130m\]"
 
 
 # Detect whether the current directory is a git repository.
-function is_git_repository {
-    git branch > /dev/null 2>&1
-}
+    function is_git_repository {
+        git branch > /dev/null 2>&1
+    }
 
- function set_git_branch {
-   # Set the final branch string
-   BRANCH=`parse_git_dirty``parse_git_branch`
-   local TIME=`fmt_time` # format time for prompt string
- }
+# Set the branch to dirty
+    function set_git_branch 
+    {
+       # Set the final branch string
+       BRANCH=`parse_git_dirty``parse_git_branch`
+       local TIME=`fmt_time` # format time for prompt string
+     }
 
 
- function parse_git_branch() {
+ function parse_git_branch() 
+ {
    git branch --no-color 2> /dev/null           \
 					 | sed -e '/^[^*]/d'                  \
 					 -e 's/* //'
@@ -241,7 +258,6 @@ PROMPT_COMMAND=set_bash_prompt
 
 
 #----------------------------------------------------------------------
-# Final Source
+#                       Final
 #----------------------------------------------------------------------
-    #source .bashrc
 
