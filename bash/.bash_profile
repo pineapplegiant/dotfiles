@@ -8,10 +8,14 @@
 #----------------------------------------------------------------------
 # Notes to self for a healthy reminder
 #----------------------------------------------------------------------
+    # TERMTOSVG RECORDINGS : termtosvg -c "/usr/local/bin/bash && source ~/.bash_profile" -t "dracula" <FILENAME>
+    # g++ -std=c++0x FILE.cpp FILE_MAIN.cpp -lgtest -lgtest_main -pthread -o testProgram // TESTING EXAMPLE
+    # When compiling C++ add the "-g" flag and then run 'valgrind' on the output
     #sudo rm /var/log/asl/*.asl -> delete Macosx system log files
     #convert to pdf via groff
         #groff -ms document.ms -T pdf
         #pandoc document.md -t ms -o document.pdf
+    # CSS: repeat( auto-fit, minmax(250px, 1fr) )
 
 #----------------------------------------------------------------------
 #               Start off with a friendly hello
@@ -32,7 +36,7 @@
     resume="$HOME/Github/resume-pandoc"                            # markdown-resume
     document="$HOME/Documents"                                     # Documents
     desktop="$HOME/Desktop"                                        # Desktop
-    download="$HOME/Download"                                      # Downloads
+    download="$HOME/Downloads"                                      # Downloads
     school="$HOME/Documents/School"                                # School
     work="$HOME/Documents/Work"                                    # Work
     jobs="$HOME/Documents/Work/JOBS"                               # Job applications
@@ -79,7 +83,7 @@
     alias ls="exa -FG"                        # Make ls pretty
     alias l="exa"                             # Just make ls  chill
     alias ll="exa -l"                         # ls long tag
-    alias s="exa -ahl"
+    alias s="exa -ahlF"
 
 # Safety aliases
     alias rm="rm -iv"                        # Make rm more safe
@@ -257,7 +261,14 @@ PROMPT_COMMAND=set_bash_prompt
 # Z cd Command Jumping -> IN bashrc
 . /usr/local/etc/profile.d/z.sh
 
+# Google Test stuff
+    export CPLUS_INCLUDE_PATH=/usr/local/include
+    export LIBRARY_PATH=/usr/local/lib
+
+
 #----------------------------------------------------------------------
 #                       Final
 #----------------------------------------------------------------------
 
+
+export PATH="$HOME/.cargo/bin:$PATH"
