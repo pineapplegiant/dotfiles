@@ -207,7 +207,7 @@ let g:lightline = {
 "               Map Leader to '<space>' All things Leader
 "----------------------------------------------------------------------
 " List of used leader combo:
-" d f G h i o j l m n p y r s q vs vv w cc cn c<space> z zb
+" d f G h i o j l m n p y r s q vs vv w cc cn c<space> zz zb
 
     let mapleader=' '
 
@@ -261,7 +261,7 @@ let g:lightline = {
     noremap <leader>w <C-w>
 
 " Make leader+z = create new terminal window
-    nnoremap <leader>z :new<CR>:resize 10<CR>:set nonumber<CR>:terminal<CR>:file terminal0<CR>A source $HOME/.bash_profile<CR>clear<CR>
+    nnoremap <leader>zz :new<CR>:resize 10<CR>:set nonumber<CR>:terminal<CR>:file terminal0<CR>A source $HOME/.bash_profile<CR>clear<CR>
 
 " Make leader+zb = new terminal in a new buffer
     nnoremap <leader>zb :terminal<CR>:set nonumber<CR>:file terminal1<CR>A source $HOME/.bash_profile<CR>clear<CR>
@@ -288,7 +288,7 @@ let g:lightline = {
     map E $
 
 " Map ,, to % because i like cycling brackets a lot
-    nnoremap ,, %
+    map ,, %
 
 " Align blocks of text and keep them selected
     vmap < <gv
@@ -335,6 +335,13 @@ let g:lightline = {
     autocmd FileType html inoremap ,img <img src=""><ESC>F"i
     autocmd FileType html inoremap ,aa <a href=""><ESC>F"i
     autocmd FileType html inoremap ,li <li></li><ESC>F>a
+
+
+" CPP bracket completions
+    autocmd FileType c,cpp inoremap { {}<ESC>F{a
+    autocmd FileType c,cpp inoremap ( ()<ESC>F(a
+    autocmd FileType c,cpp inoremap [ []<ESC>F[a
+    autocmd FileType c,cpp inoremap " ""<ESC>F"a
 
 " Post snippet
     nnoremap ,post :-1read $HOME/.config/nvim/snippets/post.md<CR>
