@@ -22,7 +22,8 @@
     Plug 'koirand/tokyo-metro.vim'
     Plug 'ap/vim-css-color'
     Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install'  }
-"    Plug 'Yggdroot/indentLine'
+    Plug 'vimwiki/vimwiki'
+    Plug 'Yggdroot/indentLine' " Low-key messes everything up
     call plug#end()
 
 "----------------------------------------------------------------------
