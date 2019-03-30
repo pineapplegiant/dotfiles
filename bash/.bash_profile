@@ -8,10 +8,11 @@
 #----------------------------------------------------------------------
 # Notes to self for a healthy reminder
 #----------------------------------------------------------------------
-    # TERMTOSVG RECORDINGS : termtosvg -c "/usr/local/bin/bash && source ~/.bash_profile" -t "dracula" <FILENAME>
+    # TERMTOSVG RECORDINGS : termtosvg -c -t "dracula" <FILENAME>
     # g++ -std=c++0x FILE.cpp FILE_MAIN.cpp -lgtest -lgtest_main -pthread -o testProgram // TESTING EXAMPLE
     # When compiling C++ add the "-g" flag and then run 'valgrind' on the output
     #sudo rm /var/log/asl/*.asl -> delete Macosx system log files
+    # chmod u+x makes a bash script executable
     #convert to pdf via groff
         #groff -ms document.ms -T pdf
         #pandoc document.md -t ms -o document.pdf
@@ -20,7 +21,7 @@
 #----------------------------------------------------------------------
 #               Start off with a friendly hello
 #----------------------------------------------------------------------
-    echo "Hey $USER, welcome back my dude ^‿^"
+#    echo "Hey $USER, welcome back my dude ^‿^"
 
 
 
@@ -30,13 +31,13 @@
     journal="$HOME/Github/Optimizations/gmo/"                      # my journal
     dotfiles="$HOME/Github/dotfiles/"                              # my dotfiles
     github="$HOME/Github/"                                         # my github
-    pluginz="$HOME/.local/share/nvim/site/pack/git-plugins/start/" # my vim-plugins
+    pluginz="$HOME/.local/share/nvim/site/"                        # my vim-plugins
     config="$HOME/.config/nvim/"                                   # nvim config
     sillyy="$HOME/Github/silly-coding-things/"                     # code playground 
-    resume="$HOME/Github/resume-pandoc"                            # markdown-resume
+    resume="$HOME/Github/resume"                                   # markdown-resume
     document="$HOME/Documents"                                     # Documents
     desktop="$HOME/Desktop"                                        # Desktop
-    download="$HOME/Downloads"                                      # Downloads
+    download="$HOME/Downloads"                                     # Downloads
     school="$HOME/Documents/School"                                # School
     work="$HOME/Documents/Work"                                    # Work
     jobs="$HOME/Documents/Work/JOBS"                               # Job applications
