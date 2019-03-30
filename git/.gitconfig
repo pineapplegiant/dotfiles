@@ -1,11 +1,49 @@
-    # This is Git's per-user configuration file.
+# This is Git's per-user configuration file.  Credit: [ scottnonnenberg ]( https://gist.github.com/scottnonnenberg/fefa3f65fdb3715d25882f3023b31c29 )
 [user]
-	name = Guillermo Rodriguez
-	email = guillermor@mail.usf.edu
+    name = Guillermo Rodriguez
+    email = guillermor@mail.usf.edu
+
+[alias]
+# Make things pretty
+    l = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset'
+
+# Laziness
+    d = diff
+    dt = difftool
+    s = status
+
+# Because I constantly forget how to do this
+# https://git-scm.com/docs/git-fetch#git-fetch--p
+    prune = fetch --prune 
+
 
 [core]
-	excludesfile = /Users/tetsuko/.gitignore_global
+    excludesfile = /Users/tetsuko/.gitignore_global
     editor = nvim
 
 [color]
     ui = true
+
+[status]
+# Sometimes a newly-added folder, since it's only one line in git status, can slip under the radar.
+# https://git-scm.com/docs/git-config#git-config-statusshowUntrackedFiles
+    showUntrackedFiles = all
+
+[merge]
+# Sometimes a newly-added folder, since it's only one line in git status, can slip under the radar.
+# https://git-scm.com/docs/git-config#git-config-statusshowUntrackedFiles
+    conflictstyle = diff3
+
+[diff]
+# A nice little github-like colorful, split diff right in the console.
+# via http://owen.cymru/github-style-diff-in-terminal-with-icdiff/
+    tool = icdiff
+
+[difftool]
+    prompt = false
+
+[difftool "icdiff"]
+    cmd = /usr/local/bin/icdiff --line-numbers $LOCAL $REMOTE
+
+[pager]
+    difftool = true
