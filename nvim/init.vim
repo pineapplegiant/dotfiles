@@ -14,7 +14,7 @@
 
 source $HOME/.config/nvim/general.vim        " General Settings
 source $HOME/.config/nvim/plugins.vim        " (vim-plug) Plugin information and settings
-source $HOME/.config/nvim//mappings.vim      " Remappings for Vim
+source $HOME/.config/nvim/mappings.vim       " Remappings for Vim
 
 "----------------------------------------------------------------------
 "               NOTES FOR A HEALTHY REMINDER

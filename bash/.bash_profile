@@ -38,7 +38,7 @@
     document="$HOME/Documents"                                     # Documents
     desktop="$HOME/Desktop"                                        # Desktop
     download="$HOME/Downloads"                                     # Downloads
-    school="$HOME/Documents/School"                                # School
+    school="$HOME/Documents/School/OSU_Classes"                                # School
     work="$HOME/Documents/Work"                                    # Work
     jobs="$HOME/Documents/Work/JOBS"                               # Job applications
 
@@ -48,7 +48,8 @@
 #----------------------------------------------------------------------
 
 # Login to school!
-    alias log='ssh rodrguil@access.engr.oregonstate.edu'
+    #alias osu='ssh rodrguil@access.engr.oregonstate.edu'
+    alias osu='ssh rodrguil@flip3.engr.oregonstate.edu'
 
 # Cd to places i go to a lot
     alias gh="cd $github"                    # Github alias
@@ -63,7 +64,7 @@
     alias sch="cd $school"                   # School dir alias
     alias wor="cd $work"                     # Work dir alias
     alias job="cd $jobs"                     # Jobs dir alias
-    alias opt="cd $journal"                    # Journal alias
+    alias opt="cd $journal"                  # Journal alias
     alias optt="vim $journal/optimizations.md"
 
 # System Stuff

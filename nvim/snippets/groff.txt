@@ -1,0 +1,27 @@
+.TL
+
+.AU
+Guillermo Rodriguez
+.AI
+
+\" ------------NOTES -----------------
+\".PP -> Paragraph
+\".NH -> Numbered Heading
+\".SH -> Section Heading
+
+\"      Formatting stuff:
+\".I "Text here"-> Italics
+\".B "Bold here"-> Bold
+\".UL "underlined text" -> Underlined
+
+\".RS -> Tab START
+\".RE -> Tab END
+\".AB -> Abstract START
+\".AE -> Abstract END
+
+\" IP \(bu 2 -> List Item with bullet and 2 width space
+\"      Define a bullet macro:
+\"  .de BL
+\"  .IP \(bu 2
+\"  ..
+\" ------------NOTES -----------------

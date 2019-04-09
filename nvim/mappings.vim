@@ -118,8 +118,8 @@
 " List all recently opened files and open a new buffer
     nnoremap gs :browse oldfiles<CR>
 
-" Set F12 as Make in VIM!
-    map <F12> :!make<CR>
+" Set Ctrl+b as Make in VIM!
+    map <C-b> :!make<CR>
 
 " Set hh as jump out of 'vim' terminal mode
     tnoremap hh <C-\><C-n>
@@ -152,6 +152,27 @@
     autocmd FileType c,cpp inoremap ( ()<ESC>F(a
     autocmd FileType c,cpp inoremap [ []<ESC>F[a
     autocmd FileType c,cpp inoremap " ""<ESC>F"a
+
+
+" Make current Groff File
+function! GroffCreate()
+  let curr_file = expand('%:t')                             " Name of current file
+  let pdf_file = expand('%:r') . '.pdf'                     " Name of file with pdf extension
+  execute ':!pdfmom  -e ./' . curr_file . ' > ' . pdf_file
+  execute ':!open ' . pdf_file
+  execute ':!open -a "iterm.app"'
+endfunction
+
+" GNUroff completions
+    au BufNewFile,BufRead *.ms set filetype=groff
+    au BufNewFile,BufRead *.mom set filetype=groff
+    autocmd FileType groff nnoremap ,ee i.EQ<CR>.EN<ESC>O<tab>
+    autocmd FileType groff nnoremap ,cc i\" <ESC>a
+    autocmd FileType groff nnoremap ,block :read $HOME/.config/nvim/snippets/blockGroff.txt<CR>jA
+    autocmd FileType groff nnoremap ,top :-1read $HOME/.config/nvim/snippets/topGroff.txt<CR>2jA <C-R>=strftime("%A %B %d %Y, at %I:%M %p %Z")<CR><ESC>jA 
+    autocmd FileType groff nnoremap ,mom :-1read $HOME/.config/nvim/snippets/momGroff.txt<CR>
+    autocmd FileType groff nnoremap ,groff :-1read $HOME/.config/nvim/snippets/groff.txt<CR>
+    autocmd FileType groff nnoremap ,comp :update<CR>:call GroffCreate()<CR>
 
 " School's C++ top snippet
     nnoremap ,top :-1read $HOME/.config/nvim/snippets/top.txt<CR>2jA <C-R>=strftime("%A %B %d %Y, at %I:%M %p %Z")<CR><ESC>jA 

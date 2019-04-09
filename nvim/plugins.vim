@@ -23,7 +23,7 @@
     Plug 'ap/vim-css-color'
     Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install'  }
     Plug 'vimwiki/vimwiki'
-    Plug 'Yggdroot/indentLine' " Low-key messes everything up
+    "Plug 'Yggdroot/indentLine' " Low-key messes everything up
     call plug#end()
 
 "----------------------------------------------------------------------
@@ -60,13 +60,6 @@ let g:lightline = {
 "----------------------------------------------------------------------
     let g:mkdp_open_to_the_world = 1        " Markdown preview to the world
 
-"----------------------------------------------------------------------
-"                       Indent-Line
-"----------------------------------------------------------------------
-    let g:indentLine_char = '▏'             " Show Indentation lines
-    let g:indentLine_color_gui = '#474747'  " Make them pretty-gray-lines
-
-    autocmd FileType markdown,md let g:indentLine_enabled=0
 
 "----------------------------------------------------------------------
 " GOYO && LIMELIGHT && PENCIL optimization WRITING TODO- { still in progress }
@@ -129,3 +122,16 @@ let g:lightline = {
     autocmd! User GoyoEnter nested call <SID>goyo_enter()
     autocmd! User GoyoLeave nested call <SID>goyo_leave()
 
+
+"----------------------------------------------------------------------
+"                       VimWiki
+"----------------------------------------------------------------------
+    let g:vimwiki_dir_link='index'
+
+"----------------------------------------------------------------------
+"                       Indent-Line
+"----------------------------------------------------------------------
+    let g:indentLine_char = '▏'             " Show Indentation lines
+    let g:indentLine_color_gui = '#474747'  " Make them pretty-gray-lines
+
+    autocmd FileType markdown,md let g:indentLine_enabled=0
