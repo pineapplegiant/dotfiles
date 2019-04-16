@@ -131,6 +131,9 @@
 " Basic HTML Snippet!
     nnoremap ,html :-1read $HOME/.config/nvim/snippets/skeleton.html<CR>7jf>a
 
+" Basic CSS Snippet!
+    nnoremap ,css :-1read $HOME/.config/nvim/snippets/skeleton.css<CR>
+
 " List of HTML completion snippets
     autocmd FileType html inoremap ,h1 <h1></h1><ESC>F>a
     autocmd FileType html inoremap ,h2 <h2></h2><ESC>F>a
@@ -154,7 +157,7 @@
     autocmd FileType c,cpp inoremap " ""<ESC>F"a
 
 
-" Make current Groff File
+" Make/Compile current Groff MOM File
 function! GroffCreate()
   let curr_file = expand('%:t')                             " Name of current file
   let pdf_file = expand('%:r') . '.pdf'                     " Name of file with pdf extension
@@ -164,8 +167,7 @@ function! GroffCreate()
 endfunction
 
 " GNUroff completions
-    au BufNewFile,BufRead *.ms set filetype=groff
-    au BufNewFile,BufRead *.mom set filetype=groff
+    autocmd BufRead,BufNewFile *.ms,*.me,*.mom set filetype=groff
     autocmd FileType groff nnoremap ,ee i.EQ<CR>.EN<ESC>O<tab>
     autocmd FileType groff nnoremap ,cc i\" <ESC>a
     autocmd FileType groff nnoremap ,block :read $HOME/.config/nvim/snippets/blockGroff.txt<CR>jA
