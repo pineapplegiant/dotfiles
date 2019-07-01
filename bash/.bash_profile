@@ -8,6 +8,7 @@
 #----------------------------------------------------------------------
 # Notes to self for a healthy reminder
 #----------------------------------------------------------------------
+    # <leader>ww index| <leader>wi diary|<leader>w<leader>i update diary|
     # TERMTOSVG RECORDINGS : termtosvg -c -t "dracula" <FILENAME>
     # g++ -std=c++0x FILE.cpp FILE_MAIN.cpp -lgtest -lgtest_main -pthread -o testProgram // TESTING EXAMPLE
     # When compiling C++ add the "-g" flag and then run 'valgrind' on the output
@@ -28,19 +29,20 @@
 #----------------------------------------------------------------------
 # Location of places i go to a lot
 #----------------------------------------------------------------------
-    journal="$HOME/Github/Optimizations/gmo/"                      # my journal
-    dotfiles="$HOME/Github/dotfiles/"                              # my dotfiles
-    github="$HOME/Github/"                                         # my github
-    pluginz="$HOME/.local/share/nvim/site/"                        # my vim-plugins
-    config="$HOME/.config/nvim/"                                   # nvim config
-    sillyy="$HOME/Github/silly-coding-things/"                     # code playground 
-    resume="$HOME/Github/resume"                                   # markdown-resume
-    document="$HOME/Documents"                                     # Documents
-    desktop="$HOME/Desktop"                                        # Desktop
-    download="$HOME/Downloads"                                     # Downloads
-    school="$HOME/Documents/School/OSU_Classes"                                # School
-    work="$HOME/Documents/Work"                                    # Work
-    jobs="$HOME/Documents/Work/JOBS"                               # Job applications
+    journal="$HOME/Github/Optimizations/gmo/"   # my journal
+    dotfiles="$HOME/Github/dotfiles/"           # my dotfiles
+    github="$HOME/Github/"                      # my github
+    pluginz="$HOME/.local/share/nvim/site/"     # my vim-plugins
+    config="$HOME/.config/nvim/"                # nvim config
+    sillyy="$HOME/Github/silly-coding-things/"  # code playground
+    resume="$HOME/Github/resume"                # markdown-resume
+    document="$HOME/Documents"                  # Documents
+    desktop="$HOME/Desktop"                     # Desktop
+    download="$HOME/Downloads"                  # Downloads
+    school="$HOME/Documents/School/Classes"     # School
+    work="$HOME/Documents/Work"                 # Work
+    jobb="$HOME/Documents/Work/JOBS"            # Job applications
+    articles="$HOME/Documents/Articles"         # Articles
 
 
 #----------------------------------------------------------------------
@@ -49,12 +51,12 @@
 
 # Login to school!
     #alias osu='ssh rodrguil@access.engr.oregonstate.edu'
-    alias osu='ssh rodrguil@flip3.engr.oregonstate.edu'
+    alias osu='ssh flip'
 
 # Cd to places i go to a lot
     alias gh="cd $github"                    # Github alias
     alias dot="cd $dotfiles"                 # Dotfiles alias
-    alias conf="cd $config"                  # Nvim/conf alias 
+    alias conf="cd $config"                  # Nvim/conf alias
     alias plug="cd $pluginz"                 # Nvim/plugins alias
     alias silly="cd $sillyy"                 # Silly/dir alias
     alias res="cd $resume"                   # Resume dir alias
@@ -63,27 +65,36 @@
     alias des="cd $desktop"                  # Desktop dir alias
     alias sch="cd $school"                   # School dir alias
     alias wor="cd $work"                     # Work dir alias
-    alias job="cd $jobs"                     # Jobs dir alias
+    alias job="cd $jobb"                     # Jobs dir alias
     alias opt="cd $journal"                  # Journal alias
     alias optt="vim $journal/optimizations.md"
+    alias art="cd $articles"
 
 # System Stuff
     alias rm='safe-rm'                       # Safe-RM
     alias dog='ccat'                         # Use that new ccat plugin
 
 # Vim to Nvim 
+    #export VISUAL=vim                       # vim Stuff so that the haters know
+    #alias v=vim                             # vim Stuff so that the haters know 
+    #alias vim=vim                           # vim Stuff so that the haters know
+    #alias vi=vim                            # vim Stuff so that the haters know
+    #alias vimrc='vim $HOME/.vimrc'
     export VISUAL=nvim                       # Nvim Stuff so that the haters know
     alias v=nvim                             # Nvim Stuff so that the haters know 
     alias vim=nvim                           # Nvim Stuff so that the haters know
     alias vi=nvim                            # Nvim Stuff so that the haters know
-    alias vimrc='vim ~/.config/nvim/init.vim' # Open nvimrc in nvim
+    alias vimrc='vim $HOME/.config/nvim/init.vim' # Open nvimrc in nvim
     alias ctags="`brew --prefix`/bin/ctags"  # Ctags alias
     alias bp='vim ~/.bash_profile'           # Get to bash-profile faster
 
 # I HAVE SWITCHED TO EXA
 # ls more nice
+    #alias ls="ls -FG"                        # Make ls pretty
+    #alias l="ls"                             # Just make ls  chill
+    #alias ll="ls -l"                         # ls long tag
+    alias l="exa -FG"                             # Just make ls  chill
     alias ls="exa -FG"                        # Make ls pretty
-    alias l="exa"                             # Just make ls  chill
     alias ll="exa -l"                         # ls long tag
     alias s="exa -ahlF"
 
@@ -93,7 +104,7 @@
     alias mv="mv -i"                         # Make mv more safe
 
 # Laziness at its finest
-    alias rr="source ~/.bash_profile && tmux source-file ~/.tmux.conf" # Source bash profile & Tmux
+    alias rr="source ~/.bashrc && tmux source-file ~/.tmux.conf" # Source bash profile & Tmux
     alias ..="cd .."                         # Shortcut up a directory
     alias ...="cd ../.."                     # Shorcut 2 directory
     alias time="time -lp"                    # Time is verbose
@@ -111,6 +122,11 @@
     function preman()
     {
         man -t $@ | open -f -a "preview"
+    }
+
+    function vimr()
+    {
+        open $@ -a "Vimr"
     }
 
 # Open in google

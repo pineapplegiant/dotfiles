@@ -49,14 +49,14 @@
 " Preview Marks!
     nnoremap  <leader>m :marks<CR>
 
-" Make leader+n = ctrl + w to move between windows
+" leader+n = ctrl + w to move between windows
     nnoremap  <leader>n :NERDTreeRefreshRoot<CR>
 
 " Copy & Paste into vim in normal mode
     noremap <leader>p  "+p
     noremap <leader>y  "+y
 
-" leader r is open register
+" Leader r is open register
     nnoremap <leader>r :reg<CR>
 
 " Quicksave and Quickquit in vim!
@@ -67,14 +67,18 @@
     nnoremap <leader>vs :split<Return><C-w>w
     nnoremap <leader>vv :vsplit<Return><C-w>w
 
-" Make leader+w = ctrl + w to move between windows
+" Leader+w = ctrl + w to move between windows
     noremap <leader>w <C-w>
 
-" Make leader+z = create new terminal buffer BELOW
+" Leader+z = create new terminal buffer BELOW
     nnoremap <leader>zb :new<CR>:resize 10<CR>:set nonumber<CR>:terminal<CR>:file terminal0<CR>A source $HOME/.bash_profile<CR>clear<CR>
 
-" Make leader+zb = new terminal in a new window completely by itself
+" Leader+zb = new terminal in a new window completely by itself
     nnoremap <leader>zz :terminal<CR>:set nonumber<CR>:file terminal1<CR>A source $HOME/.bash_profile<CR>clear<CR>
+
+
+" Leader+zv = new terminal in a new vertical split
+    nnoremap <leader>zv :vsplit<CR>:terminal<CR>:set nonumber<CR>:file terminal1<CR>A source $HOME/.bash_profile<CR>clear<CR>
 
 "----------------------------------------------------------------------
 "                   General Re-mappings
@@ -124,6 +128,12 @@
 " Set hh as jump out of 'vim' terminal mode
     tnoremap hh <C-\><C-n>
 
+" Change directory to current directory
+    nnoremap <leader>cd :cd %:p:h<CR>:pwd<CR>
+
+" Source VIMRC
+    nnoremap ,src :source $MYVIMRC<CR>
+
 "----------------------------------------------------------------------
 "                           Snippets!
 "----------------------------------------------------------------------
@@ -156,17 +166,44 @@
     autocmd FileType c,cpp inoremap [ []<ESC>F[a
     autocmd FileType c,cpp inoremap " ""<ESC>F"a
 
+" Markdown Remaps
+function! PandocCreate()
+  let curr_file = expand('%:t')                             " Name of current file
+  let pdf_file = expand('%:r') . '.pdf'                     " Name of file with pdf extension
+  execute ':!pandoc --pdf-engine=xelatex ' . curr_file . ' -o ' . pdf_file
+  execute ':!open ' . pdf_file
+endfunction
+
+" Pandoc Remaps
+    autocmd BufRead,BufNewFile *.md,*.markdown set filetype=markdown
+    autocmd FileType markdown nnoremap ,comp :update<CR>:call PandocCreate()<CR>
+
+
+" Make/Compile current Latex File
+function! LatexCreate()
+  let curr_file = expand('%:t')                             " Name of current file
+  let pdf_file = expand('%:r') . '.pdf'                     " Name of file with pdf extension
+  execute ':!pdflatex  ./' . curr_file
+  execute ':!open ' . pdf_file
+  execute ':!open -a "iterm.app"'
+endfunction
+
+" LaTeX Remaps
+    autocmd FileType tex nnoremap ,comp :update<CR>:call LatexCreate()<CR>
+    autocmd FileType tex nnoremap ,top :-1read $HOME/.config/nvim/snippets/blockLatex.txt<CR>
+
 
 " Make/Compile current Groff MOM File
 function! GroffCreate()
   let curr_file = expand('%:t')                             " Name of current file
   let pdf_file = expand('%:r') . '.pdf'                     " Name of file with pdf extension
+  " Pipe the output and then open terminal and pdf
   execute ':!pdfmom  -e ./' . curr_file . ' > ' . pdf_file
   execute ':!open ' . pdf_file
   execute ':!open -a "iterm.app"'
 endfunction
 
-" GNUroff completions
+" GNUroff (Groff) completions
     autocmd BufRead,BufNewFile *.ms,*.me,*.mom set filetype=groff
     autocmd FileType groff nnoremap ,ee i.EQ<CR>.EN<ESC>O<tab>
     autocmd FileType groff nnoremap ,cc i\" <ESC>a

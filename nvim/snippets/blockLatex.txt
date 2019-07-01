@@ -1,0 +1,6 @@
+\documentclass{article}
+\title{My first document}
+\author{Guillermo Rodriguez}
+\author{Guillermo Rodriguez}
+\begin{document}
+\end{document}

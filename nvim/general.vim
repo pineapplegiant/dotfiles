@@ -40,7 +40,7 @@
     set incsearch                  " Turn on incremental searching
     set showcmd                    " Turn on Cmd as typed on the bottom-bar
     set backspace=indent,eol,start " Allow backspace in insert mode
-    set scrolloff=3                " When scrolling, keep cursor 3 lines away from screen border
+    set scrolloff=2                " When scrolling, keep cursor 2 lines away from screen border
     set nowrap                     " Wrap lines when they are too long
     set title                      " Update the title of the window or the terminal
     set wildmenu                   " Visual autocomplete for command menu

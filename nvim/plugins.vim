@@ -10,20 +10,25 @@
 "----------------------------------------------------------------------
 "                        PLUGINS RIP
 "----------------------------------------------------------------------
+    
+    "Plug 'Yggdroot/indentLine' " Low-key messes everything up
     " Make sure you have vim-plug installed ~/.local/share/nvim/site/autoload/plug.vim
     call plug#begin('~/.local/share/nvim/plugged')
+    Plug 'https://github.com/cocopon/iceberg.vim'
+    Plug 'https://github.com/cocopon/pgmnt.vim.git'
+    Plug '/usr/local/opt/fzf'
+    Plug 'junegunn/fzf.vim'
     Plug 'scrooloose/nerdtree'
+    Plug 'itchyny/lightline.vim'
     Plug 'vim-scripts/The-NERD-Commenter'
     Plug 'tpope/vim-surround'
     Plug 'junegunn/goyo.vim'
-    Plug 'junegunn/limelight.vim'
     Plug 'reedes/vim-pencil'
-    Plug 'itchyny/lightline.vim'
+    Plug 'junegunn/limelight.vim'
     Plug 'koirand/tokyo-metro.vim'
     Plug 'ap/vim-css-color'
     Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install'  }
     Plug 'vimwiki/vimwiki'
-    "Plug 'Yggdroot/indentLine' " Low-key messes everything up
     call plug#end()
 
 "----------------------------------------------------------------------

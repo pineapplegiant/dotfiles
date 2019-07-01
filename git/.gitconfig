@@ -18,7 +18,7 @@
 
 
 [core]
-    excludesfile = /Users/tetsuko/.gitignore_global
+    excludesfile = /Users/gmo/.gitignore_global
     editor = nvim
 
 [color]
