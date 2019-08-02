@@ -32,9 +32,9 @@
     Plug 'vimwiki/vimwiki'
     " HTML
     Plug 'mattn/emmet-vim'
-    Plug 'ryanoasis/vim-devicons'
     " Not used
     "Plug 'itchyny/lightline.vim'
+    "Plug 'ryanoasis/vim-devicons'
     "Plug 'Yggdroot/indentLine' " Low-key messes everything up
     "Plug 'https://github.com/gerw/vim-HiLinkTrace.git'
     call plug#end()
