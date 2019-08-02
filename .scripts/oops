@@ -1,0 +1,17 @@
+#!/bin/bash
+
+# Tell em sorry ya kno
+
+COUNTER=0
+
+echo "I am very VERY, "
+
+while [  $COUNTER -lt 10 ]; do
+ echo "very,"
+ let COUNTER=COUNTER+1
+done
+
+echo ""
+echo "sorry dude."
+
+echo "I am sorry my dude."
