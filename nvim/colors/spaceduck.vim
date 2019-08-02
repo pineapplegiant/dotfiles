@@ -1,340 +1,268 @@
-" spaceduck Theme: 
+"                                   __           _
+"   _________  ____ _________  ____/ /_  _______/ /__
+"  / ___/ __ \/ __ `/ ___/ _ \/ __  / / / / ___/ //_/
+" (__  ) /_/ / /_/ / /__/  __/ /_/ / /_/ / /__/ ,<
+"/____/ .___/\__,_/\___/\___/\__,_/\__,_/\___/_/|_|
+"    /_/
 "
-" https://github.com/zenorocha/spaceduck-theme
 "
-" Copyright 2016, All rights reserved
-"
-" Code licensed under the MIT license
-" http://zenorocha.mit-license.org
-"
-" @author Trevor Heins <@heinst>
-" @author Éverton Ribeiro <nuxlli@gmail.com>
-" @author Derek Sifford <dereksifford@gmail.com>
-" @author Zeno Rocha <hi@zenorocha.com>
-scriptencoding utf8
-" 
+" File:       spaceduck.vim
+" Maintainer: pineapplegiant.com <grod937@gmail.com>
+" Modified:   Tuesday July 16, at 01:50 AM MDT
+" License:    MIT
 
-" Configuration: 
+if !has('gui_running') && &t_Co < 256
+  finish
+endif
 
-if v:version > 580
-  highlight clear
-  if exists('syntax_on')
-    syntax reset
-  endif
+set background=dark
+hi clear
+
+if exists('syntax_on')
+  syntax reset
 endif
 
 let g:colors_name = 'spaceduck'
 
-if !(has('termguicolors') && &termguicolors) && !has('gui_running') && &t_Co != 256
-  finish
-endif
+hi! ColorColumn cterm=NONE ctermbg=233 guibg=#0f111b
+hi! CursorColumn cterm=NONE ctermbg=233 guibg=#0f111b
+hi! CursorLine cterm=NONE ctermbg=234 guibg=#16172d
+hi! Comment ctermfg=60 guifg=#444b71
+hi! Constant ctermfg=220 guifg=#ffd700
+hi! Cursor ctermbg=230 ctermfg=234 guibg=#ecf0c1 guifg=#of111b
+hi! CursorLineNr ctermbg=237 ctermfg=252 guibg=#2e3459 guifg=#c1c3cc
+hi! Delimiter ctermfg=230 guifg=#ecf0c1
+hi! DiffAdd ctermbg=72 ctermfg=22 guibg=#1f302a guifg=#5a7a70
+hi! DiffChange ctermbg=23 ctermfg=37 guibg=#183c3f guifg=#6ab3ba
+hi! DiffDelete ctermbg=88 ctermfg=181 guibg=#4c2d2d guifg=#c6a4a3
+hi! DiffText cterm=NONE ctermbg=30 ctermfg=195 gui=NONE guibg=#5b7881 guifg=#ecf0c1
+hi! Directory ctermfg=39 guifg=#009FC5
+hi! Error ctermbg=234 ctermfg=202 guibg=#of111b guifg=#e33400
+hi! ErrorMsg ctermbg=234 ctermfg=202 guibg=#of111b guifg=#e33400
+hi! WarningMsg ctermbg=234 ctermfg=214 guibg=#of111b guifg=#e09100
+hi! EndOfBuffer ctermbg=233 ctermfg=60 guibg=#of111b guifg=#444b71
+hi! NonText ctermbg=234 ctermfg=236 guibg=#of111b guifg=#444b71
+hi! SpecialKey ctermbg=234 ctermfg=202 guibg=#of111b guifg=#e09100
+hi! Folded ctermbg=233 ctermfg=245 guibg=#0F111B guifg=#686f9a
+hi! FoldColumn ctermbg=233 ctermfg=24 guibg=#0F111B guifg=#444b71
+hi! Function ctermfg=35 guifg=#51a77e
+hi! Identifier cterm=NONE ctermfg=230 guifg=#ecf0c1
+hi! Include ctermfg=35 guifg=#51a77e
+hi! LineNr ctermbg=233 ctermfg=60 guibg=#0f111b guifg=#444b71
+hi! MatchParen ctermbg=237 ctermfg=255 guibg=#3e445e guifg=#ffffff
+hi! MoreMsg ctermfg=99 guifg=#8970CF
+hi! Normal ctermbg=233 ctermfg=230 guibg=#of111b guifg=#ecf0c1
+hi! Operator ctermfg=72 guifg=#51a77e
+hi! Pmenu ctermbg=236 ctermfg=251 guibg=#3d425b guifg=#ecf0c1
+hi! PmenuSbar ctermbg=236 guibg=#3d425b
+hi! PmenuSel ctermbg=240 ctermfg=255 guibg=#5b6389 guifg=#eff0f4
+hi! PmenuThumb ctermbg=251 guibg=#ecf0c1
+hi! PreProc ctermfg=99 guifg=#8970CF
+hi! Question ctermfg=99 guifg=#8970CF
+hi! QuickFixLine ctermbg=236 ctermfg=230 guibg=#272c42 guifg=#ecf0c1
+" TODO: Need to FIX
+hi! Search ctermbg=237 ctermfg=252 guibg=#114fd6 guifg=#c1c3cc
+hi! SignColumn ctermbg=233 ctermfg=24 guibg=#0F111B guifg=#444b71
+hi! Special ctermfg=99 guifg=#8970CF
+hi! SpellBad ctermbg=95 ctermfg=230 gui=undercurl guisp=#e33400
+hi! SpellCap ctermbg=24 ctermfg=230 gui=undercurl guisp=#51a77e
+hi! SpellLocal ctermbg=23 ctermfg=230 gui=undercurl guisp=#ecf0c1
+hi! SpellRare ctermbg=97 ctermfg=230 gui=undercurl guisp=#ebc562
+hi! Statement ctermfg=72 gui=NONE guifg=#51a77e
+" Vim special stuff
+hi! StatusLine cterm=reverse ctermbg=60 ctermfg=233 gui=reverse guibg=#0f111b guifg=#444b71 term=reverse
+hi! StatusLineTerm cterm=reverse ctermbg=233 ctermfg=60 gui=reverse guibg=#0f111b guifg=#444b71 term=reverse
+hi! StatusLineNC cterm=reverse ctermbg=234 ctermfg=60 gui=reverse guibg=#3e445e guifg=#0f1117
+hi! StatusLineTermNC cterm=reverse ctermbg=234 ctermfg=60 gui=reverse guibg=#3e445e guifg=#0f1117
+hi! StorageClass ctermfg=72 guifg=#51a77e
+hi! String ctermfg=39 guifg=#009FC5
+hi! Structure ctermfg=39 guifg=#009FC5
+hi! TabLine cterm=NONE ctermbg=245 ctermfg=234 gui=NONE guibg=#818596 guifg=#17171b
+hi! TabLineFill cterm=reverse ctermbg=234 ctermfg=245 gui=reverse guibg=#17171b guifg=#818596
+hi! TabLineSel cterm=NONE ctermbg=234 ctermfg=230 gui=NONE guibg=#of111b guifg=#9a9ca5
+hi! Title ctermfg=214 gui=NONE guifg=#e09100
+"TODO: Fix todo
+hi! Todo ctermbg=234 ctermfg=99 guibg=#45493e guifg=#8970CF
+hi! Type ctermfg=72 gui=NONE guifg=#51a77e
+hi! Underlined cterm=underline ctermfg=72 gui=underline guifg=#51a77e term=underline
+hi! VertSplit cterm=NONE ctermbg=233 ctermfg=60 gui=NONE guibg=#0f1117 guifg=#444b71
+"Visualbg
+hi! Visual ctermbg=236 guibg=#272c42
+hi! WildMenu ctermbg=255 ctermfg=234 guibg=#d4d5db guifg=#17171b
+hi! diffAdded ctermfg=99 guifg=#8970CF
+hi! diffRemoved ctermfg=202 guifg=#e33400
+hi! ALEErrorSign ctermbg=233 ctermfg=202 guibg=#0F111B guifg=#e33400
+hi! ALEWarningSign ctermbg=233 ctermfg=214 guibg=#0F111B guifg=#e09100
+hi! ALEVirtualTextError ctermfg=202 guifg=#e33400
+hi! ALEVirtualTextWarning ctermfg=214 guifg=#e09100
 
-" Palette: 
+" TODO: Need to fix
+hi! CtrlPMode1 ctermbg=241 ctermfg=234 guibg=#5a5f72 guifg=#17171b
+hi! EasyMotionShade ctermfg=24 guifg=#3d425b
+hi! EasyMotionTarget ctermfg=99 guifg=#8970CF
+hi! EasyMotionTarget2First ctermfg=214 guifg=#e09100
+hi! EasyMotionTarget2Second ctermfg=214 guifg=#e09100
+hi! GitGutterAdd ctermbg=233 ctermfg=99 guibg=#0F111B guifg=#8970CF
+hi! GitGutterChange ctermbg=233 ctermfg=109 guibg=#0F111B guifg=#ecf0c1
+hi! GitGutterChangeDelete ctermbg=233 ctermfg=109 guibg=#0F111B guifg=#ecf0c1
+hi! GitGutterDelete ctermbg=233 ctermfg=202 guibg=#0F111B guifg=#e33400
+hi! gitmessengerEndOfBuffer ctermbg=233 ctermfg=24 guibg=#0F111B guifg=#444b71
+hi! gitmessengerPopupNormal ctermbg=233 ctermfg=230 guibg=#0F111B guifg=#ecf0c1
+hi! Sneak ctermbg=220 ctermfg=234 guibg=#ebc562 guifg=#of111b
+hi! SneakScope ctermbg=236 ctermfg=24 guibg=#272c42 guifg=#244f61
+hi! SyntasticErrorSign ctermbg=233 ctermfg=202 guibg=#0F111B guifg=#e33400
+hi! SyntasticStyleErrorSign ctermbg=233 ctermfg=202 guibg=#0F111B guifg=#e33400
+hi! SyntasticStyleWarningSign ctermbg=233 ctermfg=214 guibg=#0F111B guifg=#e09100
+hi! SyntasticWarningSign ctermbg=233 ctermfg=214 guibg=#0F111B guifg=#e09100
+hi! ZenSpace ctermbg=202 guibg=#e33400
+hi! icebergALAccentRed ctermfg=202 guifg=#e33400
 
-let s:fg        = ['#ECF0C1', 255]
+"CSS
+hi! link cssBraces Delimiter
+hi! link cssClassName Special
+hi! link cssClassNameDot Normal
+hi! link cssPseudoClassId Special
+hi! link cssTagName Statement
+" Hyper Help Text
+hi! link helpHyperTextJump Constant
+"HTML
+hi! link htmlArg Constant
+hi! link htmlEndTag Statement
+hi! link htmlTag Statement
+" JSON
+hi! link jsonQuote Normal
+" PHP
+hi! link phpVarSelector Identifier
+" Python stuff
+hi! link pythonFunction Title
+" Ruby
+hi! link rubyDefine Statement
+hi! link rubyFunction Title
+hi! link rubyInterpolationDelimiter String
+hi! link rubySharpBang Comment
+hi! link rubyStringDelimiter String
+" Shell script
+hi! link sassClass Special
+" Shell
+hi! link shFunction Normal
+"Vim Shit
+hi! link vimContinue Comment
+hi! link vimFuncSID vimFunction
+hi! link vimFuncVar Normal
+hi! link vimFunction Title
+hi! link vimGroup Statement
+hi! link vimHiGroup Statement
+hi! link vimHiTerm Identifier
+hi! link vimMapModKey Special
+hi! link vimOption Identifier
+hi! link vimVar Normal
+" XML
+hi! link xmlAttrib Constant
+hi! link xmlAttribPunct Statement
+hi! link xmlEndTag Statement
+hi! link xmlNamespace Statement
+hi! link xmlTag Statement
+hi! link xmlTagName Statement
+"Yaml and things
+hi! link yamlKeyValueDelimiter Delimiter
+hi! link CtrlPPrtCursor Cursor
+hi! link CtrlPMatch Title
+hi! link CtrlPMode2 StatusLine
+"Denite
+hi! link deniteMatched Normal
+hi! link deniteMatchedChar Title
+"JSFlow?
+hi! link jsFlowMaybe Normal
+hi! link jsFlowObject Normal
+hi! link jsFlowType PreProc
+"GraphQL?
+hi! link graphqlName Normal
+hi! link graphqlOperator Normal
+"GitMessage
+hi! link gitmessengerHash Comment
+hi! link gitmessengerHeader Statement
+hi! link gitmessengerHistory Constant
+"Javascript
+hi! link jsArrowFunction Operator
+hi! link jsClassDefinition Normal
+hi! link jsClassFuncName Title
+hi! link jsExport Statement
+hi! link jsFuncName Title
+hi! link jsFutureKeys Statement
+hi! link jsFuncCall Normal
+hi! link jsGlobalObjects Statement
+hi! link jsModuleKeywords Statement
+hi! link jsModuleOperators Statement
+hi! link jsNull Constant
+hi! link jsObjectFuncName Title
+hi! link jsObjectKey Identifier
+hi! link jsSuper Statement
+hi! link jsTemplateBraces Special
+hi! link jsUndefined Constant
+"Markdown
+hi! link markdownBold Special
+hi! link markdownCode String
+hi! link markdownCodeDelimiter String
+hi! link markdownHeadingDelimiter Comment
+hi! link markdownRule Comment
+hi! link ngxDirective Statement
+"Plug
+hi! link plug1 Normal
+hi! link plug2 Identifier
+hi! link plugDash Comment
+hi! link plugMessage Special
+"Signify
+hi! link SignifySignAdd GitGutterAdd
+hi! link SignifySignChange GitGutterChange
+hi! link SignifySignChangeDelete GitGutterChangeDelete
+hi! link SignifySignDelete GitGutterDelete
+hi! link SignifySignDeleteFirstLine SignifySignDelete
+"Startify
+hi! link StartifyBracket Comment
+hi! link StartifyFile Identifier
+hi! link StartifyFooter Constant
+hi! link StartifyHeader Constant
+hi! link StartifyNumber Special
+hi! link StartifyPath Comment
+hi! link StartifySection Statement
+hi! link StartifySlash Comment
+hi! link StartifySpecial Normal
+"SVSS
+hi! link svssBraces Delimiter
+"Swift
+hi! link swiftIdentifier Normal
+"Typescript
+hi! link typescriptAjaxMethods Normal
+hi! link typescriptBraces Normal
+hi! link typescriptEndColons Normal
+hi! link typescriptFuncKeyword Statement
+hi! link typescriptGlobalObjects Statement
+hi! link typescriptHtmlElemProperties Normal
+hi! link typescriptIdentifier Statement
+hi! link typescriptMessage Normal
+hi! link typescriptNull Constant
+hi! link typescriptParens Normal
 
-let s:bglighter = ['#424450', 238]
-let s:bglight   = ['#343746', 237]
-let s:bg        = ['#282A36', 236]
-let s:bgdark    = ['#21222C', 235]
-let s:bgdarker  = ['#191A21', 234]
-
-let s:subtle    = ['', 238]
-
-let s:selection = ['', 239]
-let s:comment   = ['',  61]
-let s:cyan      = ['', 117]
-let s:green     = ['',  84]
-let s:orange    = ['', 215]
-let s:pink      = ['', 212]
-let s:purple    = ['', 141]
-let s:red       = ['', 203]
-let s:yellow    = ['', 228]
-
-let s:none      = ['NONE', 'NONE']
-
-let g:spaceduck_palette = {
-      \ 'fg': s:fg,
-      \ 'bg': s:bg,
-      \ 'selection': s:selection,
-      \ 'comment': s:comment,
-      \ 'cyan': s:cyan,
-      \ 'green': s:green,
-      \ 'orange': s:orange,
-      \ 'pink': s:pink,
-      \ 'purple': s:purple,
-      \ 'red': s:red,
-      \ 'yellow': s:yellow,
-      \
-      \ 'bglighter': s:bglighter,
-      \ 'bglight': s:bglight,
-      \ 'bgdark': s:bgdark,
-      \ 'bgdarker': s:bgdarker,
-      \ 'subtle': s:subtle,
-      \}
-
+"Nvim
 if has('nvim')
-  let g:terminal_color_0  = '#21222C'
-  let g:terminal_color_1  = '#FF5555'
-  let g:terminal_color_2  = '#50FA7B'
-  let g:terminal_color_3  = '#F1FA8C'
-  let g:terminal_color_4  = '#BD93F9'
-  let g:terminal_color_5  = '#FF79C6'
-  let g:terminal_color_6  = '#8BE9FD'
-  let g:terminal_color_7  = '#F8F8F2'
-  let g:terminal_color_8  = '#6272A4'
-  let g:terminal_color_9  = '#FF6E6E'
-  let g:terminal_color_10 = '#69FF94'
-  let g:terminal_color_11 = '#FFFFA5'
-  let g:terminal_color_12 = '#D6ACFF'
-  let g:terminal_color_13 = '#FF92DF'
-  let g:terminal_color_14 = '#A4FFFF'
-  let g:terminal_color_15 = '#FFFFFF'
-endif
-
-" 
-" User Configuration: 
-
-if !exists('g:spaceduck_bold')
-  let g:spaceduck_bold = 1
-endif
-
-if !exists('g:spaceduck_italic')
-  let g:spaceduck_italic = 1
-endif
-
-if !exists('g:spaceduck_underline')
-  let g:spaceduck_underline = 1
-endif
-
-if !exists('g:spaceduck_undercurl') && g:spaceduck_underline != 0
-  let g:spaceduck_undercurl = 1
-endif
-
-if !exists('g:spaceduck_inverse')
-  let g:spaceduck_inverse = 1
-endif
-
-if !exists('g:spaceduck_colorterm')
-  let g:spaceduck_colorterm = 1
-endif
-
-
-" Script Helpers: 
-
-let s:attrs = {
-      \ 'bold': g:spaceduck_bold == 1 ? 'bold' : 0,
-      \ 'italic': g:spaceduck_italic == 1 ? 'italic' : 0,
-      \ 'underline': g:spaceduck_underline == 1 ? 'underline' : 0,
-      \ 'undercurl': g:spaceduck_undercurl == 1 ? 'undercurl' : 0,
-      \ 'inverse': g:spaceduck_inverse == 1 ? 'inverse' : 0,
-      \}
-
-function! s:h(scope, fg, ...) " bg, attr_list, special
-  let l:fg = copy(a:fg)
-  let l:bg = get(a:, 1, ['NONE', 'NONE'])
-
-  let l:attr_list = filter(get(a:, 2, ['NONE']), 'type(v:val) == 1')
-  let l:attrs = len(l:attr_list) > 0 ? join(l:attr_list, ',') : 'NONE'
-
-  " Falls back to coloring foreground group on terminals because
-  " nearly all do not support undercurl
-  let l:special = get(a:, 3, ['NONE', 'NONE'])
-  if l:special[0] !=# 'NONE' && l:fg[0] ==# 'NONE' && !has('gui_running')
-    let l:fg[0] = l:special[0]
-    let l:fg[1] = l:special[1]
-  endif
-
-  let l:hl_string = [
-        \ 'highlight', a:scope,
-        \ 'guifg=' . l:fg[0], 'ctermfg=' . l:fg[1],
-        \ 'guibg=' . l:bg[0], 'ctermbg=' . l:bg[1],
-        \ 'gui=' . l:attrs, 'cterm=' . l:attrs,
-        \ 'guisp=' . l:special[0],
-        \]
-
-  execute join(l:hl_string, ' ')
-endfunction
-
-function! s:Background()
-  if g:spaceduck_colorterm || has('gui_running')
-    return s:bg
-  else
-    return s:none
-  endif
-endfunction
-
-
-" spaceduck Highlight Groups: 
-
-call s:h('spaceduckBgLight', s:none, s:bglight)
-call s:h('spaceduckBgLighter', s:none, s:bglighter)
-call s:h('spaceduckBgDark', s:none, s:bgdark)
-call s:h('spaceduckBgDarker', s:none, s:bgdarker)
-
-call s:h('spaceduckFg', s:fg)
-call s:h('spaceduckFgUnderline', s:fg, s:none, [s:attrs.underline])
-call s:h('spaceduckFgBold', s:fg, s:none, [s:attrs.bold])
-
-call s:h('spaceduckComment', s:comment)
-call s:h('spaceduckCommentBold', s:comment, s:none, [s:attrs.bold])
-
-call s:h('spaceduckSelection', s:none, s:selection)
-
-call s:h('spaceduckSubtle', s:subtle)
-
-call s:h('spaceduckCyan', s:cyan)
-call s:h('spaceduckCyanItalic', s:cyan, s:none, [s:attrs.italic])
-
-call s:h('spaceduckGreen', s:green)
-call s:h('spaceduckGreenBold', s:green, s:none, [s:attrs.bold])
-call s:h('spaceduckGreenItalic', s:green, s:none, [s:attrs.italic])
-call s:h('spaceduckGreenItalicUnderline', s:green, s:none, [s:attrs.italic, s:attrs.underline])
-
-call s:h('spaceduckOrange', s:orange)
-call s:h('spaceduckOrangeBold', s:orange, s:none, [s:attrs.bold])
-call s:h('spaceduckOrangeItalic', s:orange, s:none, [s:attrs.italic])
-call s:h('spaceduckOrangeBoldItalic', s:orange, s:none, [s:attrs.bold, s:attrs.italic])
-call s:h('spaceduckOrangeInverse', s:bg, s:orange)
-
-call s:h('spaceduckPink', s:pink)
-call s:h('spaceduckPinkItalic', s:pink, s:none, [s:attrs.italic])
-
-call s:h('spaceduckPurple', s:purple)
-call s:h('spaceduckPurpleBold', s:purple, s:none, [s:attrs.bold])
-call s:h('spaceduckPurpleItalic', s:purple, s:none, [s:attrs.italic])
-
-call s:h('spaceduckRed', s:red)
-call s:h('spaceduckRedInverse', s:fg, s:red)
-
-call s:h('spaceduckYellow', s:yellow)
-call s:h('spaceduckYellowItalic', s:yellow, s:none, [s:attrs.italic])
-
-call s:h('spaceduckError', s:red, s:none, [], s:red)
-
-call s:h('spaceduckErrorLine', s:none, s:none, [s:attrs.undercurl], s:red)
-call s:h('spaceduckWarnLine', s:none, s:none, [s:attrs.undercurl], s:orange)
-call s:h('spaceduckInfoLine', s:none, s:none, [s:attrs.undercurl], s:cyan)
-
-call s:h('spaceduckTodo', s:cyan, s:none, [s:attrs.bold, s:attrs.inverse])
-call s:h('spaceduckSearch', s:green, s:none, [s:attrs.inverse])
-call s:h('spaceduckBoundary', s:comment, s:bgdark)
-call s:h('spaceduckLink', s:cyan, s:none, [s:attrs.underline])
-
-call s:h('spaceduckDiffChange', s:none, s:none)
-call s:h('spaceduckDiffText', s:bg, s:orange)
-call s:h('spaceduckDiffDelete', s:red, s:bgdark)
-
-" 
-
-" 
-" User Interface: 
-
-set background=dark
-
-" Required as some plugins will overwrite
-call s:h('Normal', s:fg, s:Background())
-call s:h('StatusLine', s:none, s:bglighter, [s:attrs.bold])
-call s:h('StatusLineNC', s:none, s:bglight)
-call s:h('WildMenu', s:bg, s:purple, [s:attrs.bold])
-call s:h('CursorLine', s:none, s:subtle)
-
-hi! link ColorColumn  spaceduckSelection
-hi! link CursorColumn spaceduckSelection
-hi! link CursorLineNr spaceduckYellow
-hi! link DiffAdd      spaceduckGreen
-hi! link DiffAdded    DiffAdd
-hi! link DiffChange   spaceduckDiffChange
-hi! link DiffDelete   spaceduckDiffDelete
-hi! link DiffRemoved  DiffDelete
-hi! link DiffText     spaceduckDiffText
-hi! link Directory    spaceduckPurpleBold
-hi! link ErrorMsg     spaceduckRedInverse
-hi! link FoldColumn   spaceduckSubtle
-hi! link Folded       spaceduckBoundary
-hi! link IncSearch    spaceduckOrangeInverse
-hi! link LineNr       spaceduckComment
-hi! link MoreMsg      spaceduckFgBold
-hi! link NonText      spaceduckSubtle
-hi! link Pmenu        spaceduckBgDark
-hi! link PmenuSbar    spaceduckBgDark
-hi! link PmenuSel     spaceduckSelection
-hi! link PmenuThumb   spaceduckSelection
-hi! link Question     spaceduckFgBold
-hi! link Search       spaceduckSearch
-hi! link SignColumn   spaceduckComment
-hi! link TabLine      spaceduckBoundary
-hi! link TabLineFill  spaceduckBgDarker
-hi! link TabLineSel   Normal
-hi! link Title        spaceduckGreenBold
-hi! link VertSplit    spaceduckBoundary
-hi! link Visual       spaceduckSelection
-hi! link VisualNOS    Visual
-hi! link WarningMsg   spaceduckOrangeInverse
-
-" 
-" Syntax: 
-
-" Required as some plugins will overwrite
-call s:h('MatchParen', s:fg, s:pink, [s:attrs.underline])
-call s:h('Conceal', s:comment, s:bglight)
-
-" Neovim uses SpecialKey for escape characters only. Vim uses it for that, plus whitespace.
-if has('nvim')
-  hi! link SpecialKey spaceduckRed
+  hi! link TermCursor Cursor
+  hi! link TermCursorNC Comment
+  let g:terminal_color_0  = '#0f111b'  " #0f111b bg
+  let g:terminal_color_1  = '#e33400'  " #e33400 red
+  let g:terminal_color_2  = '#51a77e'  " #51a77e green
+  let g:terminal_color_3  = '#244f61'  " #e2a478 orange
+  let g:terminal_color_4  = '#8970cf'  " #8970cf blue
+  let g:terminal_color_5  = '#ebc562'  " #ebc562 purple
+  let g:terminal_color_6  = '#009fc5'  " #009fc5 cyan
+  let g:terminal_color_7  = '#ecf0c1'  " #ecf0c1 fg
+  let g:terminal_color_8  = '#444b71'  " #444b71 comment
+  let g:terminal_color_9  = '#e33400'  " #e33400 bold red
+  let g:terminal_color_10 = '#51a77e'  " #51a77e bold green
+  let g:terminal_color_11 = '#244F61'  " #244F61 #e2a478 bold orange
+  let g:terminal_color_12 = '#8970cf'  " #8970cf bold blue
+  let g:terminal_color_13 = '#ebc562'  " #ebc562 bold purple
+  let g:terminal_color_14 = '#009fc5'  " #009fc5 bold cyan
+  let g:terminal_color_15 = '#ecf0c1'  " #ecf0c1 bold fg
 else
-  hi! link SpecialKey spaceduckSubtle
+  let g:terminal_ansi_colors = ['#0f111b', '#e33400', '#51a77e', '#244F61', '#8970cf', '#ebc562', '#009fc5', '#ecf0c1', '#444b71', '#e33400', '#51a77e', '#244F61e2a478', '#8970cf', '#ebc562', '#009fc5', '#ecf0c1']
 endif
-
-hi! link Comment spaceduckComment
-hi! link Underlined spaceduckFgUnderline
-hi! link Todo spaceduckTodo
-
-hi! link Error spaceduckError
-hi! link SpellBad spaceduckErrorLine
-hi! link SpellLocal spaceduckWarnLine
-hi! link SpellCap spaceduckInfoLine
-hi! link SpellRare spaceduckInfoLine
-
-hi! link Constant spaceduckPurple
-hi! link String spaceduckYellow
-hi! link Character spaceduckPink
-hi! link Number Constant
-hi! link Boolean Constant
-hi! link Float Constant
-
-hi! link Identifier spaceduckFg
-hi! link Function spaceduckGreen
-
-hi! link Statement spaceduckPink
-hi! link Conditional spaceduckPink
-hi! link Repeat spaceduckPink
-hi! link Label spaceduckPink
-hi! link Operator spaceduckPink
-hi! link Keyword spaceduckPink
-hi! link Exception spaceduckPink
-
-hi! link PreProc spaceduckPink
-hi! link Include spaceduckPink
-hi! link Define spaceduckPink
-hi! link Macro spaceduckPink
-hi! link PreCondit spaceduckPink
-hi! link StorageClass spaceduckPink
-hi! link Structure spaceduckPink
-hi! link Typedef spaceduckPink
-
-hi! link Type spaceduckCyanItalic
-
-hi! link Delimiter spaceduckFg
-
-hi! link Special spaceduckPink
-hi! link SpecialComment spaceduckCyanItalic
-hi! link Tag spaceduckCyan
-hi! link helpHyperTextJump spaceduckLink
-hi! link helpCommand spaceduckPurple
-hi! link helpExample spaceduckGreen
-hi! link helpBacktick Special
-
-
-
-" vim: fdm=marker ts=2 sts=2 sw=2:

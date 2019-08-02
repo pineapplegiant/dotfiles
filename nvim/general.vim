@@ -11,10 +11,10 @@
 "----------------------------------------------------------------------
 "               Colors for a rainy day
 "----------------------------------------------------------------------
-    "colorscheme dracula
-    "colorscheme peachpuff
-    "colorscheme spaceduck
-    colorscheme tokyo-metro
+   "colorscheme peachpuff
+   colorscheme spaceduck
+   "colorscheme tokyo-metro
+   "colorscheme iceberg
 " Colorscheme things
     set background=dark
     set termguicolors
@@ -58,3 +58,7 @@
 
     autocmd Filetype css  setlocal  tabstop=2 shiftwidth=2 softtabstop=2 " Set tabs to 2 spaces in html and css
     autocmd Filetype html setlocal  tabstop=2 shiftwidth=2 softtabstop=2 " Set tabs to 2 spaces in html and css
+
+" Turn off Cursorline in insert mode
+  autocmd InsertLeave,WinEnter * set cursorline
+  autocmd InsertEnter,WinLeave * set nocursorline

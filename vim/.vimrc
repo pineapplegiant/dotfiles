@@ -9,9 +9,10 @@
 """"""Gotta have it
 set nocompatible              " be iMproved, required
 filetype plugin indent on
+"colorscheme darkblue
 
 "----------------------------------------------------------------------
-" Basic Preference Things 
+" Basic Preference Things
 "----------------------------------------------------------------------
     set hidden                     " Ignorecase when searching stuff
     set ignorecase                 " Ignorecase when searching stuff
@@ -169,3 +170,39 @@ filetype plugin indent on
 
 " School's Function block snippet
     nnoremap ,block :read $HOME/.config/nvim/snippets/block.txt<CR>
+
+
+"----------------------------------------------------------------------
+"                       Plugins
+"----------------------------------------------------------------------
+" Setup Vim-Plug
+"curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
+"    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+" Specify a directory for plugins
+call plug#begin('~/.vim/plugged')
+
+Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
+Plug 'https://github.com/cocopon/pgmnt.vim'
+Plug 'https://github.com/cocopon/colorswatch.vim'
+
+call plug#end()
+
+
+"----------------------------------------------------------------------
+"                       Nerdtree
+"----------------------------------------------------------------------
+" Map nerdtree to Ctrl+n
+    map <C-n> :NERDTreeToggle<CR>
+
+" Nerdtree size smaller
+    let g:NERDTreeWinSize=18
+
+" Let Nerdtree close if it's the last window open!
+    autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+
+
+
+
+
+
+

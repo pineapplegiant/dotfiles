@@ -19,6 +19,11 @@
         #pandoc document.md -t ms -o document.pdf
     # CSS: repeat( auto-fit, minmax(250px, 1fr) )
 
+    # Print all 256 Color codes
+    #for code in {0..255}
+    #    do echo -e "\e[38;5;${code}m"'\\e[38;5;'"$code"m"\e[0m"
+    #  done
+
 #----------------------------------------------------------------------
 #               Start off with a friendly hello
 #----------------------------------------------------------------------
@@ -74,7 +79,7 @@
     alias rm='safe-rm'                       # Safe-RM
     alias dog='ccat'                         # Use that new ccat plugin
 
-# Vim to Nvim 
+# Vim to Nvim
     #export VISUAL=vim                       # vim Stuff so that the haters know
     #alias v=vim                             # vim Stuff so that the haters know 
     #alias vim=vim                           # vim Stuff so that the haters know
@@ -83,7 +88,6 @@
     export VISUAL=nvim                       # Nvim Stuff so that the haters know
     alias v=nvim                             # Nvim Stuff so that the haters know 
     alias vim=nvim                           # Nvim Stuff so that the haters know
-    alias vi=nvim                            # Nvim Stuff so that the haters know
     alias vimrc='vim $HOME/.config/nvim/init.vim' # Open nvimrc in nvim
     alias ctags="`brew --prefix`/bin/ctags"  # Ctags alias
     alias bp='vim ~/.bash_profile'           # Get to bash-profile faster
@@ -160,9 +164,8 @@
     LIGHT_GRAY="\[\033[38;5;188m\]"
     COLOR_NONE="\[\e[0m\]"
 
-# I made these, but don't use them lol
+# I made this
     PURPLE="\[\033[38;5;99m\]" 
-    BROWN="\[\033[38;5;130m\]"
 
 
 # Detect whether the current directory is a git repository.

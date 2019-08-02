@@ -10,25 +10,33 @@
 "----------------------------------------------------------------------
 "                        PLUGINS RIP
 "----------------------------------------------------------------------
-    
-    "Plug 'Yggdroot/indentLine' " Low-key messes everything up
     " Make sure you have vim-plug installed ~/.local/share/nvim/site/autoload/plug.vim
     call plug#begin('~/.local/share/nvim/plugged')
-    Plug 'https://github.com/cocopon/iceberg.vim'
-    Plug 'https://github.com/cocopon/pgmnt.vim.git'
-    Plug '/usr/local/opt/fzf'
+    " Colors
+    Plug 'cocopon/colorswatch.vim'
+    Plug 'ap/vim-css-color'
+    Plug 'sheerun/vim-polyglot'
+    " Moving around
     Plug 'junegunn/fzf.vim'
     Plug 'scrooloose/nerdtree'
-    Plug 'itchyny/lightline.vim'
-    Plug 'vim-scripts/The-NERD-Commenter'
+    " Essential
+    Plug 'tpope/vim-fugitive'
     Plug 'tpope/vim-surround'
+    Plug 'jiangmiao/auto-pairs'
+    Plug 'vim-scripts/The-NERD-Commenter'
+    " Prose & Writing
     Plug 'junegunn/goyo.vim'
     Plug 'reedes/vim-pencil'
     Plug 'junegunn/limelight.vim'
-    Plug 'koirand/tokyo-metro.vim'
-    Plug 'ap/vim-css-color'
     Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install'  }
     Plug 'vimwiki/vimwiki'
+    " HTML
+    Plug 'mattn/emmet-vim'
+    Plug 'ryanoasis/vim-devicons'
+    " Not used
+    "Plug 'itchyny/lightline.vim'
+    "Plug 'Yggdroot/indentLine' " Low-key messes everything up
+    "Plug 'https://github.com/gerw/vim-HiLinkTrace.git'
     call plug#end()
 
 "----------------------------------------------------------------------
@@ -56,9 +64,9 @@
 "                       Lightline
 "----------------------------------------------------------------------
 
-let g:lightline = {
-      \ 'colorscheme': 'tokyometro',
-      \ }
+"let g:lightline = {
+      "\ 'colorscheme': 'tokyometro',
+      "\ }
 
 "----------------------------------------------------------------------
 "                   Markdown Preview
@@ -127,6 +135,11 @@ let g:lightline = {
     autocmd! User GoyoEnter nested call <SID>goyo_enter()
     autocmd! User GoyoLeave nested call <SID>goyo_leave()
 
+"----------------------------------------------------------------------
+"                       EMMET
+"----------------------------------------------------------------------
+
+    let g:user_emmet_leader_key=','
 
 "----------------------------------------------------------------------
 "                       VimWiki

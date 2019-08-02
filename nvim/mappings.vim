@@ -64,21 +64,42 @@
     nnoremap <leader>q :q!<CR>
 
 " Split window
-    nnoremap <leader>vs :split<Return><C-w>w
-    nnoremap <leader>vv :vsplit<Return><C-w>w
+    nnoremap <leader>vs :split<Return>
+    nnoremap <leader>vv :vsplit<Return>
 
 " Leader+w = ctrl + w to move between windows
     noremap <leader>w <C-w>
 
+" Show syntax color highlighting groups for word under cursor
+    nmap <C-S-P> :call <SID>SynStack()<CR>
+    function! <SID>SynStack()
+      if !exists("*synstack")
+        return
+      endif
+      echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
+    endfunc
+
+"----------------------------------------------------------------------
+"               Terminal
+"----------------------------------------------------------------------
+" Terminal Mappings
+    function! TerminalCreate()
+        let time_now = strftime("%T")
+        let terminal_name = "terminal_" . time_now
+        execute "terminal"
+        execute "set nonumber"
+        execute "file " . terminal_name
+        normal A
+    endfunc
+
 " Leader+z = create new terminal buffer BELOW
-    nnoremap <leader>zb :new<CR>:resize 10<CR>:set nonumber<CR>:terminal<CR>:file terminal0<CR>A source $HOME/.bash_profile<CR>clear<CR>
+    nnoremap <leader>zb :new<CR>:resize 10<CR>:call TerminalCreate()<CR>
 
 " Leader+zb = new terminal in a new window completely by itself
-    nnoremap <leader>zz :terminal<CR>:set nonumber<CR>:file terminal1<CR>A source $HOME/.bash_profile<CR>clear<CR>
-
+    nnoremap <leader>zz :call TerminalCreate()<CR>
 
 " Leader+zv = new terminal in a new vertical split
-    nnoremap <leader>zv :vsplit<CR>:terminal<CR>:set nonumber<CR>:file terminal1<CR>A source $HOME/.bash_profile<CR>clear<CR>
+    nnoremap <leader>zv :vsplit<CR>:call TerminalCreate()<CR>
 
 "----------------------------------------------------------------------
 "                   General Re-mappings
@@ -144,48 +165,25 @@
 " Basic CSS Snippet!
     nnoremap ,css :-1read $HOME/.config/nvim/snippets/skeleton.css<CR>
 
-" List of HTML completion snippets
-    autocmd FileType html inoremap ,h1 <h1></h1><ESC>F>a
-    autocmd FileType html inoremap ,h2 <h2></h2><ESC>F>a
-    autocmd FileType html inoremap ,h3 <h3></h3><ESC>F>a
-    autocmd FileType html inoremap ,h4 <h4></h4><ESC>F>a
-    autocmd FileType html inoremap ,h5 <h5></h5><ESC>F>a
-    autocmd FileType html inoremap ,h6 <h6></h6><ESC>F>a
-    autocmd FileType html inoremap ,h7 <h7></h7><ESC>F>a
-    autocmd FileType html inoremap ,pp <p></p><ESC>F>a
-    autocmd FileType html inoremap ,ol <ol></ol><ESC>F>i
-    autocmd FileType html inoremap ,ul <ul></ul><ESC>F>a
-    autocmd FileType html inoremap ,img <img src=""><ESC>F"i
-    autocmd FileType html inoremap ,aa <a href=""><ESC>F"i
-    autocmd FileType html inoremap ,li <li></li><ESC>F>a
-
-
-" CPP bracket completions
-    autocmd FileType c,cpp inoremap { {}<ESC>F{a
-    autocmd FileType c,cpp inoremap ( ()<ESC>F(a
-    autocmd FileType c,cpp inoremap [ []<ESC>F[a
-    autocmd FileType c,cpp inoremap " ""<ESC>F"a
-
 " Markdown Remaps
 function! PandocCreate()
   let curr_file = expand('%:t')                             " Name of current file
   let pdf_file = expand('%:r') . '.pdf'                     " Name of file with pdf extension
-  execute ':!pandoc --pdf-engine=xelatex ' . curr_file . ' -o ' . pdf_file
-  execute ':!open ' . pdf_file
+  execute 'pandoc --pdf-engine=xelatex ' . curr_file . ' -o ' . pdf_file
+  execute 'open ' . pdf_file
 endfunction
 
 " Pandoc Remaps
     autocmd BufRead,BufNewFile *.md,*.markdown set filetype=markdown
     autocmd FileType markdown nnoremap ,comp :update<CR>:call PandocCreate()<CR>
 
-
 " Make/Compile current Latex File
 function! LatexCreate()
   let curr_file = expand('%:t')                             " Name of current file
   let pdf_file = expand('%:r') . '.pdf'                     " Name of file with pdf extension
-  execute ':!pdflatex  ./' . curr_file
-  execute ':!open ' . pdf_file
-  execute ':!open -a "iterm.app"'
+  execute 'pdflatex  ./' . curr_file
+  execute 'open ' . pdf_file
+  execute 'open -a "iterm.app"'
 endfunction
 
 " LaTeX Remaps
