@@ -270,14 +270,11 @@ PROMPT_COMMAND=set_bash_prompt
 #----------------------------------------------------------------------
 
 # Neovim-Remote add to Path Python3
-    export PATH=/Users/Gmo/Library/Python/3.7/bin:$PATH 
-
-# Add Personal Scripts to my path
-    export PATH=$PATH:/Users/Gmo/.scripts/
-
+    PATH=/Users/Gmo/Library/Python/3.7/bin:$PATH
+    PATH=$HOME/.cargo/bin:$PATH
 
 # YARN PATH stuff
-    export PATH=$PATH:/usr/local/opt/go/libexec/bin
+    PATH=$PATH:/usr/local/opt/go/libexec/bin
 
 # Z cd Command Jumping -> IN bashrc
 . /usr/local/etc/profile.d/z.sh
@@ -286,10 +283,10 @@ PROMPT_COMMAND=set_bash_prompt
     export CPLUS_INCLUDE_PATH=/usr/local/include
     export LIBRARY_PATH=/usr/local/lib
 
+# Add Personal Scripts to my path
+    PATH=$PATH:/Users/Gmo/Github/dotfiles/.scripts
+    export PATH
 
 #----------------------------------------------------------------------
 #                       Final
 #----------------------------------------------------------------------
-
-
-export PATH="$HOME/.cargo/bin:$PATH"
