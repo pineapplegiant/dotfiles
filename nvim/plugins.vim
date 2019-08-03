@@ -16,6 +16,7 @@
     Plug 'cocopon/colorswatch.vim'
     Plug 'ap/vim-css-color'
     Plug 'sheerun/vim-polyglot'
+    Plug 'itchyny/lightline.vim'
     " Moving around
     Plug 'junegunn/fzf.vim'
     Plug 'scrooloose/nerdtree'
@@ -33,7 +34,6 @@
     " HTML
     Plug 'mattn/emmet-vim'
     " Not used
-    "Plug 'itchyny/lightline.vim'
     "Plug 'ryanoasis/vim-devicons'
     "Plug 'Yggdroot/indentLine' " Low-key messes everything up
     "Plug 'https://github.com/gerw/vim-HiLinkTrace.git'
@@ -64,9 +64,9 @@
 "                       Lightline
 "----------------------------------------------------------------------
 
-"let g:lightline = {
-      "\ 'colorscheme': 'tokyometro',
-      "\ }
+let g:lightline = {
+      \ 'colorscheme': 'tokyometro',
+      \ }
 
 "----------------------------------------------------------------------
 "                   Markdown Preview

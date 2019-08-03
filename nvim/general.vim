@@ -18,8 +18,8 @@
       set termguicolors
     endif
 
-   "colorscheme peachpuff
    colorscheme spaceduck
+   "colorscheme peachpuff
    "colorscheme tokyo-metro
    "colorscheme iceberg
 

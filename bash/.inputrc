@@ -17,8 +17,8 @@ set vi-ins-mode-string \1\e[0;32m\2[+]\1\e[0m\2
 # Color Fuzzy Find directories 
 set colored-completion-prefix on
 
-# Red   \1\e[38;5;202m\2[-]\1\e[0m\2
-# Green \1\e[0;32m\2[+]\1\e[0m\2
+#Red   \1\e[38;5;202m\2[-]\1\e[0m\2
+#Green \1\e[0;32m\2[+]\1\e[0m\2
 
 # Set editing mode to vi since it's default in emacs
 set editing-mode vi

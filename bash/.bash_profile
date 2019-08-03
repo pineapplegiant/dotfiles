@@ -6,30 +6,9 @@
 # ╚═╝╚═════╝ ╚═╝  ╚═╝╚══════╝╚═╝  ╚═╝    ╚═╝     ╚═╝  ╚═╝ ╚═════╝ ╚═╝     ╚═╝╚══════╝╚══════╝
 
 #----------------------------------------------------------------------
-# Notes to self for a healthy reminder
-#----------------------------------------------------------------------
-    # <leader>ww index| <leader>wi diary|<leader>w<leader>i update diary|
-    # TERMTOSVG RECORDINGS : termtosvg -c -t "dracula" <FILENAME>
-    # g++ -std=c++0x FILE.cpp FILE_MAIN.cpp -lgtest -lgtest_main -pthread -o testProgram // TESTING EXAMPLE
-    # When compiling C++ add the "-g" flag and then run 'valgrind' on the output
-    #sudo rm /var/log/asl/*.asl -> delete Macosx system log files
-    # chmod u+x makes a bash script executable
-    #convert to pdf via groff
-        #groff -ms document.ms -T pdf
-        #pandoc document.md -t ms -o document.pdf
-    # CSS: repeat( auto-fit, minmax(250px, 1fr) )
-
-    # Print all 256 Color codes
-    #for code in {0..255}
-    #    do echo -e "\e[38;5;${code}m"'\\e[38;5;'"$code"m"\e[0m"
-    #  done
-
-#----------------------------------------------------------------------
 #               Start off with a friendly hello
 #----------------------------------------------------------------------
-#    echo "Hey $USER, welcome back my dude ^‿^"
-
-
+#   echo "Hey $USER, welcome back my dude ^‿^"
 
 #----------------------------------------------------------------------
 # Location of places i go to a lot
