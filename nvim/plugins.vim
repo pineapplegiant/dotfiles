@@ -12,13 +12,15 @@
 "----------------------------------------------------------------------
     " Make sure you have vim-plug installed ~/.local/share/nvim/site/autoload/plug.vim
     call plug#begin('~/.local/share/nvim/plugged')
-    " Colors
+    " Colors & Pretty
     Plug 'cocopon/colorswatch.vim'
     Plug 'ap/vim-css-color'
     Plug 'sheerun/vim-polyglot'
     Plug 'itchyny/lightline.vim'
+    Plug 'edkolev/tmuxline.vim'
     Plug 'bling/vim-bufferline'
     " Moving around
+    Plug '/usr/local/opt/fzf'
     Plug 'junegunn/fzf.vim'
     Plug 'scrooloose/nerdtree'
     " Essential
@@ -34,7 +36,8 @@
     Plug 'vimwiki/vimwiki'
     " HTML
     Plug 'mattn/emmet-vim'
-    " Not used
+    " Not used, maybe one day?
+    "Plug 'neoclide/coc.nvim', {'branch': 'release'}
     "Plug 'ryanoasis/vim-devicons'
     "Plug 'Yggdroot/indentLine' " Low-key messes everything up
     "Plug 'https://github.com/gerw/vim-HiLinkTrace.git'
@@ -84,13 +87,18 @@ function! LightlineBufferline()
 endfunction
 
 "----------------------------------------------------------------------
+"                       TMUX-line
+"----------------------------------------------------------------------
+
+
+
+"----------------------------------------------------------------------
 "                   Markdown Preview
 "----------------------------------------------------------------------
     let g:mkdp_open_to_the_world = 1        " Markdown preview to the world
 
-
 "----------------------------------------------------------------------
-" GOYO && LIMELIGHT && PENCIL optimization WRITING TODO- { still in progress }
+"                   GOYO && LIMELIGHT && PENCIL WRITING
 "----------------------------------------------------------------------
     let g:limelight_default_coefficient = 0.7
     "let g:limelight_paragraph_span = 1
@@ -130,7 +138,6 @@ endfunction
             qa
           endif
         endif
-
         silent !tmux set status on
         silent !tmux list-panes -F '\#F' | grep -q Z && tmux resize-pane -Z
         set showmode
@@ -153,7 +160,6 @@ endfunction
 "----------------------------------------------------------------------
 "                       EMMET
 "----------------------------------------------------------------------
-
     let g:user_emmet_leader_key=','
 
 "----------------------------------------------------------------------

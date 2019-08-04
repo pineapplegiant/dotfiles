@@ -5,19 +5,17 @@
 "   \ \  \\ \  \\ \    / /    \ \  \\ \  \    \ \  \\ \  \\  \|\ \  \____
 "    \ \__\\ \__\\ \__/ /      \ \__\\ \__\    \ \__\\ \__\\ _\ \ \_______\
 "     \|__| \|__| \|__|/        \|__| \|__|     \|__| \|__|\|__| \|_______|
-"
 
 "----------------------------------------------------------------------
 "                   RMD map for compiling
 "----------------------------------------------------------------------
-
     autocmd Filetype rmd map <F10> :!echo<space>"require(rmarkdown);<space>render('<c-r>%')"<space>\|<space>R<space>--vanilla<enter>
 
 "----------------------------------------------------------------------
 "               Map Leader to '<space>' All things Leader
 "----------------------------------------------------------------------
 " List of used leader combo:
-" d f G h i o j l m n p y r s q vs vv w cc cn c<space> zz zb
+" d f G i j l m n o p q r s q vs vv w y cc cn c<space> zz zb
 
     let mapleader=' '
 
@@ -165,7 +163,6 @@ nmap <Tab> :bp<CR>
 "----------------------------------------------------------------------
 "                           Snippets!
 "----------------------------------------------------------------------
-
 " Basic HTML Snippet!
     nnoremap ,html :-1read $HOME/.config/nvim/snippets/skeleton.html<CR>7jf>a
 
@@ -238,8 +235,3 @@ endfunction
 
 " Job snippet
     nnoremap ,job :read $HOME/.config/nvim/snippets/job.txt<CR>
-
-
-"----------------------------------------------------------------------
-"                       Endings
-"----------------------------------------------------------------------
