@@ -17,6 +17,7 @@
     Plug 'ap/vim-css-color'
     Plug 'sheerun/vim-polyglot'
     Plug 'itchyny/lightline.vim'
+    Plug 'bling/vim-bufferline'
     " Moving around
     Plug 'junegunn/fzf.vim'
     Plug 'scrooloose/nerdtree'
@@ -65,8 +66,22 @@
 "----------------------------------------------------------------------
 
 let g:lightline = {
-      \ 'colorscheme': 'tokyometro',
+      \ 'colorscheme': 'spaceduck',
+      \ 'tabline': {
+      \   'left': [ ['bufferline'] ]
+      \ },
+      \ 'component_expand': {
+      \   'bufferline': 'LightlineBufferline',
+      \ },
+      \ 'component_type': {
+      \   'bufferline': 'tabsel',
+      \ },
       \ }
+
+function! LightlineBufferline()
+  call bufferline#refresh_status()
+  return [ g:bufferline_status_info.before, g:bufferline_status_info.current, g:bufferline_status_info.after]
+endfunction
 
 "----------------------------------------------------------------------
 "                   Markdown Preview
@@ -145,6 +160,8 @@ let g:lightline = {
 "                       VimWiki
 "----------------------------------------------------------------------
     let g:vimwiki_dir_link='index'
+    let g:vimwiki_list = [{'path': '~/vimwiki/',
+                          \ 'syntax': 'markdown', 'ext': '.md'}]
 
 "----------------------------------------------------------------------
 "                       Indent-Line

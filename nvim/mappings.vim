@@ -33,18 +33,12 @@
 " Delete Buffer, but keep the window open
     nnoremap <leader>d :bp\|bd! #<CR>
 
-" Go to to previous buffer
-    nnoremap <leader>h :bp<CR>
-
 " Jumplist stuff -> Backward and forward in vim jumps
     nnoremap <leader>i <C-i>
     nnoremap <leader>o <C-o>
 
 " Fixing vim because I break it Later -> Move between blocks 'better'
     noremap <leader>j J
-
-" Go to to next buffer
-    nnoremap <leader>l :bn<CR>
 
 " Preview Marks!
     nnoremap  <leader>m :marks<CR>
@@ -67,8 +61,17 @@
     nnoremap <leader>vs :split<Return>
     nnoremap <leader>vv :vsplit<Return>
 
-" Leader+w = ctrl + w to move between windows
-    noremap <leader>w <C-w>
+" Move between windows better
+    map sh <C-w>h
+    map sj <C-w>j
+    map sk <C-w>k
+    map sl <C-w>l
+
+
+" Increment Decrement
+    nnoremap + <C-a>
+    nnoremap - <C-x>
+
 
 " Show syntax color highlighting groups for word under cursor
     nmap <C-S-P> :call <SID>SynStack()<CR>
@@ -154,6 +157,10 @@
 
 " Source VIMRC
     nnoremap ,src :source $MYVIMRC<CR>
+
+" Shift Tab to cyle tabs
+nmap <S-Tab> :bn<CR>
+nmap <Tab> :bp<CR>
 
 "----------------------------------------------------------------------
 "                           Snippets!
