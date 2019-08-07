@@ -28,6 +28,8 @@
     Plug 'tpope/vim-surround'
     Plug 'jiangmiao/auto-pairs'
     Plug 'vim-scripts/The-NERD-Commenter'
+    " Git 
+    Plug 'airblade/vim-gitgutter'
     " Prose & Writing
     Plug 'junegunn/goyo.vim'
     Plug 'reedes/vim-pencil'
@@ -130,28 +132,10 @@ endfunction
 
 " Let GOYO quit
     function! s:goyo_leave()
-        " Quit Vim if this is the only remaining buffer
-        if b:quitting && len(filter(range(1, bufnr('$')), 'buflisted(v:val)')) == 1
-          if b:quitting_bang
-            qa!
-          else
-            qa
-          endif
-        endif
-        silent !tmux set status on
-        silent !tmux list-panes -F '\#F' | grep -q Z && tmux resize-pane -Z
-        set showmode
-        set showcmd
-        set scrolloff=3
-        set nospell
-        colorscheme tokyo-metro
-        set background=dark
-        set cursorline
-        Limelight!
-        PencilOff
-        IndentLinesReset
-        set conceallevel=0
-
+      silent !tmux set status on
+      silent !tmux list-panes -F '\#F' | grep -q Z && tmux resize-pane -Z
+      Limelight!
+      source $MYVIMRC
     endfunction
 
     autocmd! User GoyoEnter nested call <SID>goyo_enter()
@@ -160,14 +144,13 @@ endfunction
 "----------------------------------------------------------------------
 "                       EMMET
 "----------------------------------------------------------------------
-    let g:user_emmet_leader_key=','
+    "let g:user_emmet_leader_key='<Tab>'
 
 "----------------------------------------------------------------------
 "                       VimWiki
 "----------------------------------------------------------------------
     let g:vimwiki_dir_link='index'
-    let g:vimwiki_list = [{'path': '~/vimwiki/',
-                          \ 'syntax': 'markdown', 'ext': '.md'}]
+    let g:vimwiki_list = [{'path': '~/vimwiki/'}]
 
 "----------------------------------------------------------------------
 "                       Indent-Line

@@ -4,14 +4,17 @@
 
 COUNTER=0
 
-echo "I am very VERY, "
-
-while [  $COUNTER -lt 10 ]; do
- echo "very,"
+echo ""
+echo "ಠ_ಠ"
+echo ""
+sleep 1s
+echo "Oops! I fucked up..."
+sleep 1s
+while [  $COUNTER -lt 5 ]; do
+ echo "really,"
+ sleep 1s
  let COUNTER=COUNTER+1
 done
 
+echo "really bad."
 echo ""
-echo "sorry dude."
-
-echo "I am sorry my dude."

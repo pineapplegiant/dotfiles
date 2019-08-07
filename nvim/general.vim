@@ -44,6 +44,7 @@
     set scrolloff=2                " When scrolling, keep cursor 2 lines away from screen border
     set nowrap                     " Wrap lines when they are too long
     set title                      " Update the title of the window or the terminal
+    set wildmode=longest,list,full " List as much as possible
     set wildmenu                   " Visual autocomplete for command menu
     set splitbelow                 " Splits open at the bottom, which is non-retarded, unlike vim defaults.
     set splitright                 " Splits open at the right, which is non-retarded, unlike vim defaults.

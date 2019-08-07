@@ -60,10 +60,10 @@
     nnoremap <leader>vv :vsplit<Return>
 
 " Move between windows better
-    map sh <C-w>h
-    map sj <C-w>j
-    map sk <C-w>k
-    map sl <C-w>l
+    map <leader>wh <C-w>h
+    map <leader>wj <C-w>j
+    map <leader>wk <C-w>k
+    map <leader>wl <C-w>l
 
 
 " Increment Decrement
