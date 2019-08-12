@@ -23,7 +23,7 @@
     nnoremap ,<leader> :nohlsearch<CR>
 
 " FZF to leader+f
-    nnoremap <leader>f :FZF<CR>
+    nnoremap <leader>F :FZF<CR>
 
 " Goyo start Writing!
     nnoremap <leader>G :Goyo<CR>
@@ -152,9 +152,6 @@
 
 " Change directory to current directory
     nnoremap <leader>cd :cd %:p:h<CR>:pwd<CR>
-
-" Source VIMRC
-    nnoremap ,src :source $MYVIMRC<CR>
 
 " Shift Tab to cyle tabs
 nmap <S-Tab> :bn<CR>

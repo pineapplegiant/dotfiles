@@ -19,6 +19,7 @@
     Plug 'itchyny/lightline.vim'
     Plug 'edkolev/tmuxline.vim'
     Plug 'bling/vim-bufferline'
+    Plug 'ryanoasis/vim-devicons'
     " Moving around
     Plug '/usr/local/opt/fzf'
     Plug 'junegunn/fzf.vim'
@@ -38,10 +39,13 @@
     Plug 'vimwiki/vimwiki'
     " HTML
     Plug 'mattn/emmet-vim'
-    " Not used, maybe one day?
+    Plug 'turbio/bracey.vim'
+    " NEXT LEVEL SHIT
+    Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
     "Plug 'neoclide/coc.nvim', {'branch': 'release'}
-    "Plug 'ryanoasis/vim-devicons'
-    "Plug 'Yggdroot/indentLine' " Low-key messes everything up
+    " Not used, maybe one day?
+    " Low-key messes everything up
+    Plug 'Yggdroot/indentLine' " 
     "Plug 'https://github.com/gerw/vim-HiLinkTrace.git'
     call plug#end()
 
@@ -157,5 +161,112 @@ endfunction
 "----------------------------------------------------------------------
     let g:indentLine_char = '▏'             " Show Indentation lines
     let g:indentLine_color_gui = '#474747'  " Make them pretty-gray-lines
+    let g:indentLine_enabled = 0            " Just toggle this shit bro
 
-    autocmd FileType markdown,md let g:indentLine_enabled=0
+"----------------------------------------------------------------------
+"                       Devicons
+"----------------------------------------------------------------------
+
+" NERDTrees File highlighting
+function! NERDTreeHighlightFile(extension, fg, bg, guifg, guibg)
+ exec 'autocmd FileType nerdtree highlight ' . a:extension .' ctermbg='. a:bg .' ctermfg='. a:fg .' guibg='. a:guibg .' guifg='. a:guifg
+ exec 'autocmd FileType nerdtree syn match ' . a:extension .' #^\s\+.*'. a:extension .'$#'
+endfunction
+
+call NERDTreeHighlightFile('bashprofile', 'Gray', 'none', '#686868', '#151515')
+call NERDTreeHighlightFile('bashrc', 'Gray', 'none', '#686868', '#151515')
+call NERDTreeHighlightFile('coffee', 'Red', 'none', 'red', '#151515')
+call NERDTreeHighlightFile('conf', 'yellow', 'none', 'yellow', '#151515')
+call NERDTreeHighlightFile('config', 'yellow', 'none', 'yellow', '#151515')
+call NERDTreeHighlightFile('css', 'cyan', 'none', 'cyan', '#151515')
+call NERDTreeHighlightFile('ds_store', 'Gray', 'none', '#686868', '#151515')
+call NERDTreeHighlightFile('gitconfig', 'Gray', 'none', '#686868', '#151515')
+call NERDTreeHighlightFile('gitignore', 'Gray', 'none', '#686868', '#151515')
+call NERDTreeHighlightFile('html', 'yellow', 'none', 'yellow', '#151515')
+call NERDTreeHighlightFile('ini', 'yellow', 'none', 'yellow', '#151515')
+call NERDTreeHighlightFile('inputrc', 'Gray', 'none', '#686868', '#151515')
+call NERDTreeHighlightFile('jade', 'green', 'none', 'green', '#151515')
+call NERDTreeHighlightFile('js', 'Red', 'none', '#ffa500', '#151515')
+call NERDTreeHighlightFile('json', 'yellow', 'none', 'yellow', '#151515')
+call NERDTreeHighlightFile('md', 'blue', 'none', '#3366FF', '#151515')
+call NERDTreeHighlightFile('php', 'Magenta', 'none', '#ff00ff', '#151515')
+call NERDTreeHighlightFile('py', 'Green', 'none', '#51a77e', '#151515')
+call NERDTreeHighlightFile('styl', 'cyan', 'none', 'cyan', '#151515')
+call NERDTreeHighlightFile('yml', 'yellow', 'none', 'yellow', '#151515')
+
+
+
+"----------------------------------------------------------------------
+"                       CocNVIM
+"----------------------------------------------------------------------
+"
+" Better display for messages
+    set cmdheight=2
+" Smaller updatetime for CursorHold & CursorHoldI
+    set updatetime=300
+" don't give |ins-completion-menu| messages.
+    set shortmess+=c
+" always show signcolumns
+    set signcolumn=yes
+
+" Use tab for trigger completion with characters ahead and navigate.
+" Use command ':verbose imap <tab>' to make sure tab is not mapped by other plugin.
+    inoremap <silent><expr> <TAB>
+          \ pumvisible() ? "\<C-n>" :
+          \ <SID>check_back_space() ? "\<TAB>" :
+          \ coc#refresh()
+    inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+
+    function! s:check_back_space() abort
+      let col = col('.') - 1
+      return !col || getline('.')[col - 1]  =~# '\s'
+    endfunction
+
+" Use <c-space> to trigger completion.
+    inoremap <silent><expr> <c-space> coc#refresh()
+
+" Use `[c` and `]c` to navigate diagnostics
+    nmap <silent> [c <Plug>(coc-diagnostic-prev)
+    nmap <silent> ]c <Plug>(coc-diagnostic-next)
+
+" Remap keys for gotos
+    nmap <silent> gd <Plug>(coc-definition)
+    nmap <silent> gy <Plug>(coc-type-definition)
+    nmap <silent> gi <Plug>(coc-implementation)
+    nmap <silent> gr <Plug>(coc-references)
+
+" Use U to show documentation in preview window
+    nnoremap <silent> ,K :call <SID>show_documentation()<CR>
+
+    function! s:show_documentation()
+      if (index(['vim','help'], &filetype) >= 0)
+        execute 'h '.expand('<cword>')
+      else
+        call CocAction('doHover')
+      endif
+    endfunction
+
+" Highlight symbol under cursor on CursorHold
+    autocmd CursorHold * silent call CocActionAsync('highlight')
+" Remap for rename current word
+    nmap <leader>rn <Plug>(coc-rename)
+
+" Remap for format selected region
+    vmap <leader>f  <Plug>(coc-format-selected)
+    nmap <leader>f  <Plug>(coc-format-selected)
+" Show all diagnostics
+    nnoremap <silent> ,a  :<C-u>CocList diagnostics<cr>
+" Manage extensions
+    nnoremap <silent> ,e  :<C-u>CocList extensions<cr>
+" Show commands
+    nnoremap <silent> ,c  :<C-u>CocList commands<cr>
+" Find symbol of current document
+    nnoremap <silent> ,o  :<C-u>CocList outline<cr>
+" Search workspace symbols
+    nnoremap <silent> ,s  :<C-u>CocList -I symbols<cr>
+" Do default action for next item.
+    nnoremap <silent> ,j  :<C-u>CocNext<CR>
+" Do default action for previous item.
+    nnoremap <silent> ,k  :<C-u>CocPrev<CR>
+" Resume latest coc list
+    nnoremap <silent> ,p  :<C-u>CocListResume<CR>
