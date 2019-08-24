@@ -13,8 +13,6 @@
     " Make sure you have vim-plug installed ~/.local/share/nvim/site/autoload/plug.vim
     call plug#begin('~/.local/share/nvim/plugged')
     " Colors & Pretty
-    Plug 'cocopon/colorswatch.vim'
-    Plug 'ap/vim-css-color'
     Plug 'sheerun/vim-polyglot'
     Plug 'itchyny/lightline.vim'
     Plug 'edkolev/tmuxline.vim'
@@ -42,11 +40,7 @@
     Plug 'turbio/bracey.vim'
     " NEXT LEVEL SHIT
     Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
-    "Plug 'neoclide/coc.nvim', {'branch': 'release'}
-    " Not used, maybe one day?
     " Low-key messes everything up
-    Plug 'Yggdroot/indentLine' " 
-    "Plug 'https://github.com/gerw/vim-HiLinkTrace.git'
     call plug#end()
 
 "----------------------------------------------------------------------
@@ -85,12 +79,21 @@ let g:lightline = {
       \ 'component_type': {
       \   'bufferline': 'tabsel',
       \ },
+      \ 'component_function': {
+      \   'cocstatus': 'coc#status',
+      \   'currentfunction': 'CocCurrentFunction'
+      \ },
       \ }
 
 function! LightlineBufferline()
   call bufferline#refresh_status()
   return [ g:bufferline_status_info.before, g:bufferline_status_info.current, g:bufferline_status_info.after]
 endfunction
+
+function! CocCurrentFunction()
+    return get(b:, 'coc_current_function', '')
+endfunction
+
 
 "----------------------------------------------------------------------
 "                       TMUX-line
@@ -159,9 +162,11 @@ endfunction
 "----------------------------------------------------------------------
 "                       Indent-Line
 "----------------------------------------------------------------------
-    let g:indentLine_char = '▏'             " Show Indentation lines
-    let g:indentLine_color_gui = '#474747'  " Make them pretty-gray-lines
-    let g:indentLine_enabled = 0            " Just toggle this shit bro
+    "let g:indentLine_char = '▏'             " Show Indentation lines
+    "let g:indentLine_color_gui = '#474747'  " Make them pretty-gray-lines
+    "let g:indentLine_enabled = 0            " Just toggle this shit bro
+    "autocmd BufNew,BufEnter *.md,*.markdown,*.wiki execute "set conceallevel=0"
+
 
 "----------------------------------------------------------------------
 "                       Devicons
@@ -199,11 +204,12 @@ call NERDTreeHighlightFile('yml', 'yellow', 'none', 'yellow', '#151515')
 "----------------------------------------------------------------------
 "                       CocNVIM
 "----------------------------------------------------------------------
-"
+"Format Prettier coc-extension -> :Prettier on current buffer
+    command! -nargs=0 Prettier :CocCommand prettier.formatFile
 " Better display for messages
     set cmdheight=2
 " Smaller updatetime for CursorHold & CursorHoldI
-    set updatetime=300
+    set updatetime=1500
 " don't give |ins-completion-menu| messages.
     set shortmess+=c
 " always show signcolumns
@@ -270,3 +276,6 @@ call NERDTreeHighlightFile('yml', 'yellow', 'none', 'yellow', '#151515')
     nnoremap <silent> ,k  :<C-u>CocPrev<CR>
 " Resume latest coc list
     nnoremap <silent> ,p  :<C-u>CocListResume<CR>
+
+" Turn off COC IN MARKDOWN
+    "autocmd BufNew,BufEnter *.md,*.markdown,*.wiki execute "silent! CocDisable"

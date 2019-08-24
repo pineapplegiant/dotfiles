@@ -23,7 +23,7 @@
 "----------------------------------------------------------------------
 "               Basic Preference Things
 "----------------------------------------------------------------------
-    syntax enable                  " Turn on Syntax highlighting
+    "syntax enable                  " Turn on Syntax highlighting
     set number                     " Turn on Line Number
     set guicursor=n-v-c:block-Cursor " Hopefully make cursor better in insert
     set hidden                     " Ignorecase when searching stuff
@@ -55,9 +55,7 @@
     set wildignore+=tags
     set wildignore+=*.tar.*
     set noswapfile                 " NO SWAP FILES
-    set list                       " Show indentations
     set wildcharm=<C-z>             "Juggling with buffers
-    set conceallevel=3
 
     autocmd Filetype css  setlocal  tabstop=2 shiftwidth=2 softtabstop=2 " Set tabs to 2 spaces in html and css
     autocmd Filetype html setlocal  tabstop=2 shiftwidth=2 softtabstop=2 " Set tabs to 2 spaces in html and css

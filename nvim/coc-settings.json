@@ -1,7 +1,14 @@
 {
+  "workspace.ignoredFiletypes": [
+      "markdown",
+      "log",
+      "txt",
+      "help"
+  ],
+  "suggest.minTriggerInputLength": 0,
   "suggest.echodocSupport": true,
   "suggest.maxCompleteItemCount": 20,
-  "coc.preferences.formatOnSaveFiletypes": ["javascript", "typescript", "typescriptreact", "json", "javascriptreact", "typescript.tsx"],
+  "coc.preferences.formatOnSaveFiletypes": ["javascript", "typescript", "typescriptreact", "json", "javascriptreact", "typescript.tsx", "css"],
   "eslint.filetypes": ["javascript", "typescript", "typescriptreact", "javascriptreact", "typescript.tsx"],
   "diagnostic.errorSign": "•",
   "diagnostic.warningSign": "•",
