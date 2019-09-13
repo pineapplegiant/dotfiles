@@ -8,7 +8,7 @@
 #----------------------------------------------------------------------
 #               Start off with a friendly hello
 #----------------------------------------------------------------------
-#   echo "Hey $USER, welcome back my dude ^‿^"
+    #echo "Hey $USER, welcome back my dude ^‿^"
 
 #----------------------------------------------------------------------
 # Location of places i go to a lot
@@ -93,6 +93,8 @@
     alias time="time -lp"                    # Time is verbose
     alias c="clear"
 
+# WebDev Baby
+    alias web='browser-sync start --server --files "*"'
 
 #----------------------------------------------------------------------
 #                   Functions
@@ -248,23 +250,28 @@ PROMPT_COMMAND=set_bash_prompt
 #                       PATH
 #----------------------------------------------------------------------
 
+# Z cd Command Jumping -> IN bashrc
+. /usr/local/etc/profile.d/z.sh
+
 # Neovim-Remote add to Path Python3
     PATH=/Users/Gmo/Library/Python/3.7/bin:$PATH
     PATH=$HOME/.cargo/bin:$PATH
 
-# YARN PATH stuff
-    PATH=$PATH:/usr/local/opt/go/libexec/bin
-
-# Z cd Command Jumping -> IN bashrc
-. /usr/local/etc/profile.d/z.sh
-
 # Google Test stuff
-    export CPLUS_INCLUDE_PATH=/usr/local/include
-    export LIBRARY_PATH=/usr/local/lib
+    CPLUS_INCLUDE_PATH=/usr/local/include
+    LIBRARY_PATH=/usr/local/lib
+
+# YAN PATH stuff
+    PATH=$PATH:/usr/local/opt/go/libexec/bin
 
 # Add Personal Scripts to my path
     PATH=$PATH:/Users/Gmo/Github/dotfiles/.scripts
-    export PATH
+
+# Environment / Path
+    GOBIN=$HOME/go/bin
+    GOPATH=$HOME/go
+
+    export PATH=$GOBIN:$PATH
 
 #----------------------------------------------------------------------
 #                       Final

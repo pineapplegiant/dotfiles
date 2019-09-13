@@ -9,13 +9,18 @@
 
 [alias]
 # Make things pretty
-    l = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset'
-	lg   = log -p
-	ll   = log  --graph --abbrev-commit --pretty=oneline --decorate --all
-    d = diff
-    dt = difftool
-    s = status
-	stat = status
+    g = "!git"
+    gs = "!git status"
+    conf = "config --global -e"
+    lit = "!git add -A && git commit"
+    zip = "!git archive --format=zip -o latest.zip HEAD"
+    l = "log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset'"
+	lg = "log -p"
+	ll = "log  --graph --abbrev-commit --pretty=oneline --decorate --all"
+    d = "diff"
+    dt = "difftool"
+    s = "status"
+	stat = "status"
 
 # Because I constantly forget how to do this
 # https://git-scm.com/docs/git-fetch#git-fetch--p

@@ -1,4 +1,5 @@
 " ________    ___      ___  ___   _____ ______    ________   ________
+        set nocursorline
 " |\   ___  \ |\  \    /  /||\  \ |\   _ \  _   \ |\   __  \ |\   ____\
 " \ \  \\ \  \\ \  \  /  / /\ \  \\ \  \\\__\ \  \\ \  \|\  \\ \  \___|
 "  \ \  \\ \  \\ \  \/  / /  \ \  \\ \  \\|__| \  \\ \   _  _\\ \  \
@@ -16,7 +17,6 @@
     Plug 'sheerun/vim-polyglot'
     Plug 'itchyny/lightline.vim'
     Plug 'edkolev/tmuxline.vim'
-    Plug 'bling/vim-bufferline'
     Plug 'ryanoasis/vim-devicons'
     " Moving around
     Plug '/usr/local/opt/fzf'
@@ -40,8 +40,46 @@
     Plug 'turbio/bracey.vim'
     " NEXT LEVEL SHIT
     Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
+    Plug 'liuchengxu/vista.vim'
     " Low-key messes everything up
+    Plug 'Yggdroot/indentLine'
     call plug#end()
+
+
+"----------------------------------------------------------------------
+"                       FZF
+"----------------------------------------------------------------------
+     let $FZF_DEFAULT_OPTS = '--layout=reverse'
+
+     let g:fzf_layout = { 'window': 'call OpenFloatingWin()' }
+
+     function! OpenFloatingWin()
+       let height = &lines - 3
+       let width = float2nr(&columns - (&columns * 2 / 10))
+       let col = float2nr((&columns - width) / 2)
+
+       let opts = {
+             \ 'relative': 'editor',
+             \ 'row': height * 0.3,
+             \ 'col': col + 30,
+             \ 'width': width * 2 / 3,
+             \ 'height': height / 2
+             \ }
+
+       let buf = nvim_create_buf(v:false, v:true)
+       let win = nvim_open_win(buf, v:true, opts)
+
+       call setwinvar(win, '&winhl', 'Normal:Pmenu')
+
+       setlocal
+             \ buftype=nofile
+             \ nobuflisted
+             \ bufhidden=hide
+             \ nonumber
+             \ norelativenumber
+             \ signcolumn=no
+     endfunction
+
 
 "----------------------------------------------------------------------
 "                       Airline
@@ -65,35 +103,32 @@
     autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
 "----------------------------------------------------------------------
-"                       Lightline
+"                       VistaVim
 "----------------------------------------------------------------------
-
-let g:lightline = {
-      \ 'colorscheme': 'spaceduck',
-      \ 'tabline': {
-      \   'left': [ ['bufferline'] ]
-      \ },
-      \ 'component_expand': {
-      \   'bufferline': 'LightlineBufferline',
-      \ },
-      \ 'component_type': {
-      \   'bufferline': 'tabsel',
-      \ },
-      \ 'component_function': {
-      \   'cocstatus': 'coc#status',
-      \   'currentfunction': 'CocCurrentFunction'
-      \ },
-      \ }
-
-function! LightlineBufferline()
-  call bufferline#refresh_status()
-  return [ g:bufferline_status_info.before, g:bufferline_status_info.current, g:bufferline_status_info.after]
+function! NearestMethodOrFunction() abort
+  return get(b:, 'vista_nearest_method_or_function', '')
 endfunction
 
+"----------------------------------------------------------------------
+"                       Lightline
+"----------------------------------------------------------------------
 function! CocCurrentFunction()
     return get(b:, 'coc_current_function', '')
 endfunction
 
+
+let g:lightline = {
+      \ 'colorscheme': 'spaceduck',
+      \ 'active': {
+      \   'left': [ [ 'mode', 'paste' ],
+      \             [ 'cocstatus', 'readonly', 'filename', 'modified', 'method', 'gitbranch' ] ]
+      \ },
+      \ 'component_function': {
+      \   'method': 'NearestMethodOrFunction',
+      \   'cocstatus': 'coc#status',
+      \   'gitbranch': 'fugitive#head'
+      \ },
+      \ }
 
 "----------------------------------------------------------------------
 "                       TMUX-line
@@ -109,6 +144,7 @@ endfunction
 "----------------------------------------------------------------------
 "                   GOYO && LIMELIGHT && PENCIL WRITING
 "----------------------------------------------------------------------
+    let g:pencil_higher_contrast_ui = 1   " 0=low (def), 1=high
     let g:limelight_default_coefficient = 0.7
     "let g:limelight_paragraph_span = 1
     let g:pencil#wrapModeDefault = 'soft'   " default is 'hard
@@ -129,7 +165,6 @@ endfunction
         set spell
         colorscheme pencil
         set background=light
-        set nocursorline
         Limelight
         call pencil#init()
         set conceallevel=2
@@ -162,10 +197,10 @@ endfunction
 "----------------------------------------------------------------------
 "                       Indent-Line
 "----------------------------------------------------------------------
-    "let g:indentLine_char = '▏'             " Show Indentation lines
-    "let g:indentLine_color_gui = '#474747'  " Make them pretty-gray-lines
-    "let g:indentLine_enabled = 0            " Just toggle this shit bro
-    "autocmd BufNew,BufEnter *.md,*.markdown,*.wiki execute "set conceallevel=0"
+    let g:indentLine_char = '▏'             " Show Indentation lines
+    let g:indentLine_color_gui = '#474747'  " Make them pretty-gray-lines
+    let g:indentLine_enabled = 0            " Just toggle this shit bro
+    autocmd BufNew,BufEnter *.md,*.markdown,*.wiki execute "set conceallevel=0"
 
 
 "----------------------------------------------------------------------
@@ -200,6 +235,10 @@ call NERDTreeHighlightFile('styl', 'cyan', 'none', 'cyan', '#151515')
 call NERDTreeHighlightFile('yml', 'yellow', 'none', 'yellow', '#151515')
 
 
+"----------------------------------------------------------------------
+"                       Denite
+"----------------------------------------------------------------------
+
 
 "----------------------------------------------------------------------
 "                       CocNVIM
@@ -207,7 +246,7 @@ call NERDTreeHighlightFile('yml', 'yellow', 'none', 'yellow', '#151515')
 "Format Prettier coc-extension -> :Prettier on current buffer
     command! -nargs=0 Prettier :CocCommand prettier.formatFile
 " Better display for messages
-    set cmdheight=2
+    set cmdheight=1
 " Smaller updatetime for CursorHold & CursorHoldI
     set updatetime=1500
 " don't give |ins-completion-menu| messages.
@@ -258,8 +297,8 @@ call NERDTreeHighlightFile('yml', 'yellow', 'none', 'yellow', '#151515')
     nmap <leader>rn <Plug>(coc-rename)
 
 " Remap for format selected region
-    vmap <leader>f  <Plug>(coc-format-selected)
-    nmap <leader>f  <Plug>(coc-format-selected)
+    vmap <leader>F  <Plug>(coc-format-selected)
+    nmap <leader>F  <Plug>(coc-format-selected)
 " Show all diagnostics
     nnoremap <silent> ,a  :<C-u>CocList diagnostics<cr>
 " Manage extensions
@@ -278,4 +317,4 @@ call NERDTreeHighlightFile('yml', 'yellow', 'none', 'yellow', '#151515')
     nnoremap <silent> ,p  :<C-u>CocListResume<CR>
 
 " Turn off COC IN MARKDOWN
-    "autocmd BufNew,BufEnter *.md,*.markdown,*.wiki execute "silent! CocDisable"
+    autocmd BufNew,BufEnter *.md,*.markdown,*.wiki execute "silent! CocDisable"

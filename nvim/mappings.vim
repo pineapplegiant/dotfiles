@@ -23,7 +23,7 @@
     nnoremap ,<leader> :nohlsearch<CR>
 
 " FZF to leader+f
-    nnoremap <leader>F :FZF<CR>
+    nnoremap <leader>f :FZF<CR>
 
 " Goyo start Writing!
     nnoremap <leader>G :Goyo<CR>
@@ -78,7 +78,7 @@
         return
       endif
       echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
-    endfunc
+    endfunction
 
 "----------------------------------------------------------------------
 "               Terminal
@@ -91,7 +91,7 @@
         execute "set nonumber"
         execute "file " . terminal_name
         normal A
-    endfunc
+    endfunction
 
 " Leader+z = create new terminal buffer BELOW
     nnoremap <leader>zb :new<CR>:resize 10<CR>:call TerminalCreate()<CR>
@@ -154,8 +154,8 @@
     nnoremap <leader>cd :cd %:p:h<CR>:pwd<CR>
 
 " Shift Tab to cyle tabs
-nmap <S-Tab> :bn<CR>
-nmap <Tab> :bp<CR>
+    nmap <S-Tab> :bn<CR>
+    nmap <Tab> :bp<CR>
 
 "----------------------------------------------------------------------
 "                           Snippets!
@@ -170,8 +170,10 @@ nmap <Tab> :bp<CR>
 function! PandocCreate()
   let curr_file = expand('%:t')                             " Name of current file
   let pdf_file = expand('%:r') . '.pdf'                     " Name of file with pdf extension
-  execute 'pandoc --pdf-engine=xelatex ' . curr_file . ' -o ' . pdf_file
-  execute 'open ' . pdf_file
+  execute '!pandoc --pdf-engine=xelatex ' . curr_file . ' -o ' . pdf_file
+  if filereadable(pdf_file)
+      execute '!open ' . pdf_file
+  endif
 endfunction
 
 " Pandoc Remaps
@@ -182,9 +184,9 @@ endfunction
 function! LatexCreate()
   let curr_file = expand('%:t')                             " Name of current file
   let pdf_file = expand('%:r') . '.pdf'                     " Name of file with pdf extension
-  execute 'pdflatex  ./' . curr_file
-  execute 'open ' . pdf_file
-  execute 'open -a "iterm.app"'
+  execute '!pdflatex  ./' . curr_file
+  execute '!open ' . pdf_file
+  execute '!open -a "iterm.app"'
 endfunction
 
 " LaTeX Remaps

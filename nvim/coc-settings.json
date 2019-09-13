@@ -12,5 +12,12 @@
   "eslint.filetypes": ["javascript", "typescript", "typescriptreact", "javascriptreact", "typescript.tsx"],
   "diagnostic.errorSign": "•",
   "diagnostic.warningSign": "•",
-  "diagnostic.infoSign": "•"
+  "diagnostic.infoSign": "•",
+  "languageserver": {
+  "golang": {
+    "command": "gopls",
+    "rootPatterns": ["go.mod"],
+    "filetypes": ["go"]
+    }
+  }
 }

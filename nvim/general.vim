@@ -23,7 +23,7 @@
 "----------------------------------------------------------------------
 "               Basic Preference Things
 "----------------------------------------------------------------------
-    "syntax enable                  " Turn on Syntax highlighting
+    syntax enable                  " Turn on Syntax highlighting
     set number                     " Turn on Line Number
     set guicursor=n-v-c:block-Cursor " Hopefully make cursor better in insert
     set hidden                     " Ignorecase when searching stuff
