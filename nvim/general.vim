@@ -26,6 +26,7 @@
     syntax enable                  " Turn on Syntax highlighting
     set number                     " Turn on Line Number
     set guicursor=n-v-c:block-Cursor " Hopefully make cursor better in insert
+    set guicursor=n:blinkwait800-blinkon400-blinkoff250
     set hidden                     " Ignorecase when searching stuff
     set ignorecase                 " Ignorecase when searching stuff
     set spelllang=en_us            " Turn on spell check?
@@ -57,8 +58,9 @@
     set noswapfile                 " NO SWAP FILES
     set wildcharm=<C-z>             "Juggling with buffers
 
-    autocmd Filetype css  setlocal  tabstop=2 shiftwidth=2 softtabstop=2 " Set tabs to 2 spaces in html and css
+    autocmd Filetype css setlocal  tabstop=2 shiftwidth=2 softtabstop=2 " Set tabs to 2 spaces in html and css
     autocmd Filetype html setlocal  tabstop=2 shiftwidth=2 softtabstop=2 " Set tabs to 2 spaces in html and css
+    autocmd Filetype js  setlocal  tabstop=2 shiftwidth=2 softtabstop=2 " Set tabs to 2 spaces in html and css
 
 " Turn off Cursorline in insert mode
     autocmd InsertLeave,WinEnter * set cursorline

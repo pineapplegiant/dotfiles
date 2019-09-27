@@ -1,5 +1,4 @@
 " ________    ___      ___  ___   _____ ______    ________   ________
-        set nocursorline
 " |\   ___  \ |\  \    /  /||\  \ |\   _ \  _   \ |\   __  \ |\   ____\
 " \ \  \\ \  \\ \  \  /  / /\ \  \\ \  \\\__\ \  \\ \  \|\  \\ \  \___|
 "  \ \  \\ \  \\ \  \/  / /  \ \  \\ \  \\|__| \  \\ \   _  _\\ \  \
@@ -39,6 +38,7 @@
     Plug 'mattn/emmet-vim'
     Plug 'turbio/bracey.vim'
     " NEXT LEVEL SHIT
+    "Plug 'Shougo/denite.nvim', { 'do' : ':UpdateRemotePlugins' }
     Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
     Plug 'liuchengxu/vista.vim'
     " Low-key messes everything up
@@ -105,30 +105,44 @@
 "----------------------------------------------------------------------
 "                       VistaVim
 "----------------------------------------------------------------------
-function! NearestMethodOrFunction() abort
-  return get(b:, 'vista_nearest_method_or_function', '')
-endfunction
+    function! NearestMethodOrFunction() abort
+      return get(b:, 'vista_nearest_method_or_function', '')
+    endfunction
+
+" How each level is indented and what to prepend.
+    let g:vista_icon_indent = ["╰─▸ ", "├─▸ "]
+
+" The default icons can't be suitable for all the filetypes, you can extend it as you wish.
+    let g:vista#renderer#icons = {
+    \   "function": "\uf794",
+    \   "variable": "\uf71b",
+    \  }
+
+"Let Vista run explicitly
+    autocmd VimEnter * call vista#RunForNearestMethodOrFunction()
+
+    autocmd BufEnter * if winnr("$") == 1 && vista#sidebar#IsVisible() | q | endif
 
 "----------------------------------------------------------------------
 "                       Lightline
 "----------------------------------------------------------------------
-function! CocCurrentFunction()
-    return get(b:, 'coc_current_function', '')
-endfunction
+    function! CocCurrentFunction()
+        return get(b:, 'coc_current_function', '')
+    endfunction
 
 
-let g:lightline = {
-      \ 'colorscheme': 'spaceduck',
-      \ 'active': {
-      \   'left': [ [ 'mode', 'paste' ],
-      \             [ 'cocstatus', 'readonly', 'filename', 'modified', 'method', 'gitbranch' ] ]
-      \ },
-      \ 'component_function': {
-      \   'method': 'NearestMethodOrFunction',
-      \   'cocstatus': 'coc#status',
-      \   'gitbranch': 'fugitive#head'
-      \ },
-      \ }
+    let g:lightline = {
+          \ 'colorscheme': 'spaceduck',
+          \ 'active': {
+          \   'left': [ [ 'mode', 'paste' ],
+          \             [ 'cocstatus', 'readonly', 'filename', 'modified', 'gitbranch', 'method'] ]
+          \ },
+          \ 'component_function': {
+          \   'method': 'NearestMethodOrFunction',
+          \   'cocstatus': 'coc#status',
+          \   'gitbranch': 'fugitive#head'
+          \ },
+          \ }
 
 "----------------------------------------------------------------------
 "                       TMUX-line
@@ -200,7 +214,9 @@ let g:lightline = {
     let g:indentLine_char = '▏'             " Show Indentation lines
     let g:indentLine_color_gui = '#474747'  " Make them pretty-gray-lines
     let g:indentLine_enabled = 0            " Just toggle this shit bro
+
     autocmd BufNew,BufEnter *.md,*.markdown,*.wiki execute "set conceallevel=0"
+    autocmd BufNew,BufEnter *.html,*.css, execute "IndentLinesToggle"
 
 
 "----------------------------------------------------------------------
@@ -269,6 +285,10 @@ call NERDTreeHighlightFile('yml', 'yellow', 'none', 'yellow', '#151515')
 
 " Use <c-space> to trigger completion.
     inoremap <silent><expr> <c-space> coc#refresh()
+
+" Use <cr> to confirm completion, `<C-g>u` means break undo chain at current position.
+" Coc only does snippet and additional edit on confirm.
+    inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 
 " Use `[c` and `]c` to navigate diagnostics
     nmap <silent> [c <Plug>(coc-diagnostic-prev)

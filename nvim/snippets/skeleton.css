@@ -6,10 +6,8 @@ html {
   font-weight: normal;
 }
 
-*, *:before, *:after {
-  box-sizing: inherit;
-}
-
-*, *:before, *:after {
+*,
+*:before,
+*:after {
   box-sizing: inherit;
 }
