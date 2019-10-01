@@ -1,0 +1,76 @@
+{
+  "window.zoomLevel": 0,
+  "editor.fontSize": 14,
+  "editor.cursorStyle": "block",
+  "workbench.iconTheme": "vscode-icons",
+  "editor.minimap.enabled": false,
+  "workbench.colorTheme": "Dracula",
+
+  "vim.easymotion": true,
+  "vim.sneak": true,
+  "vim.incsearch": true,
+  "vim.useSystemClipboard": true,
+  "vim.useCtrlKeys": true,
+  "vim.hlsearch": true,
+  "vim.leader": "<space>",
+
+  "vim.normalModeKeyBindingsNonRecursive": [
+    {
+      "before": ["B"],
+      "after": ["0"]
+    },
+    {
+      "before": ["<leader>", ",", ","],
+      "after": ["%"]
+    },
+    {
+      "before": ["<leader>", "<leader>"],
+      "commands": [":nohl"]
+    },
+    {
+      "before": ["E"],
+      "after": ["$"]
+    },
+    {
+      "before": ["U"],
+      "after": ["<C-r>"]
+    },
+    {
+      "before": ["<leader>", "i"],
+      "after": ["<C-i>"]
+    },
+    {
+      "before": ["<leader>", "o"],
+      "after": ["<C-o>"]
+    },
+    {
+      "before": ["<leader>", "s"],
+      "commands": ["workbench.action.files.save"]
+    },
+    {
+      "before": ["Z", "Z"],
+      "after": [":wq"]
+    },
+    {
+      "before": [""],
+      "after": [""]
+    }
+  ],
+  "vim.visualModeKeyBindingsNonRecursive": [
+    {
+      "before": ["B"],
+      "after": ["0"]
+    },
+    {
+      "before": ["E"],
+      "after": ["$"]
+    }
+  ],
+  "vim.handleKeys": {
+    "<C-a>": false,
+    "<C-f>": false
+  },
+  "workbench.activityBar.visible": true,
+  "workbench.statusBar.visible": true,
+  "editor.lineNumbers": "on"
+}
