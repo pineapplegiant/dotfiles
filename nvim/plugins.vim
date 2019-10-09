@@ -102,6 +102,9 @@
 " Let Nerdtree close if it's the last window open!
     autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
+" leader+n = ctrl + w to move between windows
+    nnoremap  <leader>n :NERDTreeRefreshRoot<CR>
+
 "----------------------------------------------------------------------
 "                       VistaVim
 "----------------------------------------------------------------------
@@ -158,6 +161,7 @@
 "----------------------------------------------------------------------
 "                   GOYO && LIMELIGHT && PENCIL WRITING
 "----------------------------------------------------------------------
+
     let g:pencil_higher_contrast_ui = 1   " 0=low (def), 1=high
     let g:limelight_default_coefficient = 0.7
     "let g:limelight_paragraph_span = 1
@@ -196,6 +200,9 @@
 
     autocmd! User GoyoEnter nested call <SID>goyo_enter()
     autocmd! User GoyoLeave nested call <SID>goyo_leave()
+
+" Goyo start Writing!
+    nnoremap <leader>G :Goyo<CR>
 
 "----------------------------------------------------------------------
 "                       EMMET

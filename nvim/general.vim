@@ -23,6 +23,8 @@
 "----------------------------------------------------------------------
 "               Basic Preference Things
 "----------------------------------------------------------------------
+    set nocompatible              " be iMproved, required for normie Vim
+    filetype plugin indent on
     syntax enable                  " Turn on Syntax highlighting
     set number                     " Turn on Line Number
     set guicursor=n-v-c:block-Cursor " Hopefully make cursor better in insert

@@ -14,8 +14,6 @@
 "----------------------------------------------------------------------
 "               Map Leader to '<space>' All things Leader
 "----------------------------------------------------------------------
-" List of used leader combo:
-" d f G i j l m n o p q r s q vs vv w y cc cn c<space> zz zb
 
     let mapleader=' '
 
@@ -24,9 +22,6 @@
 
 " FZF to leader+f
     nnoremap <leader>f :FZF<CR>
-
-" Goyo start Writing!
-    nnoremap <leader>G :Goyo<CR>
 
 " Delete Buffer, but keep the window open
     nnoremap <leader>d :bp\|bd! #<CR>
@@ -40,9 +35,6 @@
 
 " Preview Marks!
     nnoremap  <leader>m :marks<CR>
-
-" leader+n = ctrl + w to move between windows
-    nnoremap  <leader>n :NERDTreeRefreshRoot<CR>
 
 " Copy & Paste into vim in normal mode
     noremap <leader>p  "+p
@@ -71,7 +63,7 @@
     nnoremap - <C-x>
 
 
-" Show syntax color highlighting groups for word under cursor
+" Show syntax color highlighting groups for word under cursor with Ctrl-Shift-P
     nmap <C-S-P> :call <SID>SynStack()<CR>
     function! <SID>SynStack()
       if !exists("*synstack")
