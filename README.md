@@ -1,4 +1,4 @@
-# My (MacOSX) dotfiles (⌐■_■)
+# My dotfiles
 
 > This is the safekeeping of my terminal environment
 
@@ -25,4 +25,3 @@
 
 ## Setup
 I'll get to it eventually...
-
