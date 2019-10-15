@@ -9,6 +9,7 @@
 source $HOME/.config/nvim/general.vim        " General Settings point to nvim (less code duplication)
 source $HOME/.config/nvim/mappings.vim       " Remappings for Vim
 
+" Make sure to install colorscheme
 set notermguicolors
 colorscheme default
 
@@ -22,11 +23,7 @@ colorscheme default
 call plug#begin('~/.vim/plugged')
 
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
-Plug 'https://github.com/cocopon/pgmnt.vim'
-Plug 'https://github.com/cocopon/colorswatch.vim'
-
 call plug#end()
-
 
 "----------------------------------------------------------------------
 "                       Nerdtree

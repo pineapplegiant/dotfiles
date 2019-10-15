@@ -15,7 +15,6 @@
     " Colors & Pretty
     Plug 'sheerun/vim-polyglot'
     Plug 'itchyny/lightline.vim'
-    Plug 'edkolev/tmuxline.vim'
     Plug 'ryanoasis/vim-devicons'
     " Moving around
     Plug '/usr/local/opt/fzf'
@@ -41,6 +40,10 @@
     "Plug 'Shougo/denite.nvim', { 'do' : ':UpdateRemotePlugins' }
     Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
     Plug 'liuchengxu/vista.vim'
+    " Tmux
+    Plug 'benmills/vimux'
+    Plug 'edkolev/tmuxline.vim'
+    Plug 'christoomey/vim-tmux-navigator'
     " Low-key messes everything up
     Plug 'Yggdroot/indentLine'
     call plug#end()
@@ -148,9 +151,20 @@
           \ }
 
 "----------------------------------------------------------------------
-"                       TMUX-line
+"                       TMUX
 "----------------------------------------------------------------------
 
+" Prompt for a command to run
+    noremap <leader>vp :VimuxPromptCommand<CR>
+
+" Run last command executed by VimuxRunCommand
+    noremap <leader>vl :VimuxRunLastCommand<CR>
+
+" Inspect runner pane
+    noremap <leader>vi :VimuxInspectRunner<CR>
+
+" Zoom the tmux runner pane
+    noremap <leader>vz :VimuxZoomRunner<CR>
 
 
 "----------------------------------------------------------------------
@@ -201,8 +215,6 @@
     autocmd! User GoyoEnter nested call <SID>goyo_enter()
     autocmd! User GoyoLeave nested call <SID>goyo_leave()
 
-" Goyo start Writing!
-    nnoremap <leader>G :Goyo<CR>
 
 "----------------------------------------------------------------------
 "                       EMMET

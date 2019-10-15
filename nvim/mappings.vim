@@ -23,6 +23,9 @@
 " FZF to leader+f
     nnoremap <leader>f :FZF<CR>
 
+" Goyo start Writing!
+    nnoremap <leader>G :Goyo<CR>
+
 " Delete Buffer, but keep the window open
     nnoremap <leader>d :bp\|bd! #<CR>
 
@@ -52,10 +55,10 @@
     nnoremap <leader>vv :vsplit<Return>
 
 " Move between windows better
-    map <leader>wh <C-w>h
-    map <leader>wj <C-w>j
-    map <leader>wk <C-w>k
-    map <leader>wl <C-w>l
+"    map <leader>wh <C-w>h
+"    map <leader>wj <C-w>j
+"    map <leader>wk <C-w>k
+"    map <leader>wl <C-w>l
 
 
 " Increment Decrement
@@ -103,8 +106,8 @@
     noremap K {
 
 " Remap ctrl-L and ctrl-H to scroll left & right
-    map <C-L> 20zl
-    map <C-H> 20zh
+"    map <C-L> 20zl
+"    map <C-H> 20zh
 
 " Set U as Ctrl R which means Redo
     nnoremap U <C-R>
