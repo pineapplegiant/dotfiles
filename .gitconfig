@@ -9,15 +9,19 @@
 
 [alias]
 # Make things pretty
-	gl = "log  --graph --abbrev-commit --pretty=oneline --decorate --all"
-	lg = "log -p"
-	stat = "status"
     conf = "config --global -e"
+    a = "add"
+    c = "commit"
+    co = "checkout"
     d = "diff"
     dt = "difftool"
+	gl = "log  --graph --abbrev-commit --pretty=oneline --decorate --all"
     l = "log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset'"
+	lg = "log -p"
     lit = "!git add -A && git commit"
+    p = "push"
     s = "status"
+	stat = "status"
     zip = "!git archive --format=zip -o latest.zip HEAD"
 
 # Because I constantly forget how to do this
