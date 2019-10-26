@@ -25,6 +25,7 @@
     Plug 'tpope/vim-surround'
     Plug 'jiangmiao/auto-pairs'
     Plug 'vim-scripts/The-NERD-Commenter'
+    Plug 'idanarye/vim-smile'
     " Git 
     Plug 'airblade/vim-gitgutter'
     " Prose & Writing
@@ -88,11 +89,13 @@
 "----------------------------------------------------------------------
 "                       Vim-Grepper
 "----------------------------------------------------------------------
-    let g:grepper={}
+
+" Grepper with <leader>g
+    nnoremap <leader>g :Grepper<cr>
+    let g:grepper = { 'next_tool': '<leader>g' }
     let g:grepper.tools=["rg"]
 
     xmap gr <plug>(GrepperOperator)
-
 " After searching for text, press this mapping to do a project wide find and
 " replace. It's similar to <leader>r except this one applies to all matches
 " across all files instead of just the current file.
@@ -108,6 +111,7 @@
         \ gvgr
         \ :cfdo %s/<C-r>s//g \| update
          \<Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left>
+
 
 "----------------------------------------------------------------------
 "                       Airline
