@@ -1,4 +1,4 @@
-" ________    ___      ___  ___   _____ ______    ________   ________
+"15 ________    ___      ___  ___   _____ ______    ________   ________
 " |\   ___  \ |\  \    /  /||\  \ |\   _ \  _   \ |\   __  \ |\   ____\
 " \ \  \\ \  \\ \  \  /  / /\ \  \\ \  \\\__\ \  \\ \  \|\  \\ \  \___|
 "  \ \  \\ \  \\ \  \/  / /  \ \  \\ \  \\|__| \  \\ \   _  _\\ \  \
@@ -16,6 +16,8 @@
     Plug 'sheerun/vim-polyglot'
     Plug 'itchyny/lightline.vim'
     Plug 'ryanoasis/vim-devicons'
+    Plug 'https://github.com/ap/vim-css-color'
+    Plug 'https://github.com/cocopon/colorswatch.vim'
     " Moving around
     Plug '/usr/local/opt/fzf'
     Plug 'junegunn/fzf.vim'
@@ -43,8 +45,6 @@
     Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
     Plug 'liuchengxu/vista.vim'
     " Tmux
-    Plug 'benmills/vimux'
-    Plug 'edkolev/tmuxline.vim'
     Plug 'christoomey/vim-tmux-navigator'
     " Low-key messes everything up
     Plug 'Yggdroot/indentLine'
@@ -180,20 +180,20 @@
           \ }
 
 "----------------------------------------------------------------------
-"                       TMUX
+"                       VIMUX
 "----------------------------------------------------------------------
 
-" Prompt for a command to run
-    noremap <leader>vp :VimuxPromptCommand<CR>
+"" Prompt for a command to run
+    "noremap <leader>vp :VimuxPromptCommand<CR>
 
-" Run last command executed by VimuxRunCommand
-    noremap <leader>vl :VimuxRunLastCommand<CR>
+"" Run last command executed by VimuxRunCommand
+    "noremap <leader>vl :VimuxRunLastCommand<CR>
 
-" Inspect runner pane
-    noremap <leader>vi :VimuxInspectRunner<CR>
+"" Inspect runner pane
+    "noremap <leader>vi :VimuxInspectRunner<CR>
 
-" Zoom the tmux runner pane
-    noremap <leader>vz :VimuxZoomRunner<CR>
+"" Zoom the tmux runner pane
+    "noremap <leader>vz :VimuxZoomRunner<CR>
 
 
 "----------------------------------------------------------------------
@@ -207,38 +207,47 @@
 
     let g:pencil_higher_contrast_ui = 1   " 0=low (def), 1=high
     let g:limelight_default_coefficient = 0.7
-    "let g:limelight_paragraph_span = 1
+    let g:limelight_paragraph_span = 1
     let g:pencil#wrapModeDefault = 'soft'   " default is 'hard
 
 " GOYO start!
     function! s:goyo_enter()
-        let b:quitting = 0
-        let b:quitting_bang = 0
-        autocmd QuitPre <buffer> let b:quitting = 1
-        cabbrev <buffer> q! let b:quitting_bang = 1 <bar> q!
-
+        "let b:quitting = 0
+        "let b:quitting_bang = 0
+        "autocmd QuitPre <buffer> let b:quitting = 1
+        "cabbrev <buffer> q! let b:quitting_bang = 1 <bar> q!
         Goyo 72
-        silent !tmux set status off
-        silent !tmux list-panes -F '\#F' | grep -q Z || tmux resize-pane -Z
+          if executable('tmux') && strlen($TMUX)
+            silent !tmux set status off
+            silent !tmux list-panes -F '\#F' | grep -q Z || tmux resize-pane -Z
+          endif
         set noshowmode
         set noshowcmd
-        "set scrolloff=999
         set spell
+        "set scrolloff=999
         colorscheme pencil
-        set background=light
+        set background=dark
         Limelight
-        call pencil#init()
-        set conceallevel=2
+        unmap <leader>j
+        TogglePencil
+        "set conceallevel=2
 
     endfunction
 
 
 " Let GOYO quit
     function! s:goyo_leave()
-      silent !tmux set status on
-      silent !tmux list-panes -F '\#F' | grep -q Z && tmux resize-pane -Z
+          if executable('tmux') && strlen($TMUX)
+            silent !tmux set status on
+            silent !tmux list-panes -F '\#F' | grep -q Z && tmux resize-pane -Z
+          endif
+      set showmode
+      set showcmd
+      set nospell
       Limelight!
-      source $MYVIMRC
+      colorscheme spaceduck
+      TogglePencil
+    nnoremap <leader>j J
     endfunction
 
     autocmd! User GoyoEnter nested call <SID>goyo_enter()
@@ -265,6 +274,11 @@
 
     autocmd BufNew,BufEnter *.md,*.markdown,*.wiki execute "set conceallevel=0"
     autocmd BufNew,BufEnter *.html,*.css, execute "IndentLinesToggle"
+
+"----------------------------------------------------------------------
+"                       TMUX-NAVIGATOR
+"----------------------------------------------------------------------
+
 
 
 "----------------------------------------------------------------------
@@ -298,15 +312,12 @@ call NERDTreeHighlightFile('py', 'Green', 'none', '#51a77e', '#151515')
 call NERDTreeHighlightFile('styl', 'cyan', 'none', 'cyan', '#151515')
 call NERDTreeHighlightFile('yml', 'yellow', 'none', 'yellow', '#151515')
 
-
-"----------------------------------------------------------------------
-"                       Denite
-"----------------------------------------------------------------------
-
-
 "----------------------------------------------------------------------
 "                       CocNVIM
 "----------------------------------------------------------------------
+" Remap Format prettier file to
+    nnoremap ,f :CocCommand prettier.formatFile<CR>
+
 "Format Prettier coc-extension -> :Prettier on current buffer
     command! -nargs=0 Prettier :CocCommand prettier.formatFile
 " Better display for messages

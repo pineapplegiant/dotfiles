@@ -12,98 +12,12 @@
     autocmd Filetype rmd map <F10> :!echo<space>"require(rmarkdown);<space>render('<c-r>%')"<space>\|<space>R<space>--vanilla<enter>
 
 "----------------------------------------------------------------------
-"               Map Leader to '<space>' All things Leader
-"----------------------------------------------------------------------
-
-    let mapleader=' '
-
-" Turn off search highlight bullshit to Comma + Leader/space
-    nnoremap ,<leader> :nohlsearch<CR>
-
-" FZF to leader+f
-    nnoremap <leader>f :FZF<CR>
-
-" Goyo start Writing!
-    nnoremap <leader>G :Goyo<CR>
-
-" Delete Buffer, but keep the window open
-    nnoremap <leader>d :bp\|bd! #<CR>
-
-" Jumplist stuff -> Backward and forward in vim jumps
-    nnoremap <leader>i <C-i>
-    nnoremap <leader>o <C-o>
-
-" Fixing vim because I break it Later -> Move between blocks 'better'
-    noremap <leader>j J
-
-" Preview Marks!
-    nnoremap  <leader>m :marks<CR>
-
-" Copy & Paste into vim in normal mode
-    noremap <leader>p  "+p
-    noremap <leader>y  "+y
-
-" Leader r is open register
-    nnoremap <leader>r :reg<CR>
-
-" Quicksave and Quickquit in vim!
-    nnoremap <leader>s :update<cr>
-    nnoremap <leader>q :q!<CR>
-
-" Split window
-    nnoremap <leader>vs :split<Return>
-    nnoremap <leader>vv :vsplit<Return>
-
-" Move between windows better
-"    map <leader>wh <C-w>h
-"    map <leader>wj <C-w>j
-"    map <leader>wk <C-w>k
-"    map <leader>wl <C-w>l
-
-
-" Increment Decrement
-    nnoremap + <C-a>
-    nnoremap - <C-x>
-
-
-" Show syntax color highlighting groups for word under cursor with Ctrl-Shift-P
-    nmap <C-S-P> :call <SID>SynStack()<CR>
-    function! <SID>SynStack()
-      if !exists("*synstack")
-        return
-      endif
-      echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
-    endfunction
-
-"----------------------------------------------------------------------
-"               Terminal
-"----------------------------------------------------------------------
-" Terminal Mappings
-    function! TerminalCreate()
-        let time_now = strftime("%T")
-        let terminal_name = "terminal_" . time_now
-        execute "terminal"
-        execute "set nonumber"
-        execute "file " . terminal_name
-        normal A
-    endfunction
-
-" Leader+z = create new terminal buffer BELOW
-    nnoremap <leader>zb :new<CR>:resize 10<CR>:call TerminalCreate()<CR>
-
-" Leader+zb = new terminal in a new window completely by itself
-    nnoremap <leader>zz :call TerminalCreate()<CR>
-
-" Leader+zv = new terminal in a new vertical split
-    nnoremap <leader>zv :vsplit<CR>:call TerminalCreate()<CR>
-
-"----------------------------------------------------------------------
 "                   General Re-mappings
 "----------------------------------------------------------------------
 
 " Remap Capital J/K to move up and down blocks
-    noremap J }
-    noremap K {
+    nnoremap J }
+    nnoremap K {
 
 " Remap ctrl-L and ctrl-H to scroll left & right
 "    map <C-L> 20zl
@@ -139,9 +53,6 @@
 " List all recently opened files and open a new buffer
     nnoremap gs :browse oldfiles<CR>
 
-" Set Ctrl+b as Make in VIM!
-    map <C-b> :!make<CR>
-
 " Set hh as jump out of 'vim' terminal mode
     tnoremap hh <C-\><C-n>
 
@@ -151,6 +62,100 @@
 " Shift Tab to cyle tabs
     nmap <S-Tab> :bn<CR>
     nmap <Tab> :bp<CR>
+
+"----------------------------------------------------------------------
+"               Map Leader to '<space>' 
+"               Map Llocalleader to \\
+"----------------------------------------------------------------------
+
+    let mapleader=' '
+    let maplocalleader = '\'
+
+" Turn off search highlight bullshit to Comma + Leader/space
+    nnoremap ,<leader> :nohlsearch<CR>
+
+" FZF to leader+f
+    nnoremap <leader>f :FZF<CR>
+
+" Goyo start Writing!
+    nnoremap <leader>G :Goyo<CR>
+
+" Mac open dictionary under word cursor
+    nnoremap <silent> <leader>? :!open dict://<cword><cr><cr>
+
+" Open URL or thing in default browser or whatever
+    nnoremap <silent> <leader>@ :!open <cfile><cr><cr>
+
+" Delete Buffer, but keep the window open
+    nnoremap <leader>d :bp\|bd! #<CR>
+
+" Jumplist stuff -> Backward and forward in vim jumps
+    nnoremap <leader>i <C-i>
+    nnoremap <leader>o <C-o>
+
+" Fixing vim because I break it Later -> Move between blocks 'better'
+    nnoremap <leader>j J
+
+" Preview Marks!
+    nnoremap  <leader>m :marks<CR>
+
+" Copy & Paste into vim in normal mode
+    noremap <leader>p  "+p
+    noremap <leader>y  "+y
+
+" Leader r is open register
+    nnoremap <leader>r :reg<CR>
+
+" Quicksave and Quickquit in vim!
+    nnoremap <leader>s :update<cr>
+    nnoremap <leader>q :q!<CR>
+
+" Split window
+    nnoremap <leader>vs :split<Return>
+    nnoremap <leader>vv :vsplit<Return>
+
+" Move between windows better
+"    map <leader>wh <C-w>h
+"    map <leader>wj <C-w>j
+"    map <leader>wk <C-w>k
+"    map <leader>wl <C-w>l
+
+
+" Increment Decrement Numbers
+    nnoremap + <C-a>
+    nnoremap - <C-x>
+
+
+" Show syntax color highlighting groups for word under cursor with Ctrl-Shift-P
+    nmap <C-S-P> :call <SID>SynStack()<CR>
+    function! <SID>SynStack()
+      if !exists("*synstack")
+        return
+      endif
+      echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
+    endfunction
+
+"----------------------------------------------------------------------
+"               Terminal
+"----------------------------------------------------------------------
+" Terminal Mappings
+    function! TerminalCreate()
+        let time_now = strftime("%T")
+        let terminal_name = "terminal_" . time_now
+        execute "terminal"
+        execute "set nonumber"
+        execute "file " . terminal_name
+        normal A
+    endfunction
+
+" Leader+z = create new terminal buffer BELOW
+    nnoremap <leader>zb :new<CR>:resize 10<CR>:call TerminalCreate()<CR>
+
+" Leader+zb = new terminal in a new window completely by itself
+    nnoremap <leader>zz :call TerminalCreate()<CR>
+
+" Leader+zv = new terminal in a new vertical split
+    nnoremap <leader>zv :vsplit<CR>:call TerminalCreate()<CR>
 
 "----------------------------------------------------------------------
 "                           Snippets!
