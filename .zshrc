@@ -74,12 +74,12 @@ SPACESHIP_PROMPT_ORDER=(
     alias dog='ccat'                         # Use that new ccat plugin
 
 # Vim to Nvim
-    export VISUAL=nvim                       # Nvim Stuff so that the haters know
-    alias v=nvim                             # Nvim Stuff so that the haters know 
-    alias vim=nvim                           # Nvim Stuff so that the haters know
+    export VISUAL=nvim                       
+    alias v=nvim                            
+    alias vim=nvim                         
     alias vimrc='vim $HOME/.config/nvim/init.vim' # Open nvimrc in nvim
     alias ctags="`brew --prefix`/bin/ctags"  # Ctags alias
-    alias bp='vim ~/.zshrc'           # Get to bash-profile faster
+    alias bp='vim ~/.zshrc'                  # Get to bash-profile faster
 
 # I HAVE SWITCHED TO EXA
     alias l="exa -FG"                         # Just make ls  chill
