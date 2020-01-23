@@ -58,7 +58,8 @@
     set wildignore+=tags
     set wildignore+=*.tar.*
     set noswapfile                 " NO SWAP FILES
-    set wildcharm=<C-z>            "Juggling with buffers
+    set wildcharm=<C-z>            " Juggling with buffers
+    set autoread                   " Make Vim reload files -> Good for Chrome DevTools
 
 " Disable automatic comment insertion
     autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
