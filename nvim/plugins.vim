@@ -1,4 +1,4 @@
-"15 ________    ___      ___  ___   _____ ______    ________   ________
+" ________    ___      ___  ___   _____ ______    ________   ________
 " |\   ___  \ |\  \    /  /||\  \ |\   _ \  _   \ |\   __  \ |\   ____\
 " \ \  \\ \  \\ \  \  /  / /\ \  \\ \  \\\__\ \  \\ \  \|\  \\ \  \___|
 "  \ \  \\ \  \\ \  \/  / /  \ \  \\ \  \\|__| \  \\ \   _  _\\ \  \
@@ -16,16 +16,16 @@
     Plug 'sheerun/vim-polyglot'
     Plug 'itchyny/lightline.vim'
     Plug 'ryanoasis/vim-devicons'
-    Plug 'https://github.com/ap/vim-css-color'
     Plug 'https://github.com/cocopon/colorswatch.vim'
     " Moving around
     Plug '/usr/local/opt/fzf'
     Plug 'junegunn/fzf.vim'
-    Plug 'scrooloose/nerdtree'
+    Plug 'preservim/nerdtree'
+    Plug 'Xuyuanp/nerdtree-git-plugin'
     " Essential
     Plug 'tpope/vim-fugitive'
     Plug 'tpope/vim-surround'
-    Plug 'jiangmiao/auto-pairs'
+    "Plug 'jiangmiao/auto-pairs'
     Plug 'vim-scripts/The-NERD-Commenter'
     Plug 'idanarye/vim-smile'
     " Git 
@@ -36,8 +36,10 @@
     Plug 'junegunn/limelight.vim'
     Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install'  }
     Plug 'vimwiki/vimwiki'
+    Plug 'arthurxavierx/vim-unicoder'
+    "Plug 'chrisbra/unicode.vim'
     " HTML
-    Plug 'mattn/emmet-vim'
+    "Plug 'mattn/emmet-vim'
     Plug 'turbio/bracey.vim'
     " NEXT LEVEL SHIT
     Plug 'mhinz/vim-grepper'
@@ -47,9 +49,16 @@
     " Tmux
     Plug 'christoomey/vim-tmux-navigator'
     " Low-key messes everything up
+    Plug 'roman/golden-ratio'
     Plug 'Yggdroot/indentLine'
     call plug#end()
 
+
+"----------------------------------------------------------------------
+"                       golden-ratio
+"----------------------------------------------------------------------
+      let g:golden_ratio_autocommand = 0
+" let b:golden_ratio_resizing_ignored = 1 >> "~/.config/nvim/ftplugin/nerdtree.vim"
 
 "----------------------------------------------------------------------
 "                       FZF
@@ -84,7 +93,6 @@
              \ norelativenumber
              \ signcolumn=no
      endfunction
-
 
 "----------------------------------------------------------------------
 "                       Vim-Grepper
@@ -136,6 +144,19 @@
 
 " leader+n = ctrl + w to move between windows
     nnoremap  <leader>n :NERDTreeRefreshRoot<CR>
+
+let g:NERDTreeIndicatorMapCustom = {
+    \ "Modified"  : "✹",
+    \ "Staged"    : "✚",
+    \ "Untracked" : "✭",
+    \ "Renamed"   : "➜",
+    \ "Unmerged"  : "═",
+    \ "Deleted"   : "✖",
+    \ "Dirty"     : "✗",
+    \ "Clean"     : "✔︎",
+    \ 'Ignored'   : '☒',
+    \ "Unknown"   : "?"
+    \ }
 
 "----------------------------------------------------------------------
 "                       VistaVim
@@ -276,12 +297,6 @@
     autocmd BufNew,BufEnter *.html,*.css, execute "IndentLinesToggle"
 
 "----------------------------------------------------------------------
-"                       TMUX-NAVIGATOR
-"----------------------------------------------------------------------
-
-
-
-"----------------------------------------------------------------------
 "                       Devicons
 "----------------------------------------------------------------------
 
@@ -311,6 +326,7 @@ call NERDTreeHighlightFile('php', 'Magenta', 'none', '#ff00ff', '#151515')
 call NERDTreeHighlightFile('py', 'Green', 'none', '#51a77e', '#151515')
 call NERDTreeHighlightFile('styl', 'cyan', 'none', 'cyan', '#151515')
 call NERDTreeHighlightFile('yml', 'yellow', 'none', 'yellow', '#151515')
+
 
 "----------------------------------------------------------------------
 "                       CocNVIM

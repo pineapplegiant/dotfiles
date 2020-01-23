@@ -17,7 +17,9 @@
 
 " Remap Capital J/K to move up and down blocks
     nnoremap J }
+    vmap J }
     nnoremap K {
+    vmap K {
 
 " Remap ctrl-L and ctrl-H to scroll left & right
 "    map <C-L> 20zl
@@ -103,6 +105,9 @@
     noremap <leader>p  "+p
     noremap <leader>y  "+y
 
+" Leader e helps make ChromeDevTools better for changing filesystem
+    nnoremap <leader>e :e!<CR>
+
 " Leader r is open register
     nnoremap <leader>r :reg<CR>
 
@@ -178,7 +183,7 @@ endfunction
 
 " Pandoc Remaps
     autocmd BufRead,BufNewFile *.md,*.markdown set filetype=markdown
-    autocmd FileType markdown nnoremap ,comp :update<CR>:call PandocCreate()<CR>
+    autocmd FileType markdown nnoremap <F7> :update<CR>:call PandocCreate()<CR>
 
 " Make/Compile current Latex File
 function! LatexCreate()
@@ -228,6 +233,7 @@ endfunction
 
 " YAML snippet
     nnoremap ,yaml :-1read $HOME/.config/nvim/snippets/yaml.md<CR>
+    nnoremap ,yaml1 :-1read $HOME/.config/nvim/snippets/yamlcs.md<CR>
 
 " MLK's Dream Speech
     nnoremap ,mlk :read $HOME/.config/nvim/snippets/mlk.txt<CR>

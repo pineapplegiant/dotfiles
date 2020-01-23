@@ -1,6 +1,12 @@
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 #----------------------------------------------------------------------
+#       NOTES
+#----------------------------------------------------------------------
+#
+# ssh rodrguil@flip2.engr.oregonstate.edu
+#
+#----------------------------------------------------------------------
 #       Set Spaceship ZSH as a prompt "npm install -g spaceship"
 #----------------------------------------------------------------------
 #
@@ -21,6 +27,7 @@
     SPACESHIP_HOST_SUFFIX=""
 # Directory
     SPACESHIP_DIR_TRUNC=0
+    SPACESHIP_DIR_TRUNC_REPO=false
     SPACESHIP_DIR_PREFIX="["
     SPACESHIP_DIR_SUFFIX="] "
 # Symbol
@@ -100,7 +107,7 @@ SPACESHIP_PROMPT_ORDER=(
     alias c="clear"
 
 # WebDev Baby
-    alias web='browser-sync start --server --files "*"'
+    alias web='google "https://www.browsersync.io/docs/command-line"'
 
 #----------------------------------------------------------------------
 #                       Functions
