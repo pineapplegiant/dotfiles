@@ -59,7 +59,8 @@
     set wildignore+=*.tar.*
     set noswapfile                 " NO SWAP FILES
     set wildcharm=<C-z>            " Juggling with buffers
-    set autoread                   " Make Vim reload files -> Good for Chrome DevTools
+    au CursorHold,CursorHoldI * checktime "Actually make vim reload based on cursor sitting there => CHROME DEV TOOLS
+
 
 " Disable automatic comment insertion
     autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o

@@ -195,5 +195,12 @@ SPACESHIP_PROMPT_ORDER=(
 # Load zsh-autosuggestions
     source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 
-# Load zsh-syntax-highlighting; should be last.
+# Load zsh-syntax-highlighting
     source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+# Load zsh-history-substring-search 
+    source /usr/local/share/zsh-history-substring-search/zsh-history-substring-search.zsh
+
+# To search via vim keybinginds
+    bindkey -M vicmd 'k' history-substring-search-up
+    bindkey -M vicmd 'j' history-substring-search-down
