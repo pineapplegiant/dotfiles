@@ -68,9 +68,11 @@
 " Just softabs for the homies
     autocmd Filetype css setlocal  tabstop=2 shiftwidth=2 softtabstop=2  " Set tabs to 2 spaces in html and css
     autocmd Filetype html setlocal  tabstop=2 shiftwidth=2 softtabstop=2 " Set tabs to 2 spaces in html and css
-    autocmd Filetype js  setlocal  tabstop=2 shiftwidth=2 softtabstop=2  " Set tabs to 2 spaces in html and css
-
+    autocmd Filetype javascript  setlocal  tabstop=2 shiftwidth=2 softtabstop=2  " Set tabs to 2 spaces in html and css
 
 " Turn off Cursorline in insert mode
     autocmd InsertLeave,WinEnter * set cursorline
     autocmd InsertEnter,WinLeave * set nocursorline
+
+"Set Handlebars up like regular ol' HTML
+    autocmd Filetype *.handlebars set filetype=html

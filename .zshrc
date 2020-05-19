@@ -103,11 +103,14 @@ SPACESHIP_PROMPT_ORDER=(
     alias rr="source ~/.zshrc && tmux source-file ~/.tmux.conf" # Source bash profile & Tmux
     alias ..="cd .."                         # Shortcut up a directory
     alias ...="cd ../.."                     # Shorcut 2 directory
-    alias time="time -lp"                    # Time is verbose
     alias c="clear"
 
 # WebDev Baby
-    alias web='google "https://www.browsersync.io/docs/command-line"'
+    URLprefix="http://www."
+    function web() 
+    {
+        open "$URLprefix$@" -a "Google Chrome"
+    }
 
 #----------------------------------------------------------------------
 #                       Functions
