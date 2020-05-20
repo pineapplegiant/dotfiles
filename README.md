@@ -23,5 +23,26 @@
 * [Vscode](https://code.visualstudio.com "VSCode's homepage") - Can't lie, I use this sometimes. It works.
 
 
-## Setup
-I'll get to it eventually...
+## Setup (WIP)
+* Mac -> Mac-setup.sh
+
+##### Brew Packages I currently fancy
+exa
+fzf
+htop
+ncurses
+neofetch
+pandoc
+pandoc-citeproc
+ripgrep
+tig
+tldr
+tmux
+tree
+unzip
+z
+zsh
+zsh-autosuggestions
+zsh-completions
+zsh-history-substring-search
+zsh-syntax-highlighting
