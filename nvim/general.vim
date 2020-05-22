@@ -27,8 +27,9 @@
     filetype plugin indent on
     syntax enable                  " Turn on Syntax highlighting
     set number                     " Turn on Line Number
-    set guicursor=n-v-c:block-Cursor " Hopefully make cursor better in insert
-    set guicursor=n:blinkwait800-blinkon400-blinkoff250
+    set guicursor=n-v-c:block,i-ci-ve:ver25,r-cr:hor20,o:hor50 "Fix cursor in insert mode
+     \,a:blinkwait700-blinkoff400-blinkon250-Cursor/lCursor
+     \,sm:block-blinkwait175-blinkoff150-blinkon175
     set hidden                     " Ignorecase when searching stuff
     set ignorecase                 " Ignorecase when searching stuff
     set spelllang=en_us            " Turn on spell check?
