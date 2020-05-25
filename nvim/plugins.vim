@@ -177,8 +177,6 @@ let g:NERDTreeIndicatorMapCustom = {
 "Let Vista run explicitly
     autocmd VimEnter * call vista#RunForNearestMethodOrFunction()
 
-    autocmd BufEnter * if winnr("$") == 1 && vista#sidebar#IsVisible() | q | endif
-
 "----------------------------------------------------------------------
 "                       Lightline
 "----------------------------------------------------------------------
