@@ -104,6 +104,13 @@ SPACESHIP_PROMPT_ORDER=(
     alias ..="cd .."                         # Shortcut up a directory
     alias ...="cd ../.."                     # Shorcut 2 directory
     alias c="clear"
+# Better Less
+    export LESS="-iXR --RAW-CONTROL-CHARS"
+
+    function lat()
+    {
+        bat --color=always $1 | less
+    }
 
 # WebDev Baby
     URLprefix="http://www."
@@ -207,3 +214,4 @@ SPACESHIP_PROMPT_ORDER=(
 # To search via vim keybinginds
     bindkey -M vicmd 'k' history-substring-search-up
     bindkey -M vicmd 'j' history-substring-search-down
+
