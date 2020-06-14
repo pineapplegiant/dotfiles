@@ -1,23 +1,31 @@
 {
-  "workspace.ignoredFiletypes": [
-      "markdown",
-      "log",
-      "txt",
-      "help"
-  ],
+  "workspace.ignoredFiletypes": ["markdown", "log", "txt", "help"],
+  "python.pythonPath": "/usr/local/bin/python3",
   "suggest.minTriggerInputLength": 0,
   "suggest.echodocSupport": true,
   "suggest.maxCompleteItemCount": 20,
-  "coc.preferences.formatOnSaveFiletypes": ["json", "css", "html", "markdown", "dart"],
-  "eslint.filetypes": ["javascript", "typescript", "typescriptreact", "javascriptreact", "typescript.tsx"],
+  "coc.preferences.formatOnSaveFiletypes": [
+    "json",
+    "css",
+    "html",
+    "markdown",
+    "dart"
+  ],
+  "eslint.filetypes": [
+    "javascript",
+    "typescript",
+    "typescriptreact",
+    "javascriptreact",
+    "typescript.tsx"
+  ],
   "diagnostic.errorSign": "•",
   "diagnostic.warningSign": "•",
   "diagnostic.infoSign": "•",
   "languageserver": {
-  "golang": {
-    "command": "gopls",
-    "rootPatterns": ["go.mod"],
-    "filetypes": ["go"]
+    "golang": {
+      "command": "gopls",
+      "rootPatterns": ["go.mod"],
+      "filetypes": ["go"]
     }
   }
 }
