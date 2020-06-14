@@ -133,11 +133,16 @@
 "----------------------------------------------------------------------
 "                       Nerdtree
 "----------------------------------------------------------------------
+" Show dotfiles dude
+    let NERDTreeShowHidden=1
+    let g:NERDTreeMapJumpPrevSibling=""
+    let g:NERDTreeMapJumpNextSibling=""
+
 " Map nerdtree to Ctrl+n
     map <C-n> :NERDTreeToggle<CR>
 
 " Nerdtree size smaller
-    let g:NERDTreeWinSize=18
+    let g:NERDTreeWinSize=20
 
 " Let Nerdtree close if it's the last window open!
     autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
@@ -197,23 +202,6 @@ let g:NERDTreeIndicatorMapCustom = {
           \   'gitbranch': 'fugitive#head'
           \ },
           \ }
-
-"----------------------------------------------------------------------
-"                       VIMUX
-"----------------------------------------------------------------------
-
-"" Prompt for a command to run
-    "noremap <leader>vp :VimuxPromptCommand<CR>
-
-"" Run last command executed by VimuxRunCommand
-    "noremap <leader>vl :VimuxRunLastCommand<CR>
-
-"" Inspect runner pane
-    "noremap <leader>vi :VimuxInspectRunner<CR>
-
-"" Zoom the tmux runner pane
-    "noremap <leader>vz :VimuxZoomRunner<CR>
-
 
 "----------------------------------------------------------------------
 "                   Markdown Preview
