@@ -79,6 +79,8 @@
 " FZF to leader+f
     nnoremap <leader>f :FZF<CR>
 
+" Run Last commind in tmux window
+    nnoremap ,gcc :!tmux send-keys -t1 "\!! " ENTER <CR><CR>
 " Goyo start Writing!
     nnoremap <leader>G :Goyo<CR>
 
