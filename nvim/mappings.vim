@@ -42,12 +42,14 @@
     vmap > >gv
 
 " Lots of Time-Stamp Options here in normal/insert mode to paste timestamp and F4 To Date Stamp
+    nnoremap <F3> "=strftime("%H:%M:%S")<CR>p
+    inoremap <F3> <C-R>=strftime("%H:%M:%S")<CR>
     nnoremap <F4> "=strftime("%Y-%m-%d")<CR>p
     inoremap <F4> <C-R>=strftime("%Y-%m-%d")<CR>
-    nnoremap <F5> "=strftime("%A %B %d %Y, at %I:%M %p %Z")<CR>P
-    inoremap <F5> <C-R>=strftime("%A %B %d, at %I:%M %p %Z")<CR>
-    nnoremap <F6> "=strftime("%H:%M:%S")<CR>p
-    inoremap <F6> <C-R>=strftime("%H:%M:%S")<CR>
+    nnoremap <F5> "=strftime("%Y-%m-%d %H:%M:%S")<CR>P
+    inoremap <F5> <C-R>=strftime("%Y-%m-%d %H:%M:%S")<CR>
+    nnoremap <F6> "=strftime("%A %B %d %Y, at %I:%M %p %Z")<CR>P
+    inoremap <F6> <C-R>=strftime("%A %B %d, at %I:%M %p %Z")<CR>
 
 " List all buffers and jump to them using 'gb'
     nnoremap gb :ls<CR>:b<Space>
