@@ -9,8 +9,6 @@
 #----------------------------------------------------------------------
 #       Set Spaceship ZSH as a prompt "npm install -g spaceship"
 #----------------------------------------------------------------------
-#
-# Set Spaceship ZSH as a prompt
     autoload -U promptinit; promptinit
     prompt spaceship
 
@@ -41,7 +39,7 @@ SPACESHIP_PROMPT_ORDER=(
   git           # Git section (git_branch + git_status)
   hg            # Mercurial section (hg_branch  + hg_status)
   package       # Package version
-#  node          # Node.js section
+  node          # Node.js section
 #  ruby          # Ruby section
 #  elixir        # Elixir section
 #  xcode         # Xcode section
@@ -143,6 +141,12 @@ SPACESHIP_PROMPT_ORDER=(
         open $@ -a "Firefox"
     }
 
+# Notion script
+    function notion()
+    {
+         pipenv run python /Users/Gmo/Blog/notion_scripts.py -f $@
+    }
+
 #----------------------------------------------------------------------
 #                       VI stuff thanks Luke
 #----------------------------------------------------------------------
@@ -195,8 +199,8 @@ SPACESHIP_PROMPT_ORDER=(
     preexec() { echo -ne '\e[5 q' ;} # Use beam shape cursor for each new prompt.
 
 # Edit line in vim with ctrl-e:
-    autoload edit-command-line; zle -N edit-command-line
-    bindkey '^e' edit-command-line
+    #autoload edit-command-line; zle -N edit-command-line
+    #bindkey '^e' edit-command-line
 
 
 #----------------------------------------------------------------------
@@ -211,7 +215,8 @@ SPACESHIP_PROMPT_ORDER=(
 # Load zsh-history-substring-search 
     source /usr/local/share/zsh-history-substring-search/zsh-history-substring-search.zsh
 
-# To search via vim keybinginds
+# To search via vim keybindings
     bindkey -M vicmd 'k' history-substring-search-up
     bindkey -M vicmd 'j' history-substring-search-down
 
+export PATH="/usr/local/sbin:$PATH"
