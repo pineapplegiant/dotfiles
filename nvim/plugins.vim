@@ -12,53 +12,36 @@
 "----------------------------------------------------------------------
     " Make sure you have vim-plug installed ~/.local/share/nvim/site/autoload/plug.vim
     call plug#begin('~/.local/share/nvim/plugged')
-    " Colors & Pretty
+    " Colors, Pretty & Fun
     Plug 'sheerun/vim-polyglot'
     Plug 'itchyny/lightline.vim'
-    Plug 'ryanoasis/vim-devicons'
-    Plug 'https://github.com/cocopon/colorswatch.vim'
-    " Moving around
+    Plug 'idanarye/vim-smile'
+    "" Moving around
     Plug '/usr/local/opt/fzf'
     Plug 'junegunn/fzf.vim'
-    Plug 'preservim/nerdtree'
-    Plug 'Xuyuanp/nerdtree-git-plugin'
-    " Essential
-    Plug 'tpope/vim-fugitive'
+    "" Essential
     Plug 'tpope/vim-surround'
-    "Plug 'jiangmiao/auto-pairs'
+    Plug 'jiangmiao/auto-pairs'
     Plug 'vim-scripts/The-NERD-Commenter'
-    Plug 'idanarye/vim-smile'
-    " Git 
+    "" Git 
     Plug 'airblade/vim-gitgutter'
-    " Prose & Writing
+    "" Prose & Writing
     Plug 'junegunn/goyo.vim'
     Plug 'reedes/vim-pencil'
     Plug 'junegunn/limelight.vim'
     Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install'  }
-    Plug 'vimwiki/vimwiki'
     Plug 'arthurxavierx/vim-unicoder'
-    "Plug 'chrisbra/unicode.vim'
-    " HTML
-    "Plug 'mattn/emmet-vim'
-    Plug 'turbio/bracey.vim'
-    " NEXT LEVEL SHIT
+    Plug 'chrisbra/unicode.vim'
+    "" NEXT LEVEL SHIT
     Plug 'mhinz/vim-grepper'
-    "Plug 'Shougo/denite.nvim', { 'do' : ':UpdateRemotePlugins' }
     Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
     Plug 'liuchengxu/vista.vim'
     " Tmux
     Plug 'christoomey/vim-tmux-navigator'
     " Low-key messes everything up
-    Plug 'roman/golden-ratio'
     Plug 'Yggdroot/indentLine'
     call plug#end()
 
-
-"----------------------------------------------------------------------
-"                       golden-ratio
-"----------------------------------------------------------------------
-      let g:golden_ratio_autocommand = 0
-" let b:golden_ratio_resizing_ignored = 1 >> "~/.config/nvim/ftplugin/nerdtree.vim"
 
 "----------------------------------------------------------------------
 "                       FZF
@@ -122,46 +105,38 @@
 
 
 "----------------------------------------------------------------------
-"                       Airline
+"                       Netrw
 "----------------------------------------------------------------------
-    "let g:airline_theme='tokyometro'                " Airline & Themes enabled
-    "let g:airline_powerline_fonts = 1               " Let there be powerline for pretty arrow
-    "let g:airline_section_b = '%{strftime("%c")}'
-    "let g:airline_section_y = 'BN: %{bufnr("%")}'
-    "let g:airline#extensions#tabline#enabled = 1   " Tabs for airline
+    let g:netrw_banner = 0 "Remove Directory banner
+    let g:netrw_liststyle = 3 "List Netrw like a tree
+    let g:netrw_browse_split = 0 "Opens Netrw in same window (default)
+    let g:netrw_altv = 1
+    let g:netrw_winsize = 20 " 25% of page
+    let g:NetrwIsOpen=0
 
-"----------------------------------------------------------------------
-"                       Nerdtree
-"----------------------------------------------------------------------
-" Show dotfiles dude
-    let NERDTreeShowHidden=1
-    let g:NERDTreeMapJumpPrevSibling=""
-    let g:NERDTreeMapJumpNextSibling=""
+    " Close Netrw if only thing open
+    autocmd WinEnter * if winnr('$') == 1 && getbufvar(winbufnr(winnr()), "&filetype") == "netrw" || &buftype == 'quickfix' |q|endif
 
-" Map nerdtree to Ctrl+n
-    map <C-n> :NERDTreeToggle<CR>
+function! ToggleNetrw()
+    if g:NetrwIsOpen
+        let i = bufnr("$")
+        while (i >= 1)
+            if (getbufvar(i, "&filetype") == "netrw")
+                silent exe "bwipeout " . i 
+            endif
+            let i-=1
+        endwhile
+        let g:NetrwIsOpen=0
+    else
+        let g:NetrwIsOpen=1
+        silent Lexplore
+    endif
+endfunction
 
-" Nerdtree size smaller
-    let g:NERDTreeWinSize=20
+" Toggle Netrw
+noremap <silent> <C-n> :call ToggleNetrw()<CR><C-w><C-w>
 
-" Let Nerdtree close if it's the last window open!
-    autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
-" leader+n = ctrl + w to move between windows
-    nnoremap  <leader>n :NERDTreeRefreshRoot<CR>
-
-let g:NERDTreeIndicatorMapCustom = {
-    \ "Modified"  : "✹",
-    \ "Staged"    : "✚",
-    \ "Untracked" : "✭",
-    \ "Renamed"   : "➜",
-    \ "Unmerged"  : "═",
-    \ "Deleted"   : "✖",
-    \ "Dirty"     : "✗",
-    \ "Clean"     : "✔︎",
-    \ 'Ignored'   : '☒',
-    \ "Unknown"   : "?"
-    \ }
 
 "----------------------------------------------------------------------
 "                       VistaVim
@@ -260,18 +235,6 @@ let g:NERDTreeIndicatorMapCustom = {
     autocmd! User GoyoEnter nested call <SID>goyo_enter()
     autocmd! User GoyoLeave nested call <SID>goyo_leave()
 
-
-"----------------------------------------------------------------------
-"                       EMMET
-"----------------------------------------------------------------------
-    "let g:user_emmet_leader_key='<Tab>'
-
-"----------------------------------------------------------------------
-"                       VimWiki
-"----------------------------------------------------------------------
-    let g:vimwiki_dir_link='index'
-    let g:vimwiki_list = [{'path': '~/vimwiki/'}]
-
 "----------------------------------------------------------------------
 "                       Indent-Line
 "----------------------------------------------------------------------
@@ -281,38 +244,6 @@ let g:NERDTreeIndicatorMapCustom = {
 
     autocmd BufNew,BufEnter *.md,*.markdown,*.wiki execute "set conceallevel=0"
     autocmd BufNew,BufEnter *.html,*.css, execute "IndentLinesToggle"
-
-"----------------------------------------------------------------------
-"                       Devicons
-"----------------------------------------------------------------------
-
-" NERDTrees File highlighting
-function! NERDTreeHighlightFile(extension, fg, bg, guifg, guibg)
- exec 'autocmd FileType nerdtree highlight ' . a:extension .' ctermbg='. a:bg .' ctermfg='. a:fg .' guibg='. a:guibg .' guifg='. a:guifg
- exec 'autocmd FileType nerdtree syn match ' . a:extension .' #^\s\+.*'. a:extension .'$#'
-endfunction
-
-call NERDTreeHighlightFile('bashprofile', 'Gray', 'none', '#686868', '#151515')
-call NERDTreeHighlightFile('bashrc', 'Gray', 'none', '#686868', '#151515')
-call NERDTreeHighlightFile('coffee', 'Red', 'none', 'red', '#151515')
-call NERDTreeHighlightFile('conf', 'yellow', 'none', 'yellow', '#151515')
-call NERDTreeHighlightFile('config', 'yellow', 'none', 'yellow', '#151515')
-call NERDTreeHighlightFile('css', 'cyan', 'none', 'cyan', '#151515')
-call NERDTreeHighlightFile('ds_store', 'Gray', 'none', '#686868', '#151515')
-call NERDTreeHighlightFile('gitconfig', 'Gray', 'none', '#686868', '#151515')
-call NERDTreeHighlightFile('gitignore', 'Gray', 'none', '#686868', '#151515')
-call NERDTreeHighlightFile('html', 'yellow', 'none', 'yellow', '#151515')
-call NERDTreeHighlightFile('ini', 'yellow', 'none', 'yellow', '#151515')
-call NERDTreeHighlightFile('inputrc', 'Gray', 'none', '#686868', '#151515')
-call NERDTreeHighlightFile('jade', 'green', 'none', 'green', '#151515')
-call NERDTreeHighlightFile('js', 'Red', 'none', '#ffa500', '#151515')
-call NERDTreeHighlightFile('json', 'yellow', 'none', 'yellow', '#151515')
-call NERDTreeHighlightFile('md', 'blue', 'none', '#3366FF', '#151515')
-call NERDTreeHighlightFile('php', 'Magenta', 'none', '#ff00ff', '#151515')
-call NERDTreeHighlightFile('py', 'Green', 'none', '#51a77e', '#151515')
-call NERDTreeHighlightFile('styl', 'cyan', 'none', 'cyan', '#151515')
-call NERDTreeHighlightFile('yml', 'yellow', 'none', 'yellow', '#151515')
-
 
 "----------------------------------------------------------------------
 "                       CocNVIM

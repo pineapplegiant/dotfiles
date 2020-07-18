@@ -26,6 +26,7 @@
     set nocompatible              " be iMproved, required for normie Vim
     filetype plugin indent on
     syntax enable                  " Turn on Syntax highlighting
+    set nolazyredraw               " Hopefully makes it so nvim doesn't get buggy screen probs
     set number                     " Turn on Line Number
     set guicursor=n-v-c:block,i-ci-ve:ver25,r-cr:hor20,o:hor50 "Fix cursor in insert mode
      \,a:blinkwait700-blinkoff400-blinkon250-Cursor/lCursor
@@ -50,8 +51,8 @@
     set title                      " Update the title of the window or the terminal
     set wildmode=longest,list,full " List as much as possible
     set wildmenu                   " Visual autocomplete for command menu
-    set splitbelow                 " Splits open at the bottom, which is non-retarded, unlike vim defaults.
-    set splitright                 " Splits open at the right, which is non-retarded, unlike vim defaults.
+    set splitbelow                 " Splits open at the bottom, unlike vim defaults.
+    set splitright                 " Splits open at the right, unlike vim defaults.
     set wildignorecase
     set wildignore=*.swp,*.bak
     set wildignore+=*.pyc,*.class,*.sln,*.Master,*.csproj,*.csproj.user,*.cache,*.dll,*.pdb,*.min.*
@@ -60,13 +61,11 @@
     set wildignore+=*.tar.*
     set noswapfile                 " NO SWAP FILES
     set wildcharm=<C-z>            " Juggling with buffers
-    au CursorHold,CursorHoldI * checktime "Actually make vim reload based on cursor sitting there => CHROME DEV TOOLS
-
 
 " Disable automatic comment insertion
     autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 
-" Just softabs for the homies
+"" Just softabs for the homies
     autocmd Filetype css setlocal  tabstop=2 shiftwidth=2 softtabstop=2  " Set tabs to 2 spaces in html and css
     autocmd Filetype html setlocal  tabstop=2 shiftwidth=2 softtabstop=2 " Set tabs to 2 spaces in html and css
     autocmd Filetype javascript  setlocal  tabstop=2 shiftwidth=2 softtabstop=2  " Set tabs to 2 spaces in html and css
@@ -77,3 +76,15 @@
 
 "Set Handlebars up like regular ol' HTML
     autocmd Filetype *.handlebars set filetype=html
+augroup vimrc
+  autocmd!
+
+" Hopefully delete Netrw mappings
+  autocmd FileType netrw call s:RemoveNetrwMap()
+augroup END
+
+function s:RemoveNetrwMap()
+  if hasmapto('<Plug>NetrwRefresh')
+    unmap <buffer> <C-l>
+  endif
+endfunction

@@ -21,7 +21,7 @@
     nnoremap K {
     vmap K {
 
-" Remap ctrl-L and ctrl-H to scroll left & right
+" Remap ctrl-L and ctrl-H to scroll left & right -> Deleted bc tmuxplug
 "    map <C-L> 20zl
 "    map <C-H> 20zh
 
@@ -46,7 +46,7 @@
     inoremap <F3> <C-R>=strftime("%H:%M:%S")<CR>
     nnoremap <F4> "=strftime("%Y-%m-%d")<CR>p
     inoremap <F4> <C-R>=strftime("%Y-%m-%d")<CR>
-    nnoremap <F5> "=strftime("%Y-%m-%d %H:%M:%S")<CR>P
+    nnoremap <F5> a"<ESC>"=strftime("%Y-%m-%d %H:%M:%S")<CR>pa"<ESC>
     inoremap <F5> <C-R>=strftime("%Y-%m-%d %H:%M:%S")<CR>
     nnoremap <F6> "=strftime("%A %B %d %Y, at %I:%M %p %Z")<CR>P
     inoremap <F6> <C-R>=strftime("%A %B %d, at %I:%M %p %Z")<CR>
@@ -123,13 +123,6 @@
     nnoremap <leader>vs :split<Return>
     nnoremap <leader>vv :vsplit<Return>
 
-" Move between windows better
-"    map <leader>wh <C-w>h
-"    map <leader>wj <C-w>j
-"    map <leader>wk <C-w>k
-"    map <leader>wl <C-w>l
-
-
 " Increment Decrement Numbers
     nnoremap + <C-a>
     nnoremap - <C-x>
@@ -204,24 +197,24 @@ endfunction
 
 
 " Make/Compile current Groff MOM File
-function! GroffCreate()
-  let curr_file = expand('%:t')                             " Name of current file
-  let pdf_file = expand('%:r') . '.pdf'                     " Name of file with pdf extension
-  " Pipe the output and then open terminal and pdf
-  execute ':!pdfmom  -e ./' . curr_file . ' > ' . pdf_file
-  execute ':!open ' . pdf_file
-  execute ':!open -a "iterm.app"'
-endfunction
+"function! GroffCreate()
+  "let curr_file = expand('%:t')                             " Name of current file
+  "let pdf_file = expand('%:r') . '.pdf'                     " Name of file with pdf extension
+  "" Pipe the output and then open terminal and pdf
+  "execute ':!pdfmom  -e ./' . curr_file . ' > ' . pdf_file
+  "execute ':!open ' . pdf_file
+  "execute ':!open -a "iterm.app"'
+"endfunction
 
 " GNUroff (Groff) completions
-    autocmd BufRead,BufNewFile *.ms,*.me,*.mom set filetype=groff
-    autocmd FileType groff nnoremap ,ee i.EQ<CR>.EN<ESC>O<tab>
-    autocmd FileType groff nnoremap ,cc i\" <ESC>a
-    autocmd FileType groff nnoremap ,block :read $HOME/.config/nvim/snippets/blockGroff.txt<CR>jA
-    autocmd FileType groff nnoremap ,top :-1read $HOME/.config/nvim/snippets/topGroff.txt<CR>2jA <C-R>=strftime("%A %B %d %Y, at %I:%M %p %Z")<CR><ESC>jA 
-    autocmd FileType groff nnoremap ,mom :-1read $HOME/.config/nvim/snippets/momGroff.txt<CR>
-    autocmd FileType groff nnoremap ,groff :-1read $HOME/.config/nvim/snippets/groff.txt<CR>
-    autocmd FileType groff nnoremap ,comp :update<CR>:call GroffCreate()<CR>
+    "autocmd BufRead,BufNewFile *.ms,*.me,*.mom set filetype=groff
+    "autocmd FileType groff nnoremap ,ee i.EQ<CR>.EN<ESC>O<tab>
+    "autocmd FileType groff nnoremap ,cc i\" <ESC>a
+    "autocmd FileType groff nnoremap ,block :read $HOME/.config/nvim/snippets/blockGroff.txt<CR>jA
+    "autocmd FileType groff nnoremap ,top :-1read $HOME/.config/nvim/snippets/topGroff.txt<CR>2jA <C-R>=strftime("%A %B %d %Y, at %I:%M %p %Z")<CR><ESC>jA 
+    "autocmd FileType groff nnoremap ,mom :-1read $HOME/.config/nvim/snippets/momGroff.txt<CR>
+    "autocmd FileType groff nnoremap ,groff :-1read $HOME/.config/nvim/snippets/groff.txt<CR>
+    "autocmd FileType groff nnoremap ,comp :update<CR>:call GroffCreate()<CR>
 
 " School's C++ top snippet
     nnoremap ,top :-1read $HOME/.config/nvim/snippets/top.txt<CR>2jA <C-R>=strftime("%A %B %d %Y, at %I:%M %p %Z")<CR><ESC>jA 
