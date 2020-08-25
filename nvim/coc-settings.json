@@ -1,6 +1,6 @@
 {
   "workspace.ignoredFiletypes": ["markdown", "log", "txt", "help"],
-  "python.pythonPath": "/usr/local/bin/python3",
+  "python.jediEnabled": false,
   "suggest.minTriggerInputLength": 0,
   "suggest.echodocSupport": true,
   "suggest.maxCompleteItemCount": 20,
