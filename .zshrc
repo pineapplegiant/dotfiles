@@ -147,6 +147,18 @@ SPACESHIP_PROMPT_ORDER=(
          pipenv run python /Users/Gmo/Blog/notion_scripts.py -f $@
     }
 
+# Tmux create session
+    function tnew()
+    {
+         tmux new-session -s $@
+    }
+
+# Tmux script to rename window
+    function tname()
+    {
+         tmux rename-window $@
+    }
+
 #----------------------------------------------------------------------
 #                       VI stuff thanks Luke
 #----------------------------------------------------------------------
