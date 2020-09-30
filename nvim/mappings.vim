@@ -21,10 +21,6 @@
     nnoremap K {
     vmap K {
 
-" Remap ctrl-L and ctrl-H to scroll left & right -> Deleted bc tmuxplug
-"    map <C-L> 20zl
-"    map <C-H> 20zh
-
 " Set U as Ctrl R which means Redo
     nnoremap U <C-R>
 
@@ -66,6 +62,9 @@
 " Shift Tab to cyle tabs
     nmap <S-Tab> :bn<CR>
     nmap <Tab> :bp<CR>
+
+" <Ctrl-f> to search and replace
+    nnoremap <C-f> :%s/\<<C-r><C-w>\>//g<Left><Left>
 
 "----------------------------------------------------------------------
 "               Map Leader to '<space>' 
