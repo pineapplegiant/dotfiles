@@ -15,24 +15,23 @@
     " Colors, Pretty & Fun
     Plug 'sheerun/vim-polyglot'
     Plug 'itchyny/lightline.vim'
-    Plug 'idanarye/vim-smile'
-    "" Moving around
+    " Moving around
     Plug '/usr/local/opt/fzf'
     Plug 'junegunn/fzf.vim'
-    "" Essential
+    " Essential
     Plug 'tpope/vim-surround'
     Plug 'jiangmiao/auto-pairs'
     Plug 'vim-scripts/The-NERD-Commenter'
-    "" Git 
+    " Git 
     Plug 'airblade/vim-gitgutter'
-    "" Prose & Writing
+    " Prose & Writing
     Plug 'junegunn/goyo.vim'
     Plug 'reedes/vim-pencil'
-    Plug 'junegunn/limelight.vim'
+    "Plug 'junegunn/limelight.vim'
     Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install'  }
     Plug 'arthurxavierx/vim-unicoder'
     Plug 'chrisbra/unicode.vim'
-    "" NEXT LEVEL SHIT
+    " NEXT LEVEL SHIT
     Plug 'mhinz/vim-grepper'
     Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
     Plug 'liuchengxu/vista.vim'
@@ -103,7 +102,6 @@
         \ :cfdo %s/<C-r>s//g \| update
          \<Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left>
 
-
 "----------------------------------------------------------------------
 "                       Netrw
 "----------------------------------------------------------------------
@@ -111,7 +109,7 @@
     let g:netrw_liststyle = 3 "List Netrw like a tree
     let g:netrw_browse_split = 0 "Opens Netrw in same window (default)
     let g:netrw_altv = 1
-    let g:netrw_winsize = 20 " 25% of page
+    let g:netrw_winsize = 10 " 25% of page
     let g:NetrwIsOpen=0
 
     " Close Netrw if only thing open
@@ -169,12 +167,11 @@ noremap <silent> <C-n> :call ToggleNetrw()<CR><C-w><C-w>
           \ 'colorscheme': 'spaceduck',
           \ 'active': {
           \   'left': [ [ 'mode', 'paste' ],
-          \             [ 'cocstatus', 'readonly', 'filename', 'modified', 'gitbranch', 'method'] ]
+          \             [ 'cocstatus', 'readonly', 'filename', 'modified', 'method'] ]
           \ },
           \ 'component_function': {
           \   'method': 'NearestMethodOrFunction',
           \   'cocstatus': 'coc#status',
-          \   'gitbranch': 'fugitive#head'
           \ },
           \ }
 
@@ -184,21 +181,22 @@ noremap <silent> <C-n> :call ToggleNetrw()<CR><C-w><C-w>
     let g:mkdp_open_to_the_world = 1        " Markdown preview to the world
 
 "----------------------------------------------------------------------
-"                   GOYO && LIMELIGHT && PENCIL WRITING
+"                   GOYO && PENCIL WRITING
 "----------------------------------------------------------------------
 
     let g:pencil_higher_contrast_ui = 1   " 0=low (def), 1=high
-    let g:limelight_default_coefficient = 0.7
-    let g:limelight_paragraph_span = 1
+    "let g:limelight_default_coefficient = 0.7
+    "let g:limelight_paragraph_span = 1
     let g:pencil#wrapModeDefault = 'soft'   " default is 'hard
+    let g:pencil_terminal_italics = 1 " Support italics bc i'm dumb
 
 " GOYO start!
     function! s:goyo_enter()
-        "let b:quitting = 0
-        "let b:quitting_bang = 0
-        "autocmd QuitPre <buffer> let b:quitting = 1
-        "cabbrev <buffer> q! let b:quitting_bang = 1 <bar> q!
-        Goyo 72
+        let b:quitting = 0
+        let b:quitting_bang = 0
+        autocmd QuitPre <buffer> let b:quitting = 1
+        cabbrev <buffer> q! let b:quitting_bang = 1 <bar> q!
+        Goyo 80
           if executable('tmux') && strlen($TMUX)
             silent !tmux set status off
             silent !tmux list-panes -F '\#F' | grep -q Z || tmux resize-pane -Z
@@ -207,11 +205,13 @@ noremap <silent> <C-n> :call ToggleNetrw()<CR><C-w><C-w>
         set noshowcmd
         set spell
         "set scrolloff=999
-        colorscheme pencil
         set background=dark
-        Limelight
+        "Limelight
         unmap <leader>j
         TogglePencil
+        colorscheme pencil
+        syntax off
+        syntax on
         "set conceallevel=2
 
     endfunction
@@ -223,14 +223,16 @@ noremap <silent> <C-n> :call ToggleNetrw()<CR><C-w><C-w>
             silent !tmux set status on
             silent !tmux list-panes -F '\#F' | grep -q Z && tmux resize-pane -Z
           endif
-      set showmode
-      set showcmd
-      set nospell
-      Limelight!
-      colorscheme spaceduck
-      TogglePencil
-    nnoremap <leader>j J
-    endfunction
+
+          " Quit Vim if this is the only remaining buffer
+          if b:quitting && len(filter(range(1, bufnr('$')), 'buflisted(v:val)')) == 1
+            if b:quitting_bang
+              qa!
+            else
+              qa
+            endif
+          endif
+        endfunction
 
     autocmd! User GoyoEnter nested call <SID>goyo_enter()
     autocmd! User GoyoLeave nested call <SID>goyo_leave()

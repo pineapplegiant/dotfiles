@@ -1,5 +1,5 @@
 {
-  "workspace.ignoredFiletypes": ["markdown", "log", "txt", "help"],
+  "workspace.ignoredFiletypes": ["log", "txt", "help"],
   "python.jediEnabled": false,
   "suggest.minTriggerInputLength": 0,
   "suggest.echodocSupport": true,
