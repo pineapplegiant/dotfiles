@@ -12,25 +12,26 @@
 "----------------------------------------------------------------------
     " Make sure you have vim-plug installed ~/.local/share/nvim/site/autoload/plug.vim
     call plug#begin('~/.local/share/nvim/plugged')
-    " Colors, Pretty & Fun
+    " COLORS, PRETTY & FUN
     Plug 'sheerun/vim-polyglot'
     Plug 'itchyny/lightline.vim'
-    " Moving around
+    " MOVING AROUND
     Plug '/usr/local/opt/fzf'
     Plug 'junegunn/fzf.vim'
-    " Essential
+    Plug 'justinmk/vim-dirvish'
+    Plug 'kristijanhusak/vim-dirvish-git'
+    Plug 'justinmk/vim-sneak'
+    " ESSENTIAL
     Plug 'tpope/vim-surround'
     Plug 'jiangmiao/auto-pairs'
     Plug 'vim-scripts/The-NERD-Commenter'
     " Git 
     Plug 'airblade/vim-gitgutter'
-    " Prose & Writing
+    " PROSE & WRITING
     Plug 'junegunn/goyo.vim'
     Plug 'reedes/vim-pencil'
-    "Plug 'junegunn/limelight.vim'
     Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install'  }
     Plug 'arthurxavierx/vim-unicoder'
-    Plug 'chrisbra/unicode.vim'
     " NEXT LEVEL SHIT
     Plug 'mhinz/vim-grepper'
     Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
@@ -40,6 +41,11 @@
     " Low-key messes everything up
     Plug 'Yggdroot/indentLine'
     call plug#end()
+
+
+"----------------------------------------------------------------------
+"                       Dirvish
+"----------------------------------------------------------------------
 
 
 "----------------------------------------------------------------------
@@ -101,39 +107,6 @@
         \ gvgr
         \ :cfdo %s/<C-r>s//g \| update
          \<Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left>
-
-"----------------------------------------------------------------------
-"                       Netrw
-"----------------------------------------------------------------------
-    let g:netrw_banner = 0 "Remove Directory banner
-    let g:netrw_liststyle = 3 "List Netrw like a tree
-    let g:netrw_browse_split = 0 "Opens Netrw in same window (default)
-    let g:netrw_altv = 1
-    let g:netrw_winsize = 10 " 25% of page
-    let g:NetrwIsOpen=0
-
-    " Close Netrw if only thing open
-    autocmd WinEnter * if winnr('$') == 1 && getbufvar(winbufnr(winnr()), "&filetype") == "netrw" || &buftype == 'quickfix' |q|endif
-
-function! ToggleNetrw()
-    if g:NetrwIsOpen
-        let i = bufnr("$")
-        while (i >= 1)
-            if (getbufvar(i, "&filetype") == "netrw")
-                silent exe "bwipeout " . i 
-            endif
-            let i-=1
-        endwhile
-        let g:NetrwIsOpen=0
-    else
-        let g:NetrwIsOpen=1
-        silent Lexplore
-    endif
-endfunction
-
-" Toggle Netrw
-noremap <silent> <C-n> :call ToggleNetrw()<CR><C-w><C-w>
-
 
 
 "----------------------------------------------------------------------

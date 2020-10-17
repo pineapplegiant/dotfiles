@@ -117,6 +117,12 @@ SPACESHIP_PROMPT_ORDER=(
         open "$URLprefix$@" -a "Google Chrome"
     }
 
+# Browsersync alias
+function webdev() 
+    {
+        browser-sync start --server --files *
+    }
+
 #----------------------------------------------------------------------
 #                       Functions
 #----------------------------------------------------------------------
