@@ -1,3 +1,5 @@
 #!/bin/bash
-curl -s -H "user-agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.111 Safari/537.36" "https://www.amazon.com/Antimo-Caputo-Pizzeria-Flour-Pound/dp/B003ASHHDM/ref=sr_1_2?dchild=1&keywords=caputo+flour&qid=1603682951&sr=8-2" > /tmp/pizzaprice
+curl -s -H "user-agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.111 Safari/537.36" \
+    "https://www.amazon.com/Antimo-Caputo-Pizzeria-Flour-Pound/dp/B003ASHHDM/ref=sr_1_2?dchild=1&keywords=caputo+flour&qid=1603682951&sr=8-2" \
+    > /tmp/pizzaprice
 grep "priceblock_ourprice" /tmp/pizzaprice | tail -n1 | grep -o "\$....." -
