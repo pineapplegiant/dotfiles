@@ -16,7 +16,7 @@
     Plug 'sheerun/vim-polyglot'
     Plug 'itchyny/lightline.vim'
     " MOVING AROUND
-    Plug '/usr/local/opt/fzf'
+    Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
     Plug 'junegunn/fzf.vim'
     Plug 'justinmk/vim-dirvish'
     Plug 'kristijanhusak/vim-dirvish-git'
@@ -47,6 +47,7 @@
 "                       Dirvish
 "----------------------------------------------------------------------
 
+    map <C-n> :Dirvish<CR>
 
 "----------------------------------------------------------------------
 "                       FZF
