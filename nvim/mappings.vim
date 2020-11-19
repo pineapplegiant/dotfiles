@@ -166,7 +166,8 @@
     nnoremap ,html :-1read $HOME/.config/nvim/snippets/skeleton.html<CR>7jf>a
 
 " Basic CSS Snippet!
-    nnoremap ,css :-1read $HOME/.config/nvim/snippets/skeleton.css<CR>
+    nnoremap ,css :-1read $HOME/.config/nvim/snippets/cssComment.css<CR>jA
+    nnoremap ,csss :-1read $HOME/.config/nvim/snippets/skeleton.css<CR>
 
 " Markdown Remaps
 function! PandocCreate()

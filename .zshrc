@@ -105,12 +105,27 @@ SPACESHIP_PROMPT_ORDER=(
 # Better Less
     export LESS="-iXR --RAW-CONTROL-CHARS"
 
+
+#----------------------------------------------------------------------
+#                       Functions
+#----------------------------------------------------------------------
+
+# let's be nice to our terminal
+function pls() {
+	if [ "$1" ]; then
+		sudo $@
+	else
+		sudo "$BASH" -c "$(history -p !!)"
+	fi
+}
+
+# Pipe bat to less
     function lat()
     {
         bat --color=always $1 | less
     }
 
-# WebDev Baby
+# Web Baby
     URLprefix="http://www."
     function web() 
     {
@@ -120,12 +135,9 @@ SPACESHIP_PROMPT_ORDER=(
 # Browsersync alias
 function webdev() 
     {
-        browser-sync start --server --files *
+        browser-sync start --server --files ./*
     }
 
-#----------------------------------------------------------------------
-#                       Functions
-#----------------------------------------------------------------------
 # CD && LS all at once 
     cd() { builtin cd "$@" && ls;}
 
