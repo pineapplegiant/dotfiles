@@ -44,6 +44,18 @@
 
 
 "----------------------------------------------------------------------
+"                       Sneakin'
+"----------------------------------------------------------------------
+" Use s char to traverse the the next ocurrence of sneak
+  let g:sneak#s_next = 1
+
+"Replace f and/or t with one-character Sneak?
+  map f <Plug>Sneak_f
+  map F <Plug>Sneak_F
+  map t <Plug>Sneak_t
+  map T <Plug>Sneak_T
+
+"----------------------------------------------------------------------
 "                       Dirvish
 "----------------------------------------------------------------------
 
@@ -52,6 +64,9 @@
 "----------------------------------------------------------------------
 "                       FZF
 "----------------------------------------------------------------------
+" FZF to leader+f
+    nnoremap <leader>f :FZF<CR>
+
      let $FZF_DEFAULT_OPTS = '--layout=reverse'
 
      let g:fzf_layout = { 'window': 'call OpenFloatingWin()' }
@@ -157,6 +172,9 @@
 "----------------------------------------------------------------------
 "                   GOYO && PENCIL WRITING
 "----------------------------------------------------------------------
+
+" Goyo start Writing!
+    nnoremap <leader>G :Goyo<CR>
 
     let g:pencil_higher_contrast_ui = 1   " 0=low (def), 1=high
     "let g:limelight_default_coefficient = 0.7

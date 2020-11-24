@@ -77,14 +77,8 @@
 " Turn off search highlight bullshit to Comma + Leader/space
     nnoremap ,<leader> :nohlsearch<CR>
 
-" FZF to leader+f
-    nnoremap <leader>f :FZF<CR>
-
 " Run Last command in tmux window
     nnoremap ,gcc :!tmux send-keys -t1 "\!! " ENTER <CR><CR>
-
-" Goyo start Writing!
-    nnoremap <leader>G :Goyo<CR>
 
 " Mac open dictionary under word cursor
     nnoremap <silent> <leader>? :!open dict://<cword><cr><cr>
@@ -95,9 +89,10 @@
 " Delete Buffer, but keep the window open
     nnoremap <leader>d :bp\|bd! #<CR>
 
-" Jumplist stuff -> Backward and forward in vim jumps
-    nnoremap <leader>i <C-i>
-    nnoremap <leader>o <C-o>
+" Jumplist stuff -> Backward and forward in vim jumps 
+" -> C-i && C-o aint that hard
+    "nnoremap <leader>i <C-i>
+    "nnoremap <leader>o <C-o>
 
 " Fixing vim because I break it Later -> Move between blocks 'better'
     nnoremap <leader>j J

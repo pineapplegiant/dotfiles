@@ -32,7 +32,7 @@
      \,a:blinkwait700-blinkoff400-blinkon250-Cursor/lCursor
      \,sm:block-blinkwait175-blinkoff150-blinkon175
     set hidden                     " Ignorecase when searching stuff
-    set ignorecase                 " Ignorecase when searching stuff
+    "set ignorecase                 " Ignorecase when searching stuff
     set spelllang=en_us            " Turn on spell check?
     set nospell                    " Turn off spellcheck
     set mouse=a                    " Allow Mouse to work (I know, I suck)
