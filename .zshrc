@@ -101,7 +101,9 @@ SPACESHIP_PROMPT_ORDER=(
     alias rr="source ~/.zshrc && tmux source-file ~/.tmux.conf" # Source bash profile & Tmux
     alias ..="cd .."                         # Shortcut up a directory
     alias ...="cd ../.."                     # Shorcut 2 directory
-    alias c="clear"
+    alias c="clear"                          # Faster clearing of the screen
+    alias matrix="cmatrix"                   # Stupid text on the scree
+    alias lg="lazygit"
 # Better Less
     export LESS="-iXR --RAW-CONTROL-CHARS"
 
