@@ -9,24 +9,23 @@
 ## Programs I use:
 
 - [Iterm2](https://www.iterm2.com "Iterm's homepage") - Terminal Replacement for MacOS 💁
-- [Neovim](https://neovim.io "NeoVim's Homepage") - The dark vim sleeper 🔥
-- [Tmux](https://github.com/tmux/tmux/wiki "Tmux's Homepage") - Terminal multiplexer - She a thicc thotty 🍑
-- [ZShell](http://zsh.sourceforge.net/ "The Z shell's Homepage") - Been using Bash for a hot minute. Time to try something new 🤓
-  - [Spaceship-prompt](https://github.com/denysdovhan/spaceship-prompt) - Configurable, and it works 👍
+- [Neovim](https://neovim.io "NeoVim's Homepage") - The better vim experience 👀🔥
+- [Tmux](https://github.com/tmux/tmux/wiki "Tmux's Homepage") - Terminal multiplexer - She thicc 🍑
+- [ZShell](http://zsh.sourceforge.net/ "The Z shell's Homepage") - Better than bash experience
+  - [Spaceship-prompt](https://github.com/denysdovhan/spaceship-prompt) - Configurable, pretty, and works 👍
 
-## ColorTheme I use: _clears throat_
+## ColorTheme I use:
 
-- [Spaceduck](https://github.com/pineapplegiant/spaceduck-theme "My Personal Color scheme :3") - Self plug for your boys own colors 🦆✌️
+- [My very own Spaceduck](https://github.com/pineapplegiant/spaceduck-theme "My Personal Color scheme :3") - Self plug for your boys own colors 🦆✌️
 
 ## Notable programs:
 
-- [Vscode](https://code.visualstudio.com "VSCode's homepage") - Can't lie, I use this sometimes. It works.
+- [Vscode](https://code.visualstudio.com "VSCode's homepage") - Can't lie, I use this sometimes too...
 
 ## Setup (WIP)
 
-- Mac -> Mac-setup.sh
 
-##### Brew Packages I currently fancy
+##### Brew Packages I like
 
 exa
 fzf
@@ -52,18 +51,19 @@ zsh-syntax-highlighting
 
 ### Fonts
 
-- Duhh
-  [Nerd Fonts](https://github.com/ryanoasis/nerd-fonts)
+- [Nerd Fonts](https://github.com/ryanoasis/nerd-fonts)
 
-### VSCODE SETTINGS
+### VSCode Settings
 
 Run this to make VSCODE Vim repeat better
 `defaults write com.microsoft.VSCode ApplePressAndHoldEnabled -bool false`
 
-### Iterm2
+### Iterm2 Settings
+
 * Right command key is control
 
 ## Prompt
+
 [Spaceship prompt](https://github.com/denysdovhan/spaceship-prompt)
   - `npm install -g spaceship-prompt`
 
@@ -75,10 +75,9 @@ Run these to make key repeat faster
 - `defaults write -g KeyRepeat -int 4`
 - `defaults write -g InitialKeyRepeat -int 15`
 
-Run this to show full path
+Run this to show full paths
 
 - `defaults write com.apple.finder _FXShowPosixPathInTitle -bool true; killall Finder`
 
 Also: Finder -> View>Show Status bar
 Change Caps lock to ESC
-
