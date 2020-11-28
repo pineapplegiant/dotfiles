@@ -2,7 +2,7 @@
 
 > This is the safekeeping of my terminal environment
 
-[sysinfo]: https://github.com/pineapplegiant/dotfiles/raw/master/neofetch.png "Neofetch of my mac system"
+[sysinfo]: ./neofetch.png "Neofetch of my mac system"
 
 ![Neofetch information][sysinfo]
 

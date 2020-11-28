@@ -91,6 +91,7 @@ SPACESHIP_PROMPT_ORDER=(
     alias ls="exa -FG"                        # Make ls pretty
     alias ll="exa -l"                         # ls long tag
     alias s="exa -ahlF"
+    alias ss="exa -aF"
 
 # Safety aliases
     alias rm="rm -iv"                        # Make rm more safe
@@ -99,6 +100,8 @@ SPACESHIP_PROMPT_ORDER=(
 
 # Laziness at its finest
     alias rr="source ~/.zshrc && tmux source-file ~/.tmux.conf" # Source bash profile & Tmux
+    alias tfix="tmux select-layout even-horizontal"
+    alias tfixv="tmux select-layout even-vertical"
     alias ..="cd .."                         # Shortcut up a directory
     alias ...="cd ../.."                     # Shorcut 2 directory
     alias c="clear"                          # Faster clearing of the screen
