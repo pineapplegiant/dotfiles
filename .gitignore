@@ -1,0 +1,25 @@
+*.zcomp*
+.cache/*
+
+# No cache stuff
+*.cache/*
+
+# No .local/share stuff
+.local/share/*
+*.local/share/*
+
+# Exclude Unnecessary Config files
+.config/neofetch/*
+.config/nvim/autoload/*
+.config/nvim/colors
+.config/nvim/plugged/*
+.config/tmux/plugins/*
+.config/tmux/resurrect/*
+.config/asciinema/*
+.config/coc/*
+.config/configstore/*
+.config/fish/*
+.config/gtk-2.0/*
+.config/karabiner
+.config/neofetch
+.config/oni
