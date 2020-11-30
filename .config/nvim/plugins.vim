@@ -10,8 +10,17 @@
 "----------------------------------------------------------------------
 "                        PLUGINS RIP
 "----------------------------------------------------------------------
+
+" Install plugin manager if not installed already!
+if ! filereadable(system('echo -n "${XDG_CONFIG_HOME:-$HOME/.config}/nvim/autoload/plug.vim"'))
+	echo "Downloading junegunn/vim-plug to manage plugins..."
+	silent !mkdir -p ${XDG_CONFIG_HOME:-$HOME/.config}/nvim/autoload/
+	silent !curl "https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim" > ${XDG_CONFIG_HOME:-$HOME/.config}/nvim/autoload/plug.vim
+	autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
+
     " Make sure you have vim-plug installed ~/.local/share/nvim/site/autoload/plug.vim
-    call plug#begin('~/.local/share/nvim/plugged')
+    call plug#begin(system('echo -n "${XDG_CONFIG_HOME:-$HOME/.config}/nvim/plugged"'))
     " COLORS, PRETTY & FUN
     Plug 'sheerun/vim-polyglot'
     Plug 'itchyny/lightline.vim'
@@ -28,7 +37,7 @@
     " Git 
     Plug 'airblade/vim-gitgutter'
     " PROSE & WRITING
-    Plug 'junegunn/goyo.vim'
+    Plug 'junegunn/goyo.vim' 
     Plug 'reedes/vim-pencil'
     Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install'  }
     Plug 'arthurxavierx/vim-unicoder'
@@ -50,10 +59,10 @@
   let g:sneak#s_next = 1
 
 "Replace f and/or t with one-character Sneak?
-  map f <Plug>Sneak_f
-  map F <Plug>Sneak_F
-  map t <Plug>Sneak_t
-  map T <Plug>Sneak_T
+  "map f <Plug>Sneak_f
+  "map F <Plug>Sneak_F
+  "map t <Plug>Sneak_t
+  "map T <Plug>Sneak_T
 
 "----------------------------------------------------------------------
 "                       Dirvish
@@ -65,7 +74,7 @@
 "                       FZF
 "----------------------------------------------------------------------
 " FZF to leader+f
-    nnoremap <leader>f :FZF<CR>
+    nnoremap <leader>f :Files<CR>
 
      let $FZF_DEFAULT_OPTS = '--layout=reverse'
 

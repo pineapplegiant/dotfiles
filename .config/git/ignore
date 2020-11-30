@@ -5,8 +5,8 @@ vscode/*
 tags
 *.swp
 *.swo
-#mac stuff
 
+#mac stuff
 *~
 *.DS_Store
 *.pbxuser
@@ -24,11 +24,11 @@ tags
 
 # ignore unit test executable (Everything in Test that starts with
 # 'test' *except* .cpp, .hpp, .m, .py
-#test*
-#!test*\.[ch]pp
-#!test*\.m
-#!test*\.py
-#*.testlog
+test*
+!test*\.[ch]pp
+!test*\.m
+!test*\.py
+*.testlog
 
 # TeX products
 *.aux

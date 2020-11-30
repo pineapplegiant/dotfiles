@@ -4,7 +4,6 @@
     email = guillermor@mail.usf.edu
 
 [core]
-    excludesfile = /Users/gmo/.gitignore_global
     editor = nvim
 
 [alias]

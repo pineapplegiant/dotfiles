@@ -158,11 +158,11 @@
 "                           Snippets!
 "----------------------------------------------------------------------
 " Basic HTML Snippet!
-    nnoremap ,html :-1read $HOME/.config/nvim/snippets/skeleton.html<CR>7jf>a
+    nnoremap ,html :-1read $XDG_CONFIG_HOME/nvim/snippets/skeleton.html<CR>7jf>a
 
 " Basic CSS Snippet!
-    nnoremap ,css :-1read $HOME/.config/nvim/snippets/cssComment.css<CR>jA
-    nnoremap ,csss :-1read $HOME/.config/nvim/snippets/skeleton.css<CR>
+    nnoremap ,css :-1read $XDG_CONFIG_HOME/nvim/snippets/cssComment.css<CR>jA
+    nnoremap ,csss :-1read $XDG_CONFIG_HOME/nvim/snippets/skeleton.css<CR>
 
 " Markdown Remaps
 function! PandocCreate()
@@ -189,7 +189,7 @@ endfunction
 
 " LaTeX Remaps
     autocmd FileType tex nnoremap ,comp :update<CR>:call LatexCreate()<CR>
-    autocmd FileType tex nnoremap ,top :-1read $HOME/.config/nvim/snippets/blockLatex.txt<CR>
+    autocmd FileType tex nnoremap ,top :-1read $XDG_CONFIG_HOME//nvim/snippets/blockLatex.txt<CR>
 
 
 " Make/Compile current Groff MOM File
@@ -206,30 +206,30 @@ endfunction
     "autocmd BufRead,BufNewFile *.ms,*.me,*.mom set filetype=groff
     "autocmd FileType groff nnoremap ,ee i.EQ<CR>.EN<ESC>O<tab>
     "autocmd FileType groff nnoremap ,cc i\" <ESC>a
-    "autocmd FileType groff nnoremap ,block :read $HOME/.config/nvim/snippets/blockGroff.txt<CR>jA
-    "autocmd FileType groff nnoremap ,top :-1read $HOME/.config/nvim/snippets/topGroff.txt<CR>2jA <C-R>=strftime("%A %B %d %Y, at %I:%M %p %Z")<CR><ESC>jA 
-    "autocmd FileType groff nnoremap ,mom :-1read $HOME/.config/nvim/snippets/momGroff.txt<CR>
-    "autocmd FileType groff nnoremap ,groff :-1read $HOME/.config/nvim/snippets/groff.txt<CR>
+    "autocmd FileType groff nnoremap ,block :read $XDG_CONFIG_HOME/nvim/snippets/blockGroff.txt<CR>jA
+    "autocmd FileType groff nnoremap ,top :-1read $XDG_CONFIG_HOME/nvim/snippets/topGroff.txt<CR>2jA <C-R>=strftime("%A %B %d %Y, at %I:%M %p %Z")<CR><ESC>jA 
+    "autocmd FileType groff nnoremap ,mom :-1read $XDG_CONFIG_HOME/nvim/snippets/momGroff.txt<CR>
+    "autocmd FileType groff nnoremap ,groff :-1read $XDG_CONFIG_HOME/nvim/snippets/groff.txt<CR>
     "autocmd FileType groff nnoremap ,comp :update<CR>:call GroffCreate()<CR>
 
 " School's C++ top snippet
-    nnoremap ,top :-1read $HOME/.config/nvim/snippets/top.txt<CR>2jA <C-R>=strftime("%A %B %d %Y, at %I:%M %p %Z")<CR><ESC>jA 
+    nnoremap ,top :-1read $XDG_CONFIG_HOME/nvim/snippets/top.txt<CR>2jA <C-R>=strftime("%A %B %d %Y, at %I:%M %p %Z")<CR><ESC>jA 
 
 " School's Function block snippet
-    nnoremap ,block :read $HOME/.config/nvim/snippets/block.txt<CR>jA
+    nnoremap ,block :read $XDG_CONFIG_HOME/nvim/snippets/block.txt<CR>jA
 
 " C++ int main()
-    nnoremap ,c++ :read $HOME/.config/nvim/snippets/c++.txt<CR>jo<tab>
+    nnoremap ,c++ :read $XDG_CONFIG_HOME/nvim/snippets/c++.txt<CR>jo<tab>
 
 " Post snippet
-    nnoremap ,post :-1read $HOME/.config/nvim/snippets/post.md<CR>
+    nnoremap ,post :-1read $XDG_CONFIG_HOME/nvim/snippets/post.md<CR>
 
 " YAML snippet
-    nnoremap ,yaml :-1read $HOME/.config/nvim/snippets/yaml.md<CR>
-    nnoremap ,yaml1 :-1read $HOME/.config/nvim/snippets/yamlcs.md<CR>
+    nnoremap ,yaml :-1read $XDG_CONFIG_HOME/nvim/snippets/yaml.md<CR>
+    nnoremap ,yaml1 :-1read $XDG_CONFIG_HOME/nvim/snippets/yamlcs.md<CR>
 
 " MLK's Dream Speech
-    nnoremap ,mlk :read $HOME/.config/nvim/snippets/mlk.txt<CR>
+    nnoremap ,mlk :read $XDG_CONFIG_HOME/nvim/snippets/mlk.txt<CR>
 
 " Job snippet
-    nnoremap ,job :read $HOME/.config/nvim/snippets/job.txt<CR>
+    nnoremap ,job :read $XDG_CONFIG_HOME/nvim/snippets/job.txt<CR>

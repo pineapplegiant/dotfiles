@@ -1,5 +1,8 @@
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
+# FOR Z JUMPING
+. /usr/local/etc/profile.d/z.sh
+
 #----------------------------------------------------------------------
 #       NOTES
 #----------------------------------------------------------------------
@@ -32,13 +35,13 @@
     SPACESHIP_CHAR_SYMBOL="$ "
 
 SPACESHIP_PROMPT_ORDER=(
-  time          # Time stamps section
+# time          # Time stamps section
   user          # Username section
   host          # Hostname section
   dir           # Current directory section
   git           # Git section (git_branch + git_status)
-  hg            # Mercurial section (hg_branch  + hg_status)
-  package       # Package version
+# hg            # Mercurial section (hg_branch  + hg_status)
+# package       # Package version
   node          # Node.js section
 #  ruby          # Ruby section
 #  elixir        # Elixir section
@@ -82,9 +85,10 @@ SPACESHIP_PROMPT_ORDER=(
     export VISUAL=nvim                       
     alias v=nvim                            
     alias vim=nvim                         
-    alias vimrc='vim $HOME/.config/nvim/init.vim' # Open nvimrc in nvim
-    alias ctags="`brew --prefix`/bin/ctags"  # Ctags alias
-    alias bp='vim ~/.zshrc'                  # Get to bash-profile faster
+    alias vimrc='vim $XDG_CONFIG_HOME/nvim/init.vim' # Open nvimrc in nvim
+    alias ctags="`brew --prefix`/bin/ctags"          # Ctags alias
+    alias bp='vim $XDG_CONFIG_HOME/zsh/.zshrc'       # Get to bash-profile faster
+    alias profile='vim $XDG_CONFIG_HOME/shell/profile'       # Get to env faster
 
 # I HAVE SWITCHED TO EXA
     alias l="exa -FG"                         # Just make ls  chill
@@ -99,7 +103,7 @@ SPACESHIP_PROMPT_ORDER=(
     alias mv="mv -i"                         # Make mv more safe
 
 # Laziness at its finest
-    alias rr="source ~/.zshrc && tmux source-file ~/.tmux.conf" # Source bash profile & Tmux
+    alias rr="source $XDG_CONFIG_HOME/zsh/.zshrc && tmux source-file $XDG_CONFIG_HOME/tmux/tmux.conf" # Source bash profile & Tmux
     alias tfix="tmux select-layout even-horizontal"
     alias tfixv="tmux select-layout even-vertical"
     alias ..="cd .."                         # Shortcut up a directory
@@ -189,7 +193,7 @@ function webdev()
 # History in cache directory:
     HISTSIZE=10000
     SAVEHIST=10000
-    HISTFILE=~/.cache/zsh/history
+    HISTFILE=$XDG_CACHE_HOME/zsh/history
 
 # Basic auto/tab complete:
     autoload -U compinit

@@ -1,0 +1,52 @@
+#!/bin/zsh
+
+# profile file. Runs on login. Environmental variables are set here.
+
+# Default Programs
+    export EDITOR="nvim"
+
+#----------------------------------------------------------------------
+#                       PATH
+#----------------------------------------------------------------------
+
+# XDG Location
+    export XDG_CONFIG_HOME="$HOME/dotfiles/.config"       # /etc
+    export XDG_DATA_HOME="$HOME/dotfiles/.local/share"    # /usr/share
+    export XDG_CACHE_HOME="$HOME/dotfiles/.cache"         # /var/cache
+
+# Cleanup for programs that don't listen to XDG SPEC
+    # VIMINIT will be sourced by neovim too, so I set this: XDG for NVIM & EXINIT for Vim
+    export EXINIT='let $MYVIMRC="$XDG_CONFIG_HOME/vim/vimrc" | source $MYVIMRC'
+    export VIMDOTDIR="${XDG_CONFIG_HOME:-$HOME/.config}/vim"
+    export GTK2_RC_FILES="${XDG_CONFIG_HOME:-$HOME/.config}/gtk-2.0/gtkrc-2.0"
+    export INPUTRC="${XDG_CONFIG_HOME:-$HOME/.config}/shell/inputrc"
+    export WGETRC="${XDG_CONFIG_HOME:-$HOME/.config}/wget/wgetrc"
+    export ZDOTDIR="${XDG_CONFIG_HOME:-$HOME/.config}/zsh"
+    export WEECHAT_HOME="${XDG_CONFIG_HOME:-$HOME/.config}/weechat"
+    export HISTFILE="${XDG_DATA_HOME:-$HOME/.local/share}/share/history"
+    export CARGO_HOME="${XDG_DATA_HOME:-$HOME/.local}/share/cargo"
+    # export TMUX_TMPDIR="$XDG_RUNTIME_DIR"
+# less
+    export LESSHISTFILE="${XDG_CONFIG_HOME}/less/history"
+    export LESSKEY="${XDG_CONFIG_HOME}/less/keys"
+# mplayer
+    export MPLAYER_HOME=$XDG_CONFIG_HOME/mplayer
+# subversion
+    export SUBVERSION_HOME=$XDG_CONFIG_HOME/subversion
+
+# Z cd Command Jumping ->
+    . /usr/local/etc/profile.d/z.sh
+
+# Neovim-Remote add to Path Python3
+    PATH=/Users/Gmo/Library/Python/3.7/bin:$PATH
+    PATH=$HOME/.cargo/bin:$PATH
+
+# YARN PATH stuff
+    PATH=$PATH:/usr/local/opt/go/libexec/bin
+
+# GO Lang
+    export GOPATH="$HOME/.local/share}/go"
+    export GOBIN="$HOME/.local/share}/go/bin"
+
+# Add Personal Scripts to my path
+    PATH=$PATH:$HOME/dotfiles/.local/bin
