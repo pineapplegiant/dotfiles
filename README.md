@@ -2,7 +2,7 @@
 
 > This is the safekeeping of my terminal environment! 🛸
 
-[sysinfo]: ./neofetch.png "A Neofetch screenshot of my mac system"
+[sysinfo]: ./setup.png "A Neofetch screenshot of my mac system"
 
 ![Neofetch information][sysinfo]
 
