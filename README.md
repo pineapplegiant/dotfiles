@@ -1,6 +1,6 @@
-# My dotfiles
+# My dotfiles 🛸
 
-> This is the safekeeping of my terminal environment! 🛸
+> This is the safekeeping of my terminal environment! 👽
 
 [sysinfo]: ./setup.png "A Neofetch screenshot of my mac system"
 
