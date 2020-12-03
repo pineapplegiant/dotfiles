@@ -13,6 +13,7 @@
 .config/nvim/autoload/*
 .config/nvim/colors
 .config/nvim/plugged/*
+.config/nvim/.netrwhist
 .config/tmux/plugins/*
 .config/tmux/resurrect/*
 .config/asciinema/*
@@ -23,3 +24,5 @@
 .config/karabiner
 .config/neofetch
 .config/oni
+.config/zsh/.zsh_history
+.config/zsh/.zsh_sessions/*
