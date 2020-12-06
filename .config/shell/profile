@@ -39,6 +39,7 @@
 
 # Neovim-Remote add to Path Python3
     PATH=/Users/Gmo/Library/Python/3.7/bin:$PATH
+    PATH=/Library/Frameworks/Python.framework/Versions/3.8/bin:$PATH
     PATH=$HOME/.cargo/bin:$PATH
 
 # YARN PATH stuff

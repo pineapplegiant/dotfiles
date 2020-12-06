@@ -19,14 +19,16 @@ if ! filereadable(system('echo -n "${XDG_CONFIG_HOME:-$HOME/.config}/nvim/autolo
 	autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
 
-    " Make sure you have vim-plug installed ~/.local/share/nvim/site/autoload/plug.vim
-    call plug#begin(system('echo -n "${XDG_CONFIG_HOME:-$HOME/.config}/nvim/plugged"'))
+" Make sure you have vim-plug installed ~/.local/share/nvim/site/autoload/plug.vim
+call plug#begin(system('echo -n "${XDG_CONFIG_HOME:-$HOME/.config}/nvim/plugged"'))
     " COLORS, PRETTY & FUN
+    Plug 'norcalli/nvim-colorizer.lua'
     Plug 'sheerun/vim-polyglot'
     Plug 'itchyny/lightline.vim'
+    Plug 'pineapplegiant/spaceduck'
     " MOVING AROUND
-    Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
     Plug 'junegunn/fzf.vim'
+    Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
     Plug 'justinmk/vim-dirvish'
     Plug 'kristijanhusak/vim-dirvish-git'
     Plug 'justinmk/vim-sneak'
@@ -36,11 +38,13 @@ endif
     Plug 'vim-scripts/The-NERD-Commenter'
     " Git 
     Plug 'airblade/vim-gitgutter'
+    Plug 'itchyny/vim-gitbranch'
     " PROSE & WRITING
     Plug 'junegunn/goyo.vim' 
     Plug 'reedes/vim-pencil'
     Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install'  }
     Plug 'arthurxavierx/vim-unicoder'
+    Plug 'psliwka/vim-smoothie'
     " NEXT LEVEL SHIT
     Plug 'mhinz/vim-grepper'
     Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
@@ -49,7 +53,7 @@ endif
     Plug 'christoomey/vim-tmux-navigator'
     " Low-key messes everything up
     Plug 'Yggdroot/indentLine'
-    call plug#end()
+call plug#end()
 
 
 "----------------------------------------------------------------------
@@ -58,54 +62,74 @@ endif
 " Use s char to traverse the the next ocurrence of sneak
   let g:sneak#s_next = 1
 
-"Replace f and/or t with one-character Sneak?
-  "map f <Plug>Sneak_f
-  "map F <Plug>Sneak_F
-  "map t <Plug>Sneak_t
-  "map T <Plug>Sneak_T
-
 "----------------------------------------------------------------------
 "                       Dirvish
 "----------------------------------------------------------------------
 
+" No more netrw
+    let g:loaded_netrwPlugin = 1
+    command! -nargs=? -complete=dir Explore Dirvish <args>
+    command! -nargs=? -complete=dir Sexplore belowright split | silent Dirvish <args>
+    command! -nargs=? -complete=dir Vexplore leftabove vsplit | silent Dirvish <args>
+
+"Map Dirvish to Ctrl-n
     map <C-n> :Dirvish<CR>
+
+" Map `gh` to hide dot-prefixed files.  Press `R` to "toggle" (reload).
+    autocmd FileType dirvish nnoremap <silent><buffer>
+    \ gh :silent keeppatterns g@\v/\.[^\/]+/?$@d _<cr>:setl cole=3<cr>
+    augroup END
+
 
 "----------------------------------------------------------------------
 "                       FZF
 "----------------------------------------------------------------------
+" :Files<CR>
+" :Rg<CR>
+" :BLines<CR>
+" :Marks<CR>
+" :Commits<CR>
+" :Helptags<CR>
+" :<CR>
+" :History/<CR>
+
 " FZF to leader+f
-    nnoremap <leader>f :Files<CR>
+    nnoremap <C-b> :Buffers<CR>
+    nnoremap <C-f> :Files<CR>
+    nnoremap <C-p> :GFiles<CR>
+    nnoremap <C-c> :History<CR>
+    nnoremap <C-m> :Marks<CR>
 
-     let $FZF_DEFAULT_OPTS = '--layout=reverse'
+    let $FZF_DEFAULT_OPTS = '--layout=reverse'
 
-     let g:fzf_layout = { 'window': 'call OpenFloatingWin()' }
+    let g:fzf_layout = { 'window': 'call OpenFloatingWin()' }
 
-     function! OpenFloatingWin()
-       let height = &lines - 3
-       let width = float2nr(&columns - (&columns * 2 / 10))
-       let col = float2nr((&columns - width) / 2)
+    function! OpenFloatingWin()
+      let height = &lines - 3
+      let width = float2nr(&columns - (&columns * 2 / 10))
+      let col = float2nr((&columns - width) / 2)
 
-       let opts = {
-             \ 'relative': 'editor',
-             \ 'row': height * 0.3,
-             \ 'col': col + 30,
-             \ 'width': width * 2 / 3,
-             \ 'height': height / 2
-             \ }
+      let opts = {
+            \ 'relative': 'editor',
+            \ 'row': height * 0.3,
+            \ 'col': col + 30,
+            \ 'width': width * 2 / 3,
+            \ 'height': height / 2
+            \ }
 
-       let buf = nvim_create_buf(v:false, v:true)
-       let win = nvim_open_win(buf, v:true, opts)
+      let buf = nvim_create_buf(v:false, v:true)
+      let win = nvim_open_win(buf, v:true, opts)
 
-       call setwinvar(win, '&winhl', 'Normal:Pmenu')
+      call setwinvar(win, '&winhl', 'Normal:Pmenu')
 
-       setlocal
-             \ buftype=nofile
-             \ nobuflisted
-             \ bufhidden=hide
-             \ nonumber
-             \ norelativenumber
-             \ signcolumn=no
-     endfunction
+      setlocal
+            \ buftype=nofile
+            \ nobuflisted
+            \ bufhidden=hide
+            \ nonumber
+            \ norelativenumber
+            \ signcolumn=no
+    endfunction
 
 "----------------------------------------------------------------------
 "                       Vim-Grepper
@@ -160,18 +184,23 @@ endif
         return get(b:, 'coc_current_function', '')
     endfunction
 
-
     let g:lightline = {
           \ 'colorscheme': 'spaceduck',
           \ 'active': {
           \   'left': [ [ 'mode', 'paste' ],
-          \             [ 'cocstatus', 'readonly', 'filename', 'modified', 'method'] ]
+          \             [ 'gitbranch','cocstatus', 'readonly', 'relativepath', 'modified', 'method'] ],
+          \ 'right': [ [ 'lineinfo' ],
+          \            [ 'percent' ],
+          \            [ 'fileformat', 'fileencoding', 'filetype' ] ] 
           \ },
           \ 'component_function': {
+          \   'gitbranch': 'gitbranch#name',
           \   'method': 'NearestMethodOrFunction',
           \   'cocstatus': 'coc#status',
-          \ },
           \ }
+          \ }
+
+    "set showtabline=2 "Always show tabline for bufferline on top
 
 "----------------------------------------------------------------------
 "                   Markdown Preview

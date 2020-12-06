@@ -63,9 +63,6 @@
     nmap <S-Tab> :bn<CR>
     nmap <Tab> :bp<CR>
 
-" <Ctrl-f> to search and replace
-    nnoremap <C-f> :%s/\<<C-r><C-w>\>//g<Left><Left>
-
 "----------------------------------------------------------------------
 "               Map Leader to '<space>' 
 "               Map Llocalleader to \\
@@ -107,9 +104,6 @@
 " Leader e helps make ChromeDevTools better for changing filesystem
     nnoremap <leader>e :e!<CR>
 
-" Leader r is open register
-    nnoremap <leader>r :reg<CR>
-
 " Quicksave and Quickquit in vim!
     nnoremap <leader>s :update<cr>
     nnoremap <leader>q :q!<CR>
@@ -124,13 +118,16 @@
 
 
 " Show syntax color highlighting groups for word under cursor with Ctrl-Shift-P
-    nmap <C-S-P> :call <SID>SynStack()<CR>
+    nmap <c-a> :call <SID>SynStack()<CR>
     function! <SID>SynStack()
       if !exists("*synstack")
         return
       endif
       echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
     endfunction
+
+" leader+r to search and replace in file
+    nnoremap <leader>r :%s/\<<C-r><C-w>\>//gI<Left><Left><Left>
 
 "----------------------------------------------------------------------
 "               Terminal

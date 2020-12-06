@@ -15,15 +15,12 @@
       set termguicolors
     endif
 
+   " If I installed my own theme then use it, if not then nahh
    try
        colorscheme spaceduck
     catch
         colorscheme default
     endtry
-
-   "colorscheme peachpuff
-   "colorscheme tokyo-metro
-   "colorscheme iceberg
 
 "----------------------------------------------------------------------
 "               Basic Preference Things
@@ -36,7 +33,7 @@
     set guicursor=n-v-c:block,i-ci-ve:ver25,r-cr:hor20,o:hor50 "Fix cursor in insert mode
      \,a:blinkwait700-blinkoff400-blinkon250-Cursor/lCursor
      \,sm:block-blinkwait175-blinkoff150-blinkon175
-    set hidden                     " Ignorecase when searching stuff
+    set hidden                     " Ok IDK what this does
     set ignorecase                 " Ignorecase when searching stuff
     set spelllang=en_us            " Turn on spell check?
     set nospell                    " Turn off spellcheck

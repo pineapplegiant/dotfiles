@@ -55,7 +55,7 @@ SPACESHIP_PROMPT_ORDER=(
 #  docker        # Docker section
 #  aws           # Amazon Web Services section
   venv          # virtualenv section
-  conda         # conda virtualenv section
+# conda         # conda virtualenv section
   pyenv         # Pyenv section
 #  dotnet        # .NET section
 #  ember         # Ember.js section
@@ -91,11 +91,11 @@ SPACESHIP_PROMPT_ORDER=(
     alias profile='vim $XDG_CONFIG_HOME/shell/profile'       # Get to env faster
 
 # I HAVE SWITCHED TO EXA
-    alias l="exa -FG"                         # Just make ls  chill
-    alias ls="exa -FG"                        # Make ls pretty
-    alias ll="exa -l"                         # ls long tag
-    alias s="exa -ahlF"
-    alias ss="exa -aF"
+    alias l="exa -FG --git"                         # Just make ls  chill
+    alias ls="exa -FG --git"                        # Make ls pretty
+    alias ll="exa -l --git"                         # ls long tag
+    alias s="exa -ahlF --git"
+    alias ss="exa -aF --git"
 
 # Safety aliases
     alias rm="rm -iv"                        # Make rm more safe
@@ -187,7 +187,7 @@ function webdev()
     }
 
 #----------------------------------------------------------------------
-#                       VI stuff thanks Luke
+#                       VI like prompt stuff thanks Luke
 #----------------------------------------------------------------------
 
 # History in cache directory:

@@ -7,10 +7,11 @@
 "     \|__| \|__| \|__|/        \|__| \|__|     \|__| \|__|\|__| \|_______|
 "
 
+
 "----------------------------------------------------------------------
 "                        Modularity is life
 "----------------------------------------------------------------------
 
+source $XDG_CONFIG_HOME/nvim/plugins.vim        " Plugin information and settings (vim-plug)
 source $XDG_CONFIG_HOME/nvim/general.vim        " General Settings
 source $XDG_CONFIG_HOME/nvim/mappings.vim       " Remappings for Vim (Plugin specific in plugins)
-source $XDG_CONFIG_HOME/nvim/plugins.vim        " Plugin information and settings (vim-plug)
