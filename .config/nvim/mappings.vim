@@ -101,9 +101,6 @@
     noremap <leader>p  "+p
     noremap <leader>y  "+y
 
-" Leader e helps make ChromeDevTools better for changing filesystem
-    nnoremap <leader>e :e!<CR>
-
 " Quicksave and Quickquit in vim!
     nnoremap <leader>s :update<cr>
     nnoremap <leader>q :q!<CR>
