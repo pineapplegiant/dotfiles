@@ -22,15 +22,18 @@ endif
 " Make sure you have vim-plug installed ~/.local/share/nvim/site/autoload/plug.vim
 call plug#begin(system('echo -n "${XDG_CONFIG_HOME:-$HOME/.config}/nvim/plugged"'))
     " COLORS, PRETTY & FUN
-    Plug 'norcalli/nvim-colorizer.lua'
     Plug 'sheerun/vim-polyglot'
     Plug 'itchyny/lightline.vim'
     Plug 'pineapplegiant/spaceduck'
     " MOVING AROUND
     Plug 'junegunn/fzf.vim'
     Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-    Plug 'justinmk/vim-dirvish'
-    Plug 'kristijanhusak/vim-dirvish-git'
+    Plug 'lambdalisue/fern.vim'
+    Plug 'lambdalisue/fern-hijack.vim'
+    Plug 'LumaKernel/fern-mapping-fzf.vim/'
+    Plug 'lambdalisue/nerdfont.vim'
+    Plug 'lambdalisue/fern-renderer-nerdfont.vim'
+    "Plug 'antoinemadec/FixCursorHold.nvim'
     Plug 'justinmk/vim-sneak'
     " ESSENTIAL
     Plug 'tpope/vim-surround'
@@ -59,27 +62,27 @@ call plug#end()
 "----------------------------------------------------------------------
 "                       Sneakin'
 "----------------------------------------------------------------------
-" Use s char to traverse the the next ocurrence of sneak
+" Use the s character to traverse the the next ocurrence of sneak
   let g:sneak#s_next = 1
 
 "----------------------------------------------------------------------
-"                       Dirvish
+"                       FERN
 "----------------------------------------------------------------------
 
-" No more netrw
-    let g:loaded_netrwPlugin = 1
-    command! -nargs=? -complete=dir Explore Dirvish <args>
-    command! -nargs=? -complete=dir Sexplore belowright split | silent Dirvish <args>
-    command! -nargs=? -complete=dir Vexplore leftabove vsplit | silent Dirvish <args>
+    map <C-n> :Fern .<CR>
+    nnoremap <C-m> :Fern . -drawer -toggle -stay -reveal=%<CR>
 
-"Map Dirvish to Ctrl-n
-    map <C-n> :Dirvish<CR>
+" Disable netrw
+    "let g:loaded_netrw = 1
+    "let g:loaded_netrwPlugin = 1
+    "let g:loaded_netrwSettings = 1
+    "let g:loaded_netrwFileHandlers = 1
 
-" Map `gh` to hide dot-prefixed files.  Press `R` to "toggle" (reload).
-    autocmd FileType dirvish nnoremap <silent><buffer>
-    \ gh :silent keeppatterns g@\v/\.[^\/]+/?$@d _<cr>:setl cole=3<cr>
-    augroup END
 
+" in millisecond, used for both CursorHold and CursorHoldI,
+" use updatetime instead if not defined
+    "let g:cursorhold_updatetime = 100
+    let g:fern#renderer = "nerdfont"
 
 "----------------------------------------------------------------------
 "                       FZF
@@ -93,12 +96,11 @@ call plug#end()
 " :<CR>
 " :History/<CR>
 
-" FZF to leader+f
+" FZF to Ctrl+f
     nnoremap <C-b> :Buffers<CR>
     nnoremap <C-f> :Files<CR>
     nnoremap <C-p> :GFiles<CR>
     nnoremap <C-c> :History<CR>
-    nnoremap <C-m> :Marks<CR>
 
     let $FZF_DEFAULT_OPTS = '--layout=reverse'
 
