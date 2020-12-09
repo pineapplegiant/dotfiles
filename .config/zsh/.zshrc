@@ -106,6 +106,7 @@ SPACESHIP_PROMPT_ORDER=(
     alias rr="source $XDG_CONFIG_HOME/zsh/.zshrc && tmux source-file $XDG_CONFIG_HOME/tmux/tmux.conf" # Source bash profile & Tmux
     alias tfix="tmux select-layout even-horizontal"
     alias tfixv="tmux select-layout even-vertical"
+    alias tfixd="tmux resize-pane -y 8"
     alias ..="cd .."                         # Shortcut up a directory
     alias ...="cd ../.."                     # Shorcut 2 directory
     alias c="clear"                          # Faster clearing of the screen
