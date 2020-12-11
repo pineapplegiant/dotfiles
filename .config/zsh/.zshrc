@@ -94,7 +94,7 @@ SPACESHIP_PROMPT_ORDER=(
     alias l="exa -FG --git"                         # Just make ls  chill
     alias ls="exa -FG --git"                        # Make ls pretty
     alias ll="exa -l --git"                         # ls long tag
-    alias s="exa -ahlF --git"
+    alias s="exa -ahlF"
     alias ss="exa -aF --git"
 
 # Safety aliases

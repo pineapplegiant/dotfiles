@@ -25,7 +25,6 @@
 "----------------------------------------------------------------------
 "               Basic Preference Things
 "----------------------------------------------------------------------
-    set nocompatible              " be iMproved, required for normie Vim
     filetype plugin indent on
     syntax enable                  " Turn on Syntax highlighting
     set nolazyredraw               " Hopefully makes it so nvim doesn't get buggy screen probs
@@ -41,7 +40,7 @@
     set autoindent                 " Makes it so that things are indented when needed (i think)
     set cursorline                 " Cursorline in vim
     set expandtab                  " Tabs are spaces
-    set tabstop=4                  " TAB becomes 4 spaces
+    set tabstop=8                  " TAB becomes 4 spaces
     set softtabstop=4              " TAB becomes 4 spaces in Vim operations
     set shiftwidth=4               " Number of spaces for indentation
     set hlsearch                   " Highlight search results

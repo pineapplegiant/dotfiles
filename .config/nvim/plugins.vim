@@ -69,8 +69,8 @@ call plug#end()
 "                       FERN
 "----------------------------------------------------------------------
 
-    map <C-n> :Fern .<CR>
-    nnoremap <C-m> :Fern . -drawer -toggle -stay -reveal=%<CR>
+    map <C-m> :Fern .<CR>
+    nnoremap <C-n> :Fern . -drawer -toggle -stay -reveal=%<CR>
 
 " Disable netrw
     "let g:loaded_netrw = 1

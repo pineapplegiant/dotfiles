@@ -1,31 +1,28 @@
-# No cache stuff
-*.zcomp*
-*.cache/*
-.cache/*
+*
+!.profile
+!.zprofile
+!setup/
+!README.md
+!setup.png
 
+# Scripts
+!.local/bin/*
 
-# No .local/share stuff
-.local/share/*
-*.local/share/*
+# Git Config
+!.config/git/*
 
-# Exclude Unnecessary Config files
-.config/neofetch/*
-.config/nvim/autoload/*
-.config/nvim/colors
-.config/nvim/plugged/*
-.config/nvim/.netrwhist
-.config/nvim/netrwhist
-.config/nvim/netrwhist*
-.config/tmux/plugins/*
-.config/tmux/resurrect/*
-.config/asciinema/*
-.config/coc/*
-.config/configstore/*
-.config/fish/*
-.config/gtk-2.0/*
-.config/karabiner
-.config/neofetch
-.config/oni
-.config/zsh/.zsh_history
-.config/zsh/.zsh_sessions/*
-.config/htop/htoprc
+# Shell profile
+!.config/shell/*
+
+# Tmux Profile
+!.config/tmux/tmux.conf
+
+# Neovim/Vim settings
+!.config/nvim/
+!.config/vim/*
+
+# VS Code Settings
+!.config/vscode/*
+
+# Z shell settings
+!.config/zsh/.zshrc
