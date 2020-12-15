@@ -260,3 +260,4 @@ function webdev()
     bindkey -M vicmd 'j' history-substring-search-down
 
 export PATH="/usr/local/sbin:$PATH"
+fpath+=${ZDOTDIR:-~}/.zsh_functions

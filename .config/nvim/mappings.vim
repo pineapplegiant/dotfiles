@@ -114,7 +114,7 @@
     nnoremap - <C-x>
 
 
-" Show syntax color highlighting groups for word under cursor with Ctrl-Shift-P
+" Show syntax color highlighting groups for word under cursor
     nmap <c-a> :call <SID>SynStack()<CR>
     function! <SID>SynStack()
       if !exists("*synstack")

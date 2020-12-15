@@ -25,6 +25,9 @@ call plug#begin(system('echo -n "${XDG_CONFIG_HOME:-$HOME/.config}/nvim/plugged"
     Plug 'sheerun/vim-polyglot'
     Plug 'itchyny/lightline.vim'
     Plug 'pineapplegiant/spaceduck'
+    "Plug 'cocopon/iceberg.vim'
+    ":GenTocGFM -> Make TOC
+    Plug 'mzlogin/vim-markdown-toc'
     " MOVING AROUND
     Plug 'junegunn/fzf.vim'
     Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }

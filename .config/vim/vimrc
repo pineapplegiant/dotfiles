@@ -8,12 +8,9 @@
 
 source $XDG_CONFIG_HOME/nvim/general.vim        " General Settings point to nvim (less code duplication)
 
-"Vim version greater than 7, if not gtfo
+"Vim version less than 7, gtfo
 if v:version < 703
     finish
 endif
+
 source $XDG_CONFIG_HOME/nvim/mappings.vim       " Remappings for Vim
-
-
-" Make sure to install colorscheme properly btw
-set notermguicolors

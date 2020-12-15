@@ -12,12 +12,12 @@
     if exists('+termguicolors')
       let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
       let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
-      set termguicolors
     endif
 
    " If I installed my own theme then use it, if not then nahh
    try
        colorscheme spaceduck
+       set termguicolors
     catch
         colorscheme default
     endtry
@@ -25,13 +25,16 @@
 "----------------------------------------------------------------------
 "               Basic Preference Things
 "----------------------------------------------------------------------
-    filetype plugin indent on
+    set nocompatible               " Vim sucks
+    filetype plugin indent on      " Vim super sucks man
     syntax enable                  " Turn on Syntax highlighting
     set nolazyredraw               " Hopefully makes it so nvim doesn't get buggy screen probs
     set number                     " Turn on Line Number
     set guicursor=n-v-c:block,i-ci-ve:ver25,r-cr:hor20,o:hor50 "Fix cursor in insert mode
      \,a:blinkwait700-blinkoff400-blinkon250-Cursor/lCursor
      \,sm:block-blinkwait175-blinkoff150-blinkon175
+    let &t_SI = "\e[6 q"           " Just block vim cursor things
+    let &t_EI = "\e[2 q"           " Just block vim cursor things
     set hidden                     " Ok IDK what this does
     set ignorecase                 " Ignorecase when searching stuff
     set spelllang=en_us            " Turn on spell check?
@@ -40,9 +43,10 @@
     set autoindent                 " Makes it so that things are indented when needed (i think)
     set cursorline                 " Cursorline in vim
     set expandtab                  " Tabs are spaces
-    set tabstop=8                  " TAB becomes 4 spaces
+    set tabstop=4                  " TAB becomes 4 spaces
     set softtabstop=4              " TAB becomes 4 spaces in Vim operations
     set shiftwidth=4               " Number of spaces for indentation
+    set numberwidth=4              " Number of spaces of number column
     set hlsearch                   " Highlight search results
     set incsearch                  " Turn on incremental searching
     set showcmd                    " Turn on Cmd as typed on the bottom-bar
