@@ -66,6 +66,8 @@
     set wildignore+=*.tar.*
     set noswapfile                 " NO SWAP FILES
     set wildcharm=<C-z>            " Juggling with buffers
+    "set list                       " Be aware of trailing spaces
+    "set listchars=tab:>-
 
 " Disable automatic comment insertion
     autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o

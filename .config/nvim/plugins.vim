@@ -16,7 +16,7 @@ if ! filereadable(system('echo -n "${XDG_CONFIG_HOME:-$HOME/.config}/nvim/autolo
 	echo "Downloading junegunn/vim-plug to manage plugins..."
 	silent !mkdir -p ${XDG_CONFIG_HOME:-$HOME/.config}/nvim/autoload/
 	silent !curl "https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim" > ${XDG_CONFIG_HOME:-$HOME/.config}/nvim/autoload/plug.vim
-	autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+	autocmd VimEnter * PlugInstall
 endif
 
 " Make sure you have vim-plug installed ~/.local/share/nvim/site/autoload/plug.vim
@@ -25,39 +25,39 @@ call plug#begin(system('echo -n "${XDG_CONFIG_HOME:-$HOME/.config}/nvim/plugged"
     Plug 'sheerun/vim-polyglot'
     Plug 'itchyny/lightline.vim'
     Plug 'pineapplegiant/spaceduck'
-    "Plug 'cocopon/iceberg.vim'
-    ":GenTocGFM -> Make TOC
+    Plug 'cocopon/iceberg.vim'
+    "":GenTocGFM -> Make TOC
     Plug 'mzlogin/vim-markdown-toc'
-    " MOVING AROUND
+    "" MOVING AROUND
     Plug 'junegunn/fzf.vim'
     Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-    Plug 'lambdalisue/fern.vim'
-    Plug 'lambdalisue/fern-hijack.vim'
-    Plug 'LumaKernel/fern-mapping-fzf.vim/'
     Plug 'lambdalisue/nerdfont.vim'
-    Plug 'lambdalisue/fern-renderer-nerdfont.vim'
-    "Plug 'antoinemadec/FixCursorHold.nvim'
     Plug 'justinmk/vim-sneak'
-    " ESSENTIAL
+    "" ESSENTIAL
     Plug 'tpope/vim-surround'
     Plug 'jiangmiao/auto-pairs'
     Plug 'vim-scripts/The-NERD-Commenter'
-    " Git 
-    Plug 'airblade/vim-gitgutter'
+    "" Git 
+    "Plug 'airblade/vim-gitgutter'
     Plug 'itchyny/vim-gitbranch'
-    " PROSE & WRITING
+    if has('nvim') || has('patch-8.0.902')
+      Plug 'mhinz/vim-signify'
+    else
+      Plug 'mhinz/vim-signify', { 'branch': 'legacy' }
+    endif
+    "" PROSE & WRITING
     Plug 'junegunn/goyo.vim' 
     Plug 'reedes/vim-pencil'
     Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install'  }
     Plug 'arthurxavierx/vim-unicoder'
     Plug 'psliwka/vim-smoothie'
-    " NEXT LEVEL SHIT
+    "" NEXT LEVEL SHIT
     Plug 'mhinz/vim-grepper'
     Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
     Plug 'liuchengxu/vista.vim'
-    " Tmux
+    "" Tmux
     Plug 'christoomey/vim-tmux-navigator'
-    " Low-key messes everything up
+    "" Low-key messes everything up
     Plug 'Yggdroot/indentLine'
 call plug#end()
 
@@ -69,23 +69,51 @@ call plug#end()
   let g:sneak#s_next = 1
 
 "----------------------------------------------------------------------
-"                       FERN
+"                       COC EXPLORER
 "----------------------------------------------------------------------
 
-    map <C-m> :Fern .<CR>
-    nnoremap <C-n> :Fern . -drawer -toggle -stay -reveal=%<CR>
+        let g:coc_explorer_global_presets = {
+    \   '.vim': {
+    \     'root-uri': '~/.vim',
+    \   },
+    \   'cocConfig': {
+    \      'root-uri': '~/.config/coc',
+    \   },
+    \   'tab': {
+    \     'position': 'tab',
+    \     'quit-on-open': v:true,
+    \   },
+    \   'floating': {
+    \     'position': 'floating',
+    \     'open-action-strategy': 'sourceWindow',
+    \   },
+    \   'floatingTop': {
+    \     'position': 'floating',
+    \     'floating-position': 'center-top',
+    \     'open-action-strategy': 'sourceWindow',
+    \   },
+    \   'floatingLeftside': {
+    \     'position': 'floating',
+    \     'floating-position': 'left-center',
+    \     'floating-width': 50,
+    \     'open-action-strategy': 'sourceWindow',
+    \   },
+    \   'floatingRightside': {
+    \     'position': 'floating',
+    \     'floating-position': 'right-center',
+    \     'floating-width': 50,
+    \     'open-action-strategy': 'sourceWindow',
+    \   },
+    \   'simplify': {
+    \     'file-child-template': '[selection | clip | 1] [indent][icon | 1] [filename omitCenter 1]'
+    \   },
+    \   'buffer': {
+    \     'sources': [{'name': 'buffer', 'expand': v:true}]
+    \   },
+    \ }
 
-" Disable netrw
-    "let g:loaded_netrw = 1
-    "let g:loaded_netrwPlugin = 1
-    "let g:loaded_netrwSettings = 1
-    "let g:loaded_netrwFileHandlers = 1
-
-
-" in millisecond, used for both CursorHold and CursorHoldI,
-" use updatetime instead if not defined
-    "let g:cursorhold_updatetime = 100
-    let g:fern#renderer = "nerdfont"
+    nnoremap <C-n> :CocCommand explorer --no-focus<CR>
+    nmap <C-m> :CocCommand explorer --preset floating<CR>
 
 "----------------------------------------------------------------------
 "                       FZF
