@@ -6,10 +6,11 @@
 "    \ \__\\ \__\\ \__/ /      \ \__\\ \__\    \ \__\\ \__\\ _\ \ \_______\
 "     \|__| \|__| \|__|/        \|__| \|__|     \|__| \|__|\|__| \|_______|
 
+
 "----------------------------------------------------------------------
 "                   RMD map for compiling
 "----------------------------------------------------------------------
-    autocmd Filetype rmd map <F10> :!echo<space>"require(rmarkdown);<space>render('<c-r>%')"<space>\|<space>R<space>--vanilla<enter>
+"    autocmd Filetype rmd map <F10> :!echo<space>"require(rmarkdown);<space>render('<c-r>%')"<space>\|<space>R<space>--vanilla<enter>
 
 "----------------------------------------------------------------------
 "                   General Re-mappings
@@ -48,16 +49,17 @@
     inoremap <F6> <C-R>=strftime("%A %B %d, at %I:%M %p %Z")<CR>
 
 " List all buffers and jump to them using 'gb'
-    nnoremap gb :ls<CR>:b<Space>
+    nmap gb :ls<CR>:b<Space>
 
 " List all recently opened files and open a new buffer
-    nnoremap gs :browse oldfiles<CR>
+    nmap gs :browse oldfiles<CR>
 
+" Set terminal stuff for vim8
+    if v:version < 800
 " Set hh as jump out of 'vim' terminal mode
-    tnoremap hh <C-\><C-n>
-
-" Change directory to current directory
-    nnoremap <leader>cd :cd %:p:h<CR>:pwd<CR>
+        tnoremap hh <C-\><C-n>
+        finish
+    endif
 
 " Shift Tab to cyle tabs
     nmap <S-Tab> :bn<CR>
@@ -75,16 +77,16 @@
     nnoremap ,<leader> :nohlsearch<CR>
 
 " Run Last command in tmux window
-    nnoremap ,gcc :!tmux send-keys -t1 "\!! " ENTER <CR><CR>
+    nmap ,gcc :!tmux send-keys -t1 "\!! " ENTER <CR><CR>
 
 " Mac open dictionary under word cursor
-    nnoremap <silent> <leader>? :!open dict://<cword><cr><cr>
+    nmap <silent> <leader>? :!open dict://<cword><cr><cr>
 
 " Open URL or thing in default browser or whatever
-    nnoremap <silent> <leader>@ :!open <cfile><cr><cr>
+    nmap <silent> <leader>@ :!open <cfile><cr><cr>
 
 " Delete Buffer, but keep the window open
-    nnoremap <leader>d :bp\|bd! #<CR>
+    nmap <leader>d :bp\|bd! #<CR>
 
 " Jumplist stuff -> Backward and forward in vim jumps 
 " -> C-i && C-o aint that hard
@@ -95,24 +97,26 @@
     nnoremap <leader>j J
 
 " Preview Marks!
-    nnoremap  <leader>m :marks<CR>
+    "nnoremap  <leader>m :marks<CR>
 
 " Copy & Paste into vim in normal mode
-    noremap <leader>p  "+p
-    noremap <leader>y  "+y
+    map <leader>p  "+p
+    map <leader>y  "+y
 
 " Quicksave and Quickquit in vim!
-    nnoremap <leader>s :update<cr>
-    nnoremap <leader>q :q!<CR>
+    nmap <leader>s :update<cr>
+    nmap <leader>q :q!<CR>
 
 " Split window
-    nnoremap <leader>vs :split<Return>
-    nnoremap <leader>vv :vsplit<Return>
+    nmap <leader>vs :split<Return>
+    nmap <leader>vv :vsplit<Return>
 
 " Increment Decrement Numbers
-    nnoremap + <C-a>
-    nnoremap - <C-x>
+    "nnoremap + <C-a>
+    "nnoremap - <C-x>
 
+" Change directory to current directory
+    nmap <leader>cd :cd %:p:h<CR>:pwd<CR>
 
 " Show syntax color highlighting groups for word under cursor
     nmap <c-a> :call <SID>SynStack()<CR>
@@ -127,7 +131,7 @@
     nnoremap <leader>r :%s/\<<C-r><C-w>\>//gI<Left><Left><Left>
 
 "----------------------------------------------------------------------
-"               Terminal
+"               Terminal -> z
 "----------------------------------------------------------------------
 " Terminal Mappings
     function! TerminalCreate()
@@ -140,23 +144,24 @@
     endfunction
 
 " Leader+z = create new terminal buffer BELOW
-    nnoremap <leader>zb :new<CR>:resize 10<CR>:call TerminalCreate()<CR>
+    nmap <leader>zb :new<CR>:resize 10<CR>:call TerminalCreate()<CR>
 
 " Leader+zb = new terminal in a new window completely by itself
-    nnoremap <leader>zz :call TerminalCreate()<CR>
+    nmap <leader>zz :call TerminalCreate()<CR>
 
 " Leader+zv = new terminal in a new vertical split
-    nnoremap <leader>zv :vsplit<CR>:call TerminalCreate()<CR>
+    nmap <leader>zv :vsplit<CR>:call TerminalCreate()<CR>
 
 "----------------------------------------------------------------------
-"                           Snippets!
+"                           Snippets! -> Comma
 "----------------------------------------------------------------------
+
 " Basic HTML Snippet!
-    nnoremap ,html :-1read $XDG_CONFIG_HOME/nvim/snippets/skeleton.html<CR>7jf>a
+    nmap ,html :-1read $XDG_CONFIG_HOME/nvim/snippets/skeleton.html<CR>7jf>a
 
 " Basic CSS Snippet!
-    nnoremap ,css :-1read $XDG_CONFIG_HOME/nvim/snippets/cssComment.css<CR>jA
-    nnoremap ,csss :-1read $XDG_CONFIG_HOME/nvim/snippets/skeleton.css<CR>
+    nmap ,css :-1read $XDG_CONFIG_HOME/nvim/snippets/cssComment.css<CR>jA
+    nmap ,csss :-1read $XDG_CONFIG_HOME/nvim/snippets/skeleton.css<CR>
 
 " Markdown Remaps
 function! PandocCreate()
@@ -207,23 +212,23 @@ endfunction
     "autocmd FileType groff nnoremap ,comp :update<CR>:call GroffCreate()<CR>
 
 " School's C++ top snippet
-    nnoremap ,top :-1read $XDG_CONFIG_HOME/nvim/snippets/top.txt<CR>2jA <C-R>=strftime("%A %B %d %Y, at %I:%M %p %Z")<CR><ESC>jA 
+    nmap ,top :-1read $XDG_CONFIG_HOME/nvim/snippets/top.txt<CR>2jA <C-R>=strftime("%A %B %d %Y, at %I:%M %p %Z")<CR><ESC>jA 
 
 " School's Function block snippet
-    nnoremap ,block :read $XDG_CONFIG_HOME/nvim/snippets/block.txt<CR>jA
+    nmap ,block :read $XDG_CONFIG_HOME/nvim/snippets/block.txt<CR>jA
 
 " C++ int main()
-    nnoremap ,c++ :read $XDG_CONFIG_HOME/nvim/snippets/c++.txt<CR>jo<tab>
+    nmap ,c++ :read $XDG_CONFIG_HOME/nvim/snippets/c++.txt<CR>jo<tab>
 
 " Post snippet
-    nnoremap ,post :-1read $XDG_CONFIG_HOME/nvim/snippets/post.md<CR>
+    nmap ,post :-1read $XDG_CONFIG_HOME/nvim/snippets/post.md<CR>
 
 " YAML snippet
-    nnoremap ,yaml :-1read $XDG_CONFIG_HOME/nvim/snippets/yaml.md<CR>
-    nnoremap ,yaml1 :-1read $XDG_CONFIG_HOME/nvim/snippets/yamlcs.md<CR>
+    nmap ,yaml :-1read $XDG_CONFIG_HOME/nvim/snippets/yaml.md<CR>
+    nmap ,yaml1 :-1read $XDG_CONFIG_HOME/nvim/snippets/yamlcs.md<CR>
 
 " MLK's Dream Speech
-    nnoremap ,mlk :read $XDG_CONFIG_HOME/nvim/snippets/mlk.txt<CR>
+    nmap ,mlk :read $XDG_CONFIG_HOME/nvim/snippets/mlk.txt<CR>
 
 " Job snippet
-    nnoremap ,job :read $XDG_CONFIG_HOME/nvim/snippets/job.txt<CR>
+    nmap ,job :read $XDG_CONFIG_HOME/nvim/snippets/job.txt<CR>

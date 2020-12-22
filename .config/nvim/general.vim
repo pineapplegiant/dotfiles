@@ -6,21 +6,6 @@
 "    \ \__\\ \__\\ \__/ /      \ \__\\ \__\    \ \__\\ \__\\ _\ \ \_______\
 "     \|__| \|__| \|__|/        \|__| \|__|     \|__| \|__|\|__| \|_______|
 
-"----------------------------------------------------------------------
-"               Colors for a rainy day
-"----------------------------------------------------------------------
-    if exists('+termguicolors')
-      let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
-      let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
-    endif
-
-   " If I installed my own theme then use it, if not then nahh
-   try
-       colorscheme spaceduck
-       set termguicolors
-    catch
-        colorscheme default
-    endtry
 
 "----------------------------------------------------------------------
 "               Basic Preference Things
@@ -83,15 +68,3 @@
 
 "Set Handlebars up like regular ol' HTML
     autocmd Filetype *.handlebars set filetype=html
-augroup vimrc
-  autocmd!
-
-" Hopefully delete Netrw mappings
-  autocmd FileType netrw call s:RemoveNetrwMap()
-augroup END
-
-function s:RemoveNetrwMap()
-  if hasmapto('<Plug>NetrwRefresh')
-    unmap <buffer> <C-l>
-  endif
-endfunction

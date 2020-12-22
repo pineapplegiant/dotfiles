@@ -25,31 +25,30 @@ call plug#begin(system('echo -n "${XDG_CONFIG_HOME:-$HOME/.config}/nvim/plugged"
     Plug 'sheerun/vim-polyglot'
     Plug 'itchyny/lightline.vim'
     Plug 'pineapplegiant/spaceduck'
-    Plug 'cocopon/iceberg.vim'
+    "Plug 'cocopon/iceberg.vim'
     "":GenTocGFM -> Make TOC
-    Plug 'mzlogin/vim-markdown-toc'
+    "Plug 'mzlogin/vim-markdown-toc'
     "" MOVING AROUND
     Plug 'junegunn/fzf.vim'
     Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
     Plug 'lambdalisue/nerdfont.vim'
+    Plug 'lambdalisue/fern.vim'
+    Plug 'lambdalisue/fern-hijack.vim'
+    Plug 'lambdalisue/fern-renderer-nerdfont.vim'
+    Plug 'lambdalisue/fern-git-status.vim'
+    Plug 'LumaKernel/fern-mapping-fzf.vim/'
     Plug 'justinmk/vim-sneak'
     "" ESSENTIAL
     Plug 'tpope/vim-surround'
     Plug 'jiangmiao/auto-pairs'
     Plug 'vim-scripts/The-NERD-Commenter'
     "" Git 
-    "Plug 'airblade/vim-gitgutter'
     Plug 'itchyny/vim-gitbranch'
-    if has('nvim') || has('patch-8.0.902')
-      Plug 'mhinz/vim-signify'
-    else
-      Plug 'mhinz/vim-signify', { 'branch': 'legacy' }
-    endif
     "" PROSE & WRITING
     Plug 'junegunn/goyo.vim' 
     Plug 'reedes/vim-pencil'
     Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install'  }
-    Plug 'arthurxavierx/vim-unicoder'
+    "Plug 'arthurxavierx/vim-unicoder'
     Plug 'psliwka/vim-smoothie'
     "" NEXT LEVEL SHIT
     Plug 'mhinz/vim-grepper'
@@ -58,7 +57,7 @@ call plug#begin(system('echo -n "${XDG_CONFIG_HOME:-$HOME/.config}/nvim/plugged"
     "" Tmux
     Plug 'christoomey/vim-tmux-navigator'
     "" Low-key messes everything up
-    Plug 'Yggdroot/indentLine'
+    "Plug 'Yggdroot/indentLine'
 call plug#end()
 
 
@@ -69,69 +68,54 @@ call plug#end()
   let g:sneak#s_next = 1
 
 "----------------------------------------------------------------------
-"                       COC EXPLORER
+"                       FERN
 "----------------------------------------------------------------------
 
-        let g:coc_explorer_global_presets = {
-    \   '.vim': {
-    \     'root-uri': '~/.vim',
-    \   },
-    \   'cocConfig': {
-    \      'root-uri': '~/.config/coc',
-    \   },
-    \   'tab': {
-    \     'position': 'tab',
-    \     'quit-on-open': v:true,
-    \   },
-    \   'floating': {
-    \     'position': 'floating',
-    \     'open-action-strategy': 'sourceWindow',
-    \   },
-    \   'floatingTop': {
-    \     'position': 'floating',
-    \     'floating-position': 'center-top',
-    \     'open-action-strategy': 'sourceWindow',
-    \   },
-    \   'floatingLeftside': {
-    \     'position': 'floating',
-    \     'floating-position': 'left-center',
-    \     'floating-width': 50,
-    \     'open-action-strategy': 'sourceWindow',
-    \   },
-    \   'floatingRightside': {
-    \     'position': 'floating',
-    \     'floating-position': 'right-center',
-    \     'floating-width': 50,
-    \     'open-action-strategy': 'sourceWindow',
-    \   },
-    \   'simplify': {
-    \     'file-child-template': '[selection | clip | 1] [indent][icon | 1] [filename omitCenter 1]'
-    \   },
-    \   'buffer': {
-    \     'sources': [{'name': 'buffer', 'expand': v:true}]
-    \   },
-    \ }
+" Custom settings and mappings.
+  let g:fern#disable_default_mappings = 1
 
-    nnoremap <C-n> :CocCommand explorer --no-focus<CR>
-    nmap <C-m> :CocCommand explorer --preset floating<CR>
+function! FernInit() abort
+  nmap <buffer><expr>
+        \ <Plug>(fern-my-open-expand-collapse)
+        \ fern#smart#leaf(
+        \   "\<Plug>(fern-action-open:select)",
+        \   "\<Plug>(fern-action-expand)",
+        \   "\<Plug>(fern-action-collapse)",
+        \ )
+  nmap <buffer> <CR> <Plug>(fern-action-open-or-enter)
+  nmap <buffer> <BS> <Plug>(fern-action-leave)
+  nmap <buffer> <2-LeftMouse> <Plug>(fern-my-open-expand-collapse)
+  nmap <buffer> n <Plug>(fern-action-new-file)
+  nmap <buffer> N <Plug>(fern-action-new-dir)
+  nmap <buffer> x <Plug>(fern-action-remove)
+  nmap <buffer> m <Plug>(fern-action-move)
+  nmap <buffer> r <Plug>(fern-action-rename)
+  nmap <buffer> R <Plug>(fern-action-reload)
+  nmap <buffer> H <Plug>(fern-action-hidden-toggle)
+  nmap <buffer> b <Plug>(fern-action-open:split)
+  nmap <buffer> v <Plug>(fern-action-open:vsplit)
+  nmap <buffer> V <Plug>(fern-action-mark:toggle)
+  nmap <buffer> o <Plug>(fern-action-open:system)
+  nmap <buffer> l <Plug>(fern-action-expand)
+  nmap <buffer> h <Plug>(fern-action-collapse)
+  nmap <buffer> fd <Plug>(fern-action-fzf-dirs)
+  nmap <buffer> ff <Plug>(fern-action-fzf-both)
+  nmap <buffer> fg <Plug>(fern-action-grep)
+endfunction
+
+augroup FernGroup
+  autocmd!
+  autocmd FileType fern call FernInit()
+augroup END
+
+    let g:fern#renderer = "nerdfont"
+
+    nmap <C-m> :Fern .<CR>
+    nmap <C-n> :Fern . -drawer -toggle -stay -reveal=%<CR>
 
 "----------------------------------------------------------------------
 "                       FZF
 "----------------------------------------------------------------------
-" :Files<CR>
-" :Rg<CR>
-" :BLines<CR>
-" :Marks<CR>
-" :Commits<CR>
-" :Helptags<CR>
-" :<CR>
-" :History/<CR>
-
-" FZF to Ctrl+f
-    nnoremap <C-b> :Buffers<CR>
-    nnoremap <C-f> :Files<CR>
-    nnoremap <C-p> :GFiles<CR>
-    nnoremap <C-c> :History<CR>
 
     let $FZF_DEFAULT_OPTS = '--layout=reverse'
 
@@ -164,12 +148,17 @@ call plug#end()
             \ signcolumn=no
     endfunction
 
+    nmap <C-b> :Buffers<CR>
+    nmap <C-p> :Files<CR>
+    nmap <C-f> :GFiles<CR>
+    nmap <C-c> :History<CR>
+
 "----------------------------------------------------------------------
 "                       Vim-Grepper
 "----------------------------------------------------------------------
 
 " Grepper with <leader>g
-    nnoremap <leader>g :Grepper<cr>
+    nmap <leader>g :Grepper<cr>
     let g:grepper = { 'next_tool': '<leader>g' }
     let g:grepper.tools=["rg"]
 
@@ -194,44 +183,43 @@ call plug#end()
 "----------------------------------------------------------------------
 "                       VistaVim
 "----------------------------------------------------------------------
-    function! NearestMethodOrFunction() abort
-      return get(b:, 'vista_nearest_method_or_function', '')
-    endfunction
+   function! NearestMethodOrFunction() abort
+     return get(b:, 'vista_nearest_method_or_function', '')
+   endfunction
 
 " How each level is indented and what to prepend.
-    let g:vista_icon_indent = ["╰─▸ ", "├─▸ "]
+   let g:vista_icon_indent = ["╰─▸ ", "├─▸ "]
 
 " The default icons can't be suitable for all the filetypes, you can extend it as you wish.
-    let g:vista#renderer#icons = {
-    \   "function": "\uf794",
-    \   "variable": "\uf71b",
-    \  }
+   let g:vista#renderer#icons = {
+   \   "function": "\uf794",
+   \   "variable": "\uf71b",
+   \  }
 
 "Let Vista run explicitly
-    autocmd VimEnter * call vista#RunForNearestMethodOrFunction()
+   autocmd VimEnter * call vista#RunForNearestMethodOrFunction()
 
 "----------------------------------------------------------------------
 "                       Lightline
 "----------------------------------------------------------------------
-    function! CocCurrentFunction()
-        return get(b:, 'coc_current_function', '')
-    endfunction
+   function! CocCurrentFunction()
+       return get(b:, 'coc_current_function', '')
+   endfunction
 
-    let g:lightline = {
-          \ 'colorscheme': 'spaceduck',
-          \ 'active': {
-          \   'left': [ [ 'mode', 'paste' ],
-          \             [ 'gitbranch','cocstatus', 'readonly', 'relativepath', 'modified', 'method'] ],
-          \ 'right': [ [ 'lineinfo' ],
-          \            [ 'percent' ],
-          \            [ 'fileformat', 'fileencoding', 'filetype' ] ] 
-          \ },
-          \ 'component_function': {
-          \   'gitbranch': 'gitbranch#name',
-          \   'method': 'NearestMethodOrFunction',
-          \   'cocstatus': 'coc#status',
-          \ }
-          \ }
+   let g:lightline = {
+         \ 'colorscheme': 'spaceduck',
+         \ 'active': {
+         \   'left': [ [ 'mode', 'paste' ],
+         \             [ 'cocstatus', 'readonly', 'relativepath', 'modified', 'method'] ],
+         \ 'right': [ [ 'lineinfo' ],
+         \            [ 'percent' ],
+         \            [ 'fileformat', 'fileencoding', 'filetype' ] ] 
+         \ },
+         \ 'component_function': {
+         \   'method': 'NearestMethodOrFunction',
+         \   'cocstatus': 'coc#status',
+         \ }
+         \ }
 
     "set showtabline=2 "Always show tabline for bufferline on top
 
@@ -245,7 +233,7 @@ call plug#end()
 "----------------------------------------------------------------------
 
 " Goyo start Writing!
-    nnoremap <leader>G :Goyo<CR>
+    nmap <leader>G :Goyo<CR>
 
     let g:pencil_higher_contrast_ui = 1   " 0=low (def), 1=high
     "let g:limelight_default_coefficient = 0.7
@@ -303,12 +291,12 @@ call plug#end()
 "----------------------------------------------------------------------
 "                       Indent-Line
 "----------------------------------------------------------------------
-    let g:indentLine_char = '▏'             " Show Indentation lines
-    let g:indentLine_color_gui = '#474747'  " Make them pretty-gray-lines
-    let g:indentLine_enabled = 0            " Just toggle this shit bro
+    "let g:indentLine_char = '▏'             " Show Indentation lines
+    "let g:indentLine_color_gui = '#474747'  " Make them pretty-gray-lines
+    "let g:indentLine_enabled = 0            " Just toggle this shit bro
 
-    autocmd BufNew,BufEnter *.md,*.markdown,*.wiki execute "set conceallevel=0"
-    autocmd BufNew,BufEnter *.html,*.css, execute "IndentLinesToggle"
+    "autocmd BufNew,BufEnter *.md,*.markdown,*.wiki execute "set conceallevel=0"
+    "autocmd BufNew,BufEnter *.html,*.css, execute "IndentLinesToggle"
 
 "----------------------------------------------------------------------
 "                       CocNVIM
@@ -394,4 +382,4 @@ call plug#end()
     nnoremap <silent> ,p  :<C-u>CocListResume<CR>
 
 " Turn off COC IN MARKDOWN
-    autocmd BufNew,BufEnter *.md,*.markdown,*.wiki execute "silent! CocDisable"
+    "autocmd BufNew,BufEnter *.md,*.markdown,*.wiki execute "silent! CocDisable"
