@@ -24,14 +24,17 @@ call plug#begin(system('echo -n "${XDG_CONFIG_HOME:-$HOME/.config}/nvim/plugged"
     " COLORS, PRETTY & FUN
     Plug 'sheerun/vim-polyglot'
     Plug 'itchyny/lightline.vim'
+    Plug 'lambdalisue/nerdfont.vim'
+    Plug 'luochen1990/rainbow'
+    "" COLOR SCHEMES
     Plug 'pineapplegiant/spaceduck'
+    "Plug 'dracula/vim'
     "Plug 'cocopon/iceberg.vim'
     "":GenTocGFM -> Make TOC
     "Plug 'mzlogin/vim-markdown-toc'
     "" MOVING AROUND
     Plug 'junegunn/fzf.vim'
     Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-    Plug 'lambdalisue/nerdfont.vim'
     Plug 'lambdalisue/fern.vim'
     Plug 'lambdalisue/fern-hijack.vim'
     Plug 'lambdalisue/fern-renderer-nerdfont.vim'
@@ -40,7 +43,6 @@ call plug#begin(system('echo -n "${XDG_CONFIG_HOME:-$HOME/.config}/nvim/plugged"
     Plug 'justinmk/vim-sneak'
     "" ESSENTIAL
     Plug 'tpope/vim-surround'
-    Plug 'jiangmiao/auto-pairs'
     Plug 'vim-scripts/The-NERD-Commenter'
     "" Git 
     Plug 'itchyny/vim-gitbranch'
@@ -54,11 +56,17 @@ call plug#begin(system('echo -n "${XDG_CONFIG_HOME:-$HOME/.config}/nvim/plugged"
     Plug 'mhinz/vim-grepper'
     Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
     Plug 'liuchengxu/vista.vim'
-    "" Tmux
+    "" TMUX
     Plug 'christoomey/vim-tmux-navigator'
-    "" Low-key messes everything up
+    "" LOW-KEY MESSES EVERYTHING UP
     "Plug 'Yggdroot/indentLine'
 call plug#end()
+
+
+"----------------------------------------------------------------------
+"                       Rainbow
+"----------------------------------------------------------------------
+  let g:rainbow_active = 1 "set to 0 if you want to enable it later via :RainbowToggle
 
 
 "----------------------------------------------------------------------
@@ -186,6 +194,10 @@ augroup END
    function! NearestMethodOrFunction() abort
      return get(b:, 'vista_nearest_method_or_function', '')
    endfunction
+
+" Ensure you have installed some decent font to show these pretty symbols, then you can enable icon for the kind.
+  "let g:vista#renderer#enable_icon = 1
+
 
 " How each level is indented and what to prepend.
    let g:vista_icon_indent = ["╰─▸ ", "├─▸ "]

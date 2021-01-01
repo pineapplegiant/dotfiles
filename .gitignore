@@ -12,6 +12,9 @@
 # Git Config
 !.config/git/*
 
+# Alacritty
+!.config/alacritty
+
 # Shell profile
 !.config/shell/*
 
