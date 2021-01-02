@@ -4,6 +4,7 @@
 
 # Default Programs
     export EDITOR="nvim"
+    export SHELL="/usr/local/bin/zsh"
 
 #----------------------------------------------------------------------
 #                       PATH
@@ -50,4 +51,4 @@
     export GOBIN="$HOME/.local/share}/go/bin"
 
 # Add Personal Scripts to my path
-    PATH=$PATH:$HOME/dotfiles/.local/bin
+    PATH="$PATH:$HOME/dotfiles/.local/bin"
