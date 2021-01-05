@@ -30,3 +30,8 @@
 
 # Z shell settings
 !.config/zsh/.zshrc
+
+# Karabiner
+# Escape = caps_lock
+# Right windows command = left control
+!.config/karabiner

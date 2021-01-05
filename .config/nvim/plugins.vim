@@ -21,15 +21,16 @@ endif
 
 " Make sure you have vim-plug installed ~/.local/share/nvim/site/autoload/plug.vim
 call plug#begin(system('echo -n "${XDG_CONFIG_HOME:-$HOME/.config}/nvim/plugged"'))
-    " COLORS, PRETTY & FUN
+    "" COLORS, PRETTY & FUN
     Plug 'sheerun/vim-polyglot'
     Plug 'itchyny/lightline.vim'
+    Plug 'bling/vim-bufferline'
     Plug 'lambdalisue/nerdfont.vim'
     Plug 'luochen1990/rainbow'
     "" COLOR SCHEMES
     Plug 'pineapplegiant/spaceduck'
-    "Plug 'dracula/vim'
-    "Plug 'cocopon/iceberg.vim'
+    Plug 'dracula/vim'
+    Plug 'cocopon/iceberg.vim'
     "":GenTocGFM -> Make TOC
     "Plug 'mzlogin/vim-markdown-toc'
     "" MOVING AROUND
@@ -222,10 +223,10 @@ augroup END
          \ 'colorscheme': 'spaceduck',
          \ 'active': {
          \   'left': [ [ 'mode', 'paste' ],
-         \             [ 'cocstatus', 'readonly', 'relativepath', 'modified', 'method'] ],
+         \             [ 'cocstatus', 'readonly', 'relativepath', 'modified', 'method']],
          \ 'right': [ [ 'lineinfo' ],
          \            [ 'percent' ],
-         \            [ 'fileformat', 'fileencoding', 'filetype' ] ] 
+         \            [ 'fileencoding', 'filetype'] ]
          \ },
          \ 'component_function': {
          \   'method': 'NearestMethodOrFunction',
@@ -313,6 +314,31 @@ augroup END
 "----------------------------------------------------------------------
 "                       CocNVIM
 "----------------------------------------------------------------------
+
+    let g:coc_global_extensions = [
+    \ 'coc-css',
+    \ 'coc-dictionary',
+    \ 'coc-emmet',
+    \ 'coc-emoji',
+    \ 'coc-eslint',
+    \ 'coc-flutter',
+    \ 'coc-git',
+    \ 'coc-go',
+    \ 'coc-highlight',
+    \ 'coc-html',
+    \ 'coc-json',
+    \ 'coc-pairs',
+    \ 'coc-phpls',
+    \ 'coc-prettier',
+    \ 'coc-python',
+    \ 'coc-react-refactor',
+    \ 'coc-styled-components',
+    \ 'coc-tabnine',
+    \ 'coc-tsserver',
+    \ 'coc-word',
+    \ 'coc-yaml',
+    \ ]
+
 " Remap Format prettier file to
     nnoremap ,f :CocCommand prettier.formatFile<CR>
 
