@@ -24,14 +24,14 @@ call plug#begin(system('echo -n "${XDG_CONFIG_HOME:-$HOME/.config}/nvim/plugged"
     "" COLORS, PRETTY & FUN
     Plug 'sheerun/vim-polyglot'
     Plug 'itchyny/lightline.vim'
-    Plug 'bling/vim-bufferline'
+    Plug 'mengelbrecht/lightline-bufferline'
     Plug 'lambdalisue/nerdfont.vim'
     Plug 'luochen1990/rainbow'
+    Plug 'psliwka/vim-smoothie'
     "" COLOR SCHEMES
-    Plug 'pineapplegiant/spaceduck'
+    Plug 'pineapplegiant/spaceduck', { 'branch': 'main' }
     Plug 'dracula/vim'
     Plug 'cocopon/iceberg.vim'
-    "":GenTocGFM -> Make TOC
     "Plug 'mzlogin/vim-markdown-toc'
     "" MOVING AROUND
     Plug 'junegunn/fzf.vim'
@@ -45,6 +45,7 @@ call plug#begin(system('echo -n "${XDG_CONFIG_HOME:-$HOME/.config}/nvim/plugged"
     "" ESSENTIAL
     Plug 'tpope/vim-surround'
     Plug 'vim-scripts/The-NERD-Commenter'
+    Plug 'mattn/emmet-vim'
     "" Git 
     Plug 'itchyny/vim-gitbranch'
     "" PROSE & WRITING
@@ -52,7 +53,6 @@ call plug#begin(system('echo -n "${XDG_CONFIG_HOME:-$HOME/.config}/nvim/plugged"
     Plug 'reedes/vim-pencil'
     Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install'  }
     "Plug 'arthurxavierx/vim-unicoder'
-    Plug 'psliwka/vim-smoothie'
     "" NEXT LEVEL SHIT
     Plug 'mhinz/vim-grepper'
     Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
@@ -60,7 +60,8 @@ call plug#begin(system('echo -n "${XDG_CONFIG_HOME:-$HOME/.config}/nvim/plugged"
     "" TMUX
     Plug 'christoomey/vim-tmux-navigator'
     "" LOW-KEY MESSES EVERYTHING UP
-    "Plug 'Yggdroot/indentLine'
+    "":GenTocGFM -> Make TOC
+    Plug 'Yggdroot/indentLine'
 call plug#end()
 
 
@@ -83,39 +84,39 @@ call plug#end()
 " Custom settings and mappings.
   let g:fern#disable_default_mappings = 1
 
-function! FernInit() abort
-  nmap <buffer><expr>
-        \ <Plug>(fern-my-open-expand-collapse)
-        \ fern#smart#leaf(
-        \   "\<Plug>(fern-action-open:select)",
-        \   "\<Plug>(fern-action-expand)",
-        \   "\<Plug>(fern-action-collapse)",
-        \ )
-  nmap <buffer> <CR> <Plug>(fern-action-open-or-enter)
-  nmap <buffer> <BS> <Plug>(fern-action-leave)
-  nmap <buffer> <2-LeftMouse> <Plug>(fern-my-open-expand-collapse)
-  nmap <buffer> n <Plug>(fern-action-new-file)
-  nmap <buffer> N <Plug>(fern-action-new-dir)
-  nmap <buffer> x <Plug>(fern-action-remove)
-  nmap <buffer> m <Plug>(fern-action-move)
-  nmap <buffer> r <Plug>(fern-action-rename)
-  nmap <buffer> R <Plug>(fern-action-reload)
-  nmap <buffer> H <Plug>(fern-action-hidden-toggle)
-  nmap <buffer> b <Plug>(fern-action-open:split)
-  nmap <buffer> v <Plug>(fern-action-open:vsplit)
-  nmap <buffer> V <Plug>(fern-action-mark:toggle)
-  nmap <buffer> o <Plug>(fern-action-open:system)
-  nmap <buffer> l <Plug>(fern-action-expand)
-  nmap <buffer> h <Plug>(fern-action-collapse)
-  nmap <buffer> fd <Plug>(fern-action-fzf-dirs)
-  nmap <buffer> ff <Plug>(fern-action-fzf-both)
-  nmap <buffer> fg <Plug>(fern-action-grep)
-endfunction
+  function! FernInit() abort
+    nmap <buffer><expr>
+          \ <Plug>(fern-my-open-expand-collapse)
+          \ fern#smart#leaf(
+          \   "\<Plug>(fern-action-open:select)",
+          \   "\<Plug>(fern-action-expand)",
+          \   "\<Plug>(fern-action-collapse)",
+          \ )
+    nmap <buffer> <CR> <Plug>(fern-action-open-or-enter)
+    nmap <buffer> <BS> <Plug>(fern-action-leave)
+    nmap <buffer> <2-LeftMouse> <Plug>(fern-my-open-expand-collapse)
+    nmap <buffer> n <Plug>(fern-action-new-file)
+    nmap <buffer> N <Plug>(fern-action-new-dir)
+    nmap <buffer> x <Plug>(fern-action-remove)
+    nmap <buffer> m <Plug>(fern-action-move)
+    nmap <buffer> r <Plug>(fern-action-rename)
+    nmap <buffer> R <Plug>(fern-action-reload)
+    nmap <buffer> H <Plug>(fern-action-hidden-toggle)
+    nmap <buffer> b <Plug>(fern-action-open:split)
+    nmap <buffer> v <Plug>(fern-action-open:vsplit)
+    nmap <buffer> V <Plug>(fern-action-mark:toggle)
+    nmap <buffer> o <Plug>(fern-action-open:system)
+    nmap <buffer> l <Plug>(fern-action-expand)
+    nmap <buffer> h <Plug>(fern-action-collapse)
+    nmap <buffer> fd <Plug>(fern-action-fzf-dirs)
+    nmap <buffer> ff <Plug>(fern-action-fzf-both)
+    nmap <buffer> fg <Plug>(fern-action-grep)
+  endfunction
 
-augroup FernGroup
-  autocmd!
-  autocmd FileType fern call FernInit()
-augroup END
+  augroup FernGroup
+    autocmd!
+    autocmd FileType fern call FernInit()
+  augroup END
 
     let g:fern#renderer = "nerdfont"
 
@@ -215,26 +216,31 @@ augroup END
 "----------------------------------------------------------------------
 "                       Lightline
 "----------------------------------------------------------------------
-   function! CocCurrentFunction()
-       return get(b:, 'coc_current_function', '')
-   endfunction
 
-   let g:lightline = {
-         \ 'colorscheme': 'spaceduck',
-         \ 'active': {
-         \   'left': [ [ 'mode', 'paste' ],
-         \             [ 'cocstatus', 'readonly', 'relativepath', 'modified', 'method']],
-         \ 'right': [ [ 'lineinfo' ],
-         \            [ 'percent' ],
-         \            [ 'fileencoding', 'filetype'] ]
-         \ },
-         \ 'component_function': {
-         \   'method': 'NearestMethodOrFunction',
-         \   'cocstatus': 'coc#status',
-         \ }
-         \ }
+" Nerdfont yay
+  let g:lightline#bufferline#enable_nerdfont=1
 
-    "set showtabline=2 "Always show tabline for bufferline on top
+  let g:lightline = {
+      \ 'colorscheme': 'spaceduck',
+      \ 'active': {
+      \   'left': [ [ 'mode', 'paste' ], [''], [ 'buffers' ]],
+      \   'right': [  ['lineinfo'], [ 'filetype', 'gitbranch'] ]
+      \ },
+      \ 'component_function': {
+      \   'gitbranch': 'gitbranch#name'
+      \ },
+      \ 'component_expand': {
+      \   'buffers': 'lightline#bufferline#buffers'
+      \ },
+      \ 'component_type': {
+      \   'buffers': 'tabsel'
+      \ },
+      \ 'separator': { 'left': '', 'right': '' },
+      \ 'subseparator': { 'left': '', 'right': '' }
+      \ }
+
+   let g:lightline#bufferline#modified = '*'
+   autocmd BufWritePost,TextChanged,TextChangedI * call lightline#update()
 
 "----------------------------------------------------------------------
 "                   Markdown Preview
@@ -304,12 +310,9 @@ augroup END
 "----------------------------------------------------------------------
 "                       Indent-Line
 "----------------------------------------------------------------------
-    "let g:indentLine_char = '▏'             " Show Indentation lines
-    "let g:indentLine_color_gui = '#474747'  " Make them pretty-gray-lines
-    "let g:indentLine_enabled = 0            " Just toggle this shit bro
-
-    "autocmd BufNew,BufEnter *.md,*.markdown,*.wiki execute "set conceallevel=0"
-    "autocmd BufNew,BufEnter *.html,*.css, execute "IndentLinesToggle"
+    let g:indentLine_char = '▏'             " Show Indentation lines
+    let g:indentLine_color_gui = '#474747'  " Make them pretty-gray-lines
+    let g:indentLine_enabled = 1            " Just toggle this shit bro
 
 "----------------------------------------------------------------------
 "                       CocNVIM
