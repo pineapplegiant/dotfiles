@@ -20,7 +20,7 @@
      \,sm:block-blinkwait175-blinkoff150-blinkon175
     let &t_SI = "\e[6 q"           " Just block vim cursor things
     let &t_EI = "\e[2 q"           " Just block vim cursor things
-    set hidden                     " Ok IDK what this does
+    set hidden                     " TextEdit might fail if hidden is not set
     set ignorecase                 " Ignorecase when searching stuff
     set spelllang=en_us            " Turn on spell check?
     set nospell                    " Turn off spellcheck
@@ -57,7 +57,7 @@
 " Disable automatic comment insertion
     autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 
-"" Just softabs for the homies
+" Just softabs for the homies
     autocmd Filetype css setlocal  tabstop=2 shiftwidth=2 softtabstop=2  " Set tabs to 2 spaces in html and css
     autocmd Filetype html setlocal  tabstop=2 shiftwidth=2 softtabstop=2 " Set tabs to 2 spaces in html and css
     autocmd Filetype javascript  setlocal  tabstop=2 shiftwidth=2 softtabstop=2  " Set tabs to 2 spaces in html and css
@@ -66,5 +66,5 @@
     autocmd InsertLeave,WinEnter * set cursorline
     autocmd InsertEnter,WinLeave * set nocursorline
 
-"Set Handlebars up like regular ol' HTML
+" Set Handlebars up like regular ol' HTML
     autocmd Filetype *.handlebars set filetype=html
