@@ -228,7 +228,7 @@ call plug#end()
       \   'right': [  ['lineinfo'], [ 'filetype', 'gitbranch'] ]
       \ },
       \ 'component_function': {
-      \   'gitbranch': 'gitbranch#name'
+      \   'gitbranch': 'LightlineGitbranch'
       \ },
       \ 'component_expand': {
       \   'buffers': 'lightline#bufferline#buffers'
@@ -236,12 +236,19 @@ call plug#end()
       \ 'component_type': {
       \   'buffers': 'tabsel'
       \ },
-      \ 'separator': { 'left': '', 'right': '' },
-      \ 'subseparator': { 'left': '', 'right': '' }
+      \ 'separator': { 'left': '', 'right': '' },
+      \ 'subseparator': { 'left': '', 'right': '' }
       \ }
 
    let g:lightline#bufferline#modified = '*'
    autocmd BufWritePost,TextChanged,TextChangedI * call lightline#update()
+
+  let g:gitbranch_icon = ''
+
+  function! LightlineGitbranch()
+      let l:bname = gitbranch#name()
+      return l:bname != '' ? g:gitbranch_icon . ' ' . l:bname : ''
+  endfunction
 
 "----------------------------------------------------------------------
 "                   Markdown Preview
