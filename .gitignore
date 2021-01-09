@@ -21,6 +21,7 @@
 # Tmux Profile
 !.config/tmux/tmux.conf
 !.config/tmux/status-line.conf
+!.config/tmux/status-line-light.conf
 
 # Neovim/Vim settings
 !.config/nvim/
