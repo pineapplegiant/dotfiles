@@ -20,6 +20,7 @@
 
 # Tmux Profile
 !.config/tmux/tmux.conf
+!.config/tmux/status-line.conf
 
 # Neovim/Vim settings
 !.config/nvim/

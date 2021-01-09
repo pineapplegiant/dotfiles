@@ -28,6 +28,7 @@ call plug#begin(system('echo -n "${XDG_CONFIG_HOME:-$HOME/.config}/nvim/plugged"
     Plug 'lambdalisue/nerdfont.vim'
     Plug 'luochen1990/rainbow'
     Plug 'psliwka/vim-smoothie'
+    Plug 'edkolev/tmuxline.vim'
     "" COLOR SCHEMES
     Plug 'pineapplegiant/spaceduck', { 'branch': 'main' }
     Plug 'dracula/vim'
@@ -225,7 +226,7 @@ call plug#end()
       \ 'colorscheme': 'spaceduck',
       \ 'active': {
       \   'left': [ [ 'mode', 'paste' ], [''], [ 'buffers' ]],
-      \   'right': [  ['lineinfo'], [ 'filetype', 'gitbranch'] ]
+      \   'right': [  ['lineinfo'], [ 'gitbranch' ] ]
       \ },
       \ 'component_function': {
       \   'gitbranch': 'LightlineGitbranch'
