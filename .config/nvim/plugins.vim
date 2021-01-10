@@ -25,10 +25,16 @@ call plug#begin(system('echo -n "${XDG_CONFIG_HOME:-$HOME/.config}/nvim/plugged"
     Plug 'sheerun/vim-polyglot'
     Plug 'itchyny/lightline.vim'
     Plug 'mengelbrecht/lightline-bufferline'
-    Plug 'lambdalisue/nerdfont.vim'
     Plug 'luochen1990/rainbow'
     Plug 'psliwka/vim-smoothie'
-    Plug 'edkolev/tmuxline.vim'
+    "Plug 'edkolev/tmuxline.vim'
+    "" Fern
+    Plug 'lambdalisue/nerdfont.vim'
+    Plug 'lambdalisue/fern-renderer-nerdfont.vim'
+    Plug 'lambdalisue/fern-hijack.vim'
+    Plug 'lambdalisue/glyph-palette.vim'
+    Plug 'lambdalisue/fern-git-status.vim'
+    Plug 'LumaKernel/fern-mapping-fzf.vim/'
     "" COLOR SCHEMES
     Plug 'pineapplegiant/spaceduck', { 'branch': 'main' }
     Plug 'dracula/vim'
@@ -37,12 +43,8 @@ call plug#begin(system('echo -n "${XDG_CONFIG_HOME:-$HOME/.config}/nvim/plugged"
     "" MOVING AROUND
     Plug 'junegunn/fzf.vim'
     Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-    Plug 'lambdalisue/fern.vim'
-    Plug 'lambdalisue/fern-hijack.vim'
-    Plug 'lambdalisue/fern-renderer-nerdfont.vim'
-    Plug 'lambdalisue/fern-git-status.vim'
-    Plug 'LumaKernel/fern-mapping-fzf.vim/'
     Plug 'justinmk/vim-sneak'
+    Plug 'lambdalisue/fern.vim'
     "" ESSENTIAL
     Plug 'tpope/vim-surround'
     Plug 'vim-scripts/The-NERD-Commenter'
@@ -118,6 +120,8 @@ call plug#end()
   augroup FernGroup
     autocmd!
     autocmd FileType fern call FernInit()
+    autocmd FileType fern call glyph_palette#apply()
+    autocmd FileType nerdtree,startify call glyph_palette#apply()
   augroup END
 
     let g:fern#renderer = "nerdfont"
@@ -195,9 +199,9 @@ call plug#end()
 "----------------------------------------------------------------------
 "                       VistaVim
 "----------------------------------------------------------------------
-   function! NearestMethodOrFunction() abort
-     return get(b:, 'vista_nearest_method_or_function', '')
-   endfunction
+    function! NearestMethodOrFunction() abort
+      return get(b:, 'vista_nearest_method_or_function', '')
+    endfunction
 
 " Ensure you have installed some decent font to show these pretty symbols, then you can enable icon for the kind.
   "let g:vista#renderer#enable_icon = 1
@@ -212,8 +216,8 @@ call plug#end()
    \   "variable": "\uf71b",
    \  }
 
-"Let Vista run explicitly
-   autocmd VimEnter * call vista#RunForNearestMethodOrFunction()
+" Let Vista run explicitly
+    autocmd VimEnter * call vista#RunForNearestMethodOrFunction()
 
 "----------------------------------------------------------------------
 "                       Lightline
@@ -241,15 +245,15 @@ call plug#end()
       \ 'subseparator': { 'left': '', 'right': '' }
       \ }
 
-   let g:lightline#bufferline#modified = '*'
-   autocmd BufWritePost,TextChanged,TextChangedI * call lightline#update()
-
-  let g:gitbranch_icon = ''
+    let g:lightline#bufferline#modified = '*'
+    let g:gitbranch_icon = ''
 
   function! LightlineGitbranch()
       let l:bname = gitbranch#name()
       return l:bname != '' ? g:gitbranch_icon . ' ' . l:bname : ''
   endfunction
+
+    autocmd BufWritePost,TextChanged,TextChangedI * call lightline#update()
 
 "----------------------------------------------------------------------
 "                   Markdown Preview
