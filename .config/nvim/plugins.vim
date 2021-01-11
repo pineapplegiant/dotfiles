@@ -253,7 +253,7 @@ call plug#end()
       return l:bname != '' ? g:gitbranch_icon . ' ' . l:bname : ''
   endfunction
 
-    autocmd BufWritePost,TextChanged,TextChangedI * call lightline#update()
+  autocmd BufWritePost,TextChanged,TextChangedI * call lightline#update()
 
 "----------------------------------------------------------------------
 "                   Markdown Preview

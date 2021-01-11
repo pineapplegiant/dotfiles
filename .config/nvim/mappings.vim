@@ -79,7 +79,7 @@
     nnoremap <silent> <leader>@ :!open <cfile><cr><cr>
 
 " Delete Buffer, but keep the window open
-    nnoremap <leader>d :bp\|bd! #<CR>
+    nnoremap <leader>d :bdelete<CR>
 
 " Fixing vim because I break it Later -> Move between blocks 'better'
     nnoremap <leader>j J
