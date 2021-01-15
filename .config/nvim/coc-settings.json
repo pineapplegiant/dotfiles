@@ -8,7 +8,6 @@
   "coc.preferences.formatOnSaveFiletypes": [
     "json",
     "jsx",
-    "markdown",
     "dart"
   ],
   "eslint.filetypes": [
