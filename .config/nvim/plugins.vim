@@ -134,7 +134,7 @@ call plug#end()
 
     let $FZF_DEFAULT_OPTS = '--layout=reverse'
 " Make FZF better contextually
-    let $FZF_DEFAULT_COMMAND = 'rg --files --hidden'
+    let $FZF_DEFAULT_COMMAND = "rg --files --hidden -g '!.git' -g '!node_modules'"
 
     let g:fzf_layout = { 'window': 'call OpenFloatingWin()' }
 
@@ -327,6 +327,7 @@ call plug#end()
     let g:indentLine_char = '▏'             " Show Indentation lines
     let g:indentLine_color_gui = '#474747'  " Make them pretty-gray-lines
     let g:indentLine_enabled = 1            " Just toggle this shit bro
+    let g:indentLine_fileTypeExclude = ['tex', 'markdown', 'txt'] " Shit don't work in md
 
 "----------------------------------------------------------------------
 "                       CocNVIM
