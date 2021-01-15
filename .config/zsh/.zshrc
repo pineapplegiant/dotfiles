@@ -119,6 +119,11 @@ SPACESHIP_PROMPT_ORDER=(
 #----------------------------------------------------------------------
 #                       Functions
 #----------------------------------------------------------------------
+# Make and CD into the directory
+    function mcdir () {
+        mkdir -p -- "$1" &&
+          cd -P -- "$1"
+    }
 
 # let's be nice to our terminal
 function pls() {

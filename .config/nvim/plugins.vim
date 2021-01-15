@@ -348,6 +348,7 @@ call plug#end()
     \ 'coc-prettier',
     \ 'coc-python',
     \ 'coc-react-refactor',
+    \ 'coc-snippets',
     \ 'coc-styled-components',
     \ 'coc-tabnine',
     \ 'coc-tsserver',
@@ -413,7 +414,7 @@ call plug#end()
     autocmd CursorHold * silent call CocActionAsync('highlight')
 
 " Use U to show documentation in preview window
-    nnoremap <silent> ,K :call <SID>show_documentation()<CR>
+    nnoremap <silent> ,k :call <SID>show_documentation()<CR>
 
     function! s:show_documentation()
       if (index(['vim','help'], &filetype) >= 0)
@@ -447,10 +448,15 @@ call plug#end()
     nnoremap <silent> ,s  :<C-u>CocList -I symbols<cr>
 
 " Do default action for next item.
-    nnoremap <silent> ,j  :<C-u>CocNext<CR>
+    "nnoremap <silent> ,j  :<C-u>CocNext<CR>
 
 " Do default action for previous item.
-    nnoremap <silent> ,k  :<C-u>CocPrev<CR>
+    "nnoremap <silent> ,k  :<C-u>CocPrev<CR>
 
 " Resume latest coc list
     nnoremap <silent> ,p  :<C-u>CocListResume<CR>
+
+" Better coc-pairs so it opens on new line
+inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm()
+				\: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+

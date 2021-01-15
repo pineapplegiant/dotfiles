@@ -1,4 +1,5 @@
 {
+  "coc.preferences.formatOnType": true,
   "workspace.ignoredFiletypes": ["log", "txt", "help"],
   "python.jediEnabled": false,
   "suggest.minTriggerInputLength": 0,
