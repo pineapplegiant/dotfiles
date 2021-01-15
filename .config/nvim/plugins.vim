@@ -112,7 +112,6 @@ call plug#end()
     nmap <buffer> o <Plug>(fern-action-open:system)
     nmap <buffer> l <Plug>(fern-action-expand)
     nmap <buffer> h <Plug>(fern-action-collapse)
-    nmap <buffer> fd <Plug>(fern-action-fzf-dirs)
     nmap <buffer> ff <Plug>(fern-action-fzf-both)
     nmap <buffer> fg <Plug>(fern-action-grep)
   endfunction
@@ -134,6 +133,8 @@ call plug#end()
 "----------------------------------------------------------------------
 
     let $FZF_DEFAULT_OPTS = '--layout=reverse'
+" Make FZF better contextually
+    let $FZF_DEFAULT_COMMAND = 'rg --files --hidden'
 
     let g:fzf_layout = { 'window': 'call OpenFloatingWin()' }
 
@@ -166,7 +167,7 @@ call plug#end()
 
     nmap <C-b> :Buffers<CR>
     nmap <C-p> :Files<CR>
-    nmap <C-f> :GFiles<CR>
+    "nmap <C-f> :GFiles<CR>
     nmap <C-c> :History<CR>
 
 "----------------------------------------------------------------------

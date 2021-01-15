@@ -35,6 +35,9 @@
 # subversion
     export SUBVERSION_HOME=$XDG_CONFIG_HOME/subversion
 
+# FZF Default command
+    export FZF_DEFAULT_COMMAND='rg --files'
+
 # Z cd Command Jumping ->
     . /usr/local/etc/profile.d/z.sh
 
@@ -49,6 +52,7 @@
 # GO Lang
     export GOPATH="$HOME/.local/share}/go"
     export GOBIN="$HOME/.local/share}/go/bin"
+
 
 # Add Personal Scripts to my path
     PATH="$PATH:$HOME/dotfiles/.local/bin"
