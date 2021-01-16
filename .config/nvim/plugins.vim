@@ -28,7 +28,7 @@ call plug#begin(system('echo -n "${XDG_CONFIG_HOME:-$HOME/.config}/nvim/plugged"
     Plug 'luochen1990/rainbow'
     Plug 'psliwka/vim-smoothie'
     "Plug 'edkolev/tmuxline.vim'
-    "" Fern
+    "" FERN
     Plug 'lambdalisue/nerdfont.vim'
     Plug 'lambdalisue/fern-renderer-nerdfont.vim'
     Plug 'lambdalisue/fern-hijack.vim'
@@ -65,6 +65,8 @@ call plug#begin(system('echo -n "${XDG_CONFIG_HOME:-$HOME/.config}/nvim/plugged"
     "" LOW-KEY MESSES EVERYTHING UP
     "":GenTocGFM -> Make TOC
     Plug 'Yggdroot/indentLine'
+    " MAKE PRETTY SCREENSHOTS
+    Plug 'kristijanhusak/vim-carbon-now-sh'
 call plug#end()
 
 "----------------------------------------------------------------------
@@ -190,7 +192,7 @@ call plug#end()
       \<Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left>
 
 " The same as above except it works with a visual selection.
-    xmap <Leader>R
+    xmap <leader>R
         \ "sy
         \ gvgr
         \ :cfdo %s/<C-r>s//g \| update
@@ -200,16 +202,16 @@ call plug#end()
 "----------------------------------------------------------------------
 "                       VistaVim
 "----------------------------------------------------------------------
-    function! NearestMethodOrFunction() abort
-      return get(b:, 'vista_nearest_method_or_function', '')
-    endfunction
+    "function! NearestMethodOrFunction() abort
+      "return get(b:, 'vista_nearest_method_or_function', '')
+    "endfunction
 
 " Ensure you have installed some decent font to show these pretty symbols, then you can enable icon for the kind.
   "let g:vista#renderer#enable_icon = 1
 
 
 " How each level is indented and what to prepend.
-   let g:vista_icon_indent = ["╰─▸ ", "├─▸ "]
+   "let g:vista_icon_indent = ["╰─▸ ", "├─▸ "]
 
 " The default icons can't be suitable for all the filetypes, you can extend it as you wish.
    let g:vista#renderer#icons = {
@@ -218,7 +220,7 @@ call plug#end()
    \  }
 
 " Let Vista run explicitly
-    autocmd VimEnter * call vista#RunForNearestMethodOrFunction()
+    "autocmd VimEnter * call vista#RunForNearestMethodOrFunction()
 
 "----------------------------------------------------------------------
 "                       Lightline
