@@ -119,6 +119,13 @@ SPACESHIP_PROMPT_ORDER=(
 #----------------------------------------------------------------------
 #                       Functions
 #----------------------------------------------------------------------
+
+# Minify uglycss to file taken in
+    function min()
+    {
+        uglifycss $1 --output $1
+    }
+
 # Make and CD into the directory
     function mcdir () {
         mkdir -p -- "$1" &&
