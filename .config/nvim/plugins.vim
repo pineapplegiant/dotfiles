@@ -167,10 +167,10 @@ call plug#end()
             \ signcolumn=no
     endfunction
 
-    nmap <C-b> :Buffers<CR>
-    nmap <C-p> :Files<CR>
-    "nmap <C-f> :GFiles<CR>
-    nmap <C-c> :History<CR>
+    nmap <silent> <C-b> :Buffers<CR>
+    nmap <silent> <C-p> :Files<CR>
+    nmap <silent> <C-f> :Rg <C-R><C-W><CR>
+    nmap <silent> <C-c> :History<CR>
 
 "----------------------------------------------------------------------
 "                       Vim-Grepper
