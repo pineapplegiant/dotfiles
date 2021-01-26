@@ -207,7 +207,7 @@ call plug#end()
     "endfunction
 
 " Ensure you have installed some decent font to show these pretty symbols, then you can enable icon for the kind.
-  "let g:vista#renderer#enable_icon = 1
+  let g:vista#renderer#enable_icon = 1
 
 
 " How each level is indented and what to prepend.
@@ -215,8 +215,9 @@ call plug#end()
 
 " The default icons can't be suitable for all the filetypes, you can extend it as you wish.
    let g:vista#renderer#icons = {
-   \   "function": "\uf794",
-   \   "variable": "\uf71b",
+   \   "enum": "🄴",
+   \   "typedef": "",
+   \   "variable": "🅅",
    \  }
 
 " Let Vista run explicitly

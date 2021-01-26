@@ -26,6 +26,9 @@
 " Use E to move to end of line in
     map E $
 
+" Better Yank
+    map Y y$
+
 " Map ,, to % because i like cycling brackets a lot
     map ,, %
 
