@@ -170,6 +170,7 @@ call plug#end()
     nmap <silent> <C-b> :Buffers<CR>
     nmap <silent> <C-p> :Files<CR>
     nmap <silent> <C-f> :Rg <C-R><C-W><CR>
+    nmap <silent> <C-f> :Rg <CR>
     nmap <silent> <C-c> :History<CR>
 
 "----------------------------------------------------------------------
@@ -348,6 +349,7 @@ call plug#end()
     \ 'coc-highlight',
     \ 'coc-html',
     \ 'coc-json',
+    \ 'coc-lua',
     \ 'coc-pairs',
     \ 'coc-phpls',
     \ 'coc-prettier',
