@@ -237,8 +237,13 @@ call plug#end()
       \   'left': [ [ 'mode', 'paste' ], [''], [ 'buffers' ]],
       \   'right': [  ['lineinfo'], [ 'gitbranch' ] ]
       \ },
+      \ 'inactive': {
+      \   'left': [ ['filename']],
+      \   'right': [  ['filetype'] ]
+      \ },
       \ 'component_function': {
-      \   'gitbranch': 'LightlineGitbranch'
+      \   'gitbranch': 'LightlineGitbranch',
+      \   'mode': 'LightlineMode',
       \ },
       \ 'component_expand': {
       \   'buffers': 'lightline#bufferline#buffers'
@@ -252,11 +257,27 @@ call plug#end()
 
     let g:lightline#bufferline#modified = '*'
     let g:gitbranch_icon = ''
+    let g:lightlineLineInfo_icon = ''
 
-  function! LightlineGitbranch()
+  function! LightlineGitbranch() abort
       let l:bname = gitbranch#name()
       return l:bname != '' ? g:gitbranch_icon . ' ' . l:bname : ''
   endfunction
+
+"function! LightlineLineinfo() abort
+    "let l:lineinfo = get(lightline#lineinfo())
+    "return l:lineinfo != '' ? g:lightlineLineInfo_icon . ' ' . l:lineinfo : ''
+"endfunction
+
+  function! LightlineMode() abort
+    let ftmap = {
+                \ 'coc-explorer': 'EXPLORER',
+                \ 'fugitive': 'FUGITIVE',
+                \ 'vista': 'OUTLINE',
+                \ 'fern': 'FERN'
+                \ }
+    return get(ftmap, &filetype, lightline#mode())
+endfunction
 
   autocmd BufWritePost,TextChanged,TextChangedI * call lightline#update()
 
