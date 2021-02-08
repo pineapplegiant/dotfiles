@@ -244,6 +244,7 @@ call plug#end()
       \ 'component_function': {
       \   'gitbranch': 'LightlineGitbranch',
       \   'mode': 'LightlineMode',
+      \   'lineinfo': 'LightlineLineinfo',
       \ },
       \ 'component_expand': {
       \   'buffers': 'lightline#bufferline#buffers'
@@ -251,8 +252,6 @@ call plug#end()
       \ 'component_type': {
       \   'buffers': 'tabsel'
       \ },
-      \ 'separator': { 'left': '', 'right': '' },
-      \ 'subseparator': { 'left': '', 'right': '' }
       \ }
 
     let g:lightline#bufferline#modified = '*'
@@ -264,10 +263,10 @@ call plug#end()
       return l:bname != '' ? g:gitbranch_icon . ' ' . l:bname : ''
   endfunction
 
-"function! LightlineLineinfo() abort
-    "let l:lineinfo = get(lightline#lineinfo())
-    "return l:lineinfo != '' ? g:lightlineLineInfo_icon . ' ' . l:lineinfo : ''
-"endfunction
+function! LightlineLineinfo() abort
+    let l:lineinfo = printf("%3d:%-2d", line('.'), col('.'))
+    return l:lineinfo != '' ? g:lightlineLineInfo_icon . ' ' . l:lineinfo : ''
+endfunction
 
   function! LightlineMode() abort
     let ftmap = {
