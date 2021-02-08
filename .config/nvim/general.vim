@@ -13,6 +13,8 @@
     set nocompatible               " Vim sucks
     filetype plugin indent on      " Vim super sucks man
     syntax enable                  " Turn on Syntax highlighting
+    set backspace=indent,eol,start " Allow backspace in insert mode
+    set hidden                     " Let's vim use buffers in background without having to save
     set nolazyredraw               " Hopefully makes it so nvim doesn't get buggy screen probs
     set number                     " Turn on Line Number
     set guicursor=n-v-c:block,i-ci-ve:ver25,r-cr:hor20,o:hor50 "Fix cursor in insert mode
@@ -20,7 +22,6 @@
      \,sm:block-blinkwait175-blinkoff150-blinkon175
     let &t_SI = "\e[6 q"           " Just block vim cursor things
     let &t_EI = "\e[2 q"           " Just block vim cursor things
-    set hidden                     " TextEdit might fail if hidden is not set
     set ignorecase                 " Ignorecase when searching stuff
     set spelllang=en_us            " Turn on spell check?
     set nospell                    " Turn off spellcheck
@@ -35,7 +36,6 @@
     set hlsearch                   " Highlight search results
     set incsearch                  " Turn on incremental searching
     set showcmd                    " Turn on Cmd as typed on the bottom-bar
-    set backspace=indent,eol,start " Allow backspace in insert mode
     set scrolloff=2                " When scrolling, keep cursor 2 lines away from screen border
     set nowrap                     " Wrap lines when they are too long
     set title                      " Update the title of the window or the terminal
