@@ -151,10 +151,6 @@
       endif
     endfunction
 
-" Pandoc Remaps
-    autocmd BufRead,BufNewFile *.md,*.markdown set filetype=markdown
-    autocmd FileType markdown nnoremap <F7> :update<CR>:call PandocCreate()<CR>
-
 " Make/Compile current Latex File
     function! LatexCreate()
       let curr_file = expand('%:t')                             " Name of current file
@@ -164,14 +160,19 @@
       execute '!open -a "iterm.app"'
     endfunction
 
-" LaTeX Remaps
-    autocmd FileType tex nnoremap ,comp :update<CR>:call LatexCreate()<CR>
+    augroup markdownHelpers
+        autocmd!
+    " LaTeX Remaps
+        autocmd FileType tex nnoremap ,comp :update<CR>:call LatexCreate()<CR>
+        autocmd FileType tex nnoremap ,top :-1read $XDG_CONFIG_HOME//nvim/snippets/blockLatex.txt<CR>
+    " Pandoc Remaps
+        autocmd BufRead,BufNewFile *.md,*.markdown set filetype=markdown
+        autocmd FileType markdown nnoremap <F7> :update<CR>:call PandocCreate()<CR>
+    augroup END
 
 "----------------------------------------------------------------------
 "                           Snippets! -> Comma
 "----------------------------------------------------------------------
-    autocmd FileType tex nnoremap ,top :-1read $XDG_CONFIG_HOME//nvim/snippets/blockLatex.txt<CR>
-
 " Basic HTML Snippet!
     nnoremap ,html :-1read $XDG_CONFIG_HOME/nvim/snippets/skeleton.html<CR>7jf>a
 

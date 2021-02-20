@@ -55,16 +55,22 @@
     "set listchars=tab:>-
 
 " Disable automatic comment insertion
-    autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
+    augroup betterComments
+        autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
+    augroup END
 
 " Just softabs for the homies
-    autocmd Filetype css setlocal  tabstop=2 shiftwidth=2 softtabstop=2  " Set tabs to 2 spaces in html and css
-    autocmd Filetype html setlocal  tabstop=2 shiftwidth=2 softtabstop=2 " Set tabs to 2 spaces in html and css
-    autocmd Filetype javascript  setlocal  tabstop=2 shiftwidth=2 softtabstop=2  " Set tabs to 2 spaces in html and css
+    augroup filetype_webdev
+        autocmd!
+        autocmd Filetype css setlocal  tabstop=2 shiftwidth=2 softtabstop=2  " Set tabs to 2 spaces in html and css
+        autocmd Filetype html setlocal  tabstop=2 shiftwidth=2 softtabstop=2 " Set tabs to 2 spaces in html and css
+        autocmd Filetype javascript  setlocal  tabstop=2 shiftwidth=2 softtabstop=2  " Set tabs to 2 spaces in html and css
+        autocmd Filetype *.handlebars set filetype=html " Set Handlebars up like regular ol' HTML
+    augroup END
 
 " Turn off Cursorline in insert mode
-    autocmd InsertLeave,WinEnter * set cursorline
-    autocmd InsertEnter,WinLeave * set nocursorline
-
-" Set Handlebars up like regular ol' HTML
-    autocmd Filetype *.handlebars set filetype=html
+    augroup betterCursor
+        autocmd!
+        autocmd InsertLeave,WinEnter * set cursorline
+        autocmd InsertEnter,WinLeave * set nocursorline
+    augroup END

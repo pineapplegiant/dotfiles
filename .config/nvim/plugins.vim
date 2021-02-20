@@ -27,14 +27,14 @@ call plug#begin(system('echo -n "${XDG_CONFIG_HOME:-$HOME/.config}/nvim/plugged"
     Plug 'mengelbrecht/lightline-bufferline'
     Plug 'luochen1990/rainbow'
     Plug 'psliwka/vim-smoothie'
-    "Plug 'edkolev/tmuxline.vim'
     "" FERN
-    Plug 'lambdalisue/nerdfont.vim'
-    Plug 'lambdalisue/fern-renderer-nerdfont.vim'
-    Plug 'lambdalisue/fern-hijack.vim'
-    Plug 'lambdalisue/glyph-palette.vim'
-    Plug 'lambdalisue/fern-git-status.vim'
+    Plug 'lambdalisue/fern.vim'
     Plug 'LumaKernel/fern-mapping-fzf.vim/'
+    Plug 'lambdalisue/fern-git-status.vim'
+    Plug 'lambdalisue/fern-hijack.vim' "Makes fern the default file explorer
+    Plug 'lambdalisue/nerdfont.vim'
+    Plug 'lambdalisue/fern-renderer-nerdfont.vim' " Basically vim-devicons
+    Plug 'lambdalisue/glyph-palette.vim'
     "" COLOR SCHEMES
     Plug 'pineapplegiant/spaceduck', { 'branch': 'main' }
     Plug 'dracula/vim'
@@ -44,7 +44,6 @@ call plug#begin(system('echo -n "${XDG_CONFIG_HOME:-$HOME/.config}/nvim/plugged"
     Plug 'junegunn/fzf.vim'
     Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
     Plug 'justinmk/vim-sneak'
-    Plug 'lambdalisue/fern.vim'
     "" ESSENTIAL
     Plug 'tpope/vim-surround'
     Plug 'vim-scripts/The-NERD-Commenter'
@@ -118,6 +117,8 @@ call plug#end()
     nmap <buffer> fg <Plug>(fern-action-grep)
   endfunction
 
+    let g:fern#renderer = "nerdfont"
+
   augroup FernGroup
     autocmd!
     autocmd FileType fern call FernInit()
@@ -125,7 +126,6 @@ call plug#end()
     autocmd FileType nerdtree,startify call glyph_palette#apply()
   augroup END
 
-    let g:fern#renderer = "nerdfont"
 
     nmap <C-m> :Fern . -reveal=%<CR>
     nmap <C-n> :Fern . -drawer -toggle -stay -reveal=%<CR>
@@ -169,9 +169,17 @@ call plug#end()
 
     nmap <silent> <C-b> :Buffers<CR>
     nmap <silent> <C-p> :Files<CR>
-    nmap <silent> <C-f> :Rg <C-R><C-W><CR>
     nmap <silent> <C-f> :Rg <CR>
     nmap <silent> <C-c> :History<CR>
+
+    " Ctrl+x & Ctrlf fzf path and fills in
+    inoremap <expr> <c-x><c-f> fzf#vim#complete#path(
+        \ "find . -path '*/\.*' -prune -o -print \| sed '1d;s:^..::'",
+        \ fzf#wrap({'dir': expand('%:p:h')}))
+      if has('nvim')
+        au! TermOpen * tnoremap <buffer> <Esc> <c-\><c-n>
+        au! FileType fzf tunmap <buffer> <Esc>
+    endif
 
 "----------------------------------------------------------------------
 "                       Vim-Grepper
@@ -203,26 +211,15 @@ call plug#end()
 "----------------------------------------------------------------------
 "                       VistaVim
 "----------------------------------------------------------------------
-    "function! NearestMethodOrFunction() abort
-      "return get(b:, 'vista_nearest_method_or_function', '')
-    "endfunction
 
 " Ensure you have installed some decent font to show these pretty symbols, then you can enable icon for the kind.
   let g:vista#renderer#enable_icon = 1
 
-
-" How each level is indented and what to prepend.
-   "let g:vista_icon_indent = ["╰─▸ ", "├─▸ "]
-
 " The default icons can't be suitable for all the filetypes, you can extend it as you wish.
    let g:vista#renderer#icons = {
-   \   "enum": "🄴",
    \   "typedef": "",
    \   "variable": "🅅",
    \  }
-
-" Let Vista run explicitly
-    "autocmd VimEnter * call vista#RunForNearestMethodOrFunction()
 
 "----------------------------------------------------------------------
 "                       Lightline
@@ -278,7 +275,10 @@ endfunction
     return get(ftmap, &filetype, lightline#mode())
 endfunction
 
-  autocmd BufWritePost,TextChanged,TextChangedI * call lightline#update()
+  augroup lightlineDirty
+    autocmd!
+    autocmd BufWritePost,TextChanged,TextChangedI * call lightline#update()
+  augroup END
 
 "----------------------------------------------------------------------
 "                   Markdown Preview
@@ -378,6 +378,7 @@ endfunction
     \ 'coc-snippets',
     \ 'coc-styled-components',
     \ 'coc-tabnine',
+    \ 'coc-tailwindcss',
     \ 'coc-tsserver',
     \ 'coc-word',
     \ 'coc-yaml',

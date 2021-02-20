@@ -26,8 +26,8 @@ source $XDG_CONFIG_HOME/nvim/plugins.vim        " Plugin information and setting
 
    " If I installed my own theme then use it, if not then nahh
    try
-       colorscheme spaceduck
        set termguicolors
+       colorscheme spaceduck
     catch
         colorscheme default
     endtry
