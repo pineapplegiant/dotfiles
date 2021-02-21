@@ -1,7 +1,7 @@
 # This is Git's per-user configuration file.  Credit: [ scottnonnenberg ]( https://gist.github.com/scottnonnenberg/fefa3f65fdb3715d25882f3023b31c29 )
 [user]
     name = Guillermo Rodriguez
-    email = guillermor@mail.usf.edu
+    email = grod937@gmail.com
 
 [core]
     editor = nvim
@@ -58,3 +58,5 @@
     difftool = true
 [pull]
 	rebase = true
+[credential]
+	helper = cache
