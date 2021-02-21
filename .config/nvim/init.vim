@@ -28,6 +28,13 @@ source $XDG_CONFIG_HOME/nvim/plugins.vim        " Plugin information and setting
    try
        set termguicolors
        colorscheme spaceduck
+       highlight default GlyphPalette1  ctermfg=1  guifg=#e33400
+       highlight default GlyphPalette2  ctermfg=2  guifg=#5ccc96
+       highlight default GlyphPalette3  ctermfg=3  guifg=#f2ce00
+       highlight default GlyphPalette4  ctermfg=4  guifg=#7a5ccc
+       highlight default GlyphPalette6  ctermfg=6  guifg=#ce6f8f
+       highlight default GlyphPalette7  ctermfg=7  guifg=#686f9a
+       highlight default GlyphPalette9  ctermfg=9  guifg=#e39400
     catch
         colorscheme default
     endtry
