@@ -50,7 +50,11 @@
 
 ## Setup (WIP Not sure if it works yet 😳)
 
-1. Run mac-setup (macos) to install brew, git, and additional brew packages and settings: -`curl https://raw.githubusercontent.com/pineapplegiant/dotfiles/supreme-overlord/.macos | bash`
+1. Run mac-setup (macos) to install brew, git, and additional brew packages and settings:
+
+```bash
+curl "https://raw.githubusercontent.com/pineapplegiant/dotfiles/supreme-overlord/setup/macos" | bash
+```
 
 ##### Brew Packages I really like :')
 
