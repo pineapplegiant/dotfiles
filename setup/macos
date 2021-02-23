@@ -2,7 +2,7 @@
 
 # ~/macos — https://mths.be/macos
 # Run without downloading:
-# curl https://raw.githubusercontent.com/pineapplegiant/dotfiles/supreme-overlord/macos | bash
+# curl "https://raw.githubusercontent.com/pineapplegiant/dotfiles/supreme-overlord/setup/macos" | bash
 
 # Close any open System Preferences panes, to prevent them from overriding
 # settings we’re about to change
