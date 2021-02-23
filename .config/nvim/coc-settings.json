@@ -2,6 +2,7 @@
   "coc.preferences.formatOnType": true,
   "workspace.ignoredFiletypes": ["log", "txt", "help"],
   "python.jediEnabled": false,
+  "python.linting.enabled": true,
   "suggest.minTriggerInputLength": 0,
   "suggest.echodocSupport": true,
   "suggest.maxCompleteItemCount": 20,

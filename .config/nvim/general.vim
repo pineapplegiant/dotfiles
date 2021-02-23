@@ -52,7 +52,8 @@
     set noswapfile                 " NO SWAP FILES
     set wildcharm=<C-z>            " Juggling with buffers
     set list                       " Be aware of trailing spaces
-    "set listchars=tab:>-
+    set listchars=tab:‣\ ,trail:·
+    "set listchars=tab:‣\ ,trail:·,precedes:«,extends:»,eol:¬
 
 " Disable automatic comment insertion
     augroup betterComments

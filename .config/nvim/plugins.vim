@@ -348,9 +348,9 @@ endfunction
 "----------------------------------------------------------------------
 "                       Indent-Line
 "----------------------------------------------------------------------
+    let g:indentLine_enabled = 0            " Just toggle this shit bro
     let g:indentLine_char = '▏'             " Show Indentation lines
     let g:indentLine_color_gui = '#474747'  " Make them pretty-gray-lines
-    let g:indentLine_enabled = 1            " Just toggle this shit bro
     let g:indentLine_fileTypeExclude = ['tex', 'markdown', 'txt'] " Shit don't work in md
 
 "----------------------------------------------------------------------

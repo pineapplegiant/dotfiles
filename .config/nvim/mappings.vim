@@ -170,6 +170,19 @@
         autocmd FileType markdown nnoremap <F7> :update<CR>:call PandocCreate()<CR>
     augroup END
 
+    "" StripTrailingWhitespace Function helper
+    command! -nargs=? -range=% -complete=custom,s:StripCompletionOptions
+      \ StripTrailingWhitespace <line1>,<line2>call s:StripTrailingWhitespace(<f-args>)
+
+    function! s:StripTrailingWhitespace(...) abort
+      let confirm = a:0
+      execute a:firstline . ',' . a:lastline . 's/\s\+$//e' . (confirm ? 'c' : '')
+    endfunction
+
+    function! s:StripCompletionOptions(A,L,P) abort
+      return "-confirm"
+    endfunction
+
 "----------------------------------------------------------------------
 "                           Snippets! -> Comma
 "----------------------------------------------------------------------
