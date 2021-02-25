@@ -38,17 +38,13 @@
   - [Spaceship-prompt](https://github.com/denysdovhan/spaceship-prompt "Spaceship prompt Github") - Configurable, pretty, and works 🚀
 - [Karabiner](https://karabiner-elements.pqrs.org/ "Karabiner Elements home page") - I like to remap the right command on MacOSX to Ctrl ⌨
 - [Spectacle](https://www.spectacleapp.com/ "Spectacle Elements home page") - A better window managing experience on Mac 👓
-
-
-## Notable others :
-
 - [Vscode](https://code.visualstudio.com "VSCode's homepage") - Can't lie, I use this too... Pair programming my guy.
 
-## Colors I F(x)k with:
+## Colors:
 
 - [My very own Spaceduck theme](https://github.com/pineapplegiant/spaceduck-theme "My Personal Color scheme :3") - We rep them colors 🦆👽
 
-## Setup (WIP Not sure if it works yet 😳)
+## Setup (Doesn't really work yet 😳)
 
 1. Run mac-setup (macos) to install brew, git, and additional brew packages and settings:
 
@@ -94,13 +90,6 @@ cask "font-firamono-nerd-font-mono"
 
 ### Apple Config
 
-Run this to make VSCODE Vim repeat better
-`defaults write com.microsoft.VSCode ApplePressAndHoldEnabled -bool false`
-
-#### Iterm2 Settings
-
-- Right command key is control
-
 #### Prompt
 
 [Spaceship prompt](https://github.com/denysdovhan/spaceship-prompt)
@@ -118,4 +107,7 @@ Run this to make VSCODE Vim repeat better
 
 - `defaults write com.apple.finder _FXShowPosixPathInTitle -bool true; killall Finder`
 - Finder -> View > Show Status bar
-- Change Caps lock to ESC
+- Change Caps lock to ESC -> Taken care of in the Karabiner
+
+Run this to make VSCODE Vim repeat better
+`defaults write com.microsoft.VSCode ApplePressAndHoldEnabled -bool false`
