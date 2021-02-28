@@ -12,10 +12,10 @@
 "----------------------------------------------------------------------
 
 " Remap Capital J/K to move up and down blocks
-    nnoremap J }
-    vmap J }
-    nnoremap K {
-    vmap K {
+    "nnoremap J }
+    "vmap J }
+    "nnoremap K {
+    "vmap K {
 
 " Set U as Ctrl R which means Redo
     nnoremap U <C-R>
@@ -37,10 +37,10 @@
     vmap > >gv
 
 " Lots of Time-Stamp Options here in normal/insert mode to paste timestamp and F4 To Date Stamp
-    nnoremap <F3> "=strftime("%H:%M:%S")<CR>p
-    inoremap <F3> <C-R>=strftime("%H:%M:%S")<CR>
-    nnoremap <F4> "=strftime("%Y-%m-%d")<CR>p
-    inoremap <F4> <C-R>=strftime("%Y-%m-%d")<CR>
+    "nnoremap <F3> "=strftime("%H:%M:%S")<CR>p
+    "inoremap <F3> <C-R>=strftime("%H:%M:%S")<CR>
+    "nnoremap <F4> "=strftime("%Y-%m-%d")<CR>p
+    "inoremap <F4> <C-R>=strftime("%Y-%m-%d")<CR>
     nnoremap <F5> a"<ESC>"=strftime("%Y-%m-%d %H:%M:%S")<CR>pa"<ESC>
     inoremap <F5> <C-R>=strftime("%Y-%m-%d %H:%M:%S")<CR>
     nnoremap <F6> "=strftime("%A %B %d %Y, at %I:%M %p %Z")<CR>P
@@ -85,7 +85,7 @@
     nnoremap <leader>d :bdelete<CR>
 
 " Fixing vim because I break it Later -> Move between blocks 'better'
-    nnoremap <leader>j J
+    "nnoremap <leader>j J
 
 " Copy & Paste into vim in normal mode
     map<leader>p  "+p
@@ -191,7 +191,7 @@
 
 " Basic CSS Snippet!
     nnoremap ,css :-1read $XDG_CONFIG_HOME/nvim/snippets/cssComment.css<CR>jA
-    nnoremap ,csss :-1read $XDG_CONFIG_HOME/nvim/snippets/reset.css<CR>
+    "nnoremap ,csss :-1read $XDG_CONFIG_HOME/nvim/snippets/reset.css<CR>
 
 " School's C++ top snippet
     nnoremap ,top :-1read $XDG_CONFIG_HOME/nvim/snippets/top.txt<CR>2jA <C-R>=strftime("%A %B %d %Y, at %I:%M %p %Z")<CR><ESC>jA 

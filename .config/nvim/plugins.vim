@@ -17,8 +17,8 @@ call plug#begin(stdpath('data') . '/plugged')
     Plug 'sheerun/vim-polyglot'
     Plug 'itchyny/lightline.vim'
     Plug 'mengelbrecht/lightline-bufferline'
-    Plug 'luochen1990/rainbow'
-    Plug 'psliwka/vim-smoothie'
+    Plug 'luochen1990/rainbow'  "Rainbow parentheses
+    Plug 'psliwka/vim-smoothie' "Make Ctrl+D or Ctrl + U more pleasant
     "" FERN
     Plug 'lambdalisue/fern.vim'
     Plug 'LumaKernel/fern-mapping-fzf.vim/'
@@ -56,6 +56,7 @@ call plug#begin(stdpath('data') . '/plugged')
     "" LOW-KEY MESSES EVERYTHING UP
     "":GenTocGFM -> Make TOC
     Plug 'Yggdroot/indentLine'
+    Plug 'lukas-reineke/indent-blankline.nvim' "Fixes vim indentline
     " MAKE PRETTY SCREENSHOTS
     Plug 'kristijanhusak/vim-carbon-now-sh'
 call plug#end()
@@ -114,12 +115,13 @@ call plug#end()
   augroup FernGroup
     autocmd!
     autocmd FileType fern call FernInit()
+    autocmd FileType fern setlocal nonumber
     autocmd FileType fern call glyph_palette#apply()
     autocmd FileType nerdtree,startify call glyph_palette#apply()
   augroup END
 
 
-    nmap <C-m> :Fern . -reveal=%<CR>
+    nmap <C-c> :Fern . -reveal=%<CR>
     nmap <C-n> :Fern . -drawer -toggle -stay -reveal=%<CR>
 
 "----------------------------------------------------------------------
@@ -127,7 +129,8 @@ call plug#end()
 "----------------------------------------------------------------------
 
     let $FZF_DEFAULT_OPTS = '--layout=reverse'
-" Make FZF better contextually
+
+" Make FZF better contextually -> ignore gitignore stuff & work if not in git dir
     let $FZF_DEFAULT_COMMAND = "rg --files --hidden -g '!.git' -g '!node_modules'"
 
     let g:fzf_layout = { 'window': 'call OpenFloatingWin()' }
@@ -162,7 +165,7 @@ call plug#end()
     nmap <silent> <C-b> :Buffers<CR>
     nmap <silent> <C-p> :Files<CR>
     nmap <silent> <C-f> :Rg <CR>
-    nmap <silent> <C-c> :History<CR>
+    "nmap <silent> <C-c> :History<CR>
 
     " Ctrl+x & Ctrlf fzf path and fills in
     inoremap <expr> <c-x><c-f> fzf#vim#complete#path(
@@ -340,7 +343,7 @@ endfunction
 "----------------------------------------------------------------------
 "                       Indent-Line
 "----------------------------------------------------------------------
-    let g:indentLine_enabled = 0            " Just toggle this shit bro
+    let g:indentLine_enabled = 1            " Just toggle this shit bro
     let g:indentLine_char = '▏'             " Show Indentation lines
     let g:indentLine_color_gui = '#474747'  " Make them pretty-gray-lines
     let g:indentLine_fileTypeExclude = ['tex', 'markdown', 'txt'] " Shit don't work in md

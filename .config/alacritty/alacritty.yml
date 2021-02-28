@@ -156,7 +156,7 @@ font:
   # of as modifying the line spacing, and `offset.x` as modifying the letter
   # spacing.
   offset:
-   x: 3
+   x: 2
    y: 0
 
   # Glyph offset determines the locations of the glyphs within their cells with

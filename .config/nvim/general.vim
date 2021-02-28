@@ -23,9 +23,9 @@
     let &t_SI = "\e[6 q"           " Just block vim cursor things
     let &t_EI = "\e[2 q"           " Just block vim cursor things
     set ignorecase                 " Ignorecase when searching stuff
-    set spelllang=en_us            " Turn on spell check?
+    set spelllang=en_us            " english muthafucka do you speak it?
     set nospell                    " Turn off spellcheck
-    set mouse=a                    " Allow Mouse to work (I know, I suck)
+    set mouse=a                    " Allow the mouse to work, what? sue me
     set autoindent                 " Makes it so that things are indented when needed (i think)
     set cursorline                 " Cursorline in vim
     set expandtab                  " Tabs are spaces
@@ -54,6 +54,7 @@
     set list                       " Be aware of trailing spaces
     set listchars=tab:‣\ ,trail:·
     "set listchars=tab:‣\ ,trail:·,precedes:«,extends:»,eol:¬
+
 
 " Disable automatic comment insertion
     augroup betterComments

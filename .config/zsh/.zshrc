@@ -132,13 +132,13 @@ SPACESHIP_PROMPT_ORDER=(
           cd -P -- "$1"
     }
 
-# let's be nice to our terminal
+# Let's be nice to our terminal
 function pls() {
-	if [ "$1" ]; then
-		sudo $@
-	else
-		sudo "$BASH" -c "$(history -p !!)"
-	fi
+    if [ "$1" ]; then
+        sudo $@
+    else
+        sudo "$BASH" -c "$(history -p !!)"
+    fi
 }
 
 # Pipe bat to less
@@ -213,7 +213,7 @@ function webdev()
     zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
     zmodload zsh/complist
     compinit
-    _comp_options+=(globdots)		# Include hidden files.
+    _comp_options+=(globdots)       # Include hidden files.
 
 # vi mode
     bindkey -v
