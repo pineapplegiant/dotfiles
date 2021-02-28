@@ -12,10 +12,10 @@
 "----------------------------------------------------------------------
 
 " Remap Capital J/K to move up and down blocks
-    "nnoremap J }
-    "vmap J }
-    "nnoremap K {
-    "vmap K {
+    nnoremap J }
+    vmap J }
+    nnoremap K {
+    vmap K {
 
 " Set U as Ctrl R which means Redo
     nnoremap U <C-R>
@@ -45,6 +45,9 @@
     inoremap <F5> <C-R>=strftime("%Y-%m-%d %H:%M:%S")<CR>
     nnoremap <F6> "=strftime("%A %B %d %Y, at %I:%M %p %Z")<CR>P
     inoremap <F6> <C-R>=strftime("%A %B %d, at %I:%M %p %Z")<CR>
+
+" Source vimrc
+    nnoremap <F10> :source $MYVIMRC<CR>
 
 " List all buffers and jump to them using 'gb'
     nnoremap gb :ls<CR>:b<Space>
@@ -82,10 +85,10 @@
     nnoremap <silent> <leader>@ :!open <cfile><cr><cr>
 
 " Delete Buffer, but keep the window open
-    nnoremap <leader>d :bdelete<CR>
+    nnoremap <leader>d :bdelete!<CR>
 
 " Fixing vim because I break it Later -> Move between blocks 'better'
-    "nnoremap <leader>j J
+    nnoremap <leader>j J
 
 " Copy & Paste into vim in normal mode
     map<leader>p  "+p
