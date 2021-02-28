@@ -62,6 +62,30 @@ call plug#begin(stdpath('data') . '/plugged')
 call plug#end()
 
 "----------------------------------------------------------------------
+"                       FloatTerm
+"----------------------------------------------------------------------
+
+    "let g:floaterm_keymap_toggle = '<F1>'
+    "let g:floaterm_keymap_next   = '<F2>'
+    "let g:floaterm_keymap_prev   = '<F3>'
+    "let g:floaterm_keymap_new    = '<F4>'
+
+    "" Floaterm
+    "let g:floaterm_gitcommit='floaterm'
+    "let g:floaterm_autoinsert=1
+    "let g:floaterm_width=0.7
+    "let g:floaterm_height=0.7
+    "let g:floaterm_wintitle=0
+    "let g:floaterm_autoclose=1
+
+"----------------------------------------------------------------------
+"                       Vim-carbon-now-sh
+"----------------------------------------------------------------------
+
+" Make pretty screenshots in visual mode with f7
+    vnoremap <F7> :CarbonNowSh
+
+"----------------------------------------------------------------------
 "                       Rainbow
 "----------------------------------------------------------------------
 
@@ -121,7 +145,8 @@ call plug#end()
   augroup END
 
 
-    nmap <C-c> :Fern . -reveal=%<CR>
+    nmap <C-r> :Fern . -reveal=%<CR>
+    "Break Undo to use c-r for fern
     nmap <C-n> :Fern . -drawer -toggle -stay -reveal=%<CR>
 
 "----------------------------------------------------------------------
@@ -133,39 +158,38 @@ call plug#end()
 " Make FZF better contextually -> ignore gitignore stuff & work if not in git dir
     let $FZF_DEFAULT_COMMAND = "rg --files --hidden -g '!.git' -g '!node_modules'"
 
-    let g:fzf_layout = { 'window': 'call OpenFloatingWin()' }
+    "let g:fzf_layout = { 'window': 'call OpenFloatingWin()' }
 
-    function! OpenFloatingWin()
-      let height = &lines - 3
-      let width = float2nr(&columns - (&columns * 2 / 10))
-      let col = float2nr((&columns - width) / 2)
+    "function! OpenFloatingWin()
+      "let height = &lines - 3
+      "let width = float2nr(&columns - (&columns * 2 / 10))
+      "let col = float2nr((&columns - width) / 2)
 
-      let opts = {
-            \ 'relative': 'editor',
-            \ 'row': height * 0.3,
-            \ 'col': col + 30,
-            \ 'width': width * 2 / 3,
-            \ 'height': height / 2
-            \ }
+      "let opts = {
+            "\ 'relative': 'editor',
+            "\ 'row': height * 0.3,
+            "\ 'col': col + 30,
+            "\ 'width': width * 2 / 3,
+            "\ 'height': height / 2
+            "\ }
 
-      let buf = nvim_create_buf(v:false, v:true)
-      let win = nvim_open_win(buf, v:true, opts)
+      "let buf = nvim_create_buf(v:false, v:true)
+      "let win = nvim_open_win(buf, v:true, opts)
 
-      call setwinvar(win, '&winhl', 'Normal:Pmenu')
+      "call setwinvar(win, '&winhl', 'Normal:Pmenu')
 
-      setlocal
-            \ buftype=nofile
-            \ nobuflisted
-            \ bufhidden=hide
-            \ nonumber
-            \ norelativenumber
-            \ signcolumn=no
-    endfunction
+      "setlocal
+            "\ buftype=nofile
+            "\ nobuflisted
+            "\ bufhidden=hide
+            "\ nonumber
+            "\ norelativenumber
+            "\ signcolumn=no
 
     nmap <silent> <C-b> :Buffers<CR>
     nmap <silent> <C-p> :Files<CR>
     nmap <silent> <C-f> :Rg <CR>
-    "nmap <silent> <C-c> :History<CR>
+    nmap <silent> <C-c> :History<CR>
 
     " Ctrl+x & Ctrlf fzf path and fills in
     inoremap <expr> <c-x><c-f> fzf#vim#complete#path(
