@@ -11,27 +11,29 @@
 "                        PLUGINS RIP
 "----------------------------------------------------------------------
 
+
 " Make sure you have vim-plug installed ~/.local/share/nvim/site/autoload/plug.vim
 call plug#begin(stdpath('data') . '/plugged')
     "" COLORS, PRETTY & FUN
     Plug 'sheerun/vim-polyglot'
     Plug 'itchyny/lightline.vim'
-    Plug 'mengelbrecht/lightline-bufferline'
-    Plug 'luochen1990/rainbow'  "Rainbow parentheses
-    Plug 'psliwka/vim-smoothie' "Make Ctrl+D or Ctrl + U more pleasant
+    "Plug 'mengelbrecht/lightline-bufferline'
+    Plug 'romgrk/barbar.nvim'                     "Better buffers/tabs: requires NVIM 0.5
+    Plug 'kyazdani42/nvim-web-devicons'           "Icons
+    Plug 'luochen1990/rainbow'                    "Rainbow parentheses
+    Plug 'psliwka/vim-smoothie'                   "Make Ctrl+D or Ctrl + U more pleasant
     "" FERN
     Plug 'lambdalisue/fern.vim'
     Plug 'LumaKernel/fern-mapping-fzf.vim/'
-    Plug 'lambdalisue/fern-git-status.vim'
-    Plug 'lambdalisue/fern-hijack.vim' "Makes fern the default file explorer
+    Plug 'lambdalisue/fern-git-status.vim'        "Add git dirty status to filetree
+    Plug 'lambdalisue/fern-hijack.vim'            "Makes fern the default file explorer
     Plug 'lambdalisue/nerdfont.vim'
-    Plug 'lambdalisue/fern-renderer-nerdfont.vim' " Basically vim-devicons
+    Plug 'lambdalisue/fern-renderer-nerdfont.vim' "Basically vim-devicons
     Plug 'lambdalisue/glyph-palette.vim'
     "" COLOR SCHEMES
     Plug 'pineapplegiant/spaceduck', { 'branch': 'main' }
     Plug 'dracula/vim'
     Plug 'cocopon/iceberg.vim'
-    "Plug 'mzlogin/vim-markdown-toc'
     "" MOVING AROUND
     Plug 'junegunn/fzf.vim'
     Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
@@ -46,7 +48,6 @@ call plug#begin(stdpath('data') . '/plugged')
     Plug 'junegunn/goyo.vim' 
     Plug 'reedes/vim-pencil'
     Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install'  }
-    "Plug 'arthurxavierx/vim-unicoder'
     "" NEXT LEVEL SHIT
     Plug 'mhinz/vim-grepper'
     Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
@@ -56,10 +57,25 @@ call plug#begin(stdpath('data') . '/plugged')
     "" LOW-KEY MESSES EVERYTHING UP
     "":GenTocGFM -> Make TOC
     Plug 'Yggdroot/indentLine'
-    Plug 'lukas-reineke/indent-blankline.nvim' "Fixes vim indentline
+    Plug 'lukas-reineke/indent-blankline.nvim' "Fixes vim indentline no skipping lines
     " MAKE PRETTY SCREENSHOTS
     Plug 'kristijanhusak/vim-carbon-now-sh'
 call plug#end()
+
+"----------------------------------------------------------------------
+"                       Barbar
+"----------------------------------------------------------------------
+
+    let bufferline = get(g:, 'bufferline', {}) "Initialize bufferline
+    let bufferline.maximum_padding = 2
+    let bufferline.animation = v:false
+    let bufferline.icons = 'both'
+
+"Use bufferclose instead of bdelete
+    nnoremap <leader>d :BufferClose<CR>
+"Use Tab + S-tab to cycle
+    nnoremap <silent> <Tab> :BufferNext<CR>
+    nnoremap <silent> <S-Tab> :BufferPrevious<CR>
 
 "----------------------------------------------------------------------
 "                       FloatTerm
@@ -153,13 +169,19 @@ call plug#end()
 "                       FZF
 "----------------------------------------------------------------------
 
+" Make FZF display up top instead of bottom
     let $FZF_DEFAULT_OPTS = '--layout=reverse'
 
 " Make FZF better contextually -> ignore gitignore stuff & work if not in git dir
     let $FZF_DEFAULT_COMMAND = "rg --files --hidden -g '!.git' -g '!node_modules'"
 
-    "let g:fzf_layout = { 'window': 'call OpenFloatingWin()' }
+    nmap <silent> <C-b> :Buffers<CR>
+    nmap <silent> <C-p> :Files<CR>
+    nmap <silent> <C-f> :Rg <CR>
+    nmap <silent> <C-c> :History<CR>
 
+" Custom floating window shenangins
+    "let g:fzf_layout = { 'window': 'call OpenFloatingWin()' }
     "function! OpenFloatingWin()
       "let height = &lines - 3
       "let width = float2nr(&columns - (&columns * 2 / 10))
@@ -185,20 +207,6 @@ call plug#end()
             "\ nonumber
             "\ norelativenumber
             "\ signcolumn=no
-
-    nmap <silent> <C-b> :Buffers<CR>
-    nmap <silent> <C-p> :Files<CR>
-    nmap <silent> <C-f> :Rg <CR>
-    nmap <silent> <C-c> :History<CR>
-
-    " Ctrl+x & Ctrlf fzf path and fills in
-    inoremap <expr> <c-x><c-f> fzf#vim#complete#path(
-        \ "find . -path '*/\.*' -prune -o -print \| sed '1d;s:^..::'",
-        \ fzf#wrap({'dir': expand('%:p:h')}))
-      if has('nvim')
-        au! TermOpen * tnoremap <buffer> <Esc> <c-\><c-n>
-        au! FileType fzf tunmap <buffer> <Esc>
-    endif
 
 "----------------------------------------------------------------------
 "                       Vim-Grepper
@@ -245,12 +253,10 @@ call plug#end()
 "----------------------------------------------------------------------
 
 " Nerdfont yay
-  let g:lightline#bufferline#enable_nerdfont=1
-
   let g:lightline = {
       \ 'colorscheme': 'spaceduck',
       \ 'active': {
-      \   'left': [ [ 'mode', 'paste' ], [''], [ 'buffers' ]],
+      \   'left': [ [ 'mode', 'paste' ], ['readonly', 'filename'], ['']],
       \   'right': [  ['lineinfo'], [ 'gitbranch' ] ]
       \ },
       \ 'inactive': {
@@ -261,6 +267,7 @@ call plug#end()
       \   'gitbranch': 'LightlineGitbranch',
       \   'mode': 'LightlineMode',
       \   'lineinfo': 'LightlineLineinfo',
+      \   'filename': 'LightlineFilename',
       \ },
       \ 'component_expand': {
       \   'buffers': 'lightline#bufferline#buffers'
@@ -274,16 +281,19 @@ call plug#end()
     let g:gitbranch_icon = ''
     let g:lightlineLineInfo_icon = ''
 
+" Give the statusline a branch to add to it's list
   function! LightlineGitbranch() abort
       let l:bname = gitbranch#name()
       return l:bname != '' ? g:gitbranch_icon . ' ' . l:bname : ''
   endfunction
 
-function! LightlineLineinfo() abort
-    let l:lineinfo = printf("%3d:%-2d", line('.'), col('.'))
-    return l:lineinfo != '' ? g:lightlineLineInfo_icon . ' ' . l:lineinfo : ''
-endfunction
+" Give line info a little icon
+    function! LightlineLineinfo() abort
+        let l:lineinfo = printf("%3d:%-2d", line('.'), col('.'))
+        return l:lineinfo != '' ? g:lightlineLineInfo_icon . ' ' . l:lineinfo : ''
+    endfunction
 
+" Override filename for certain groups
   function! LightlineMode() abort
     let ftmap = {
                 \ 'coc-explorer': 'EXPLORER',
@@ -294,10 +304,18 @@ endfunction
     return get(ftmap, &filetype, lightline#mode())
 endfunction
 
-  augroup lightlineDirty
-    autocmd!
-    autocmd BufWritePost,TextChanged,TextChangedI * call lightline#update()
-  augroup END
+" Update lightline modified better
+  "augroup lightlineDirty
+    "autocmd!
+    "autocmd BufWritePost,TextChanged,TextChangedI * call lightline#update()
+  "augroup END
+
+" Put modified and filename together
+    function! LightlineFilename() abort
+      let filename = expand('%:t') !=# '' ? expand('%:t') : '[No Name]'
+      let modified = &modified ? ' +' : ''
+      return  filename . modified
+    endfunction
 
 "----------------------------------------------------------------------
 "                   Markdown Preview
@@ -318,7 +336,7 @@ endfunction
     let g:pencil_terminal_italics = 1 " Support italics bc i'm dumb
 
 " GOYO start!
-    function! s:goyo_enter()
+    function! s:goyo_enter() abort
         let b:quitting = 0
         let b:quitting_bang = 0
         autocmd QuitPre <buffer> let b:quitting = 1
@@ -345,7 +363,7 @@ endfunction
 
 
 " Let GOYO quit
-    function! s:goyo_leave()
+    function! s:goyo_leave() abort
           if executable('tmux') && strlen($TMUX)
             silent !tmux set status on
             silent !tmux list-panes -F '\#F' | grep -q Z && tmux resize-pane -Z
@@ -463,7 +481,7 @@ endfunction
 " Use U to show documentation in preview window
     nnoremap <silent> ,k :call <SID>show_documentation()<CR>
 
-    function! s:show_documentation()
+    function! s:show_documentation() abort
       if (index(['vim','help'], &filetype) >= 0)
         execute 'h '.expand('<cword>')
       elseif (coc#rpc#ready())
