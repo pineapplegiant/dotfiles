@@ -80,10 +80,12 @@ SPACESHIP_PROMPT_ORDER=(
     alias v=nvim
     alias vi=nvim
     alias vim=nvim
-    alias vimrc='vim $XDG_CONFIG_HOME/nvim/init.vim'   # Open nvimrc in nvim
-    alias ctags="`brew --prefix`/bin/ctags"            # Ctags alias
-    alias rc='vim $XDG_CONFIG_HOME/zsh/.zshrc'         # Get to bash-profile faster
-    alias bp='vim $XDG_CONFIG_HOME/shell/profile' # Get to env faster
+    alias vimrc='vim $XDG_CONFIG_HOME/nvim/init.vim'     # Open nvimrc in nvim
+    alias ctags="`brew --prefix`/bin/ctags"              # Ctags alias
+    alias rc='vim $XDG_CONFIG_HOME/zsh/.zshrc'           # Get to bash-profile faster
+    alias bp='vim $XDG_CONFIG_HOME/shell/profile'        # Get to env faster
+    alias tmuxrc='vim $XDG_CONFIG_HOME/tmux/tmux.conf'   # Tmux settings
+    alias alrc='vim ~/.config/alacritty.yml'             # Alacritty settings
 
 # I HAVE SWITCHED TO EXA
     alias l="exa -FG --git"   # Just make ls  chill
@@ -144,18 +146,18 @@ function pls() {
 
 # Web Baby
     URLprefix="http://www."
-    function web() 
+    function web()
     {
         open "$URLprefix$@" -a "Google Chrome"
     }
 
 # Browsersync alias
-function webdev() 
+function webdev()
     {
         browser-sync start --server --files ./*
     }
 
-# CD && LS all at once 
+# CD && LS all at once
     cd() { builtin cd "$@" && ls;}
 
 # This will open manpages in preview!
@@ -194,6 +196,12 @@ function webdev()
          tmux rename-window $@
     }
 
+# Kill a specific tmux session
+function tkill()
+    {
+        tmux kill-session -t $@
+    }
+
 #----------------------------------------------------------------------
 #                       VI like prompt stuff thanks Luke
 #----------------------------------------------------------------------
@@ -222,7 +230,7 @@ function webdev()
     bindkey -v '^?' backward-delete-char
 
 # Change cursor shape for different vi modes.
-    function zle-keymap-select 
+    function zle-keymap-select
     {
       if [[ ${KEYMAP} == vicmd ]] ||
          [[ $1 = 'block' ]]; then
@@ -235,7 +243,7 @@ function webdev()
       fi
     }
     zle -N zle-keymap-select
-    zle-line-init() 
+    zle-line-init()
     {
         zle -K viins # initiate `vi insert` as keymap (can be removed if `bindkey -V` has been set elsewhere)
         echo -ne "\e[5 q"
@@ -254,7 +262,7 @@ function webdev()
 # Load zsh-syntax-highlighting
     source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
-# Load zsh-history-substring-search 
+# Load zsh-history-substring-search
     source /usr/local/share/zsh-history-substring-search/zsh-history-substring-search.zsh
 
 # To search via vim keybindings

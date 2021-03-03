@@ -82,6 +82,7 @@ zsh-history-substring-search
 zsh-syntax-highlighting
 
 cask "font-firamono-nerd-font-mono"
+cask "font-sauce-code-pro-nerd-font"
 
 ### Fonts
 

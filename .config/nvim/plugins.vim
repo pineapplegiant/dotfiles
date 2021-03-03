@@ -68,7 +68,7 @@ local lualine = require('lualine')
     lualine.options = {
       theme = 'spaceduck',
       section_separators = {'', ''},
-      component_separators = {'|', '|'},
+      component_separators = {'', ''},
       icons_enabled = true,
     }
     lualine.sections = {
