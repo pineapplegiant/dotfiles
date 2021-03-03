@@ -29,7 +29,7 @@
 " Better Yank
     map Y y$
 
-" Map ,, to % because i like cycling brackets a lot
+" Map ,, to % because I like cycling brackets a lot
     map ,, %
 
 " Align blocks of text and keep them selected
@@ -37,10 +37,6 @@
     vmap > >gv
 
 " Lots of Time-Stamp Options here in normal/insert mode to paste timestamp and F4 To Date Stamp
-    "nnoremap <F3> "=strftime("%H:%M:%S")<CR>p
-    "inoremap <F3> <C-R>=strftime("%H:%M:%S")<CR>
-    "nnoremap <F4> "=strftime("%Y-%m-%d")<CR>p
-    "inoremap <F4> <C-R>=strftime("%Y-%m-%d")<CR>
     nnoremap <F5> a"<ESC>"=strftime("%Y-%m-%d %H:%M:%S")<CR>pa"<ESC>
     inoremap <F5> <C-R>=strftime("%Y-%m-%d %H:%M:%S")<CR>
     nnoremap <F6> "=strftime("%A %B %d %Y, at %I:%M %p %Z")<CR>P
@@ -55,7 +51,7 @@
 " List all recently opened files and open a new buffer
     nnoremap gs :browse oldfiles<CR>
 
-" Set terminal stuff
+" Map hh to escape out of vi mode when in the terminal
     if exists(':terminal')
         tnoremap hh <C-\><C-n>
     endif
@@ -65,7 +61,7 @@
     nnoremap <S-Tab> :bp<CR>
 
 "----------------------------------------------------------------------
-"               Map Leader to '<space>' 
+"               Map Leader to '<space>'
 "               Map Llocalleader to \\
 "----------------------------------------------------------------------
 
@@ -81,9 +77,6 @@
 " Mac open dictionary under word cursor
     nnoremap <silent> <leader>? :!open dict://<cword><cr><cr>
 
-" Open URL or thing in default browser or whatever
-    nnoremap <silent> <leader>@ :!open <cfile><cr><cr>
-
 " Delete Buffer, but keep the window open
     nnoremap <leader>d :bdelete!<CR>
 
@@ -94,7 +87,7 @@
     map<leader>p  "+p
     map<leader>y  "+y
 
-" Quicksave and Quickquit in vim!
+" Quicksave and Quickquit in vim using leader!
     nnoremap <leader>s :update<cr>
     nnoremap <leader>q :q!<CR>
 
@@ -173,7 +166,7 @@
         autocmd FileType markdown nnoremap <F7> :update<CR>:call PandocCreate()<CR>
     augroup END
 
-    "" StripTrailingWhitespace Function helper
+    " Expose StripTrailingWhitespace Command to remove spaces
     command! -nargs=? -range=% -complete=custom,s:StripCompletionOptions
       \ StripTrailingWhitespace <line1>,<line2>call s:StripTrailingWhitespace(<f-args>)
 
@@ -197,7 +190,7 @@
     "nnoremap ,csss :-1read $XDG_CONFIG_HOME/nvim/snippets/reset.css<CR>
 
 " School's C++ top snippet
-    nnoremap ,top :-1read $XDG_CONFIG_HOME/nvim/snippets/top.txt<CR>2jA <C-R>=strftime("%A %B %d %Y, at %I:%M %p %Z")<CR><ESC>jA 
+    nnoremap ,top :-1read $XDG_CONFIG_HOME/nvim/snippets/top.txt<CR>2jA <C-R>=strftime("%A %B %d %Y, at %I:%M %p %Z")<CR><ESC>jA
 
 " School's Function block snippet
     nnoremap ,block :read $XDG_CONFIG_HOME/nvim/snippets/block.txt<CR>jA
