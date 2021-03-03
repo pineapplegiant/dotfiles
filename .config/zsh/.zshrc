@@ -82,8 +82,8 @@ SPACESHIP_PROMPT_ORDER=(
     alias vim=nvim
     alias vimrc='vim $XDG_CONFIG_HOME/nvim/init.vim'   # Open nvimrc in nvim
     alias ctags="`brew --prefix`/bin/ctags"            # Ctags alias
-    alias bp='vim $XDG_CONFIG_HOME/zsh/.zshrc'         # Get to bash-profile faster
-    alias prof='vim $XDG_CONFIG_HOME/shell/profile' # Get to env faster
+    alias rc='vim $XDG_CONFIG_HOME/zsh/.zshrc'         # Get to bash-profile faster
+    alias bp='vim $XDG_CONFIG_HOME/shell/profile' # Get to env faster
 
 # I HAVE SWITCHED TO EXA
     alias l="exa -FG --git"   # Just make ls  chill
