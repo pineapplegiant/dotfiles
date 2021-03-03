@@ -12,17 +12,17 @@
 "----------------------------------------------------------------------
 
 
-" Make sure you have vim-plug installed ~/.local/share/nvim/site/autoload/plug.vim
+" Make sure you have vim-plug installed -> ~/.local/share/nvim/site/autoload/plug.vim
 call plug#begin(stdpath('data') . '/plugged')
     "" COLORS, PRETTY & FUN
     Plug 'sheerun/vim-polyglot'
-    Plug 'itchyny/lightline.vim'
-    "Plug 'mengelbrecht/lightline-bufferline'
+    Plug 'hoob3rt/lualine.nvim'
     Plug 'romgrk/barbar.nvim'                     "Better buffers/tabs: requires NVIM 0.5
     Plug 'kyazdani42/nvim-web-devicons'           "Icons
     Plug 'luochen1990/rainbow'                    "Rainbow parentheses
     Plug 'psliwka/vim-smoothie'                   "Make Ctrl+D or Ctrl + U more pleasant
-    "" FERN
+    "" Filetree
+    "Plug 'kyazdani42/nvim-tree.lua'
     Plug 'lambdalisue/fern.vim'
     Plug 'LumaKernel/fern-mapping-fzf.vim/'
     Plug 'lambdalisue/fern-git-status.vim'        "Add git dirty status to filetree
@@ -43,9 +43,9 @@ call plug#begin(stdpath('data') . '/plugged')
     Plug 'vim-scripts/The-NERD-Commenter'
     Plug 'mattn/emmet-vim'
     "" Git 
-    Plug 'itchyny/vim-gitbranch'
+    "Plug 'itchyny/vim-gitbranch'
     "" PROSE & WRITING
-    Plug 'junegunn/goyo.vim' 
+    Plug 'junegunn/goyo.vim'
     Plug 'reedes/vim-pencil'
     Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install'  }
     "" NEXT LEVEL SHIT
@@ -56,43 +56,50 @@ call plug#begin(stdpath('data') . '/plugged')
     Plug 'christoomey/vim-tmux-navigator'
     "" LOW-KEY MESSES EVERYTHING UP
     "":GenTocGFM -> Make TOC
-    Plug 'Yggdroot/indentLine'
-    Plug 'lukas-reineke/indent-blankline.nvim' "Fixes vim indentline no skipping lines
+    Plug 'lukas-reineke/indent-blankline.nvim', { 'branch': 'lua'} "Fixes vim indentline no skipping lines
     " MAKE PRETTY SCREENSHOTS
     Plug 'kristijanhusak/vim-carbon-now-sh'
 call plug#end()
+
+"----------------------------------------------------------------------
+"                       Lualine
+"----------------------------------------------------------------------
+lua << EOF
+local lualine = require('lualine')
+    lualine.options = {
+      theme = 'spaceduck',
+      section_separators = {'', ''},
+      component_separators = {'|', '|'},
+      icons_enabled = true,
+    }
+    lualine.sections = {
+      lualine_a = { 'mode' },
+      lualine_b = { 'branch' },
+      lualine_c = { 'filename' },
+      lualine_x = { 'encoding', 'fileformat', 'filetype' },
+      lualine_y = { 'progress' },
+      lualine_z = { 'location'  },
+    }
+    lualine.inactive_sections = {
+      lualine_a = {  },
+      lualine_b = {  },
+      lualine_c = { 'filename' },
+      lualine_x = { 'location' },
+      lualine_y = {  },
+      lualine_z = {   }
+    }
+    lualine.extensions = { 'fzf' }
+    lualine.status()
+EOF
 
 "----------------------------------------------------------------------
 "                       Barbar
 "----------------------------------------------------------------------
 
     let bufferline = get(g:, 'bufferline', {}) "Initialize bufferline
-    let bufferline.maximum_padding = 2
+    let bufferline.maximum_padding = 4
     let bufferline.animation = v:false
-    let bufferline.icons = 'both'
-
-"Use bufferclose instead of bdelete
-    nnoremap <leader>d :BufferClose<CR>
-"Use Tab + S-tab to cycle
-    nnoremap <silent> <Tab> :BufferNext<CR>
-    nnoremap <silent> <S-Tab> :BufferPrevious<CR>
-
-"----------------------------------------------------------------------
-"                       FloatTerm
-"----------------------------------------------------------------------
-
-    "let g:floaterm_keymap_toggle = '<F1>'
-    "let g:floaterm_keymap_next   = '<F2>'
-    "let g:floaterm_keymap_prev   = '<F3>'
-    "let g:floaterm_keymap_new    = '<F4>'
-
-    "" Floaterm
-    "let g:floaterm_gitcommit='floaterm'
-    "let g:floaterm_autoinsert=1
-    "let g:floaterm_width=0.7
-    "let g:floaterm_height=0.7
-    "let g:floaterm_wintitle=0
-    "let g:floaterm_autoclose=1
+    let bufferline.icons = v:true
 
 "----------------------------------------------------------------------
 "                       Vim-carbon-now-sh
@@ -160,7 +167,6 @@ call plug#end()
     autocmd FileType nerdtree,startify call glyph_palette#apply()
   augroup END
 
-
     nmap <C-r> :Fern . -reveal=%<CR>
     "Break Undo to use c-r for fern
     nmap <C-n> :Fern . -drawer -toggle -stay -reveal=%<CR>
@@ -179,34 +185,6 @@ call plug#end()
     nmap <silent> <C-p> :Files<CR>
     nmap <silent> <C-f> :Rg <CR>
     nmap <silent> <C-c> :History<CR>
-
-" Custom floating window shenangins
-    "let g:fzf_layout = { 'window': 'call OpenFloatingWin()' }
-    "function! OpenFloatingWin()
-      "let height = &lines - 3
-      "let width = float2nr(&columns - (&columns * 2 / 10))
-      "let col = float2nr((&columns - width) / 2)
-
-      "let opts = {
-            "\ 'relative': 'editor',
-            "\ 'row': height * 0.3,
-            "\ 'col': col + 30,
-            "\ 'width': width * 2 / 3,
-            "\ 'height': height / 2
-            "\ }
-
-      "let buf = nvim_create_buf(v:false, v:true)
-      "let win = nvim_open_win(buf, v:true, opts)
-
-      "call setwinvar(win, '&winhl', 'Normal:Pmenu')
-
-      "setlocal
-            "\ buftype=nofile
-            "\ nobuflisted
-            "\ bufhidden=hide
-            "\ nonumber
-            "\ norelativenumber
-            "\ signcolumn=no
 
 "----------------------------------------------------------------------
 "                       Vim-Grepper
@@ -253,56 +231,56 @@ call plug#end()
 "----------------------------------------------------------------------
 
 " Nerdfont yay
-  let g:lightline = {
-      \ 'colorscheme': 'spaceduck',
-      \ 'active': {
-      \   'left': [ [ 'mode', 'paste' ], ['readonly', 'filename'], ['']],
-      \   'right': [  ['lineinfo'], [ 'gitbranch' ] ]
-      \ },
-      \ 'inactive': {
-      \   'left': [ ['filename']],
-      \   'right': [  ['filetype'] ]
-      \ },
-      \ 'component_function': {
-      \   'gitbranch': 'LightlineGitbranch',
-      \   'mode': 'LightlineMode',
-      \   'lineinfo': 'LightlineLineinfo',
-      \   'filename': 'LightlineFilename',
-      \ },
-      \ 'component_expand': {
-      \   'buffers': 'lightline#bufferline#buffers'
-      \ },
-      \ 'component_type': {
-      \   'buffers': 'tabsel'
-      \ },
-      \ }
+  "let g:lightline = {
+      "\ 'colorscheme': 'spaceduck',
+      "\ 'active': {
+      "\   'left': [ [ 'mode', 'paste' ], ['readonly', 'filename'], ['']],
+      "\   'right': [  ['lineinfo'], [ 'gitbranch' ] ]
+      "\ },
+      "\ 'inactive': {
+      "\   'left': [ ['filename']],
+      "\   'right': [  ['filetype'] ]
+      "\ },
+      "\ 'component_function': {
+      "\   'gitbranch': 'LightlineGitbranch',
+      "\   'mode': 'LightlineMode',
+      "\   'lineinfo': 'LightlineLineinfo',
+      "\   'filename': 'LightlineFilename',
+      "\ },
+      "\ 'component_expand': {
+      "\   'buffers': 'lightline#bufferline#buffers'
+      "\ },
+      "\ 'component_type': {
+      "\   'buffers': 'tabsel'
+      "\ },
+      "\ }
 
-    let g:lightline#bufferline#modified = '*'
-    let g:gitbranch_icon = ''
-    let g:lightlineLineInfo_icon = ''
+    "let g:lightline#bufferline#modified = '*'
+    "let g:gitbranch_icon = ''
+    "let g:lightlineLineInfo_icon = ''
 
-" Give the statusline a branch to add to it's list
-  function! LightlineGitbranch() abort
-      let l:bname = gitbranch#name()
-      return l:bname != '' ? g:gitbranch_icon . ' ' . l:bname : ''
-  endfunction
+"" Give the statusline a branch to add to it's list
+  "function! LightlineGitbranch() abort
+      "let l:bname = gitbranch#name()
+      "return l:bname != '' ? g:gitbranch_icon . ' ' . l:bname : ''
+  "endfunction
 
-" Give line info a little icon
-    function! LightlineLineinfo() abort
-        let l:lineinfo = printf("%3d:%-2d", line('.'), col('.'))
-        return l:lineinfo != '' ? g:lightlineLineInfo_icon . ' ' . l:lineinfo : ''
-    endfunction
+"" Give line info a little icon
+    "function! LightlineLineinfo() abort
+        "let l:lineinfo = printf("%3d:%-2d", line('.'), col('.'))
+        "return l:lineinfo != '' ? g:lightlineLineInfo_icon . ' ' . l:lineinfo : ''
+    "endfunction
 
-" Override filename for certain groups
-  function! LightlineMode() abort
-    let ftmap = {
-                \ 'coc-explorer': 'EXPLORER',
-                \ 'fugitive': 'FUGITIVE',
-                \ 'vista': 'OUTLINE',
-                \ 'fern': 'FERN'
-                \ }
-    return get(ftmap, &filetype, lightline#mode())
-endfunction
+"" Override filename for certain groups
+  "function! LightlineMode() abort
+    "let ftmap = {
+                "\ 'coc-explorer': 'EXPLORER',
+                "\ 'fugitive': 'FUGITIVE',
+                "\ 'vista': 'OUTLINE',
+                "\ 'fern': 'FERN'
+                "\ }
+    "return get(ftmap, &filetype, lightline#mode())
+"endfunction
 
 " Update lightline modified better
   "augroup lightlineDirty
@@ -311,11 +289,11 @@ endfunction
   "augroup END
 
 " Put modified and filename together
-    function! LightlineFilename() abort
-      let filename = expand('%:t') !=# '' ? expand('%:t') : '[No Name]'
-      let modified = &modified ? ' +' : ''
-      return  filename . modified
-    endfunction
+    "function! LightlineFilename() abort
+      "let filename = expand('%:t') !=# '' ? expand('%:t') : '[No Name]'
+      "let modified = &modified ? ' +' : ''
+      "return  filename . modified
+    "endfunction
 
 "----------------------------------------------------------------------
 "                   Markdown Preview
@@ -358,7 +336,6 @@ endfunction
         syntax off
         syntax on
         "set conceallevel=2
-
     endfunction
 
 
@@ -385,10 +362,11 @@ endfunction
 "----------------------------------------------------------------------
 "                       Indent-Line
 "----------------------------------------------------------------------
-    let g:indentLine_enabled = 1            " Just toggle this shit bro
-    let g:indentLine_char = '▏'             " Show Indentation lines
-    let g:indentLine_color_gui = '#474747'  " Make them pretty-gray-lines
-    let g:indentLine_fileTypeExclude = ['tex', 'markdown', 'txt'] " Shit don't work in md
+    let g:indent_blankline_char = '▏'
+    "let g:indentLine_enabled = 1            " Just toggle this shit bro
+    "let g:indentLine_char = '▏'             " Show Indentation lines
+    "let g:indentLine_color_gui = '#474747'  " Make them pretty-gray-lines
+    "let g:indentLine_fileTypeExclude = ['tex', 'markdown', 'txt'] " Shit don't work in md
 
 "----------------------------------------------------------------------
 "                       CocNVIM
@@ -497,6 +475,7 @@ endfunction
 
 " Show all diagnostics
     nnoremap <silent> ,a  :<C-u>CocList diagnostics<cr>
+
 " Manage extensions
     nnoremap <silent> ,e  :<C-u>CocList extensions<cr>
 
@@ -511,12 +490,6 @@ endfunction
 
 " Search workspace symbols
     nnoremap <silent> ,s  :<C-u>CocList -I symbols<cr>
-
-" Do default action for next item.
-    "nnoremap <silent> ,j  :<C-u>CocNext<CR>
-
-" Do default action for previous item.
-    "nnoremap <silent> ,k  :<C-u>CocPrev<CR>
 
 " Resume latest coc list
     nnoremap <silent> ,p  :<C-u>CocListResume<CR>
