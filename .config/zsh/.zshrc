@@ -4,12 +4,6 @@
 . /usr/local/etc/profile.d/z.sh
 
 #----------------------------------------------------------------------
-#       NOTES
-#----------------------------------------------------------------------
-#
-# ssh rodrguil@flip2.engr.oregonstate.edu
-#
-#----------------------------------------------------------------------
 #       Set Spaceship ZSH as a prompt "npm install -g spaceship"
 #----------------------------------------------------------------------
     autoload -U promptinit; promptinit
@@ -82,39 +76,40 @@ SPACESHIP_PROMPT_ORDER=(
     alias dog='ccat'                         # Use that new ccat plugin
 
 # Vim to Nvim
-    export VISUAL=nvim                       
-    alias v=nvim                            
-    alias vim=nvim                         
-    alias vimrc='vim $XDG_CONFIG_HOME/nvim/init.vim' # Open nvimrc in nvim
-    alias ctags="`brew --prefix`/bin/ctags"          # Ctags alias
-    alias bp='vim $XDG_CONFIG_HOME/zsh/.zshrc'       # Get to bash-profile faster
-    alias profile='vim $XDG_CONFIG_HOME/shell/profile'       # Get to env faster
+    export VISUAL=nvim
+    alias v=nvim
+    alias vi=nvim
+    alias vim=nvim
+    alias vimrc='vim $XDG_CONFIG_HOME/nvim/init.vim'   # Open nvimrc in nvim
+    alias ctags="`brew --prefix`/bin/ctags"            # Ctags alias
+    alias bp='vim $XDG_CONFIG_HOME/zsh/.zshrc'         # Get to bash-profile faster
+    alias prof='vim $XDG_CONFIG_HOME/shell/profile' # Get to env faster
 
 # I HAVE SWITCHED TO EXA
-    alias l="exa -FG --git"                         # Just make ls  chill
-    alias ls="exa -FG --git"                        # Make ls pretty
-    alias ll="exa -l --git"                         # ls long tag
+    alias l="exa -FG --git"   # Just make ls  chill
+    alias ls="exa -FG --git"  # Make ls pretty
+    alias ll="exa -l --git"   # ls long tag
     alias s="exa -ahlF"
     alias ss="exa -aF --git"
 
 # Safety aliases
-    alias rm="rm -iv"                        # Make rm more safe
-    alias cp="cp -i"                         # Make cp more safe
-    alias mv="mv -i"                         # Make mv more safe
+    alias rm="rm -iv"         # Make rm safer
+    alias cp="cp -i"          # Make cp safer
+    alias mv="mv -i"          # Make mv safer
 
 # Laziness at its finest
     alias rr="source $XDG_CONFIG_HOME/zsh/.zshrc && tmux source-file $XDG_CONFIG_HOME/tmux/tmux.conf" # Source bash profile & Tmux
     alias tfix="tmux select-layout even-horizontal"
     alias tfixv="tmux select-layout even-vertical"
     alias tfixd="tmux resize-pane -y 8"
-    alias ..="cd .."                         # Shortcut up a directory
-    alias ...="cd ../.."                     # Shorcut 2 directory
-    alias c="clear"                          # Faster clearing of the screen
-    alias matrix="cmatrix"                   # Stupid text on the scree
+    alias ..="cd .."          # Shortcut up a directory
+    alias ...="cd ../.."      # Shorcut 2 directory
+    alias c="clear"           # Faster clearing of the screen
+    alias matrix="cmatrix"    # Stupid text on the screen
     alias lg="lazygit"
+
 # Better Less
     export LESS="-iXR --RAW-CONTROL-CHARS"
-
 
 #----------------------------------------------------------------------
 #                       Functions
@@ -226,7 +221,6 @@ function webdev()
     bindkey -M menuselect 'j' vi-down-line-or-history
     bindkey -v '^?' backward-delete-char
 
-
 # Change cursor shape for different vi modes.
     function zle-keymap-select 
     {
@@ -250,14 +244,10 @@ function webdev()
     echo -ne '\e[5 q' # Use beam shape cursor on startup.
     preexec() { echo -ne '\e[5 q' ;} # Use beam shape cursor for each new prompt.
 
-# Edit line in vim with ctrl-e:
-    #autoload edit-command-line; zle -N edit-command-line
-    #bindkey '^e' edit-command-line
-
-
 #----------------------------------------------------------------------
 #                       Better then bash
 #----------------------------------------------------------------------
+
 # Load zsh-autosuggestions
     source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 
@@ -275,15 +265,12 @@ function webdev()
     fpath+=${ZDOTDIR:-~}/.zsh_functions
 
 # Setup fzf
-# ---------
     if [[ ! "$PATH" == */usr/local/opt/fzf/bin* ]]; then
       export PATH="${PATH:+${PATH}:}/usr/local/opt/fzf/bin"
     fi
 
 # Auto-completion
-# ---------------
     [[ $- == *i* ]] && source "/usr/local/opt/fzf/shell/completion.zsh" 2> /dev/null
 
 # Key bindings
-# ------------
     source "/usr/local/opt/fzf/shell/key-bindings.zsh"
