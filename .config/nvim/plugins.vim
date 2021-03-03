@@ -51,7 +51,6 @@ call plug#begin(stdpath('data') . '/plugged')
     "" NEXT LEVEL SHIT
     Plug 'mhinz/vim-grepper'
     Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
-    Plug 'liuchengxu/vista.vim'
     "" TMUX
     Plug 'christoomey/vim-tmux-navigator'
     "" LOW-KEY MESSES EVERYTHING UP
@@ -211,20 +210,6 @@ EOF
         \ gvgr
         \ :cfdo %s/<C-r>s//g \| update
          \<Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left>
-
-
-"----------------------------------------------------------------------
-"                       VistaVim
-"----------------------------------------------------------------------
-
-" Ensure you have installed some decent font to show these pretty symbols, then you can enable icon for the kind.
-  let g:vista#renderer#enable_icon = 1
-
-" The default icons can't be suitable for all the filetypes, you can extend it as you wish.
-   let g:vista#renderer#icons = {
-   \   "typedef": "",
-   \   "variable": "🅅",
-   \  }
 
 "----------------------------------------------------------------------
 "                       Lightline
