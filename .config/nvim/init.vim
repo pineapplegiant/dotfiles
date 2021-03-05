@@ -11,14 +11,13 @@
 "----------------------------------------------------------------------
 "                        Modularity is life
 "----------------------------------------------------------------------
+" The dark side plagues all
+if !exists('g:vscode')
+    " Ordinary Neovim Settings
+    source $XDG_CONFIG_HOME/nvim/general.vim        " General Settings
+    source $XDG_CONFIG_HOME/nvim/mappings.vim       " Remappings for Vim (Plugin specific in plugins)
+    source $XDG_CONFIG_HOME/nvim/plugins.vim        " Plugin information and settings (vim-plug)
 
-source $XDG_CONFIG_HOME/nvim/general.vim        " General Settings
-source $XDG_CONFIG_HOME/nvim/mappings.vim       " Remappings for Vim (Plugin specific in plugins)
-source $XDG_CONFIG_HOME/nvim/plugins.vim        " Plugin information and settings (vim-plug)
-
-"----------------------------------------------------------------------
-"               Colors for a rainy day
-"----------------------------------------------------------------------
     if exists('+termguicolors')
       let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
       let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
@@ -39,3 +38,8 @@ source $XDG_CONFIG_HOME/nvim/plugins.vim        " Plugin information and setting
     catch
         colorscheme default
     endtry
+else
+    " VSCode extension stuff
+    source $XDG_CONFIG_HOME/nvim/vscode/settings.vim        " General Settings
+
+endif
