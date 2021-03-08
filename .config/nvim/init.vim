@@ -41,5 +41,4 @@ if !exists('g:vscode')
 else
     " VSCode extension stuff
     source $XDG_CONFIG_HOME/nvim/vscode/settings.vim        " General Settings
-
 endif
