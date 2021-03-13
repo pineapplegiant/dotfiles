@@ -30,7 +30,7 @@ call plug#begin(stdpath('data') . '/plugged')
     Plug 'lambdalisue/nerdfont.vim'
     Plug 'lambdalisue/fern-renderer-nerdfont.vim' "Basically vim-devicons
     Plug 'lambdalisue/glyph-palette.vim'
-    "" COLOR SCHEMES
+    """ COLOR SCHEMES
     Plug 'pineapplegiant/spaceduck', { 'branch': 'main' }
     Plug 'dracula/vim'
     Plug 'cocopon/iceberg.vim'

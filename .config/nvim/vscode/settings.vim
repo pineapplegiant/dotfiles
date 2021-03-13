@@ -87,3 +87,8 @@
     nmap gc <Plug>VSCodeCommentary
     omap gc  <Plug>VSCodeCommentary
     nmap gcc <Plug>VSCodeCommentaryLine
+
+" PLUGINS
+call plug#begin(stdpath('data') . '/plugged')
+    Plug 'tpope/vim-surround'
+call plug#end()
