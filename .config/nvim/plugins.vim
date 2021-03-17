@@ -63,33 +63,34 @@ call plug#end()
 "----------------------------------------------------------------------
 "                       Lualine
 "----------------------------------------------------------------------
-lua << EOF
-local lualine = require('lualine')
-    lualine.options = {
-      theme = 'spaceduck',
-      section_separators = {'', ''},
-      component_separators = {'', ''},
-      icons_enabled = true,
-    }
-    lualine.sections = {
-      lualine_a = { 'mode' },
-      lualine_b = { 'branch' },
-      lualine_c = { 'filename' },
-      lualine_x = { 'encoding', 'fileformat', 'filetype' },
-      lualine_y = { 'progress' },
-      lualine_z = { 'location'  },
-    }
-    lualine.inactive_sections = {
-      lualine_a = {  },
-      lualine_b = {  },
-      lualine_c = { 'filename' },
-      lualine_x = { 'location' },
-      lualine_y = {  },
-      lualine_z = {   }
-    }
-    lualine.extensions = { 'fzf' }
-    lualine.status()
-EOF
+
+let g:lualine = {
+    \'options' : {
+    \  'theme' : 'spaceduck',
+    \  'section_separators' : ['', ''],
+    \  'component_separators' : ['', ''],
+    \  'icons_enabled' : v:true,
+    \},
+    \'sections' : {
+    \  'lualine_a' : [ ['mode', {'upper': v:true,},], ],
+    \  'lualine_b' : [ ['branch', {'icon': '',}, ], ],
+    \  'lualine_c' : [ ['filename', {'file_status': v:true,},], ],
+    \  'lualine_x' : [ 'encoding', 'fileformat', 'filetype' ],
+    \  'lualine_y' : [ 'progress' ],
+    \  'lualine_z' : [ 'location'  ],
+    \},
+    \'inactive_sections' : {
+    \  'lualine_a' : [  ],
+    \  'lualine_b' : [  ],
+    \  'lualine_c' : [ 'filename' ],
+    \  'lualine_x' : [ 'location' ],
+    \  'lualine_y' : [  ],
+    \  'lualine_z' : [  ],
+    \},
+    \'extensions' : [ 'fzf' ],
+    \}
+
+lua require("lualine").setup()
 
 "----------------------------------------------------------------------
 "                       Barbar
@@ -112,7 +113,7 @@ EOF
 "----------------------------------------------------------------------
 
 " Set to 0 if you want to enable it later via :RainbowToggle
-    let g:rainbow_active = 1 
+    let g:rainbow_active = 0
 
 
 "----------------------------------------------------------------------
