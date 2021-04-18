@@ -59,6 +59,6 @@
 [pull]
 	rebase = true
 [credential]
-	helper = cache
+	helper = osxkeychain
 [init]
 	defaultBranch = main

@@ -78,8 +78,6 @@ SPACESHIP_PROMPT_ORDER=(
 # Vim to Nvim
     export VISUAL=nvim
     alias v=nvim
-    alias vi=nvim
-    alias vim=nvim
     alias vimrc='vim $XDG_CONFIG_HOME/nvim/init.vim'     # Open nvimrc in nvim
     alias ctags="`brew --prefix`/bin/ctags"              # Ctags alias
     alias rc='vim $XDG_CONFIG_HOME/zsh/.zshrc'           # Get to bash-profile faster

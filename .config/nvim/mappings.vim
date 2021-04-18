@@ -92,8 +92,8 @@
     nnoremap <leader>q :q!<CR>
 
 " Split window
-    nnoremap <leader>vs :split<Return>
-    nnoremap <leader>vv :vsplit<Return>
+    "nnoremap <leader>vs :split<Return>
+    "nnoremap <leader>vv :vsplit<Return>
 
 " Change directory to current directory
     nnoremap <leader>cd :cd %:p:h<CR>:pwd<CR>
