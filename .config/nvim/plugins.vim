@@ -31,9 +31,11 @@ call plug#begin(stdpath('data') . '/plugged')
     Plug 'lambdalisue/fern-renderer-nerdfont.vim' "Basically vim-devicons
     Plug 'lambdalisue/glyph-palette.vim'
     """ COLOR SCHEMES
-    Plug 'pineapplegiant/spaceduck', { 'branch': 'main' }
+    Plug 'pineapplegiant/spaceduck', { 'branch': 'dev' }
     Plug 'dracula/vim'
     Plug 'cocopon/iceberg.vim'
+    Plug 'arcticicestudio/nord-vim'
+    Plug 'morhetz/gruvbox'
     "" MOVING AROUND
     Plug 'junegunn/fzf.vim'
     Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
@@ -42,7 +44,7 @@ call plug#begin(stdpath('data') . '/plugged')
     Plug 'tpope/vim-surround'
     Plug 'vim-scripts/The-NERD-Commenter'
     Plug 'mattn/emmet-vim'
-    "" Git 
+    "" Git
     "Plug 'itchyny/vim-gitbranch'
     "" PROSE & WRITING
     Plug 'junegunn/goyo.vim'
@@ -51,6 +53,7 @@ call plug#begin(stdpath('data') . '/plugged')
     "" NEXT LEVEL SHIT
     Plug 'mhinz/vim-grepper'
     Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
+    Plug 'alec-gibson/nvim-tetris'
     "" TMUX
     Plug 'christoomey/vim-tmux-navigator'
     "" LOW-KEY MESSES EVERYTHING UP
@@ -61,36 +64,46 @@ call plug#begin(stdpath('data') . '/plugged')
 call plug#end()
 
 "----------------------------------------------------------------------
+"                      Nerdcommenter
+"----------------------------------------------------------------------
+
+
+    let g:NERDCreateDefaultMappings = 0
+    nmap gcc <plug>NERDCommenterInvert
+    xmap gcc <plug>NERDCommenterInvert
+
+"----------------------------------------------------------------------
 "                       Lualine
 "----------------------------------------------------------------------
 
-let g:lualine = {
-    \'options' : {
-    \  'theme' : 'spaceduck',
-    \  'section_separators' : ['', ''],
-    \  'component_separators' : ['', ''],
-    \  'icons_enabled' : v:true,
-    \},
-    \'sections' : {
-    \  'lualine_a' : [ ['mode', {'upper': v:true,},], ],
-    \  'lualine_b' : [ ['branch', {'icon': '',}, ], ],
-    \  'lualine_c' : [ ['filename', {'file_status': v:true,},], ],
-    \  'lualine_x' : [ 'encoding', 'fileformat', 'filetype' ],
-    \  'lualine_y' : [ 'progress' ],
-    \  'lualine_z' : [ 'location'  ],
-    \},
-    \'inactive_sections' : {
-    \  'lualine_a' : [  ],
-    \  'lualine_b' : [  ],
-    \  'lualine_c' : [ 'filename' ],
-    \  'lualine_x' : [ 'location' ],
-    \  'lualine_y' : [  ],
-    \  'lualine_z' : [  ],
-    \},
-    \'extensions' : [ 'fzf' ],
-    \}
+    let g:lualine = {
+        \'options' : {
+        \  'theme' : 'spaceduck',
+        \  'section_separators' : ['', ''],
+        \  'component_separators' : ['', ''],
+        \  'disabled_filetypes' : [],
+        \  'icons_enabled' : v:true,
+        \},
+        \'sections' : {
+        \  'lualine_a' : [ ['mode', {'upper': v:true,},], ],
+        \  'lualine_b' : [ ['branch', {'icon': '',}, ], ],
+        \  'lualine_c' : [ ['filename', {'file_status': v:true,},], ],
+        \  'lualine_x' : [ 'encoding', 'fileformat', 'filetype' ],
+        \  'lualine_y' : [ 'progress' ],
+        \  'lualine_z' : [ 'location'  ],
+        \},
+        \'inactive_sections' : {
+        \  'lualine_a' : [  ],
+        \  'lualine_b' : [  ],
+        \  'lualine_c' : [ 'filename' ],
+        \  'lualine_x' : [ 'location' ],
+        \  'lualine_y' : [  ],
+        \  'lualine_z' : [  ],
+        \},
+        \'extensions' : [ 'fzf' ],
+        \}
 
-lua require("lualine").setup()
+    lua require("lualine").setup()
 
 "----------------------------------------------------------------------
 "                       Barbar
@@ -100,6 +113,11 @@ lua require("lualine").setup()
     let bufferline.maximum_padding = 4
     let bufferline.animation = v:false
     let bufferline.icons = v:true
+
+    " Redefine previous mappinigs for barbar
+    nnoremap <leader>d :BufferClose<CR>
+    nnoremap gn :BufferNext<CR>
+    nnoremap gp :BufferPrevious<CR>
 
 "----------------------------------------------------------------------
 "                       Vim-carbon-now-sh
@@ -113,7 +131,7 @@ lua require("lualine").setup()
 "----------------------------------------------------------------------
 
 " Set to 0 if you want to enable it later via :RainbowToggle
-    let g:rainbow_active = 0
+    let g:rainbow_active = 1
 
 
 "----------------------------------------------------------------------
@@ -213,74 +231,6 @@ lua require("lualine").setup()
         \ :cfdo %s/<C-r>s//g \| update
          \<Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left>
 
-"----------------------------------------------------------------------
-"                       Lightline
-"----------------------------------------------------------------------
-
-" Nerdfont yay
-  "let g:lightline = {
-      "\ 'colorscheme': 'spaceduck',
-      "\ 'active': {
-      "\   'left': [ [ 'mode', 'paste' ], ['readonly', 'filename'], ['']],
-      "\   'right': [  ['lineinfo'], [ 'gitbranch' ] ]
-      "\ },
-      "\ 'inactive': {
-      "\   'left': [ ['filename']],
-      "\   'right': [  ['filetype'] ]
-      "\ },
-      "\ 'component_function': {
-      "\   'gitbranch': 'LightlineGitbranch',
-      "\   'mode': 'LightlineMode',
-      "\   'lineinfo': 'LightlineLineinfo',
-      "\   'filename': 'LightlineFilename',
-      "\ },
-      "\ 'component_expand': {
-      "\   'buffers': 'lightline#bufferline#buffers'
-      "\ },
-      "\ 'component_type': {
-      "\   'buffers': 'tabsel'
-      "\ },
-      "\ }
-
-    "let g:lightline#bufferline#modified = '*'
-    "let g:gitbranch_icon = ''
-    "let g:lightlineLineInfo_icon = ''
-
-"" Give the statusline a branch to add to it's list
-  "function! LightlineGitbranch() abort
-      "let l:bname = gitbranch#name()
-      "return l:bname != '' ? g:gitbranch_icon . ' ' . l:bname : ''
-  "endfunction
-
-"" Give line info a little icon
-    "function! LightlineLineinfo() abort
-        "let l:lineinfo = printf("%3d:%-2d", line('.'), col('.'))
-        "return l:lineinfo != '' ? g:lightlineLineInfo_icon . ' ' . l:lineinfo : ''
-    "endfunction
-
-"" Override filename for certain groups
-  "function! LightlineMode() abort
-    "let ftmap = {
-                "\ 'coc-explorer': 'EXPLORER',
-                "\ 'fugitive': 'FUGITIVE',
-                "\ 'vista': 'OUTLINE',
-                "\ 'fern': 'FERN'
-                "\ }
-    "return get(ftmap, &filetype, lightline#mode())
-"endfunction
-
-" Update lightline modified better
-  "augroup lightlineDirty
-    "autocmd!
-    "autocmd BufWritePost,TextChanged,TextChangedI * call lightline#update()
-  "augroup END
-
-" Put modified and filename together
-    "function! LightlineFilename() abort
-      "let filename = expand('%:t') !=# '' ? expand('%:t') : '[No Name]'
-      "let modified = &modified ? ' +' : ''
-      "return  filename . modified
-    "endfunction
 
 "----------------------------------------------------------------------
 "                   Markdown Preview

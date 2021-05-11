@@ -57,8 +57,8 @@
     endif
 
 " Shift Tab to cyle tabs
-    nnoremap <Tab> :bn<CR>
-    nnoremap <S-Tab> :bp<CR>
+    nnoremap gn :bn<CR>
+    nnoremap gp :bp<CR>
 
 "----------------------------------------------------------------------
 "               Map Leader to '<space>'
