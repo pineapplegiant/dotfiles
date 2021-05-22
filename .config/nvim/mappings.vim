@@ -60,6 +60,10 @@
     nnoremap gn :bn<CR>
     nnoremap gp :bp<CR>
 
+" Better opening of filepath under the cursor
+nnoremap gX :silent :execute
+            \ "!open" expand('%:p:h') . "/" . expand("<cfile>") " &"<cr>
+
 "----------------------------------------------------------------------
 "               Map Leader to '<space>'
 "               Map Llocalleader to \\
