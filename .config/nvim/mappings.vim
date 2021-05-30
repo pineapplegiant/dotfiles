@@ -91,6 +91,9 @@ nnoremap gX :silent :execute
     map<leader>p  "+p
     map<leader>y  "+y
 
+" Better vim replace with r in visual mode
+    vmap r "_dP
+
 " Quicksave and Quickquit in vim using leader!
     nnoremap <leader>s :update<cr>
     nnoremap <leader>q :q!<CR>

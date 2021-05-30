@@ -19,7 +19,7 @@ call plug#begin(stdpath('data') . '/plugged')
     Plug 'hoob3rt/lualine.nvim'
     Plug 'romgrk/barbar.nvim'                     "Better buffers/tabs: requires NVIM 0.5
     Plug 'kyazdani42/nvim-web-devicons'           "Icons
-    Plug 'luochen1990/rainbow'                    "Rainbow parentheses
+    "Plug 'luochen1990/rainbow'                    "Rainbow parentheses
     Plug 'psliwka/vim-smoothie'                   "Make Ctrl+D or Ctrl + U more pleasant
     "" Filetree
     "Plug 'kyazdani42/nvim-tree.lua'
@@ -36,6 +36,7 @@ call plug#begin(stdpath('data') . '/plugged')
     Plug 'cocopon/iceberg.vim'
     Plug 'arcticicestudio/nord-vim'
     Plug 'morhetz/gruvbox'
+    Plug 'ayu-theme/ayu-vim'
     "" MOVING AROUND
     Plug 'junegunn/fzf.vim'
     Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }

@@ -27,6 +27,8 @@ if !exists('g:vscode')
    try
        set termguicolors
        colorscheme spaceduck
+       "let ayucolor="light"
+       "colorscheme ayu
        "Fern highlight group colors
        highlight default GlyphPalette1  ctermfg=1  guifg=#e33400
        highlight default GlyphPalette2  ctermfg=2  guifg=#5ccc96
@@ -35,6 +37,8 @@ if !exists('g:vscode')
        highlight default GlyphPalette6  ctermfg=6  guifg=#ce6f8f
        highlight default GlyphPalette7  ctermfg=7  guifg=#686f9a
        highlight default GlyphPalette9  ctermfg=9  guifg=#e39400
+       "Better cursorhold color for coc
+       highlight default CocHighlightText guibg=#1b1c36
     catch
         colorscheme default
     endtry
