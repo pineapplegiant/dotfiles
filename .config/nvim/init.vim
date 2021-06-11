@@ -27,6 +27,11 @@ if !exists('g:vscode')
    try
        set termguicolors
        colorscheme spaceduck
+       "colorscheme palenight
+       "colorscheme OceanicNext
+       "colorscheme everforest
+       "colorscheme gruvbox-material
+       "let g:gruvbox_material_background = 'hard'
        "let ayucolor="light"
        "colorscheme ayu
        "Fern highlight group colors
