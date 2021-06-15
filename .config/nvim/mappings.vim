@@ -17,6 +17,10 @@
     nnoremap K {
     vmap K {
 
+" Next level text moving
+    vnoremap <C-J> :m '>+1<CR>gv=gv
+    vnoremap <C-K> :m '<-2<CR>gv=gv
+
 " Set U as Ctrl R which means Redo
     nnoremap U <C-R>
 
