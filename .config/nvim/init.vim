@@ -27,6 +27,9 @@ if !exists('g:vscode')
    try
        set termguicolors
        colorscheme spaceduck
+       "colorscheme moonfly
+       "colorscheme codedark
+       "colorscheme spaceduck
        "colorscheme palenight
        "colorscheme OceanicNext
        "colorscheme everforest
@@ -43,7 +46,22 @@ if !exists('g:vscode')
        highlight default GlyphPalette7  ctermfg=7  guifg=#686f9a
        highlight default GlyphPalette9  ctermfg=9  guifg=#e39400
        "Better cursorhold color for coc
-       highlight default CocHighlightText guibg=#1b1c36
+       "highlight default CocHighlightText guibg=#1b1c36
+       " Hack for cursorline to work better over stuff
+       function! s:CustomizeColors()
+        if has('guirunning') || has('termguicolors')
+            let cursorline_gui=''
+            let cursorline_cterm='ctermfg=white'
+        else
+            let cursorline_gui='guifg=white'
+            let cursorline_cterm=''
+        endif
+        exec 'hi CursorLine ' . cursorline_gui . ' ' . cursorline_cterm 
+        endfunction
+        augroup OnColorScheme
+            autocmd!
+            autocmd ColorScheme,BufEnter,BufWinEnter * call s:CustomizeColors()
+        augroup END
     catch
         colorscheme default
     endtry

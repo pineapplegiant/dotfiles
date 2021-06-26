@@ -16,7 +16,7 @@
 call plug#begin(stdpath('data') . '/plugged')
     "" COLORS, PRETTY & FUN
     Plug 'sheerun/vim-polyglot'
-    Plug 'hoob3rt/lualine.nvim'
+    "Plug 'hoob3rt/lualine.nvim'
     Plug 'romgrk/barbar.nvim'                     "Better buffers/tabs: requires NVIM 0.5
     Plug 'kyazdani42/nvim-web-devicons'           "Icons
     "Plug 'luochen1990/rainbow'                    "Rainbow parentheses
@@ -41,6 +41,8 @@ call plug#begin(stdpath('data') . '/plugged')
     Plug 'arcticicestudio/nord-vim'
     Plug 'morhetz/gruvbox'
     Plug 'ayu-theme/ayu-vim'
+    Plug 'tomasiser/vim-code-dark'
+    Plug 'bluz71/vim-moonfly-colors'
     "" MOVING AROUND
     Plug 'junegunn/fzf.vim'
     Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
@@ -81,35 +83,35 @@ call plug#end()
 "                       Lualine
 "----------------------------------------------------------------------
 
-lua << EOF
-require'lualine'.setup {
-  options = {
-    icons_enabled = true,
-    theme = 'spaceduck',
-    section_separators = {'', ''},
-    component_separators = {'', ''},
-    disabled_filetypes = {}
-  },
-  sections = {
-    lualine_a = {'mode'},
-    lualine_b = {'branch'},
-    lualine_c = {'filename'},
-    lualine_x = {'encoding', 'fileformat', 'filetype'},
-    lualine_y = {'progress'},
-    lualine_z = {'location'}
-  },
-  inactive_sections = {
-    lualine_a = {},
-    lualine_b = {},
-    lualine_c = {'filename'},
-    lualine_x = {'location'},
-    lualine_y = {},
-    lualine_z = {}
-  },
-  tabline = {},
-  extensions = {}
-}
-EOF
+"lua << EOF
+"require'lualine'.setup {
+  "options = {
+    "icons_enabled = true,
+    "theme = 'spaceduck',
+    "section_separators = {'', ''},
+    "component_separators = {'', ''},
+    "disabled_filetypes = {}
+  "},
+  "sections = {
+    "lualine_a = {'mode'},
+    "lualine_b = {'branch'},
+    "lualine_c = {'filename'},
+    "lualine_x = {'encoding', 'fileformat', 'filetype'},
+    "lualine_y = {'progress'},
+    "lualine_z = {'location'}
+  "},
+  "inactive_sections = {
+    "lualine_a = {},
+    "lualine_b = {},
+    "lualine_c = {'filename'},
+    "lualine_x = {'location'},
+    "lualine_y = {},
+    "lualine_z = {}
+  "},
+  "tabline = {},
+  "extensions = {}
+"}
+"EOF
 
 "----------------------------------------------------------------------
 "                       Barbar
@@ -324,7 +326,6 @@ EOF
     \ 'coc-flutter',
     \ 'coc-git',
     \ 'coc-go',
-    \ 'coc-highlight',
     \ 'coc-html',
     \ 'coc-json',
     \ 'coc-lua',
