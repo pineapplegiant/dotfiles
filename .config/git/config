@@ -2,6 +2,13 @@
 [user]
     name = Guillermo Rodriguez
     email = grod937@gmail.com
+    signingkey = grod937@gmail.com
+
+[commit]
+    gpgsign = true
+
+[tag]
+    gpgSign = true
 
 [core]
     editor = nvim
