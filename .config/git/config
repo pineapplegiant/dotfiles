@@ -5,7 +5,7 @@
     signingkey = grod937@gmail.com
 
 [commit]
-    gpgsign = true
+	gpgsign = true
 
 [tag]
     gpgSign = true
@@ -69,3 +69,5 @@
     helper = osxkeychain
 [init]
     defaultBranch = main
+[gpg]
+	program = gpg

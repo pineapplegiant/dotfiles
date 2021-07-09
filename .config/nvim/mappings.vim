@@ -68,6 +68,34 @@
 nnoremap gX :silent :execute
             \ "!open" expand('%:p:h') . "/" . expand("<cfile>") " &"<cr>
 
+" Create file under cursor
+    function! s:openOrCreateFile()
+        let s:bundle = expand('<cfile>:p')
+        let path = expand('<cfile>:p:h')
+        let suffixes = split(&suffixesadd, ',')
+        let isExists = 0
+        for s in suffixes
+            if empty(glob(s:bundle . s))
+                let isExists = 1
+            endif
+        endfor
+        if !isExists
+            let answer = input("file doesn't exists; create file ?")
+            if answer ==? 'y'
+                if !isdirectory(path)
+                    echomsg path . ' created'
+                    "netrw_localmkdiropts("p")
+                    "netrw_localmkdir(path)
+                    :call mkdir(path, 'p')
+                endif
+            endif
+        endif
+        :edit <cfile> " create or edit now path is available
+        ":norm! gf
+    endfunction
+    command -nargs=0 OpenOrCreateFile call s:openOrCreateFile()
+    nnoremap <leader>cf :OpenOrCreateFile<CR>
+
 "----------------------------------------------------------------------
 "               Map Leader to '<space>'
 "               Map Llocalleader to \\

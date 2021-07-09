@@ -35,7 +35,7 @@ if !exists('g:vscode')
        "colorscheme everforest
        "colorscheme gruvbox-material
        "let g:gruvbox_material_background = 'hard'
-       "let ayucolor="light"
+       "let ayucolor="mirage"
        "colorscheme ayu
        "Fern highlight group colors
        highlight default GlyphPalette1  ctermfg=1  guifg=#e33400

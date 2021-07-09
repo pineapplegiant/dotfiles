@@ -55,6 +55,7 @@
 
 # GNUPG
 export GNUPGHOME=${XDG_CONFIG_HOME}/gnupg
+export GPG_TTY=$(tty)
 
 # Add Personal Scripts to my path
     PATH="$PATH:$HOME/dotfiles/.local/bin"
