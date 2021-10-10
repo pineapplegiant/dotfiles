@@ -126,6 +126,7 @@ call plug#end()
     nnoremap <leader>d :BufferClose<CR>
     nnoremap gn :BufferNext<CR>
     nnoremap gp :BufferPrevious<CR>
+    nnoremap gL :BufferCloseAllButCurrent<CR>
 
 "----------------------------------------------------------------------
 "                       Vim-carbon-now-sh
