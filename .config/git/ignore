@@ -22,14 +22,6 @@ tags
 *.pyo
 *.o
 
-# ignore unit test executable (Everything in Test that starts with
-# 'test' *except* .cpp, .hpp, .m, .py
-test*
-!test*\.[ch]pp
-!test*\.m
-!test*\.py
-*.testlog
-
 # TeX products
 *.aux
 *.log

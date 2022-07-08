@@ -6,5 +6,5 @@
 "   \_/ |_|_| |_| |_|_|  \___|
 "                             
 
-source $XDG_CONFIG_HOME/nvim/general.vim        " General Settings point to nvim (less code duplication)
-source $XDG_CONFIG_HOME/nvim/mappings.vim       " Remappings for Vim
+source $XDG_CONFIG_HOME/vim/general.vim        " General Settings point to nvim (less code duplication)
+source $XDG_CONFIG_HOME/vim/mappings.vim       " Remappings for Vim

@@ -19,7 +19,7 @@ call plug#begin(stdpath('data') . '/plugged')
     Plug 'hoob3rt/lualine.nvim'
     Plug 'romgrk/barbar.nvim'                     "Better buffers/tabs: requires NVIM 0.5
     Plug 'kyazdani42/nvim-web-devicons'           "Icons
-    Plug 'luochen1990/rainbow'                    "Rainbow parentheses
+    "Plug 'luochen1990/rainbow'                    "Rainbow parentheses
     Plug 'psliwka/vim-smoothie'                   "Make Ctrl+D or Ctrl + U more pleasant
     "" Filetree
     "Plug 'kyazdani42/nvim-tree.lua'
@@ -31,16 +31,22 @@ call plug#begin(stdpath('data') . '/plugged')
     Plug 'lambdalisue/fern-renderer-nerdfont.vim' "Basically vim-devicons
     Plug 'lambdalisue/glyph-palette.vim'
     "" COLOR SCHEMES
-    Plug 'pineapplegiant/spaceduck', { 'branch': 'main' }
+    Plug 'pineapplegiant/spaceduck', { 'branch': 'dev' }
+    Plug 'arcticicestudio/nord-vim', {'branch': 'develop'}
+    Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
     Plug 'dracula/vim'
+    Plug 'sainnhe/everforest'
+    Plug 'ayu-theme/ayu-vim'
     Plug 'cocopon/iceberg.vim'
+    Plug 'preservim/vim-colors-pencil'
     "" MOVING AROUND
     Plug 'junegunn/fzf.vim'
     Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
     Plug 'justinmk/vim-sneak'
     "" ESSENTIAL
     Plug 'tpope/vim-surround'
-    Plug 'vim-scripts/The-NERD-Commenter'
+    "Plug 'vim-scripts/The-NERD-Commenter'
+    Plug 'numToStr/Comment.nvim'
     Plug 'mattn/emmet-vim'
     "" Git 
     "Plug 'itchyny/vim-gitbranch'
@@ -55,41 +61,85 @@ call plug#begin(stdpath('data') . '/plugged')
     Plug 'christoomey/vim-tmux-navigator'
     "" LOW-KEY MESSES EVERYTHING UP
     "":GenTocGFM -> Make TOC
-    Plug 'lukas-reineke/indent-blankline.nvim', { 'branch': 'lua'} "Fixes vim indentline no skipping lines
+    "Plug 'lukas-reineke/indent-blankline.nvim', { 'branch': 'lua'} "Fixes vim indentline no skipping lines
     " MAKE PRETTY SCREENSHOTS
     Plug 'kristijanhusak/vim-carbon-now-sh'
 call plug#end()
 
 "----------------------------------------------------------------------
+"                      Nerdcommenter
+"----------------------------------------------------------------------
+
+    "let g:NERDCreateDefaultMappings = 0
+    "nmap gcc <plug>NERDCommenterInvert
+    "xmap gcc <plug>NERDCommenterInvert
+    "let g:NERDCustomDelimiters = { 'javascript.jsx': { 'left': '//', 'leftAlt': '/*', 'rightAlt': '*/' } }
+
+lua << EOF
+require('Comment').setup()
+EOF
+
+"----------------------------------------------------------------------
 "                       Lualine
 "----------------------------------------------------------------------
+
 lua << EOF
-local lualine = require('lualine')
-    lualine.options = {
-      theme = 'spaceduck',
-      section_separators = {'', ''},
-      component_separators = {'', ''},
-      icons_enabled = true,
-    }
-    lualine.sections = {
-      lualine_a = { 'mode' },
-      lualine_b = { 'branch' },
-      lualine_c = { 'filename' },
-      lualine_x = { 'encoding', 'fileformat', 'filetype' },
-      lualine_y = { 'progress' },
-      lualine_z = { 'location'  },
-    }
-    lualine.inactive_sections = {
-      lualine_a = {  },
-      lualine_b = {  },
-      lualine_c = { 'filename' },
-      lualine_x = { 'location' },
-      lualine_y = {  },
-      lualine_z = {   }
-    }
-    lualine.extensions = { 'fzf' }
-    lualine.status()
+require'lualine'.setup {
+  options = {
+    icons_enabled = true,
+    theme = 'tokyonight',
+    section_separators = {'', ''},
+    component_separators = {'', ''},
+    disabled_filetypes = {}
+  },
+  sections = {
+    lualine_a = {'mode'},
+    lualine_b = {'branch'},
+    lualine_c = {'filename'},
+    lualine_x = {'encoding', 'fileformat', 'filetype'},
+    lualine_y = {'progress'},
+    lualine_z = {'location'}
+  },
+  inactive_sections = {
+    lualine_a = {},
+    lualine_b = {},
+    lualine_c = {'filename'},
+    lualine_x = {'location'},
+    lualine_y = {},
+    lualine_z = {}
+  },
+  tabline = {},
+  extensions = {}
+}
 EOF
+
+"let g:lualine = {
+    "\'options' : {
+    "\  'theme' : 'spaceduck',
+    "\  'section_separators' : ['', ''],
+    "\  'component_separators' : ['', ''],
+    "\  'icons_enabled' : v:true,
+    "\},
+    "\'sections' : {
+    "\  'lualine_a' : [ ['mode', {'upper': v:true,},], ],
+    "\  'lualine_b' : [ ['branch', {'icon': '',}, ], ],
+    "\  'lualine_c' : [ ['filename', {'file_status': v:true,},], ],
+    "\  'lualine_x' : [ 'encoding', 'fileformat', 'filetype' ],
+    "\  'lualine_y' : [ 'progress' ],
+    "\  'lualine_z' : [ 'location'  ],
+    "\},
+    "\'inactive_sections' : {
+    "\  'lualine_a' : [  ],
+    "\  'lualine_b' : [  ],
+    "\  'lualine_c' : [ 'filename' ],
+    "\  'lualine_x' : [ 'location' ],
+    "\  'lualine_y' : [  ],
+    "\  'lualine_z' : [  ],
+    "\},
+    "\'extensions' : [ 'fzf' ],
+    "\}
+
+"lua require("lualine").setup()
 
 "----------------------------------------------------------------------
 "                       Barbar
@@ -99,6 +149,12 @@ EOF
     let bufferline.maximum_padding = 4
     let bufferline.animation = v:false
     let bufferline.icons = v:true
+
+    " Redefine previous mappinigs for barbar
+    nnoremap <leader>d :BufferClose<CR>
+    nnoremap gn :BufferNext<CR>
+    nnoremap gp :BufferPrevious<CR>
+    nnoremap gL :BufferCloseAllButCurrent<CR>
 
 "----------------------------------------------------------------------
 "                       Vim-carbon-now-sh
@@ -112,7 +168,7 @@ EOF
 "----------------------------------------------------------------------
 
 " Set to 0 if you want to enable it later via :RainbowToggle
-    let g:rainbow_active = 1 
+    let g:rainbow_active = 0
 
 "----------------------------------------------------------------------
 "                       Sneakin'
@@ -305,10 +361,10 @@ EOF
         autocmd QuitPre <buffer> let b:quitting = 1
         cabbrev <buffer> q! let b:quitting_bang = 1 <bar> q!
         Goyo 80
-          if executable('tmux') && strlen($TMUX)
-            silent !tmux set status off
-            silent !tmux list-panes -F '\#F' | grep -q Z || tmux resize-pane -Z
-          endif
+          "if executable('tmux') && strlen($TMUX)
+            "silent !tmux set status off
+            "silent !tmux list-panes -F '\#F' | grep -q Z || tmux resize-pane -Z
+          "endif
         set noshowmode
         set noshowcmd
         set spell
@@ -326,10 +382,10 @@ EOF
 
 " Let GOYO quit
     function! s:goyo_leave() abort
-          if executable('tmux') && strlen($TMUX)
-            silent !tmux set status on
-            silent !tmux list-panes -F '\#F' | grep -q Z && tmux resize-pane -Z
-          endif
+          "if executable('tmux') && strlen($TMUX)
+            "silent !tmux set status on
+            "silent !tmux list-panes -F '\#F' | grep -q Z && tmux resize-pane -Z
+          "endif
 
           " Quit Vim if this is the only remaining buffer
           if b:quitting && len(filter(range(1, bufnr('$')), 'buflisted(v:val)')) == 1
@@ -346,11 +402,11 @@ EOF
 
 "----------------------------------------------------------------------
 "                       Indent-Line
-"----------------------------------------------------------------------
+""----------------------------------------------------------------------
     let g:indent_blankline_char = '▏'
-    "let g:indentLine_enabled = 1            " Just toggle this shit bro
-    "let g:indentLine_char = '▏'             " Show Indentation lines
-    "let g:indentLine_color_gui = '#474747'  " Make them pretty-gray-lines
+    let g:indentLine_enabled = 1            " Just toggle this shit bro
+    let g:indentLine_char = '▏'             " Show Indentation lines
+    let g:indentLine_color_gui = '#474747'  " Make them pretty-gray-lines
     "let g:indentLine_fileTypeExclude = ['tex', 'markdown', 'txt'] " Shit don't work in md
 
 "----------------------------------------------------------------------
