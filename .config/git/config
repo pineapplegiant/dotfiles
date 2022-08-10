@@ -4,12 +4,6 @@
     email = grod937@gmail.com
     signingkey = grod937@gmail.com
 
-[commit]
-	gpgsign = true
-
-[tag]
-    gpgSign = true
-
 [core]
     editor = nvim
 
@@ -69,5 +63,10 @@
     helper = osxkeychain
 [init]
     defaultBranch = main
+
 [gpg]
-	program = gpg
+	program = /usr/local/bin/gpg
+[commit]
+	gpgsign = true
+[tag]
+	gpgsign = true
