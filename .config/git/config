@@ -1,7 +1,8 @@
 # This is Git's per-user configuration file.  Credit: [ scottnonnenberg ]( https://gist.github.com/scottnonnenberg/fefa3f65fdb3715d25882f3023b31c29 )
 [user]
     name = Guillermo Rodriguez
-    email = grod937@gmail.com
+    email = guillermo.rodriguez@searchspring.com
+	signingKey = 7CF700E041EEFAEC
 
 [core]
     editor = nvim
@@ -12,6 +13,9 @@
     a = "add"
     c = "commit"
     co = "checkout"
+    br = "branch"
+    ci = "commit"
+    st = "status"
     d = "diff"
     dt = "difftool"
 	gl = "log  --graph --abbrev-commit --pretty=oneline --decorate --all"
@@ -22,6 +26,7 @@
     s = "status"
 	stat = "status"
     zip = "!git archive --format=zip -o latest.zip HEAD"
+    list ="log -1 HEAD"
 
 # Because I constantly forget how to do this
 # https://git-scm.com/docs/git-fetch#git-fetch--p
@@ -60,3 +65,5 @@
 	rebase = true
 [credential]
 	helper = cache
+[init]
+	defaultBranch = main

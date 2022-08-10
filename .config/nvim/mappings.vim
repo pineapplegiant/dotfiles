@@ -254,5 +254,5 @@
 " MLK's Dream Speech
     nnoremap ,mlk :read $XDG_CONFIG_HOME/nvim/snippets/mlk.txt<CR>
 
-" MLK's Dream Speech
+" SNAP
     nnoremap ,snap :read $XDG_CONFIG_HOME/nvim/snippets/snap.md<CR>

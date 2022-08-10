@@ -12,6 +12,7 @@
 "----------------------------------------------------------------------
 
 
+
 " Make sure you have vim-plug installed -> ~/.local/share/nvim/site/autoload/plug.vim
 call plug#begin(stdpath('data') . '/plugged')
     "" COLORS, PRETTY & FUN
@@ -19,7 +20,7 @@ call plug#begin(stdpath('data') . '/plugged')
     Plug 'hoob3rt/lualine.nvim'
     Plug 'romgrk/barbar.nvim'                     "Better buffers/tabs: requires NVIM 0.5
     Plug 'kyazdani42/nvim-web-devicons'           "Icons
-    "Plug 'luochen1990/rainbow'                    "Rainbow parentheses
+    "Plug 'luochen1990/rainbow'                   "Rainbow parentheses
     Plug 'psliwka/vim-smoothie'                   "Make Ctrl+D or Ctrl + U more pleasant
     "" Filetree
     "Plug 'kyazdani42/nvim-tree.lua'
@@ -83,18 +84,29 @@ EOF
 "                       Lualine
 "----------------------------------------------------------------------
 
-lua << EOF
-require'lualine'.setup {
+lua << END
+require('lualine').setup {
   options = {
     icons_enabled = true,
     theme = 'tokyonight',
-    section_separators = {'', ''},
-    component_separators = {'', ''},
-    disabled_filetypes = {}
+    section_separators = { left = '', right = ''},
+    component_separators = { left = '', right = ''},
+    disabled_filetypes = {
+      statusline = {},
+      winbar = {},
+    },
+    ignore_focus = {},
+    always_divide_middle = true,
+    globalstatus = false,
+    refresh = {
+      statusline = 1000,
+      tabline = 1000,
+      winbar = 1000,
+    }
   },
   sections = {
     lualine_a = {'mode'},
-    lualine_b = {'branch'},
+    lualine_b = {{'branch', icon = {""}}, 'diff', 'diagnostics'},
     lualine_c = {'filename'},
     lualine_x = {'encoding', 'fileformat', 'filetype'},
     lualine_y = {'progress'},
@@ -109,9 +121,13 @@ require'lualine'.setup {
     lualine_z = {}
   },
   tabline = {},
-  extensions = {}
+  winbar = {},
+  inactive_winbar = {},
+  extensions = {'fzf'}
 }
-EOF
+
+require('lualine').setup()
+END
 
 "let g:lualine = {
     "\'options' : {
@@ -226,6 +242,7 @@ EOF
     "Break Undo to use c-r for fern
     nmap <C-n> :Fern . -drawer -toggle -stay -reveal=%<CR>
 
+    let g:fern#default_hidden = 1
 "----------------------------------------------------------------------
 "                       FZF
 "----------------------------------------------------------------------

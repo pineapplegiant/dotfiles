@@ -109,9 +109,15 @@ SPACESHIP_PROMPT_ORDER=(
     alias c="clear"           # Faster clearing of the screen
     alias matrix="cmatrix"    # Stupid text on the screen
     alias lg="lazygit"
+    alias scope="echo 'SearchSpring.Catalog.elems.container.scope()' &&  echo 'SearchSpring.Catalog.elems.container.scope()' | pbcopy"
+    alias store="echo 'searchspring.controller.search.store.toJSON()' &&  echo 'searchspring.controller.search.store.toJSON()' | pbcopy"
+    alias dic="wkdict"
+    alias inkdrop="cd /Users/gmo/Library/Application\ Support/inkdrop"
 
 # Better Less
     export LESS="-iXR --RAW-CONTROL-CHARS"
+
+    alias not="cd /Users/gmo/Dropbox/notes && nvim ./notes.md"
 
 #----------------------------------------------------------------------
 #                       Functions
@@ -130,13 +136,13 @@ SPACESHIP_PROMPT_ORDER=(
     }
 
 # Let's be nice to our terminal
-function pls() {
-    if [ "$1" ]; then
-        sudo $@
-    else
-        sudo "$BASH" -c "$(history -p !!)"
-    fi
-}
+    function pls() {
+        if [ "$1" ]; then
+            sudo $@
+        else
+            sudo "$BASH" -c "$(history -p !!)"
+        fi
+    }
 
 # Pipe bat to less
     function lat()
@@ -202,6 +208,12 @@ function tkill()
         tmux kill-session -t $@
     }
 
+
+# Create directories alongside files
+    function mktouch() {
+        mkdir -p "$(dirname "$1")" && touch "$1"
+    }
+
 #----------------------------------------------------------------------
 #                       VI like prompt stuff thanks Luke
 #----------------------------------------------------------------------
@@ -255,6 +267,10 @@ function tkill()
 #----------------------------------------------------------------------
 #                       Better then bash
 #----------------------------------------------------------------------
+
+# Setup NVM
+export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
 
 # Load zsh-autosuggestions
     source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
