@@ -298,3 +298,7 @@ export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || pr
 
 # Key bindings
     source "/usr/local/opt/fzf/shell/key-bindings.zsh"
+
+
+# Set GPG
+export GPG_TTY=$(tty)
