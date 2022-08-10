@@ -2,7 +2,7 @@
 [user]
     name = Guillermo Rodriguez
     email = guillermo.rodriguez@searchspring.com
-	signingKey = 7CF700E041EEFAEC
+	signingkey = 7CF700E041EEFAEC
 
 [core]
     editor = nvim
@@ -61,13 +61,21 @@
 
 [pager]
     difftool = true
+
 [pull]
 	rebase = true
+
 [credential]
 	helper = cache
+
 [init]
 	defaultBranch = main
+
 [gpg]
 	program = /usr/local/bin/gpg
+
 [commit]
+	gpgsign = true
+
+[tag]
 	gpgsign = true
