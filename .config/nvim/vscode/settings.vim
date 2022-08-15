@@ -91,12 +91,8 @@
 " Bind C-/ to vscode commentary since calling from vscode produces double comments due to multiple cursors
     "xnoremap <expr> <C-/> <SID>vscodeCommentary()
     "nnoremap <expr> <C-/> <SID>vscodeCommentary() . '_'
-
     "nnoremap <silent> <C-w>_ :<C-u>call VSCodeNotify('workbench.action.toggleEditorWidths')<CR>
 
-" I don't use Whichkey :3
-"nnoremap <silent> <Space> :call VSCodeNotify('whichkey.show')<CR>
-"xnoremap <silent> <Space> :<C-u>call <SID>openWhichKeyInVisualMode()<CR>
 
     xnoremap <silent> <C-P> :<C-u>call <SID>openVSCodeCommandsInVisualMode()<CR>
 
@@ -105,7 +101,3 @@
     omap gc  <Plug>VSCodeCommentary
     nmap gcc <Plug>VSCodeCommentaryLine
 
-" Make sure you have vim-plug installed -> ~/.local/share/nvim/site/autoload/plug.vim
-"call plug#begin(stdpath('data') . '/plugged')
-"    Plug 'tpope/vim-surround'
-"call plug#end()

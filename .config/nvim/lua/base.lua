@@ -1,20 +1,18 @@
--- [[ Base settings
+-- Base.lua
 -- For more info on general settings run `:h vim.opt`
 --    example logging: `print(vim.inspect(vim.opt.wildignore:get()))`]]
 
--- [[ viml/lua scope reference:
---    general settings: `vim.o` -- Things you'd set with set
+-- viml/lua scope reference:
+--    general settings: `vim.o` -- Things you'd normally set with `set`
 --    window:           `viw.wo`
 --    buffer:           `vim.bo`
---    global:           `vim.g` -- Things you would set with let ]]
+--    global:           `vim.g` -- Things you would set with `let`
 
--- Shortcuts
+-- shortcut
 local set = vim.opt
 
 -- Sensible Settings
 vim.wo.number = true           -- Show line numbers
---set.termguicolors = true     -- If term supports ui color then enable
-set.cursorline = true          -- Show cursorline
 set.backspace = { 'start', 'eol', 'indent' } -- Allow backspace in insert mode
 set.lazyredraw = false         -- Makes vim redraw while performing macros
 set.ignorecase = true          -- Case insensitive searching UNLESS /C or capital in search
@@ -44,7 +42,10 @@ set.list = true                -- Show trailing spaces
 set.listchars = { space = '·', tab = '▸\\'}
 set.wildignorecase = true      -- Ignore casing when completing file names and directories
 
-vim.g.clipboard = {name}
+set.updatetime = 250 -- Decrease update time
+vim.wo.signcolumn = 'yes'
+set.completeopt = 'menuone,noselect' -- Set completeopt to have a better completion experience
+
 --set.wilcharm = "<C-z>"       -- Keypress to start expansion when in a Macro
 -- set.colorcolumn=99999       -- Fix indentblankline
 -- set.backup = false             -- don't create backup files
@@ -63,45 +64,8 @@ vim.scriptencoding = 'utf-8'
 set.encoding = 'utf-8'
 set.fileencoding = 'utf-8'
 
--- Undercurl...?
-vim.cmd([[let &t_Cs = "\e[4:3m"]])
-vim.cmd([[let &t_Ce = "\e[4:0m"]])
-
 --&t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
 --&t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
 
--- Autocommands `:h nvim_create_autocmd()`
 
--- Turn off The Cursor line in insert and when navigating away from window
-local cursor_line_on_augroup = vim.api.nvim_create_augroup('cursor_line_on', {clear = true})
-local cursor_line_off_augroup = vim.api.nvim_create_augroup('cursor_line_off', {clear = true})
-
--- Set Cursor Line On when leaving Insert mode
-vim.api.nvim_create_autocmd({'InsertLeave' ,'WinEnter'}, {
-  group = cursor_line_on_augroup,
-  desc = 'Turn on cursor line',
-  callback = function()
-    vim.opt.cursorline = true
-  end
-})
-
--- Cursor Line off when Exting Insert Mode
-vim.api.nvim_create_autocmd({'InsertEnter', 'WinLeave'}, {
-  group = cursor_line_off_augroup,
-  desc = 'Turn off cursor line',
-  callback = function()
-    vim.opt.cursorline = false
-  end
-})
-
-
--- [[ Highlight on yank ]]
--- See `:help vim.highlight.on_yank()`
-local highlight_group = vim.api.nvim_create_augroup('YankHighlight', { clear = true })
-vim.api.nvim_create_autocmd('TextYankPost', {
-  callback = function()
-    vim.highlight.on_yank()
-  end,
-  group = highlight_group,
-  pattern = '*',
-})
+--autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o

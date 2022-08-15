@@ -7,23 +7,16 @@
 --     \|__| \|__| \|__|/        \|__| \|__|     \|__| \|__|\|__| \|_______|
 --
 
-if vim.g.vscode then
-    require('vscode')
-else
-    -- General Settings
-    require('base')
+-- Good starting reference: https://github.com/nvim-lua/kickstart.nvim/blob/master/init.lua
 
-    -- Color
-    require('highlights')
+-- General Settings
+require('base')
 
-    -- Mappings
-    require('maps')
+-- Mappings
+require('maps')
 
-    -- Plugins
-    require('plugins')
+-- Color
+require('highlights')
 
-
-    -- good reference:
-    -- https://github.com/nvim-lua/kickstart.nvim/blob/master/init.lua
-end
-
+-- Plugins
+require('plugins')

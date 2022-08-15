@@ -1,4 +1,6 @@
--- Mappings
+-- Maps.lua
+-- Keymaps for better default experience
+-- See `:help vim.keymap.set()`
 local keymap = vim.keymap
 
 
@@ -6,6 +8,11 @@ local keymap = vim.keymap
 vim.g.mapleader = " "
 vim.g.localmapleader = "\\"
 
+vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
+
+-- Remap for dealing with word wrap
+vim.keymap.set('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
+vim.keymap.set('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
 keymap.set('n', '<leader>s', ':update<CR>',      {desc = 'QuickSave'})
 keymap.set('n', '<C-S>', ':update<CR>',          {desc = 'QuickSave'})
 keymap.set('n', '<leader>q', ':q!<CR>',          {desc = 'An attempt at quitting vim'})
@@ -48,6 +55,8 @@ keymap.set({'n', 'v',}, ',,', '%', {desc = 'Cycle through brackets with comma'})
 -- Align blocks easier
 keymap.set('v', '<', '<gv',  {desc = 'Indent lines of code with visual selection'})
 keymap.set('v', '>,', '>gv', {desc = 'De-Indent lines of code with visual selection'})
+keymap.set('v', '<C-J>', ":m '>+1<CR>gv=gv", {desc = 'Indent blocks visually, better'})
+keymap.set('v', '<C-K>', ":m '<-2<CR>gv=gv", {desc = 'De-indent blocks visually, better'})
 
 -- Buffers
 keymap.set('n', 'gb', ':ls<CR>:b<Space>',     {desc = 'List buffers, and jump to them '})
@@ -60,7 +69,7 @@ keymap.set('n', 'gp', ':bp<CR>',              {desc = 'Cycle previous buffer'})
 keymap.set('t', 'hh', '<C-\\><C-n>', {desc = 'Exit normal mode when using terminal inside nvim'})
 
 -- TODO: Terminal stuff
-function terminalCreate ()
+local function terminalCreate ()
     local time_now = os.date('%Y.%m.%d:%H.%M.%S')
     local terminal_name = "terminal_" .. time_now
     return terminal_name
