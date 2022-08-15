@@ -68,26 +68,22 @@ SPACESHIP_PROMPT_ORDER=(
 #                       ALIASES
 #----------------------------------------------------------------------
 
-# Login to school!
-    alias osu='ssh flip'
-
 # System Stuff
     alias rm='safe-rm'                       # Safe-RM
     alias dog='ccat'                         # Use that new ccat plugin
 
-# Vim to Nvim
+# Nvim
     export VISUAL=nvim
     alias v=nvim
     alias vi=nvim
     alias vim=nvim
-    alias vimrc='vim $XDG_CONFIG_HOME/nvim/init.vim'     # Open nvimrc in nvim
-    alias ctags="`brew --prefix`/bin/ctags"              # Ctags alias
+    alias vimrc='vim $XDG_CONFIG_HOME/nvim/init.lua'      # Open nvimrc in nvim
     alias rc='vim $XDG_CONFIG_HOME/zsh/.zshrc'           # Get to bash-profile faster
     alias bp='vim $XDG_CONFIG_HOME/shell/profile'        # Get to env faster
     alias tmuxrc='vim $XDG_CONFIG_HOME/tmux/tmux.conf'   # Tmux settings
     alias alrc='vim ~/.config/alacritty.yml'             # Alacritty settings
 
-# I HAVE SWITCHED TO EXA
+# EXA > ls
     alias l="exa -FG --git"   # Just make ls  chill
     alias ls="exa -FG --git"  # Make ls pretty
     alias ll="exa -l --git"   # ls long tag
@@ -112,22 +108,13 @@ SPACESHIP_PROMPT_ORDER=(
     alias scope="echo 'SearchSpring.Catalog.elems.container.scope()' &&  echo 'SearchSpring.Catalog.elems.container.scope()' | pbcopy"
     alias store="echo 'searchspring.controller.search.store.toJSON()' &&  echo 'searchspring.controller.search.store.toJSON()' | pbcopy"
     alias dic="wkdict"
-    alias inkdrop="cd /Users/gmo/Library/Application\ Support/inkdrop"
 
 # Better Less
     export LESS="-iXR --RAW-CONTROL-CHARS"
 
-    alias not="cd /Users/gmo/Dropbox/notes && nvim ./notes.md"
-
 #----------------------------------------------------------------------
 #                       Functions
 #----------------------------------------------------------------------
-
-# Minify uglycss to file taken in
-    function min()
-    {
-        uglifycss $1 --output $1
-    }
 
 # Make and CD into the directory
     function mcdir () {
@@ -144,23 +131,11 @@ SPACESHIP_PROMPT_ORDER=(
         fi
     }
 
-# Pipe bat to less
-    function lat()
-    {
-        bat --color=always $1 | less
-    }
-
 # Web Baby
     URLprefix="http://www."
     function web()
     {
         open "$URLprefix$@" -a "Google Chrome"
-    }
-
-# Browsersync alias
-function webdev()
-    {
-        browser-sync start --server --files ./*
     }
 
 # CD && LS all at once
