@@ -24,7 +24,7 @@
 !.config/tmux/status-line-light.conf
 
 # Neovim/Vim settings
-!.config/nvim/
+!.config/nvim/*
 !.config/vim/*
 
 # VS Code Settings
