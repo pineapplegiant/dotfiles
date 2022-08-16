@@ -28,7 +28,7 @@ telescope.setup {
 require('telescope').load_extension('fzf')
 
 vim.keymap.set('n', '<C-p>',
-	function() builtin.find_files({ hidden = true, no_ignore = true }) end,
+	function() builtin.find_files({ hidden = true, no_ignore = false }) end,
 	{ desc = 'Find files in Telescope' }
 )
 

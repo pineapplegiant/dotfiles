@@ -3,10 +3,11 @@
 -- Configure Treesitter
 -- See `:help nvim-treesitter`
 -------------------------------------
-local status, treesitter = pcall(require, "treesitter")
+
+local status, ts = pcall(require, "nvim-treesitter.configs")
 if (not status) then return end
 
-treesitter.setup {
+ts.setup {
 	-- Add languages to be installed here that you want installed for treesitter
 	ensure_installed = {
 		'lua',
@@ -21,7 +22,6 @@ treesitter.setup {
 		'go',
 		'python'
 	},
-
 	highlight = { enable = true },
 	indent = { enable = true },
 	incremental_selection = {
