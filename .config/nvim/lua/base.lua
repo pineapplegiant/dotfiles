@@ -20,7 +20,8 @@ set.spelllang = en_us          -- US engwish
 set.mouse = "a"                -- Enabling Mouse support
 set.autoindent = true          -- Keep Indent generally when using <CR> or hitting o
 set.smartindent = true         -- Editor will be smart about indenting or not
-set.expandtab = true           -- Use spaces instead of tabs
+
+set.expandtab = false          -- Use tabs
 set.tabstop = 4                -- Tab becomes 4 spaces
 set.softtabstop = 4            -- Tab becomes 4 spaces in Vim operations
 set.shiftwidth = 4             -- Number of spaces for indentation
@@ -38,8 +39,11 @@ set.wildmenu = true            -- Set autocomplete for the command menu
 set.splitbelow = true          -- Horizontal split default opens at bottom
 set.splitright = true          -- Vertical splitting a window default open to the right
 set.swapfile = false           -- Idk what swapfiles are, so no i dont want it sir
-set.list = true                -- Show trailing spaces
-set.listchars = { space = '·', tab = '▸\\'}
+vim.opt.listchars = { 
+	space = '·',
+}
+set.list = false                -- Show trailing spaces
+
 set.wildignorecase = true      -- Ignore casing when completing file names and directories
 
 set.updatetime = 250 -- Decrease update time

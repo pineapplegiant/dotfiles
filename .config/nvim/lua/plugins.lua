@@ -1,7 +1,9 @@
 -- Plugins.lua
 -- Install packer bootstrap
 local install_path = vim.fn.stdpath 'data' .. '/site/pack/packer/start/packer.nvim'
+
 local is_bootstrap = false
+
 if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
   is_bootstrap = true
   vim.fn.execute('!git clone https://github.com/wbthomason/packer.nvim ' .. install_path)
@@ -15,43 +17,51 @@ local keymap = vim.keymap
 -- Packer
 -------------------------------------
 require('packer').startup(function(use)
-  --Required
-  use 'wbthomason/packer.nvim'                                                    -- Package manager
+	-- Required
+	use 'wbthomason/packer.nvim'                                                    -- Package manager
 
-  --Style
-  use 'folke/tokyonight.nvim'                                                     -- Tokynight Theme
-  use "rebelot/kanagawa.nvim"                                                     -- Kanagawa Theme?? :3
-  use 'nvim-lualine/lualine.nvim'                                                 -- Fancier statusline
-  use { 'romgrk/barbar.nvim', requires = {'kyazdani42/nvim-web-devicons'} }       -- Buffers as tabs
+	-- Style
+	use 'folke/tokyonight.nvim'                                                     -- Tokynight Theme
+	use "rebelot/kanagawa.nvim"                                                     -- Kanagawa Theme?? :3
+	use 'nvim-lualine/lualine.nvim'                                                 -- Fancier statusline
+	use { 'romgrk/barbar.nvim', requires = {'kyazdani42/nvim-web-devicons'} }       -- Buffers as tabs
+	use { "folke/todo-comments.nvim", requires = {"nvim-lua/plenary.nvim" }}        -- Pretty Todo comments
+	use 'norcalli/nvim-colorizer.lua'                                               -- Display the pretty colors
 
-  --Grace
-  use 'numToStr/Comment.nvim'                                                     -- "gc" to comment visual regions/lines
-  use 'lukas-reineke/indent-blankline.nvim'                                       -- Add indentation guides even on blank lines
-  use 'windwp/nvim-autopairs'                                                     -- Auto close brackets, etc.
-  use {'kyazdani42/nvim-tree.lua', requires = { 'kyazdani42/nvim-web-devicons'}}   -- File Tree
-  use 'karb94/neoscroll.nvim'                                                     -- Smooth scrolling, but with lua
+	-- Grace
+	use 'numToStr/Comment.nvim'                                                     -- "gc" to comment visual regions/lines
+	use 'lukas-reineke/indent-blankline.nvim'                                       -- Add indentation guides even on blank lines
+	use 'windwp/nvim-autopairs'                                                     -- Auto close brackets, etc.
+	use {'kyazdani42/nvim-tree.lua', requires = { 'kyazdani42/nvim-web-devicons'}}   -- File Tree
+	use 'karb94/neoscroll.nvim'                                                     -- Smooth scrolling, but with lua
 
-  --Old Busted
-  use 'aserowy/tmux.nvim'                                                         -- Navigate tmux panes splits better
-  use 'kylechui/nvim-surround'                                                    -- Vim surround
-  use { 'lewis6991/gitsigns.nvim', requires = { 'nvim-lua/plenary.nvim' } }       -- Add git related info in the signs columns and popups
+	-- Old Busted
+	use 'aserowy/tmux.nvim'                                                         -- Navigate tmux panes splits better
+	use 'kylechui/nvim-surround'                                                    -- Vim surround
+	use { 'lewis6991/gitsigns.nvim', requires = { 'nvim-lua/plenary.nvim' } }       -- Add git related info in the signs columns and popups
 
-  --New Hotness
-  use 'nvim-treesitter/nvim-treesitter'                                           -- Highlight, edit, and navigate code
-  use 'nvim-treesitter/nvim-treesitter-textobjects'                               -- Additional textobjects for treesitter
+	-- New Hotness
+	use 'nvim-treesitter/nvim-treesitter'                                           -- Highlight, edit, and navigate code
+	use 'nvim-treesitter/nvim-treesitter-textobjects'                               -- Additional textobjects for treesitter
 
-  if is_bootstrap then
-    require('packer').sync()
-  end
-end)
+	-- Telescope
+	use {
+	  'nvim-telescope/telescope.nvim', tag = '0.1.0', requires = { {'nvim-lua/plenary.nvim'} }
+	}
+	use {'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }               -- fzf
+
+	if is_bootstrap then
+		require('packer').sync()
+		end
+	end)
 
 -- When we are bootstrapping a configuration, don't execute the rest of the init.lua
 if is_bootstrap then
-  print '=================================='
-  print '    Plugins are being installed'
-  print '    Restart nvim pls, k thx'
-  print '=================================='
-  return
+	print '=================================='
+	print '    Plugins are being installed'
+	print '    Restart nvim pls, k thx'
+	print '=================================='
+	return
 end
 
 -- Automatically source and re-compile packer whenever you save this init.lua
@@ -112,6 +122,20 @@ require('lualine').setup {
 
 
 -------------------------------------
+-- nvim-colorizer.lua
+-- See ``
+-------------------------------------
+require('Colorizer').setup()
+
+
+-------------------------------------
+-- todo-comments.nvim
+-- See ``
+-------------------------------------
+require('todo-comments').setup()
+
+
+-------------------------------------
 -- Comment.nvim:
 -- See `:help tbd `
 -------------------------------------
@@ -142,6 +166,7 @@ keymap.set('n', 'gL', '<Cmd>BufferCloseAllButCurrent<CR>',{desc = "Close all but
 keymap.set('n', 'gp', '<Cmd>BufferPrevious<CR>',{desc = "Go to previous buffer in barbar"})
 keymap.set('n', 'gL', '<Cmd>BufferCloseAllButCurrent<CR>',{desc = "Close all but current in barbar"})
 
+
 -------------------------------------
 -- Nvim-tree
 -- See `:help nvim-tree.OPTION_NAME`
@@ -166,15 +191,22 @@ require("nvim-tree").setup {
     filters = {
         dotfiles = true,
     },
+  git = {
+    enable = true,
+    timeout = 400 -- (in ms)
+  },
 }
 
-keymap.set("n", '<C-n>', ':NvimTreeFindFileToggle<CR>', {desc = "Open Nvim Tree with"} )
+keymap.set('n', '<C-n>', "<cmd>lua require('nvim-tree').toggle(false, true)<CR>", {desc = 'Open Nvim tree lua with no focus'})
+--keymap.set("n", '<C-n>', ':NvimTreeFindFileToggle<CR>', {desc = "Open Nvim Tree with"} )
+
 
 -------------------------------------
 -- Nvim Surround
 -- See `:help nvim-surround.txt`
 -------------------------------------
 require("nvim-surround").setup()
+
 
 -------------------------------------
 -- Tmux
@@ -197,6 +229,7 @@ require("tmux").setup {
     }
 }
 
+
 -------------------------------------
 -- Gitsigns
 -- See `:help gitsigns.txt`
@@ -210,6 +243,7 @@ require('gitsigns').setup {
     changedelete = { text = '~' },
   },
 }
+
 
 -------------------------------------
 -- Neoscroll
@@ -225,7 +259,18 @@ require('neoscroll').setup()
 -------------------------------------
 require('nvim-treesitter.configs').setup {
   -- Add languages to be installed here that you want installed for treesitter
-  ensure_installed = { 'lua', 'typescript', 'rust', 'go', 'python' },
+  ensure_installed = { 
+		'lua', 
+		'typescript', 
+		'css', 
+		'scss', 
+		'tsx', 
+		'html', 
+		'json', 
+		'javascript', 
+		'rust', 
+		'go', 
+		'python' },
 
   highlight = { enable = true },
   indent = { enable = true },
@@ -283,5 +328,16 @@ require('nvim-treesitter.configs').setup {
   },
 }
 
+
+-------------------------------------
+-- Telescope
+-- See `:help Telescope`
+-------------------------------------
+require('telescope').setup()
+require('telescope').load_extension('fzf')
+
+keymap.set('n', '<C-p>', "<Cmd>Telescope find_files<CR>", {desc = 'Find files in Telescope'})
+keymap.set('n', '<C-b>', "<Cmd>Telescope buffers<CR>",    {desc = 'Find files in Telescope'})
+keymap.set('n', '<C-f>', '<Cmd>Telescope live_grep<CR>',  {desc = 'Grep for files in Telescope'})
 
 -- PLUGIN CONFIGURATION --END
