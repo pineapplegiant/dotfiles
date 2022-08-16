@@ -1,0 +1,53 @@
+-------------------------------------
+-- Nvim-tree
+-- See `:help nvim-tree.OPTION_NAME`
+-------------------------------------
+local status, n_tree = pcall(require, "nvim-tree")
+if (not status) then return end
+
+local nt_api = require "nvim-tree.api"
+
+n_tree.setup {
+	sort_by = "case_sensitive",
+	view = {
+		adaptive_size = false,
+		mappings = {
+			list = {
+				{ key = "<BS>", action = "dir_up" },
+				{ key = "L", action = "cd" },
+				{ key = "n", action = "create" },
+				{ key = "x", action = "remove" },
+				{ key = "h", action = "close_node" },
+				{ key = "l", action = "dir_down" },
+				{ key = "v", action = "vsplit" },
+				{ key = "R", action = "refresh" },
+			},
+		},
+	},
+	filters = {
+		dotfiles = false,
+	},
+	--    renderer = {
+	--        group_empty = true,
+	--    },
+	git = {
+		ignore = false,
+		enable = true,
+		timeout = 400 -- (in ms)
+	},
+}
+
+vim.keymap.set('n', '<C-n>',
+	function()
+		nt_api.tree.toggle(false, true)
+	end,
+	{ desc = 'Open Nvim tree lua with no focus' }
+)
+
+--TODO: Not sure how to get this guy to work
+--vim.keymap.set('n', '<C-r>',
+--	function()
+--		nt_api.node.open.replace_tree_buffer()
+--	end,
+--	{desc = 'Open Nvim tree lua in single buffer completely'}
+--)

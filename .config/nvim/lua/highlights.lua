@@ -12,7 +12,7 @@ set.pumblend = 5               -- Pseudo transparency for popup-menus
 
 -- SET COLORSCHEME HERE
 local colorscheme_set = 'tokyonight'
-local colorscheme_opts = 'night' -- ex: dark, storm, light
+local colorscheme_opts = 'storm' -- ex: dark, storm, light
 
 -- Colorscheme Error Wrapper
 local function try_color_scheme(theme, theme_opts)
