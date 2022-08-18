@@ -8,28 +8,22 @@ local status, ts = pcall(require, "nvim-treesitter.configs")
 if (not status) then return end
 
 ts.setup {
-	-- Add languages to be installed here that you want installed for treesitter
-	ensure_installed = {
-		'lua',
-		'typescript',
-		'css',
-		'scss',
-		'tsx',
-		'html',
-		'json',
-		'javascript',
-		'rust',
-		'go',
-		'python'
+	context_commentstring = { enable = true },
+	autotag = {
+		enable = true,
 	},
-	highlight = { enable = true },
+	-- Add languages to be installed here that you want installed for treesitter
+	ensure_installed = "all", -- YOLO
+	highlight = {
+		enable = true,
+		additional_vim_regex_highlighting = false
+	},
 	indent = { enable = true },
 	incremental_selection = {
 		enable = true,
 		keymaps = {
 			init_selection = '<c-space>',
 			node_incremental = '<c-space>',
-			-- TODO: I'm not sure for this one.
 			scope_incremental = '<c-s>',
 			node_decremental = '<c-backspace>',
 		},

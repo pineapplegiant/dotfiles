@@ -8,15 +8,20 @@
 --
 
 -- Good starting reference: https://github.com/nvim-lua/kickstart.nvim/blob/master/init.lua
+-- $XDG_CONFIG_HOME/nvim/.init.lua
 
 -- General Settings
+-- $XDG_CONFIG_HOME/nvim/lua/base.lua
 require('base')
 
 -- Mappings
+-- $XDG_CONFIG_HOME/nvim/lua/maps.lua
 require('maps')
 
 -- Color
+-- $XDG_CONFIG_HOME/nvim/lua/highlights.lua
 require('highlights')
 
 -- Plugins
+-- $XDG_CONFIG_HOME/nvim/lua/plugins.lua
 require('plugins')

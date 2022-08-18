@@ -20,15 +20,28 @@ telescope.setup {
 				["<esc>"] = actions.close,
 			},
 		},
-		--	layout_config = {
-		--		prompt_position = 'top'
-		--	}
+		--		layout_config = {
+		--			prompt_position = 'top'
+		--		}
 	}
 }
 require('telescope').load_extension('fzf')
 
+vim.keymap.set('n', '<leader>f',
+	function() builtin.find_files({
+			hidden = true,
+			no_ignore = true,
+		})
+	end,
+	{ desc = 'Find ALL files in Telescope' }
+)
+
 vim.keymap.set('n', '<C-p>',
-	function() builtin.find_files({ hidden = true, no_ignore = false }) end,
+	function() builtin.find_files({
+			hidden = true,
+			no_ignore = false,
+		})
+	end,
 	{ desc = 'Find files in Telescope' }
 )
 
