@@ -19,50 +19,65 @@ require('packer').startup(function(use)
 	-- Required
 	use 'wbthomason/packer.nvim' -- Package manager
 
+
 	-- ColorSchemes
 	use 'folke/tokyonight.nvim' -- Tokynight Theme
 	use "rebelot/kanagawa.nvim" -- Kanagawa Theme?? :3
 	use { "catppuccin/nvim", as = "catppuccin" }
 	use 'Mofiqul/vscode.nvim' -- VSCODE Theme :')'
 
-	-- Nvim Pretty
+
+	-- Pretty
 	use 'nvim-lualine/lualine.nvim' -- Fancier statusline
 	use { 'romgrk/barbar.nvim', requires = { 'kyazdani42/nvim-web-devicons' } } -- Buffers as tabs
 	use 'lukas-reineke/indent-blankline.nvim' -- Add indentation guides even on blank lines
 	use 'karb94/neoscroll.nvim' -- Smooth scrolling, but with lua
 	use 'norcalli/nvim-colorizer.lua' -- Display the pretty colors
-	use { "folke/todo-comments.nvim", requires = { "nvim-lua/plenary.nvim" } } -- Pretty Todo comments
 
-	-- Grace
-	use 'numToStr/Comment.nvim' -- "gc" to comment visual regions/lines
-	use 'windwp/nvim-autopairs' -- Auto close brackets, etc.
-	use { 'kyazdani42/nvim-tree.lua', requires = { 'kyazdani42/nvim-web-devicons' } } -- File Tree
-
-	-- Old Busted
-	use 'https://github.com/justinmk/vim-sneak.git' -- Sneakin
-	use 'aserowy/tmux.nvim' -- Navigate tmux panes splits better
-	use 'kylechui/nvim-surround' -- Vim surround
-	use { 'lewis6991/gitsigns.nvim', requires = { 'nvim-lua/plenary.nvim' } } -- Add git related info in the signs columns and popups
 
 	-- TreeSitter
 	use 'nvim-treesitter/nvim-treesitter' -- Highlight, edit, and navigate code
 	use 'windwp/nvim-ts-autotag' -- Html autotag stuff
 	use 'nvim-treesitter/nvim-treesitter-textobjects' -- Additional textobjects for treesitter
 
+
+	-- Functionality
+	use 'numToStr/Comment.nvim' -- "gc" to comment visual regions/lines
+	use 'windwp/nvim-autopairs' -- Auto close brackets, etc.
+	use { 'kyazdani42/nvim-tree.lua', requires = { 'kyazdani42/nvim-web-devicons' } } -- File Tree
+	use { "folke/todo-comments.nvim", requires = { "nvim-lua/plenary.nvim" } } -- Pretty Todo comments
+	use { 'phaazon/hop.nvim',
+		branch = 'v2', -- optional but strongly recommended
+		config = function()
+			-- you can configure Hop the way you like here; see :h hop-config
+			require 'hop'.setup { keys = 'etovxqpdygfblzhckisuran' }
+		end
+	}
+	use { 'VonHeikemen/searchbox.nvim', requires = { { 'MunifTanjim/nui.nvim' } } }
+
+
+	-- Old Busted
+	use 'aserowy/tmux.nvim' -- Navigate tmux panes splits better
+	use 'kylechui/nvim-surround' -- Vim surround
+	use { 'lewis6991/gitsigns.nvim', requires = { 'nvim-lua/plenary.nvim' } } -- Add git related info in the signs columns and popups
+
+
 	-- Telescope <3
-	use {
-		'nvim-telescope/telescope.nvim',
+	use { 'nvim-telescope/telescope.nvim',
 		tag = '0.1.0',
 		requires = { { 'nvim-lua/plenary.nvim' } }
 	}
 	use { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' } -- more fzf
 
+
 	-- LSP
-	use 'neovim/nvim-lspconfig' -- Collection of configurations for built-in LSP client
-	use 'williamboman/nvim-lsp-installer' -- Automatically install language servers to stdpath
+	use {
+		"williamboman/mason.nvim",
+		"williamboman/mason-lspconfig.nvim", -- Collection of configurations for built-in LSP client
+		"neovim/nvim-lspconfig",
+	}
 	use { 'hrsh7th/nvim-cmp', requires = { 'hrsh7th/cmp-nvim-lsp' } } -- Autocompletion
 	use { 'L3MON4D3/LuaSnip', requires = { 'saadparwaiz1/cmp_luasnip' } } -- Snippet Engine and Snippet Expansion
-
 	use 'MunifTanjim/prettier.nvim' -- Prettier plugin for Neovim's built-in LSP client
 
 	-- Use Neovim as a language server to inject LSP diagnostics, code actions, and more via Lua

@@ -8,8 +8,14 @@ if (not status) then return end
 local nt_api = require "nvim-tree.api"
 
 n_tree.setup {
+	sync_root_with_cwd = false,
+	reload_on_bufenter = true,
+	respect_buf_cwd = false,
 	sort_by = "case_sensitive",
 	view = {
+		-- float = {
+		-- 	enable = true,
+		-- },
 		adaptive_size = false,
 		mappings = {
 			list = {
@@ -35,6 +41,10 @@ n_tree.setup {
 		enable = true,
 		timeout = 400 -- (in ms)
 	},
+	update_focused_file = {
+		enable = true,
+		update_cwd = true,
+	},
 }
 
 vim.keymap.set('n', '<C-n>',
@@ -45,9 +55,9 @@ vim.keymap.set('n', '<C-n>',
 )
 
 --TODO: Not sure how to get this guy to work
---vim.keymap.set('n', '<C-r>',
---	function()
---		nt_api.node.open.replace_tree_buffer()
---	end,
---	{desc = 'Open Nvim tree lua in single buffer completely'}
---)
+-- vim.keymap.set('n', '<C-r>',
+-- 	function()
+-- 		nt_api.node.open.replace_tree_buffer()
+-- 	end,
+-- 	{ desc = 'Open Nvim tree lua in single buffer completely' }
+-- )

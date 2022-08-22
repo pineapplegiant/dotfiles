@@ -7,16 +7,16 @@
 !neofetch.png
 
 # Scripts
-!.local/bin/*
+!.local/bin/**
 
 # Git Config
-!.config/git/*
+!.config/git/**
 
 # Alacritty
 !.config/alacritty
 
 # Shell profile
-!.config/shell/*
+!.config/shell/**
 
 # Tmux Profile
 !.config/tmux/tmux.conf
@@ -24,11 +24,13 @@
 !.config/tmux/status-line-light.conf
 
 # Neovim/Vim settings
-!.config/nvim/*
-!.config/vim/*
+!.config/nvim/**
+!.config/nvim/
+!.config/vim/**
+!.config/vim/
 
 # VS Code Settings
-!.config/vscode/*
+!.config/vscode/**
 
 # Z shell settings
 !.config/zsh/.zshrc

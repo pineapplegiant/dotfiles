@@ -12,7 +12,6 @@ vim.g.localmapleader = "\\"
 -- Remap for dealing with word wrap
 keymap.set('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
 keymap.set('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
-keymap.set('n', '<leader>s', ':update<CR>', { desc = 'QuickSave with leader key' })
 keymap.set('n', '<C-S>', ':update<CR>', { desc = 'QuickSave with control key' })
 keymap.set('n', '<leader>q', ':q!<CR>', { desc = 'An attempt at quitting vim' })
 keymap.set('n', ',<leader>', ':nohlsearch<CR>', { desc = 'Turn off highlighted search' })
@@ -72,19 +71,19 @@ keymap.set('n', 'gp', ':bp<CR>', { desc = 'Cycle previous buffer' })
 -- Terminal
 keymap.set('t', 'hh', '<C-\\><C-n>', { desc = 'Exit normal mode when using terminal inside nvim' })
 
--- TODO: Terminal stuff
-local function terminalCreate()
-	local time_now = os.date('%Y.%m.%d:%H.%M.%S')
-	local terminal_name = "terminal_" .. time_now
-	return terminal_name
-end
+-- -- TODO: Terminal stuff
+-- local function terminalCreate()
+-- 	local time_now = os.date('%Y.%m.%d:%H.%M.%S')
+-- 	local terminal_name = "terminal_" .. time_now
+-- 	return terminal_name
+-- end
 
-keymap.set('n', '<leader>zb', ':new<CR>:resize 10<CR>:call terminalCreate()<CR>',
-	{ desc = 'Create a new terminal at bottom of buffer' })
-keymap.set('n', '<leader>zz', 'call terminalCreate()<CR>', { desc = 'Create a new terminal in current page' })
-keymap.set('n', '<leader>zv', ':vsplit<CR>:call terminalCreate()<CR>',
-	{ desc = 'Create a new terminal in a vertical split' })
-
+-- keymap.set('n', '<leader>zb', ':new<CR>:resize 10<CR>:call terminalCreate()<CR>',
+-- 	{ desc = 'Create a new terminal at bottom of buffer' })
+-- keymap.set('n', '<leader>zz', 'call terminalCreate()<CR>', { desc = 'Create a new terminal in current page' })
+-- keymap.set('n', '<leader>zv', ':vsplit<CR>:call terminalCreate()<CR>',
+-- 	{ desc = 'Create a new terminal in a vertical split' })
+--
 -- Old Snippets
 keymap.set('n', ',mock', ':-1read $XDG_CONFIG_HOME/nvim/snippets/mock.txt<CR>A', { desc = 'Mock snippet' })
 keymap.set('n', ',html', ':-1read $XDG_CONFIG_HOME/nvim/snippets/skeleton.html<CR>7jf>a', { desc = 'Base HTML' })
@@ -95,7 +94,7 @@ keymap.set('n', ',yaml', ':-1read $XDG_CONFIG_HOME/nvim/snippets/yaml.md<CR>', {
 keymap.set('n', ',mlk', ':read $XDG_CONFIG_HOME/nvim/snippets/mlk.txt<CR>', { desc = 'MLK Speech Snippet' })
 keymap.set('n', ',snap', ':read $XDG_CONFIG_HOME/nvim/snippets/snap.md<CR>', { desc = 'Snap keymap' })
 
---TODO: Convert to tab
+--TODO: Convert to tab code
 --    " Expose TrimWhitespace Command to remove spaces
 --    command! -nargs=? -range=% -complete=custom,s:TrimCompletionOptions
 --      \ TrimWhitespace <line1>,<line2>call s:TrimWhitespace(<f-args>)

@@ -21,8 +21,10 @@ env:
   # each instance of Alacritty. If it is not present, alacritty will
   # check the local terminfo database and use `alacritty` if it is
   # available, otherwise `xterm-256color` is used.
-  #TERM: alacritty
-  TERM: xterm-256color
+  TERM: alacritty
+   # TERM: xterm-256color
+  # TERM: screen-256color
+  # TERM: tmux-256color
 
 window:
   # Window dimensions (changes require restart)
@@ -715,6 +717,9 @@ key_bindings:
   - { key: Right,    mods: Alt,     chars: "\x1bf"                       } # one word right
   - { key: Left,     mods: Command, chars: "\x1bOH",   mode: AppCursor   } # Home
   - { key: Right,    mods: Command, chars: "\x1bOF",   mode: AppCursor   } # End
+  - { key: F,        mods: Control|Shift, chars: "\x1b[70;5u"            } # Make by ctrl shift keybindings hopefully work
+  - { key: P,        mods: Control|Shift, chars: "\x1b[80;5u"            } # Make by ctrl shift keybindings hopefully work
+  - { key: R,        mods: Control|Shift, chars: "\x1b[82;5u"            } # Make by ctrl shift keybindings hopefully work
   #- { key: t,        mods: Command, chars: "\x1bt",                      }
   #- { key: RWin,T     mods: Control,     action: None              }
   #- { key: Key1,     mods: Alt,     chars: "\x1b1"                       }
