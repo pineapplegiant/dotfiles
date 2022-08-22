@@ -1,5 +1,9 @@
-require("mason").setup()
-require("mason-lspconfig").setup()
+local lsp = require('lsp-zero')
+
+lsp.preset('recommended')
+lsp.setup()
+-- require("mason").setup()
+-- require("mason-lspconfig").setup()
 
 -- OLD STUFF??
 -- --vim.lsp.set_log_level("debug")
