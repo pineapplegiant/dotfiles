@@ -44,7 +44,10 @@ require('packer').startup(function(use)
 	-- Functionality
 	use 'numToStr/Comment.nvim' -- "gc" to comment visual regions/lines
 	use 'windwp/nvim-autopairs' -- Auto close brackets, etc.
-	use { 'kyazdani42/nvim-tree.lua', requires = { 'kyazdani42/nvim-web-devicons' } } -- File Tree
+
+	-- File Tree
+	use { 'kyazdani42/nvim-tree.lua', branch = '1512-open_win_config-function', requires = { 'kyazdani42/nvim-web-devicons' }} 
+
 	use { "folke/todo-comments.nvim", requires = { "nvim-lua/plenary.nvim" } } -- Pretty Todo comments
 	use { 'phaazon/hop.nvim',
 		branch = 'v2', -- optional but strongly recommended

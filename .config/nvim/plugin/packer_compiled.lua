@@ -74,10 +74,20 @@ _G.packer_plugins = {
     path = "/Users/gmo/dotfiles/.local/share/nvim/site/pack/packer/start/Comment.nvim",
     url = "https://github.com/numToStr/Comment.nvim"
   },
+  LuaSnip = {
+    loaded = true,
+    path = "/Users/gmo/dotfiles/.local/share/nvim/site/pack/packer/start/LuaSnip",
+    url = "https://github.com/L3MON4D3/LuaSnip"
+  },
   ["barbar.nvim"] = {
     loaded = true,
     path = "/Users/gmo/dotfiles/.local/share/nvim/site/pack/packer/start/barbar.nvim",
     url = "https://github.com/romgrk/barbar.nvim"
+  },
+  catppuccin = {
+    loaded = true,
+    path = "/Users/gmo/dotfiles/.local/share/nvim/site/pack/packer/start/catppuccin",
+    url = "https://github.com/catppuccin/nvim"
   },
   ["cmp-buffer"] = {
     loaded = true,
@@ -89,10 +99,36 @@ _G.packer_plugins = {
     path = "/Users/gmo/dotfiles/.local/share/nvim/site/pack/packer/start/cmp-nvim-lsp",
     url = "https://github.com/hrsh7th/cmp-nvim-lsp"
   },
+  ["cmp-nvim-lua"] = {
+    loaded = true,
+    path = "/Users/gmo/dotfiles/.local/share/nvim/site/pack/packer/start/cmp-nvim-lua",
+    url = "https://github.com/hrsh7th/cmp-nvim-lua"
+  },
+  ["cmp-path"] = {
+    loaded = true,
+    path = "/Users/gmo/dotfiles/.local/share/nvim/site/pack/packer/start/cmp-path",
+    url = "https://github.com/hrsh7th/cmp-path"
+  },
+  cmp_luasnip = {
+    loaded = true,
+    path = "/Users/gmo/dotfiles/.local/share/nvim/site/pack/packer/start/cmp_luasnip",
+    url = "https://github.com/saadparwaiz1/cmp_luasnip"
+  },
+  ["friendly-snippets"] = {
+    loaded = true,
+    path = "/Users/gmo/dotfiles/.local/share/nvim/site/pack/packer/start/friendly-snippets",
+    url = "https://github.com/rafamadriz/friendly-snippets"
+  },
   ["gitsigns.nvim"] = {
     loaded = true,
     path = "/Users/gmo/dotfiles/.local/share/nvim/site/pack/packer/start/gitsigns.nvim",
     url = "https://github.com/lewis6991/gitsigns.nvim"
+  },
+  ["hop.nvim"] = {
+    config = { "\27LJ\2\nU\0\0\3\0\4\0\a6\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\3\0B\0\2\1K\0\1\0\1\0\1\tkeys\28etovxqpdygfblzhckisuran\nsetup\bhop\frequire\0" },
+    loaded = true,
+    path = "/Users/gmo/dotfiles/.local/share/nvim/site/pack/packer/start/hop.nvim",
+    url = "https://github.com/phaazon/hop.nvim"
   },
   ["indent-blankline.nvim"] = {
     loaded = true,
@@ -104,10 +140,10 @@ _G.packer_plugins = {
     path = "/Users/gmo/dotfiles/.local/share/nvim/site/pack/packer/start/kanagawa.nvim",
     url = "https://github.com/rebelot/kanagawa.nvim"
   },
-  ["lspkind-nvim"] = {
+  ["lsp-zero.nvim"] = {
     loaded = true,
-    path = "/Users/gmo/dotfiles/.local/share/nvim/site/pack/packer/start/lspkind-nvim",
-    url = "https://github.com/onsails/lspkind-nvim"
+    path = "/Users/gmo/dotfiles/.local/share/nvim/site/pack/packer/start/lsp-zero.nvim",
+    url = "https://github.com/VonHeikemen/lsp-zero.nvim"
   },
   ["lualine.nvim"] = {
     loaded = true,
@@ -128,6 +164,11 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/gmo/dotfiles/.local/share/nvim/site/pack/packer/start/neoscroll.nvim",
     url = "https://github.com/karb94/neoscroll.nvim"
+  },
+  ["nui.nvim"] = {
+    loaded = true,
+    path = "/Users/gmo/dotfiles/.local/share/nvim/site/pack/packer/start/nui.nvim",
+    url = "https://github.com/MunifTanjim/nui.nvim"
   },
   ["null-ls.nvim"] = {
     loaded = true,
@@ -199,6 +240,11 @@ _G.packer_plugins = {
     path = "/Users/gmo/dotfiles/.local/share/nvim/site/pack/packer/start/prettier.nvim",
     url = "https://github.com/MunifTanjim/prettier.nvim"
   },
+  ["searchbox.nvim"] = {
+    loaded = true,
+    path = "/Users/gmo/dotfiles/.local/share/nvim/site/pack/packer/start/searchbox.nvim",
+    url = "https://github.com/VonHeikemen/searchbox.nvim"
+  },
   ["telescope-fzf-native.nvim"] = {
     loaded = true,
     path = "/Users/gmo/dotfiles/.local/share/nvim/site/pack/packer/start/telescope-fzf-native.nvim",
@@ -224,14 +270,18 @@ _G.packer_plugins = {
     path = "/Users/gmo/dotfiles/.local/share/nvim/site/pack/packer/start/tokyonight.nvim",
     url = "https://github.com/folke/tokyonight.nvim"
   },
-  ["vim-sneak.git"] = {
+  ["vscode.nvim"] = {
     loaded = true,
-    path = "/Users/gmo/dotfiles/.local/share/nvim/site/pack/packer/start/vim-sneak.git",
-    url = "https://github.com/justinmk/vim-sneak"
+    path = "/Users/gmo/dotfiles/.local/share/nvim/site/pack/packer/start/vscode.nvim",
+    url = "https://github.com/Mofiqul/vscode.nvim"
   }
 }
 
 time([[Defining packer_plugins]], false)
+-- Config for: hop.nvim
+time([[Config for hop.nvim]], true)
+try_loadstring("\27LJ\2\nU\0\0\3\0\4\0\a6\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\3\0B\0\2\1K\0\1\0\1\0\1\tkeys\28etovxqpdygfblzhckisuran\nsetup\bhop\frequire\0", "config", "hop.nvim")
+time([[Config for hop.nvim]], false)
 if should_profile then save_profiles() end
 
 end)

@@ -13,9 +13,6 @@ n_tree.setup {
 	respect_buf_cwd = false,
 	sort_by = "case_sensitive",
 	view = {
-		-- float = {
-		-- 	enable = true,
-		-- },
 		adaptive_size = false,
 		mappings = {
 			list = {
@@ -29,6 +26,7 @@ n_tree.setup {
 				{ key = "R", action = "refresh" },
 			},
 		},
+
 	},
 	filters = {
 		dotfiles = false,
@@ -47,17 +45,18 @@ n_tree.setup {
 	},
 }
 
-vim.keymap.set('n', '<C-n>',
-	function()
-		nt_api.tree.toggle(false, true)
-	end,
-	{ desc = 'Open Nvim tree lua with no focus' }
+vim.keymap.set('n', '<C-n>', 
+	function() 
+		nt_api.tree.toggle(false, true) 
+	end, 
+	{ desc = 'Toggle Nvim tree lua with no focus' }
 )
 
---TODO: Not sure how to get this guy to work
--- vim.keymap.set('n', '<C-r>',
--- 	function()
--- 		nt_api.node.open.replace_tree_buffer()
--- 	end,
--- 	{ desc = 'Open Nvim tree lua in single buffer completely' }
+-- --TODO: Not sure how to get this guy to work, open filtree in full window or floating window
+-- vim.keymap.set('n', '<C-r>', 
+-- 	function ()
+-- 		nt_api.tree.focus()
+-- 	end, 
+-- 	{ desc = 'Open Nvim tree centered in a floating window' }
 -- )
+

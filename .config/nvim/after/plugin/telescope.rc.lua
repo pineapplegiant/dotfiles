@@ -6,7 +6,6 @@ local status, telescope = pcall(require, "telescope")
 if (not status) then return end
 local actions = require('telescope.actions')
 local builtin = require('telescope.builtin')
-local themes = require('telescope.themes')
 
 telescope.setup {
 	defaults = {
@@ -21,10 +20,48 @@ telescope.setup {
 				["<esc>"] = actions.close,
 			},
 		},
-		--		layout_config = {
-		--			prompt_position = 'top'
-		--		}
 	},
+	pickers = {
+		-- Default configuration for builtin pickers goes here:
+		find_files = {
+			hidden = true,
+			previewer = false,
+			winblend = 5,
+			results_title = false,
+			sorting_strategy = "ascending",
+			layout_strategy = "center",
+			layout_config = {
+			  width = 78,
+			  height = 24
+			},
+			border = true,
+			borderchars = {
+			  prompt = { "─", "│", " ", "│", "╭", "╮", "│", "│" },
+			  results = { "─", "│", "─", "│", "├", "┤", "╯", "╰" },
+			  preview = { "─", "│", "─", "│", "╭", "╮", "╯", "╰" },
+			},
+		  },
+		oldfiles = {
+			hidden = true,
+			previewer = false,
+			winblend = 5,
+			results_title = false,
+			sorting_strategy = "ascending",
+			layout_strategy = "center",
+			layout_config = {
+			  width = 78,
+			  height = 24
+			},
+			border = true,
+			borderchars = {
+			  prompt = { "─", "│", " ", "│", "╭", "╮", "│", "│" },
+			  results = { "─", "│", "─", "│", "├", "┤", "╯", "╰" },
+			  preview = { "─", "│", "─", "│", "╭", "╮", "╯", "╰" },
+			},
+		  },
+	},
+	-- Now the picker_config_key will be applied every time you call this
+	-- builtin picker
 }
 
 require('telescope').load_extension('fzf')
@@ -33,7 +70,6 @@ require('telescope').load_extension('fzf')
 
 vim.keymap.set('n', '<C-p>',
 	function() builtin.find_files({
-			hidden = true,
 			no_ignore = false,
 		})
 	end,
@@ -42,7 +78,6 @@ vim.keymap.set('n', '<C-p>',
 
 vim.keymap.set('n', '<C-S-P>',
 	function() builtin.find_files({
-			hidden = true,
 			no_ignore = true,
 		})
 	end,

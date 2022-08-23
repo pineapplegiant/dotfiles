@@ -28,6 +28,7 @@
 !.config/nvim/
 !.config/vim/**
 !.config/vim/
+.config/nvim/plugin/packer_compiled.lua
 
 # VS Code Settings
 !.config/vscode/**

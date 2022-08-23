@@ -7,6 +7,7 @@
 local status, ts = pcall(require, "nvim-treesitter.configs")
 if (not status) then return end
 
+-- TBH Not sure what everything does rip
 ts.setup {
 	context_commentstring = { enable = true },
 	autotag = {
@@ -19,15 +20,21 @@ ts.setup {
 		additional_vim_regex_highlighting = false
 	},
 	indent = { enable = true },
-	incremental_selection = {
+	query_linter = {
 		enable = true,
-		keymaps = {
-			init_selection = '<c-space>',
-			node_incremental = '<c-space>',
-			scope_incremental = '<c-s>',
-			node_decremental = '<c-backspace>',
-		},
+		use_virtual_text = true,
+		lint_events = {"BufWrite", "CursorHold"}
 	},
+
+	-- incremental_selection = {
+	-- 	enable = true,
+	-- 	keymaps = {
+	-- 		init_selection = '<c-space>',
+	-- 		node_incremental = '<c-space>',
+	-- 		scope_incremental = '<c-s>',
+	-- 		node_decremental = '<c-backspace>',
+	-- 	},
+	-- },
 	textobjects = {
 		select = {
 			enable = true,
