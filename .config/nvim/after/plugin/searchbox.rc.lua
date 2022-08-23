@@ -1,4 +1,4 @@
-vim.keymap.set('n', '<C-f>',
+vim.keymap.set('n', '<C-S-f>',
 	':SearchBoxMatchAll clear_matches=false show_matches=true <CR>',
 	{ desc = 'Search in File' }
 )

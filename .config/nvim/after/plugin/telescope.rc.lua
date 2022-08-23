@@ -90,7 +90,7 @@ vim.keymap.set('n', '<C-b>',
 	{ desc = 'Search Buffers in Telescope' }
 )
 
-vim.keymap.set('n', '<C-S-F>',
+vim.keymap.set('n', '<C-f>',
 	function() builtin.live_grep() end,
 	{ desc = 'Grep for files in Telescope' }
 )
