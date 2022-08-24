@@ -8,14 +8,16 @@ if (not status) then return end
 local nt_api = require "nvim-tree.api"
 
 n_tree.setup {
-	sync_root_with_cwd = false,
+	disable_netrw = true,
+	-- sync_root_with_cwd = false,
 	reload_on_bufenter = true,
-	respect_buf_cwd = false,
+	respect_buf_cwd = true,
 	sort_by = "case_sensitive",
 	view = {
 		adaptive_size = false,
 		mappings = {
 			list = {
+				{ key = "<CR>", action = "edit" },
 				{ key = "<BS>", action = "dir_up" },
 				{ key = "L", action = "cd" },
 				{ key = "n", action = "create" },
@@ -52,11 +54,19 @@ vim.keymap.set('n', '<C-n>',
 	{ desc = 'Toggle Nvim tree lua with no focus' }
 )
 
--- --TODO: Not sure how to get this guy to work, open filtree in full window or floating window
--- vim.keymap.set('n', '<C-r>', 
--- 	function ()
--- 		nt_api.tree.focus()
--- 	end, 
+-- -- Ehh not really needed since I have telescope
+-- local function toggle_replace()
+--   local view = require"nvim-tree.view"
+--   if view.is_visible() then
+-- 	view.close()
+--   else
+-- 	require"nvim-tree".open_replacing_current_buffer()
+--   end
+-- end
+--  
+
+-- vim.keymap.set('n', '<leader>n', 
+-- 		function() toggle_replace() end,
 -- 	{ desc = 'Open Nvim tree centered in a floating window' }
 -- )
-
+--

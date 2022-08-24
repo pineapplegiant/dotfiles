@@ -17,7 +17,7 @@ keymap.set('n', '<C-S>', ':update<CR>', { desc = 'QuickSave with control key' })
 keymap.set('n', '<leader>q', ':q!<CR>', { desc = 'An attempt at quitting vim' })
 keymap.set('n', ',<leader>', ':nohlsearch<CR>', { desc = 'Turn off highlighted search' })
 keymap.set('n', '<leader>d', ':bdelete!<CR>', { desc = 'Close the current buffer' })
-keymap.set('n', '<leader>j', 'J', { desc = 'Use leader J as default J' })
+-- keymap.set('n', '<leader>j', 'J', { desc = 'Use leader J as default J' })
 
 -- Copying & Pasting
 keymap.set({ 'n', 'v' }, '<leader>y', '"+y', { desc = 'Copy into system clipboard' })
@@ -37,8 +37,8 @@ keymap.set('', '<F6>', '<C-R>=strftime("%A %B %d, %Y")<CR>', { desc = "Quick Tim
 keymap.set('n', ',gcc', ':!tmux send-keys -t1 "\\!! " ENTER <CR><CR>', { desc = 'Run last command in tmux window' })
 
 -- Remap J and K to move down blocks
-keymap.set({ 'n', 'v' }, 'J', '}', { desc = 'Jump down faster between blocks' })
-keymap.set({ 'n', 'v' }, 'K', '{', { desc = 'Jump up faster between blocks' })
+-- keymap.set({ 'n', 'v' }, 'J', '}', { desc = 'Jump down faster between blocks' })
+-- keymap.set({ 'n', 'v' }, 'K', '{', { desc = 'Jump up faster between blocks', noremap = true })
 
 -- U to redo
 keymap.set('n', 'U', '<C-R>', { desc = 'Redo last change' })
