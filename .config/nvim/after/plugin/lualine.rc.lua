@@ -10,7 +10,7 @@ lualine.setup {
 		icons_enabled = true,
 		--theme = 'spaceduck',
 		-- theme = 'tokyonight',
-		theme = 'catppuccin',
+		theme = gmos_colorscheme,
 		section_separators = { left = '', right = '' },
 		component_separators = { left = '', right = '' },
 		disabled_filetypes = {

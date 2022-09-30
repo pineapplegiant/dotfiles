@@ -158,4 +158,4 @@ venv.bak/
 .mypy_cache/
 
 # sqlite
-*.db
+k.db

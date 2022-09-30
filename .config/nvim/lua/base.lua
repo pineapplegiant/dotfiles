@@ -39,8 +39,8 @@ set.wildmenu = true -- Set autocomplete for the command menu
 set.splitbelow = true -- Horizontal split default opens at bottom
 set.splitright = true -- Vertical splitting a window default open to the right
 set.swapfile = false -- Idk what swapfiles are, so no i dont want it sir
-vim.opt.listchars = { space = '·' }
-set.list = false -- Show trailing spaces
+-- vim.opt.listchars = { space = '·' }
+-- set.list = false -- Show trailing spaces
 
 set.wildignorecase = true -- Ignore casing when completing file names and directories
 

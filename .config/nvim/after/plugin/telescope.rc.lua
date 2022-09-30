@@ -45,11 +45,11 @@ telescope.setup {
 			preview_cutoff = 1, -- Preview should always show (unless previewer = false)
 
 		  width = function(_, max_columns, _)
-			return math.min(max_columns, 115)
+			return math.min(max_columns, 125)
 		  end,
 
 		  height = function(_, _, max_lines)
-			return math.min(max_lines, 25)
+			return math.min(max_lines, 30)
 		  end,
 		},
 		mappings = {
@@ -76,8 +76,6 @@ telescope.setup {
 
 require('telescope').load_extension('fzf')
 
--- TODO: https://github.com/nvim-telescope/telescope.nvim/wiki/Configuration-Recipes#falling-back-to-find_files-if-git_files-cant-find-a-git-directory
-
 vim.keymap.set('n', '<C-p>',
 	function() builtin.find_files({
 			no_ignore = false,
@@ -103,3 +101,22 @@ vim.keymap.set('n', '<C-c>',
 	end,
 	{ desc = 'Fzf find old files' }
 )
+
+vim.keymap.set('n', '<C-f>',
+	function() builtin.current_buffer_fuzzy_find()
+	end,
+	{ desc = 'Search in File' }
+)
+
+-- vim.keymap.set('n', '<C-f>',
+-- 	':SearchBoxMatchAll clear_matches=false show_matches=true <CR>',
+-- 	{ desc = 'Search in File' }
+-- )
+--
+-- vim.keymap.set('n', '<C-r>',
+-- 	':SearchBoxReplace<CR>',
+-- 	{ desc = 'Search and Replace in File' }
+-- )
+--
+-- vim.keymap.set('n', ',<leader>', ':SearchBoxClear<CR>',
+-- 	{ desc = 'Clear SearchBox Highlights' })

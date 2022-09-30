@@ -4,11 +4,11 @@ local install_path = vim.fn.stdpath 'data' .. '/site/pack/packer/start/packer.nv
 
 local is_bootstrap = false
 
-if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
-	is_bootstrap = true
-	vim.fn.execute('!git clone https://github.com/wbthomason/packer.nvim ' .. install_path)
-	vim.cmd [[packadd packer.nvim]]
-end
+-- if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
+-- 	is_bootstrap = true
+-- 	vim.fn.execute('!git clone https://github.com/wbthomason/packer.nvim ' .. install_path)
+-- 	vim.cmd [[packadd packer.nvim]]
+-- end
 
 
 -------------------------------------
@@ -22,8 +22,10 @@ require('packer').startup(function(use)
 
 	-- ColorSchemes
 	use 'folke/tokyonight.nvim' -- Tokynight Theme
-	use "rebelot/kanagawa.nvim" -- Kanagawa Theme?? :3
-	use { "catppuccin/nvim", as = "catppuccin" }
+	use 'rebelot/kanagawa.nvim' -- Kanagawa Theme?? :3
+	use 'pineapplegiant/spaceduck' -- Spaceduck <33
+	use 'rose-pine/neovim' -- RosePine
+	use { 'catppuccin/nvim', as = 'catppuccin' }
 	use 'Mofiqul/vscode.nvim' -- VSCODE Theme :')'
 
 
@@ -31,6 +33,7 @@ require('packer').startup(function(use)
 	use 'nvim-lualine/lualine.nvim' -- Fancier statusline
 	use { 'romgrk/barbar.nvim', requires = { 'kyazdani42/nvim-web-devicons' } } -- Buffers as tabs
 	use 'lukas-reineke/indent-blankline.nvim' -- Add indentation guides even on blank lines
+	-- Using packer.nvim
 	use 'karb94/neoscroll.nvim' -- Smooth scrolling, but with lua
 	use 'norcalli/nvim-colorizer.lua' -- Display the pretty colors
 
@@ -39,6 +42,10 @@ require('packer').startup(function(use)
 	use 'nvim-treesitter/nvim-treesitter' -- Highlight, edit, and navigate code
 	use 'windwp/nvim-ts-autotag' -- Html autotag stuff
 	use 'nvim-treesitter/nvim-treesitter-textobjects' -- Additional textobjects for treesitter
+	use {
+	  'folke/zen-mode.nvim',
+		requires = { 'folke/twilight.nvim' }
+	}
 
 
 	-- Functionality
@@ -46,9 +53,9 @@ require('packer').startup(function(use)
 	use 'windwp/nvim-autopairs' -- Auto close brackets, etc.
 
 	-- File Tree
-	use { 'kyazdani42/nvim-tree.lua', branch = '1512-open_win_config-function', requires = { 'kyazdani42/nvim-web-devicons' }} 
+	use { 'kyazdani42/nvim-tree.lua', requires = { 'kyazdani42/nvim-web-devicons' }} 
 
-	use { "folke/todo-comments.nvim", requires = { "nvim-lua/plenary.nvim" } } -- Pretty Todo comments
+	use { 'folke/todo-comments.nvim', requires = { 'nvim-lua/plenary.nvim' } } -- Pretty Todo comments
 	use { 'phaazon/hop.nvim',
 		branch = 'v2', -- optional but strongly recommended
 		config = function()
@@ -56,8 +63,6 @@ require('packer').startup(function(use)
 			require 'hop'.setup { keys = 'etovxqpdygfblzhckisuran' }
 		end
 	}
-	use { 'VonHeikemen/searchbox.nvim', requires = { { 'MunifTanjim/nui.nvim' } } }
-
 
 	-- Old Busted
 	use 'aserowy/tmux.nvim' -- Navigate tmux panes splits better

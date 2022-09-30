@@ -33,7 +33,8 @@ keymap.set('n', '<leader>cd', ':cd %:p:h<CR>:pwd<CR>', { desc = 'Move current di
 
 -- Quick Tricks
 keymap.set('n', '<F10>', ':source $MYVIMRC<CR>', { desc = 'Source VIMRC' })
-keymap.set('', '<F6>', '<C-R>=strftime("%A %B %d, %Y")<CR>', { desc = "Quick Timestamp" })
+-- keymap.set('n', '<F6>', '<C-R>=lua print(os.date("%A %B %d, %Y"))<CR>', { desc = "Quick Timestamp" })
+keymap.set('n', '<F6>', ':r !date', { desc = "Quick Timestamp" })
 keymap.set('n', ',gcc', ':!tmux send-keys -t1 "\\!! " ENTER <CR><CR>', { desc = 'Run last command in tmux window' })
 
 -- Remap J and K to move down blocks
