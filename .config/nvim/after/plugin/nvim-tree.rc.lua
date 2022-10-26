@@ -2,7 +2,7 @@
 -- Nvim-tree
 -- See `:help nvim-tree.OPTION_NAME`
 -------------------------------------
-local status, n_tree = pcall(require, "nvim-tree")
+local status, n_tree = pcall(require, 'nvim-tree')
 if (not status) then return end
 
 local nt_api = require "nvim-tree.api"

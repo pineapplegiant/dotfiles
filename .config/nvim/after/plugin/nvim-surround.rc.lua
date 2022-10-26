@@ -2,7 +2,7 @@
 -- Nvim Surround
 -- See `:help nvim-surround.txt`
 -------------------------------------
-local status, surround = pcall(require, "nvim-surround")
+local status, surround = pcall(require, 'nvim-surround')
 if (not status) then return end
 
 surround.setup()

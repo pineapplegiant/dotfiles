@@ -11,7 +11,7 @@ vim.o.background = 'dark' -- Tell nvim we're using a dark theme
 --set.pumblend = 5 -- Pseudo transparency for popup-menus
 
 -- SET COLORSCHEME HERE
-gmos_colorscheme = 'catppuccin' -- catppuccin, tokyonight, vscode
+local gmos_colorscheme = 'catppuccin' -- catppuccin, tokyonight, vscode
 local colorscheme_opts = 'mocha' -- ex: {tokyonight: [dark, storm, light] {catppuccin: [latte, frappe, macchiato, mocha]}
 
 -- Colorscheme Error Wrapper

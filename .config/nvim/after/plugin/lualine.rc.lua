@@ -2,7 +2,7 @@
 -- Lualine:
 -- See `:help lualine.txt`
 -------------------------------------
-local status, lualine = pcall(require, "lualine")
+local status, lualine = pcall(require, 'lualine')
 if (not status) then return end
 
 lualine.setup {

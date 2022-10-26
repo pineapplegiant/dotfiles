@@ -2,8 +2,11 @@
 -- Barbar
 -- See `:help barbar.txt`
 -------------------------------------
+local status, bufferline = pcall(require, 'bufferline')
+if (not status) then return end
+
 -- Set barbar's options
-require'bufferline'.setup {
+bufferline.setup {
   -- Enable/disable animations
   animation = true,
 

@@ -2,8 +2,9 @@
 -- Telescope
 -- See `:help Telescope`
 -------------------------------------
-local status, telescope = pcall(require, "telescope")
+local status, telescope = pcall(require, 'telescope')
 if (not status) then return end
+
 local actions = require('telescope.actions')
 local builtin = require('telescope.builtin')
 
@@ -32,6 +33,7 @@ local function generateOpts(opts)
 end
 
 local oldfiles_opts = generateOpts({})
+local buffers_opts = generateOpts({})
 local git_files_opts = generateOpts({})
 local find_files_opts = generateOpts({hidden=false})
 
@@ -69,6 +71,7 @@ telescope.setup {
 		find_files = find_files_opts,
 		oldfiles = oldfiles_opts,
 		git_files = git_files_opts,
+		buffers = buffers_opts,
 	},
 	-- Now the picker_config_key will be applied every time you call this
 	-- builtin picker
@@ -108,6 +111,7 @@ vim.keymap.set('n', '<C-f>',
 	{ desc = 'Search in File' }
 )
 
+--
 -- vim.keymap.set('n', '<C-f>',
 -- 	':SearchBoxMatchAll clear_matches=false show_matches=true <CR>',
 -- 	{ desc = 'Search in File' }

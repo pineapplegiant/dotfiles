@@ -26,6 +26,7 @@ set.tabstop = 4 -- Tab becomes 4 spaces
 set.softtabstop = 4 -- Tab becomes 4 spaces in Vim operations
 set.shiftwidth = 4 -- Number of spaces for indentation
 set.numberwidth = 4 -- Padding of space in the side number column
+
 set.backupskip = { '/tmp/*', '/private/tmp/*' }
 set.inccommand = 'split' -- shows effects of command incrementally
 set.hlsearch = true -- Mantain highlights on previous search

@@ -3,13 +3,28 @@
 -- Configure Treesitter
 -- See `:help nvim-treesitter`
 -------------------------------------
-
-local status, ts = pcall(require, "nvim-treesitter.configs")
+local status, ts = pcall(require, 'nvim-treesitter.configs')
 if (not status) then return end
 
 -- TBH Not sure what everything does rip
 ts.setup {
-	context_commentstring = { enable = true },
+	-- refactor = {
+	-- 	highlight_definitions = {
+	-- 		enable = true,
+	-- 		-- Set to false if you have an `updatetime` of ~100.
+	-- 		clear_on_cursor_move = true,
+	-- 	},
+	-- 	smart_rename = {
+	-- 		enable = true,
+	-- 		keymaps = {
+	-- 			smart_rename = "grr",
+	-- 		},
+	-- 	}
+	-- },
+	context_commentstring = {
+		enable = true,
+		enable_autocmd = false,
+	},
 	autotag = {
 		enable = true,
 	},

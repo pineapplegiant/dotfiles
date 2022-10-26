@@ -16,11 +16,11 @@ local is_bootstrap = false
 -------------------------------------
 require('packer').startup(function(use)
 
-	-- Required
+	-- REQUIRED
 	use 'wbthomason/packer.nvim' -- Package manager
 
 
-	-- ColorSchemes
+	-- COLORSCHEMES
 	use 'folke/tokyonight.nvim' -- Tokynight Theme
 	use 'rebelot/kanagawa.nvim' -- Kanagawa Theme?? :3
 	use 'pineapplegiant/spaceduck' -- Spaceduck <33
@@ -29,16 +29,15 @@ require('packer').startup(function(use)
 	use 'Mofiqul/vscode.nvim' -- VSCODE Theme :')'
 
 
-	-- Pretty
+	-- PRETTY
 	use 'nvim-lualine/lualine.nvim' -- Fancier statusline
 	use { 'romgrk/barbar.nvim', requires = { 'kyazdani42/nvim-web-devicons' } } -- Buffers as tabs
-	use 'lukas-reineke/indent-blankline.nvim' -- Add indentation guides even on blank lines
-	-- Using packer.nvim
+	use 'lukas-reineke/indent-blankline.nvim' -- Add indentation guides
 	use 'karb94/neoscroll.nvim' -- Smooth scrolling, but with lua
 	use 'norcalli/nvim-colorizer.lua' -- Display the pretty colors
 
 
-	-- TreeSitter
+	-- TREESITTER
 	use 'nvim-treesitter/nvim-treesitter' -- Highlight, edit, and navigate code
 	use 'windwp/nvim-ts-autotag' -- Html autotag stuff
 	use 'nvim-treesitter/nvim-treesitter-textobjects' -- Additional textobjects for treesitter
@@ -47,63 +46,53 @@ require('packer').startup(function(use)
 		requires = { 'folke/twilight.nvim' }
 	}
 
-
-	-- Functionality
+	-- FUNCTIONALITY
+	use 'JoosepAlviste/nvim-ts-context-commentstring'
 	use 'numToStr/Comment.nvim' -- "gc" to comment visual regions/lines
 	use 'windwp/nvim-autopairs' -- Auto close brackets, etc.
-
-	-- File Tree
-	use { 'kyazdani42/nvim-tree.lua', requires = { 'kyazdani42/nvim-web-devicons' }} 
-
 	use { 'folke/todo-comments.nvim', requires = { 'nvim-lua/plenary.nvim' } } -- Pretty Todo comments
-	use { 'phaazon/hop.nvim',
-		branch = 'v2', -- optional but strongly recommended
-		config = function()
-			-- you can configure Hop the way you like here; see :h hop-config
-			require 'hop'.setup { keys = 'etovxqpdygfblzhckisuran' }
-		end
-	}
 
-	-- Old Busted
+	-- FILE TREE / MOVEMENT
+	use { 'kyazdani42/nvim-tree.lua', requires = { 'kyazdani42/nvim-web-devicons' }} 
+	use 'ggandor/leap.nvim'
+
+	-- OLD BUSTED
 	use 'aserowy/tmux.nvim' -- Navigate tmux panes splits better
 	use 'kylechui/nvim-surround' -- Vim surround
 	use { 'lewis6991/gitsigns.nvim', requires = { 'nvim-lua/plenary.nvim' } } -- Add git related info in the signs columns and popups
 
 
-	-- Telescope <3
+	-- TELESCOPE <3
 	use { 'nvim-telescope/telescope.nvim',
-		tag = '0.1.0',
-		requires = { { 'nvim-lua/plenary.nvim' } }
+		-- tag = '0.1.0',
+		requires = { {'nvim-lua/plenary.nvim'} }
 	}
-	use { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' } -- more fzf
+	use {'nvim-telescope/telescope-fzf-native.nvim', run = 'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build' }
 
 
 	-- LSP
 	use {
-	  'VonHeikemen/lsp-zero.nvim',
-	  requires = {
-		-- LSP Support
-		{'neovim/nvim-lspconfig'},
-		{'williamboman/mason.nvim'},
-		{'williamboman/mason-lspconfig.nvim'},
-
-		-- Autocompletion
-		{'hrsh7th/nvim-cmp'},
-		{'hrsh7th/cmp-buffer'},
-		{'hrsh7th/cmp-path'},
-		{'saadparwaiz1/cmp_luasnip'},
-		{'hrsh7th/cmp-nvim-lsp'},
-		{'hrsh7th/cmp-nvim-lua'},
-
-		-- Snippets
-		{'L3MON4D3/LuaSnip'},
-		{'rafamadriz/friendly-snippets'},
-	  }
+		"williamboman/mason.nvim",
+		"williamboman/mason-lspconfig.nvim",
+		"neovim/nvim-lspconfig",
 	}
+	use { 'glepnir/lspsaga.nvim', branch = 'main', } --More Ui for completion
+	use {'onsails/lspkind-nvim'} -- vscode-like pictograms for neovim lsp completion items
+	use 'simrat39/rust-tools.nvim' -- rust-tools LSP stuff
 
+	-- Autocompletion
+	use 'hrsh7th/nvim-cmp'
+	use 'hrsh7th/cmp-buffer'
+	use 'hrsh7th/cmp-path'
+	use 'hrsh7th/cmp-nvim-lsp'
+	use 'hrsh7th/cmp-nvim-lua'
+	use 'L3MON4D3/LuaSnip'
+	use 'saadparwaiz1/cmp_luasnip'
+	use 'David-Kunz/cmp-npm'
+	-- use 'rafamadriz/friendly-snippets'
 	use 'MunifTanjim/prettier.nvim' -- Prettier plugin for Neovim's built-in LSP client
 
-	-- Use Neovim as a language server to inject LSP diagnostics, code actions, and more via Lua
+	-- Diagnostics, code actions, and more via Lua
 	use 'jose-elias-alvarez/null-ls.nvim'
 
 	if is_bootstrap then

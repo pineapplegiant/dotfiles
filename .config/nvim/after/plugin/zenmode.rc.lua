@@ -1,9 +1,9 @@
 -------------------------------------
 -- Zenmode
--- See `:help Zenmode`
+-- See `:h zen-mode`
 -------------------------------------
-local status, twilight = pcall(require, "twilight")
-local status2, zenmode = pcall(require, "zen-mode")
+local status, twilight = pcall(require, 'twilight')
+local status2, zenmode = pcall(require, 'zen-mode')
 
 if (not status and not status2) then return end
 

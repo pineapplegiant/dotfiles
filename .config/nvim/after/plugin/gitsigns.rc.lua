@@ -2,7 +2,7 @@
 -- Gitsigns
 -- See `:help gitsigns.txt`
 -------------------------------------
-local status, gitsigns = pcall(require, "gitsigns")
+local status, gitsigns = pcall(require, 'gitsigns')
 if (not status) then return end
 
 gitsigns.setup {

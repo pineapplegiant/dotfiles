@@ -67,7 +67,6 @@ SPACESHIP_PROMPT_ORDER=(
 #----------------------------------------------------------------------
 #                       ALIASES
 #----------------------------------------------------------------------
-
 # System Stuff
     alias rm='safe-rm'                       # Safe-RM
     alias dog='ccat'                         # Use that new ccat plugin
@@ -84,11 +83,13 @@ SPACESHIP_PROMPT_ORDER=(
     alias alrc='vim ~/.config/alacritty.yml'             # Alacritty settings
 
 # EXA > ls
-    alias l="exa -FG --git"   # Just make ls  chill
-    alias ls="exa -FG --git"  # Make ls pretty
-    alias ll="exa -l --git"   # ls long tag
-    alias s="exa -ahlF"
-    alias ss="exa -aF --git"
+if command -v exa >/dev/null; then
+	alias l="exa -FG --git --icons"   # Just make ls  chill
+	alias ls="exa -FG --git --icons"  # Make ls pretty
+	alias ll="exa -l --git --icons"   # ls long tag
+	alias s="exa -ahlF --icons"
+	alias ss="exa -aF --git --icons"
+fi
 
 # Safety aliases
     alias rm="rm -iv"         # Make rm safer
@@ -176,6 +177,12 @@ SPACESHIP_PROMPT_ORDER=(
     {
          tmux rename-window $@
     }
+# Tmux script to rename session
+    function tsesh()
+    {
+         tmux rename-session $@
+    }
+
 
 # Kill a specific tmux session
 function tkill()
