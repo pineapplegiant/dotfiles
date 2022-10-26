@@ -53,8 +53,14 @@ require('packer').startup(function(use)
 	use { 'folke/todo-comments.nvim', requires = { 'nvim-lua/plenary.nvim' } } -- Pretty Todo comments
 
 	-- FILE TREE / MOVEMENT
-	use { 'kyazdani42/nvim-tree.lua', requires = { 'kyazdani42/nvim-web-devicons' }} 
-	use 'ggandor/leap.nvim'
+	use { 'kyazdani42/nvim-tree.lua', requires = { 'kyazdani42/nvim-web-devicons' }}
+	use { 'phaazon/hop.nvim',
+		branch = 'v2', -- optional but strongly recommended
+		config = function()
+			-- you can configure Hop the way you like here; see :h hop-config
+			require 'hop'.setup { keys = 'etovxqpdygfblzhckisuran' }
+		end
+	}
 
 	-- OLD BUSTED
 	use 'aserowy/tmux.nvim' -- Navigate tmux panes splits better
