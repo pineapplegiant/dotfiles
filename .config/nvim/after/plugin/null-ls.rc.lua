@@ -11,7 +11,7 @@ local completion = null_ls.builtins.completion
 
 local sources = {
 	formatting.prettier.with({ extra_args = { "--no-semi", "--single-quote", "--jsx-single-quote" } }),
-	formatting.eslint,
+	-- formatting.eslint,
 	formatting.autopep8,
 	formatting.stylua,
 	formatting.clang_format,

@@ -82,7 +82,7 @@ require('packer').startup(function(use)
 		"williamboman/mason-lspconfig.nvim",
 		"neovim/nvim-lspconfig",
 	}
-	use { 'glepnir/lspsaga.nvim', branch = 'main', } --More Ui for completion
+	-- use { 'glepnir/lspsaga.nvim', branch = 'main', } --More Ui for completion
 	use {'onsails/lspkind-nvim'} -- vscode-like pictograms for neovim lsp completion items
 	use 'simrat39/rust-tools.nvim' -- rust-tools LSP stuff
 
@@ -94,8 +94,9 @@ require('packer').startup(function(use)
 	use 'hrsh7th/cmp-nvim-lua'
 	use 'L3MON4D3/LuaSnip'
 	use 'saadparwaiz1/cmp_luasnip'
+	use "andersevenrud/cmp-tmux"
 	use 'David-Kunz/cmp-npm'
-	-- use 'rafamadriz/friendly-snippets'
+	use 'rafamadriz/friendly-snippets'
 	use 'MunifTanjim/prettier.nvim' -- Prettier plugin for Neovim's built-in LSP client
 
 	-- Diagnostics, code actions, and more via Lua

@@ -96,6 +96,11 @@ keymap.set('n', ',yaml', ':-1read $XDG_CONFIG_HOME/nvim/snippets/yaml.md<CR>', {
 keymap.set('n', ',mlk', ':read $XDG_CONFIG_HOME/nvim/snippets/mlk.txt<CR>', { desc = 'MLK Speech Snippet' })
 keymap.set('n', ',snap', ':read $XDG_CONFIG_HOME/nvim/snippets/snap.md<CR>', { desc = 'Snap keymap' })
 
+-- See `:help vim.diagnostic.*` for documentation on any of the below functions
+local opts = { noremap=true, silent=true }
+keymap.set('n', '[d', vim.diagnostic.goto_prev, opts)
+keymap.set('n', ']d', vim.diagnostic.goto_next, opts)
+
 --TODO: Convert to tab code
 --    " Expose TrimWhitespace Command to remove spaces
 --    command! -nargs=? -range=% -complete=custom,s:TrimCompletionOptions

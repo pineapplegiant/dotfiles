@@ -1,5 +1,5 @@
 ------------------------------------
--- Nvim-cmp
+-- Completion engine - Nvim-cmp
 -- Complete the things
 -- :h `nvim-cmp`
 -------------------------------------
@@ -8,6 +8,23 @@ local kind_status, lspkind = pcall(require, 'lspkind')
 local luasnip_status, luasnip = pcall(require, 'luasnip')
 
 if (not status) and (not kind_status) and (not luasnip_status) then return end
+
+local cmp_sources = {
+	{ name = 'nvim_lsp' },
+	{ name = 'nvim_lua' },
+	{ name = 'luasnip' },
+	{ name = 'buffer' },
+	{ name = 'tmux' },
+	{ name = 'path' },
+}
+
+-- Check NPM Completion exists
+local npmStatus, cmp_npm = pcall(require,'cmp-npm')
+if (npmStatus) then
+	cmp_npm.setup({})
+	table.insert(cmp_sources, {name = 'npm', keyword_length = 4})
+end
+
 
 --   פּ ﯟ   some other good icons
 local kind_icons = {
@@ -56,24 +73,28 @@ cmp.setup({
 			behavior = cmp.ConfirmBehavior.Replace,
 			select = true,
 		}),
-		["<Tab>"] = function(fallback)
-			if cmp.visible() then
-				cmp.select_next_item()
-			elseif luasnip.expand_or_jumpable() then
-				luasnip.expand_or_jump()
-			else
-				fallback()
-			end
-		end,
-		["<S-Tab>"] = function(fallback)
-			if cmp.visible() then
-				cmp.select_prev_item()
-			elseif luasnip.jumpable(-1) then
-				luasnip.jump(-1)
-			else
-				fallback()
-			end
-		end,
+		['<TAB>'] = cmp.mapping.confirm({
+			behavior = cmp.ConfirmBehavior.Replace,
+			select = true
+		}),
+		-- ["<Tab>"] = function(fallback)
+		-- 	if cmp.visible() then
+		-- 		cmp.select_next_item()
+		-- 	elseif luasnip.expand_or_jumpable() then
+		-- 		luasnip.expand_or_jump()
+		-- 	else
+		-- 		fallback()
+		-- 	end
+		-- end,
+		-- ["<S-Tab>"] = function(fallback)
+		-- 	if cmp.visible() then
+		-- 		cmp.select_prev_item()
+		-- 	elseif luasnip.jumpable(-1) then
+		-- 		luasnip.jump(-1)
+		-- 	else
+		-- 		fallback()
+		-- 	end
+		-- end,
 	},
 	formatting = {
 		fields = { "kind", "abbr", "menu" },
@@ -91,18 +112,13 @@ cmp.setup({
 		  return vim_item
 		end,
 	},
-	sources = {
-		{ name = "nvim_lsp" },
-		{ name = 'nvim_lua' },
-		{ name = "luasnip" },
-		{ name = "buffer" },
-		{ name = "path" },
-	},
+	sources = cmp.config.sources(cmp_sources),
 	confirm_opts = {
 		behavior = cmp.ConfirmBehavior.Replace,
 		select = false,
 	},
 	window = {
+		completion = cmp.config.window.bordered(),
 		documentation = cmp.config.window.bordered(),
 	},
 	experimental = {
