@@ -34,7 +34,7 @@ end
 if pcall(try_color_scheme, gmos_colorscheme, colorscheme_opts) then
 	--"no errors in loading colorscheme"
 else
-	print("Colorscheme", colorscheme_set, "is not installed")
+	print("Colorscheme", gmos_colorscheme, "is not installed")
 end
 
 

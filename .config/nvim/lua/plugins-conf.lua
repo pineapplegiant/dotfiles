@@ -1,20 +1,35 @@
--- Plugins.lua
--- Install packer bootstrap
-local install_path = vim.fn.stdpath 'data' .. '/site/pack/packer/start/packer.nvim'
+-- auto install packer if not installed
+local ensure_packer = function()
+	local fn = vim.fn
+	local install_path = fn.stdpath("data") .. "/site/pack/packer/start/packer.nvim"
+	if fn.empty(fn.glob(install_path)) > 0 then
+		fn.system({ "git", "clone", "--depth", "1", "https://github.com/wbthomason/packer.nvim", install_path })
+		vim.cmd([[packadd packer.nvim]])
+		return true
+	end
+	return false
+end
+local packer_bootstrap = ensure_packer() -- true if packer was just installed
 
-local is_bootstrap = false
+-- autocommand that reloads neovim and installs/updates/removes plugins
+-- when file is saved
+vim.cmd([[ 
+  augroup packer_user_config
+    autocmd!
+    autocmd BufWritePost plugins-setup.lua source <afile> | PackerSync
+  augroup end
+]])
 
--- if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
--- 	is_bootstrap = true
--- 	vim.fn.execute('!git clone https://github.com/wbthomason/packer.nvim ' .. install_path)
--- 	vim.cmd [[packadd packer.nvim]]
--- end
-
+-- import packer safely
+local status, packer = pcall(require, "packer")
+if not status then
+	return
+end
 
 -------------------------------------
 -- Packer
 -------------------------------------
-require('packer').startup(function(use)
+packer.startup(function(use)
 
 	-- REQUIRED
 	use 'wbthomason/packer.nvim' -- Package manager
@@ -38,7 +53,12 @@ require('packer').startup(function(use)
 
 
 	-- TREESITTER
-	use 'nvim-treesitter/nvim-treesitter' -- Highlight, edit, and navigate code
+	use({
+		"nvim-treesitter/nvim-treesitter",
+		run = function()
+			require("nvim-treesitter.install").update({ with_sync = true })
+		end,
+	})
 	use 'windwp/nvim-ts-autotag' -- Html autotag stuff
 	use 'nvim-treesitter/nvim-treesitter-textobjects' -- Additional textobjects for treesitter
 	use {
@@ -82,7 +102,7 @@ require('packer').startup(function(use)
 		"williamboman/mason-lspconfig.nvim",
 		"neovim/nvim-lspconfig",
 	}
-	-- use { 'glepnir/lspsaga.nvim', branch = 'main', } --More Ui for completion
+	use { 'glepnir/lspsaga.nvim', branch = 'main', } --More LSP UI
 	use {'onsails/lspkind-nvim'} -- vscode-like pictograms for neovim lsp completion items
 	use 'simrat39/rust-tools.nvim' -- rust-tools LSP stuff
 
@@ -101,16 +121,17 @@ require('packer').startup(function(use)
 
 	-- Diagnostics, code actions, and more via Lua
 	use 'jose-elias-alvarez/null-ls.nvim'
+	use("jayp0521/mason-null-ls.nvim")
 
-	if is_bootstrap then
-		require('packer').sync()
+	if packer_bootstrap then
+		require("packer").sync()
 	end
 end)
 
 
 -- When we are bootstrapping a configuration,
 -- don't execute the rest of the init.lua
-if is_bootstrap then
+if packer_bootstrap then
 	print '=================================='
 	print '    Plugins are being installed'
 	print '    Restart nvim pls, k thx'
