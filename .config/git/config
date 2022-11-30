@@ -14,7 +14,6 @@
     c = "commit"
     co = "checkout"
     br = "branch"
-    ci = "commit"
     st = "status"
     d = "diff"
     dt = "difftool"

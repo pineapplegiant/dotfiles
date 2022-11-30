@@ -79,6 +79,13 @@ telescope.setup {
 
 require('telescope').load_extension('fzf')
 
+
+vim.keymap.set('n', '<C-a>',
+	function() builtin.builtin()
+	end,
+	{ desc = 'Call Telescope' }
+)
+
 vim.keymap.set('n', '<C-p>',
 	function() builtin.find_files({
 			no_ignore = false,
@@ -88,13 +95,13 @@ vim.keymap.set('n', '<C-p>',
 )
 
 vim.keymap.set('n', '<C-b>',
-	function() builtin.buffers() end,
-	{ desc = 'Search Buffers in Telescope' }
+	function() builtin.current_buffer_fuzzy_find()
+	end,
+	{ desc = 'Search in File' }
 )
 
--- Tmux wont let me map shift unfortunately
--- vim.keymap.set('n', '<C-S-f>',
-vim.keymap.set('n', '<C-g>',
+-- Tmux wont let me map shift unfortunately, so normal this for now -> vim.keymap.set('n', '<C-S-f>',
+vim.keymap.set('n', '<C-f>',
 	function() builtin.live_grep() end,
 	{ desc = 'Grep for files in Telescope' }
 )
@@ -104,23 +111,3 @@ vim.keymap.set('n', '<C-c>',
 	end,
 	{ desc = 'Fzf find old files' }
 )
-
-vim.keymap.set('n', '<C-f>',
-	function() builtin.current_buffer_fuzzy_find()
-	end,
-	{ desc = 'Search in File' }
-)
-
---
--- vim.keymap.set('n', '<C-f>',
--- 	':SearchBoxMatchAll clear_matches=false show_matches=true <CR>',
--- 	{ desc = 'Search in File' }
--- )
---
--- vim.keymap.set('n', '<C-r>',
--- 	':SearchBoxReplace<CR>',
--- 	{ desc = 'Search and Replace in File' }
--- )
---
--- vim.keymap.set('n', ',<leader>', ':SearchBoxClear<CR>',
--- 	{ desc = 'Clear SearchBox Highlights' })

@@ -49,7 +49,7 @@ keymap.set('n', '+', '<C-a>', { desc = 'Increment number under cursor' })
 keymap.set('n', '-', '<C-x>', { desc = 'Decrement number under cursor' })
 
 -- Select all
-keymap.set('n', '<C-a>', 'gg<S-v>G', { desc = 'Select all text in file' })
+-- keymap.set('n', '<C-a>', 'gg<S-v>G', { desc = 'Select all text in file' })
 
 -- Front and end of line movement
 keymap.set({ 'n', 'v', }, 'B', '^', { desc = 'Move to the Beginning of the line' })

@@ -66,11 +66,19 @@ packer.startup(function(use)
 		requires = { 'folke/twilight.nvim' }
 	}
 
+
 	-- FUNCTIONALITY
 	use 'JoosepAlviste/nvim-ts-context-commentstring'
 	use 'numToStr/Comment.nvim' -- "gc" to comment visual regions/lines
 	use 'windwp/nvim-autopairs' -- Auto close brackets, etc.
 	use { 'folke/todo-comments.nvim', requires = { 'nvim-lua/plenary.nvim' } } -- Pretty Todo comments
+
+	-- Markdown Preview
+	use({
+		"iamcco/markdown-preview.nvim",
+		run = function() vim.fn["mkdp#util#install"]() end,
+	})
+
 
 	-- FILE TREE / MOVEMENT
 	use { 'kyazdani42/nvim-tree.lua', requires = { 'kyazdani42/nvim-web-devicons' }}
@@ -81,6 +89,7 @@ packer.startup(function(use)
 			require 'hop'.setup { keys = 'etovxqpdygfblzhckisuran' }
 		end
 	}
+
 
 	-- OLD BUSTED
 	use 'aserowy/tmux.nvim' -- Navigate tmux panes splits better
@@ -106,6 +115,7 @@ packer.startup(function(use)
 	use {'onsails/lspkind-nvim'} -- vscode-like pictograms for neovim lsp completion items
 	use 'simrat39/rust-tools.nvim' -- rust-tools LSP stuff
 
+
 	-- Autocompletion
 	use 'hrsh7th/nvim-cmp'
 	use 'hrsh7th/cmp-buffer'
@@ -118,6 +128,7 @@ packer.startup(function(use)
 	use 'David-Kunz/cmp-npm'
 	use 'rafamadriz/friendly-snippets'
 	use 'MunifTanjim/prettier.nvim' -- Prettier plugin for Neovim's built-in LSP client
+
 
 	-- Diagnostics, code actions, and more via Lua
 	use 'jose-elias-alvarez/null-ls.nvim'

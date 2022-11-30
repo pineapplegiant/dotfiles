@@ -38,6 +38,7 @@ require("plugins.lsp.mason-lsp-setup") -- $XDG_CONFIG_HOME/nvim/lua/plugins/lsp/
 require("plugins.lsp.lspsaga")   -- $XDG_CONFIG_HOME/nvim/lua/plugins/lsp/lspsaga.lua
 require("plugins.lsp.null-ls")   -- $XDG_CONFIG_HOME/nvim/lua/plugins/lsp/null-ls.lua
 
+-- ETC
 require("plugins.autopairs")     -- $XDG_CONFIG_HOME/nvim/lua/plugins/autopairs.lua
 require("plugins.treesitter")    -- $XDG_CONFIG_HOME/nvim/lua/plugins/treesitter.lua
 require("plugins.gitsigns")      -- $XDG_CONFIG_HOME/nvim/lua/plugins/gitsigns.lua
