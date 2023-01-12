@@ -16,6 +16,7 @@ local cmp_sources = {
 	{ name = 'buffer' },
 	{ name = 'tmux' },
 	{ name = 'path' },
+	{ name = 'calc' },
 }
 
 -- Check NPM Completion exists
@@ -24,6 +25,14 @@ if (npmStatus) then
 	cmp_npm.setup({})
 	table.insert(cmp_sources, {name = 'npm', keyword_length = 4})
 end
+
+-- Check Git Completion exists
+local gitStatus, cmp_git = pcall(require,'cmp_git')
+if (gitStatus) then
+	cmp_git.setup({})
+	table.insert(cmp_sources, {name = 'git'})
+end
+
 
 
 --   פּ ﯟ   some other good icons
@@ -113,6 +122,15 @@ cmp.setup({
 		end,
 	},
 	sources = cmp.config.sources(cmp_sources),
+
+	-- Set configuration for specific filetype.
+	cmp.setup.filetype('gitcommit', {
+		sources = cmp.config.sources({
+		  { name = 'cmp_git' }, -- You can specify the `cmp_git` source if you were installed it.
+		}, {
+		  { name = 'buffer' },
+		})
+	}),
 	confirm_opts = {
 		behavior = cmp.ConfirmBehavior.Replace,
 		select = false,

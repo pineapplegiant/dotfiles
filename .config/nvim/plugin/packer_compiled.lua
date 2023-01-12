@@ -99,6 +99,11 @@ _G.packer_plugins = {
     path = "/Users/gmo/dotfiles/.local/share/nvim/site/pack/packer/start/cmp-buffer",
     url = "https://github.com/hrsh7th/cmp-buffer"
   },
+  ["cmp-git"] = {
+    loaded = true,
+    path = "/Users/gmo/dotfiles/.local/share/nvim/site/pack/packer/start/cmp-git",
+    url = "https://github.com/petertriho/cmp-git"
+  },
   ["cmp-npm"] = {
     loaded = true,
     path = "/Users/gmo/dotfiles/.local/share/nvim/site/pack/packer/start/cmp-npm",
@@ -170,6 +175,11 @@ _G.packer_plugins = {
     path = "/Users/gmo/dotfiles/.local/share/nvim/site/pack/packer/start/lualine.nvim",
     url = "https://github.com/nvim-lualine/lualine.nvim"
   },
+  ["markdown-preview.nvim"] = {
+    loaded = true,
+    path = "/Users/gmo/dotfiles/.local/share/nvim/site/pack/packer/start/markdown-preview.nvim",
+    url = "https://github.com/iamcco/markdown-preview.nvim"
+  },
   ["mason-lspconfig.nvim"] = {
     loaded = true,
     path = "/Users/gmo/dotfiles/.local/share/nvim/site/pack/packer/start/mason-lspconfig.nvim",
@@ -199,6 +209,11 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/gmo/dotfiles/.local/share/nvim/site/pack/packer/start/null-ls.nvim",
     url = "https://github.com/jose-elias-alvarez/null-ls.nvim"
+  },
+  nvim = {
+    loaded = true,
+    path = "/Users/gmo/dotfiles/.local/share/nvim/site/pack/packer/start/nvim",
+    url = "https://github.com/spaceduck-theme/nvim"
   },
   ["nvim-autopairs"] = {
     loaded = true,
@@ -275,10 +290,15 @@ _G.packer_plugins = {
     path = "/Users/gmo/dotfiles/.local/share/nvim/site/pack/packer/start/rust-tools.nvim",
     url = "https://github.com/simrat39/rust-tools.nvim"
   },
-  spaceduck = {
+  ["solarized.nvim"] = {
     loaded = true,
-    path = "/Users/gmo/dotfiles/.local/share/nvim/site/pack/packer/start/spaceduck",
-    url = "https://github.com/pineapplegiant/spaceduck"
+    path = "/Users/gmo/dotfiles/.local/share/nvim/site/pack/packer/start/solarized.nvim",
+    url = "https://github.com/shaunsingh/solarized.nvim"
+  },
+  ["symbols-outline.nvim"] = {
+    loaded = true,
+    path = "/Users/gmo/dotfiles/.local/share/nvim/site/pack/packer/start/symbols-outline.nvim",
+    url = "https://github.com/simrat39/symbols-outline.nvim"
   },
   ["telescope-fzf-native.nvim"] = {
     loaded = true,

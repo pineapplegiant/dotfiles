@@ -9,12 +9,11 @@ set.termguicolors = true -- If term supports ui color then enable
 vim.o.background = 'dark' -- Tell nvim we're using a dark theme
 --set.winblend = 0 -- Transparency for floating window
 --set.pumblend = 5 -- Pseudo transparency for popup-menus
-
 -- SET COLORSCHEME HERE
 local gmos_colorscheme = 'catppuccin' -- catppuccin, tokyonight, vscode
 local colorscheme_opts = 'mocha' -- ex: {tokyonight: [dark, storm, light] {catppuccin: [latte, frappe, macchiato, mocha]}
 
--- Colorscheme Error Wrapper
+--Colorscheme Error Wrapper
 local function try_color_scheme(theme, theme_opts)
 	local color_theme_string = "colorscheme " .. theme
 

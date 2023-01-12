@@ -2,12 +2,14 @@
 -- Mason.nvim
 -- LSPConfig for the lazy
 -------------------------------------
-local status, mason = pcall(require, "mason")
-local config_status, mason_config = pcall(require, "mason-lspconfig")
-local rust_status, rust_tools = pcall(require, "rust-tools")
-local lspconfig_status, lsp_config = pcall(require, "lspconfig")
-if (not status) and not config_status and (not lspconfig_status)(not rust_status) then
-	return
+local deps_ok, mason, mason_config, rust_tools, lsp_config = pcall(function()
+    return require "mason",
+        require "mason-lspconfig",
+        require "rust-tools",
+        require "lspconfig"
+end)
+if not deps_ok then
+    return
 end
 
 -- Use an on_attach function to only map the following keys

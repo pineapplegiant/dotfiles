@@ -23,7 +23,6 @@ require("plugins.hop")           -- $XDG_CONFIG_HOME/nvim/lua/plugins/hop.lua
 require("plugins.indent-blankline") -- $XDG_CONFIG_HOME/nvim/lua/plugins/indent-blankline.lua
 require("plugins.lualine")       -- $XDG_CONFIG_HOME/nvim/lua/plugins/lualine.lua
 require("plugins.neoscroll")     -- $XDG_CONFIG_HOME/nvim/lua/plugins/neoscroll.lua
-require("plugins.nvim-cmp")      -- $XDG_CONFIG_HOME/nvim/lua/plugins/nvim-cmp.lua
 require("plugins.nvim-surround") -- $XDG_CONFIG_HOME/nvim/lua/plugins/nvim-surround.lua
 require("plugins.nvim-tree")     -- $XDG_CONFIG_HOME/nvim/lua/plugins/nvim-tree.lua
 require("plugins.prettier")      -- $XDG_CONFIG_HOME/nvim/lua/plugins/prettier.lua
@@ -37,6 +36,7 @@ require("plugins.zenmode")       -- $XDG_CONFIG_HOME/nvim/lua/plugins/zenmode.lu
 require("plugins.lsp.mason-lsp-setup") -- $XDG_CONFIG_HOME/nvim/lua/plugins/lsp/mason-lsp-setup.lua
 require("plugins.lsp.lspsaga")   -- $XDG_CONFIG_HOME/nvim/lua/plugins/lsp/lspsaga.lua
 require("plugins.lsp.null-ls")   -- $XDG_CONFIG_HOME/nvim/lua/plugins/lsp/null-ls.lua
+require("plugins.nvim-cmp")      -- $XDG_CONFIG_HOME/nvim/lua/plugins/nvim-cmp.lua
 
 -- ETC
 require("plugins.autopairs")     -- $XDG_CONFIG_HOME/nvim/lua/plugins/autopairs.lua

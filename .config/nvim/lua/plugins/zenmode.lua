@@ -1,11 +1,15 @@
 -------------------------------------
 -- Zenmode
 -- See `:h zen-mode`
+-- Toggle Zen Mode with `:ZenMode`
 -------------------------------------
-local status, twilight = pcall(require, 'twilight')
-local status2, zenmode = pcall(require, 'zen-mode')
-
-if (not status and not status2) then return end
+local deps_ok, twilight, zenmode = pcall(function()
+    return require "twilight",
+        require "zen-mode"
+end)
+if not deps_ok then
+    return
+end
 
 twilight.setup {
   dimming = {

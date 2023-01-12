@@ -38,7 +38,11 @@ packer.startup(function(use)
 	-- COLORSCHEMES
 	use 'folke/tokyonight.nvim' -- Tokynight Theme
 	use 'rebelot/kanagawa.nvim' -- Kanagawa Theme?? :3
-	use 'pineapplegiant/spaceduck' -- Spaceduck <33
+	-- use 'pineapplegiant/spaceduck' -- Spaceduck <33
+	use 'shaunsingh/solarized.nvim' --NeoSolorazide
+
+	use({ "spaceduck-theme/nvim", branch = "dev" }) -- Spaceduck V2<33
+
 	use 'rose-pine/neovim' -- RosePine
 	use { 'catppuccin/nvim', as = 'catppuccin' }
 	use 'Mofiqul/vscode.nvim' -- VSCODE Theme :')'
@@ -114,6 +118,7 @@ packer.startup(function(use)
 	use { 'glepnir/lspsaga.nvim', branch = 'main', } --More LSP UI
 	use {'onsails/lspkind-nvim'} -- vscode-like pictograms for neovim lsp completion items
 	use 'simrat39/rust-tools.nvim' -- rust-tools LSP stuff
+	use 'simrat39/symbols-outline.nvim' --Outline of symbols
 
 
 	-- Autocompletion
@@ -122,6 +127,7 @@ packer.startup(function(use)
 	use 'hrsh7th/cmp-path'
 	use 'hrsh7th/cmp-nvim-lsp'
 	use 'hrsh7th/cmp-nvim-lua'
+	use({"petertriho/cmp-git", requires = "nvim-lua/plenary.nvim"})
 	use 'L3MON4D3/LuaSnip'
 	use 'saadparwaiz1/cmp_luasnip'
 	use "andersevenrud/cmp-tmux"
