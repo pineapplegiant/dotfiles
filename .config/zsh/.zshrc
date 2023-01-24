@@ -1,8 +1,5 @@
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-# FOR Z JUMPING
-. /usr/local/etc/profile.d/z.sh
-
 #----------------------------------------------------------------------
 #       Set Spaceship ZSH as a prompt "npm install -g spaceship"
 #----------------------------------------------------------------------
@@ -68,28 +65,37 @@ SPACESHIP_PROMPT_ORDER=(
 #                       ALIASES
 #----------------------------------------------------------------------
 # System Stuff
-    alias rm='safe-rm'                       # Safe-RM
-    alias dog='ccat'                         # Use that new ccat plugin
 
-# Nvim
-    export VISUAL=nvim
-    alias v=nvim
-    alias vi=nvim
-    alias vim=nvim
-    alias vimrc='vim $XDG_CONFIG_HOME/nvim/init.lua'      # Open nvimrc in nvim
-    alias rc='vim $XDG_CONFIG_HOME/zsh/.zshrc'           # Get to bash-profile faster
-    alias bp='vim $XDG_CONFIG_HOME/shell/profile'        # Get to env faster
-    alias tmuxrc='vim $XDG_CONFIG_HOME/tmux/tmux.conf'   # Tmux settings
-    alias alrc='vim ~/.config/alacritty.yml'             # Alacritty settings
+# Safe-RM ALias
+	type safe-rm >/dev/null 2>&1 && alias rm='safe-rm'
 
-# EXA > ls
-if command -v exa >/dev/null; then
-	alias l="exa -FG --git --icons"   # Just make ls  chill
-	alias ls="exa -FG --git --icons"  # Make ls pretty
-	alias ll="exa -l --git --icons"   # ls long tag
-	alias s="exa -ahlF --icons"
-	alias ss="exa -aF --git --icons"
-fi
+# Nvim alias
+	if type nvim >/dev/null 2>&1; then
+		export VISUAL=nvim
+		alias v=nvim
+		alias vi=nvim
+		alias vim=nvim
+		alias vimrc='vim $XDG_CONFIG_HOME/nvim/init.lua'      # Open nvimrc in nvim
+		alias rc='vim $XDG_CONFIG_HOME/zsh/.zshrc'           # Get to bash-profile faster
+		alias bp='vim $XDG_CONFIG_HOME/shell/profile'        # Get to env faster
+		alias tmuxrc='vim $XDG_CONFIG_HOME/tmux/tmux.conf'   # Tmux settings
+		alias alrc='vim ~/.config/alacritty.yml'             # Alacritty settings
+	fi
+
+# alias to EXA if exists
+	if type exa >/dev/null 2>&1; then
+		alias l="exa -FG --git --icons"   # Just make ls  chill
+		alias ls="exa -FG --git --icons"  # Make ls pretty
+		alias ll="exa -l --git --icons"   # ls long tag
+		alias s="exa -ahlF --icons"
+		alias ss="exa -aF --git --icons"
+	else
+		alias l="ls -FG"
+		alias ls="ls -FG"
+		alias ll="ls -l"   # ls long tag
+		alias s="exa -ahlF"
+		alias ss="ls -aF"
+	fi
 
 # Safety aliases
     alias rm="rm -iv"         # Make rm safer
@@ -97,11 +103,14 @@ fi
     alias mv="mv -i"          # Make mv safer
 
 # Laziness at its finest
-    alias rr="source $XDG_CONFIG_HOME/zsh/.zshrc && tmux source-file $XDG_CONFIG_HOME/tmux/tmux.conf" # Source bash profile & Tmux
-    alias tfix="tmux select-layout even-horizontal"
-    alias tfixv="tmux select-layout even-vertical"
-    alias tfixy="tmux resize-pane -y 40"
-    alias tfixx="tmux resize-pane -x 145"
+	if type tmux >/dev/null 2>&1; then
+		alias rr="source $XDG_CONFIG_HOME/zsh/.zshrc && tmux source-file $XDG_CONFIG_HOME/tmux/tmux.conf" # Source bash profile & Tmux
+		alias tfix="tmux select-layout even-horizontal"
+		alias tfixv="tmux select-layout even-vertical"
+		alias tfixy="tmux resize-pane -y 40"
+		alias tfixx="tmux resize-pane -x 145"
+	fi
+
     alias ..="cd .."          # Shortcut up a directory
     alias ...="cd ../.."      # Shorcut 2 directory
     alias c="clear"           # Faster clearing of the screen
@@ -248,40 +257,37 @@ function tkill()
     preexec() { echo -ne '\e[5 q' ;} # Use beam shape cursor for each new prompt.
 
 #----------------------------------------------------------------------
-#                       Better then bash
+#                       ZSH Settings
 #----------------------------------------------------------------------
 
 # Setup NVM
 export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
 
-# Load zsh-autosuggestions
-    source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+# Load zsh plugins
+	if $BREW_INSTALLED; then
+		source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+		source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+		source /usr/local/share/zsh-history-substring-search/zsh-history-substring-search.zsh
 
-# Load zsh-syntax-highlighting
-    source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+	# To search via vim keybindings
+		bindkey -M vicmd 'k' history-substring-search-up
+		bindkey -M vicmd 'j' history-substring-search-down
 
-# Load zsh-history-substring-search
-    source /usr/local/share/zsh-history-substring-search/zsh-history-substring-search.zsh
+		export PATH="/usr/local/sbin:$PATH"
+		fpath+=${ZDOTDIR:-~}/.zsh_functions
 
-# To search via vim keybindings
-    bindkey -M vicmd 'k' history-substring-search-up
-    bindkey -M vicmd 'j' history-substring-search-down
+	# Setup fzf
+		if [[ ! "$PATH" == */usr/local/opt/fzf/bin* ]]; then
+		  export PATH="${PATH:+${PATH}:}/usr/local/opt/fzf/bin"
+		fi
 
-    export PATH="/usr/local/sbin:$PATH"
-    fpath+=${ZDOTDIR:-~}/.zsh_functions
+	# Auto-completion
+		[[ $- == *i* ]] && source "/usr/local/opt/fzf/shell/completion.zsh" 2> /dev/null
 
-# Setup fzf
-    if [[ ! "$PATH" == */usr/local/opt/fzf/bin* ]]; then
-      export PATH="${PATH:+${PATH}:}/usr/local/opt/fzf/bin"
-    fi
-
-# Auto-completion
-    [[ $- == *i* ]] && source "/usr/local/opt/fzf/shell/completion.zsh" 2> /dev/null
-
-# Key bindings
-    source "/usr/local/opt/fzf/shell/key-bindings.zsh"
-
+	# Key bindings
+		source "/usr/local/opt/fzf/shell/key-bindings.zsh"
+	fi
 
 # Set GPG
 export GPG_TTY=$(tty)
