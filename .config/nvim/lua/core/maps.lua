@@ -37,19 +37,12 @@ keymap.set('n', '<F10>', ':source $MYVIMRC<CR>', { desc = 'Source VIMRC' })
 keymap.set('n', '<F6>', ':r !date', { desc = "Quick Timestamp" })
 keymap.set('n', ',gcc', ':!tmux send-keys -t1 "\\!! " ENTER <CR><CR>', { desc = 'Run last command in tmux window' })
 
--- Remap J and K to move down blocks
--- keymap.set({ 'n', 'v' }, 'J', '}', { desc = 'Jump down faster between blocks' })
--- keymap.set({ 'n', 'v' }, 'K', '{', { desc = 'Jump up faster between blocks', noremap = true })
-
 -- U to redo
 keymap.set('n', 'U', '<C-R>', { desc = 'Redo last change' })
 
 -- Increment/decrement
 keymap.set('n', '+', '<C-a>', { desc = 'Increment number under cursor' })
 keymap.set('n', '-', '<C-x>', { desc = 'Decrement number under cursor' })
-
--- Select all
--- keymap.set('n', '<C-a>', 'gg<S-v>G', { desc = 'Select all text in file' })
 
 -- Front and end of line movement
 keymap.set({ 'n', 'v', }, 'B', '^', { desc = 'Move to the Beginning of the line' })
@@ -69,23 +62,9 @@ keymap.set('n', 'gs', ':browse oldfiles<CR>', { desc = 'Browse old opened files'
 keymap.set('n', 'gn', ':bn<CR>', { desc = 'Cycle next buffer' })
 keymap.set('n', 'gp', ':bp<CR>', { desc = 'Cycle previous buffer' })
 
-
 -- Terminal
 keymap.set('t', 'hh', '<C-\\><C-n>', { desc = 'Exit normal mode when using terminal inside nvim' })
 
--- -- TODO: Terminal stuff
--- local function terminalCreate()
--- 	local time_now = os.date('%Y.%m.%d:%H.%M.%S')
--- 	local terminal_name = "terminal_" .. time_now
--- 	return terminal_name
--- end
-
--- keymap.set('n', '<leader>zb', ':new<CR>:resize 10<CR>:call terminalCreate()<CR>',
--- 	{ desc = 'Create a new terminal at bottom of buffer' })
--- keymap.set('n', '<leader>zz', 'call terminalCreate()<CR>', { desc = 'Create a new terminal in current page' })
--- keymap.set('n', '<leader>zv', ':vsplit<CR>:call terminalCreate()<CR>',
--- 	{ desc = 'Create a new terminal in a vertical split' })
---
 -- Old Snippets
 keymap.set('n', ',mock', ':-1read $XDG_CONFIG_HOME/nvim/snippets/mock.txt<CR>A', { desc = 'Mock snippet' })
 keymap.set('n', ',html', ':-1read $XDG_CONFIG_HOME/nvim/snippets/skeleton.html<CR>7jf>a', { desc = 'Base HTML' })
@@ -101,25 +80,7 @@ local opts = { noremap=true, silent=true }
 keymap.set('n', '[d', vim.diagnostic.goto_prev, opts)
 keymap.set('n', ']d', vim.diagnostic.goto_next, opts)
 
---TODO: Convert to tab code
---    " Expose TrimWhitespace Command to remove spaces
---    command! -nargs=? -range=% -complete=custom,s:TrimCompletionOptions
---      \ TrimWhitespace <line1>,<line2>call s:TrimWhitespace(<f-args>)
---
---    function! s:TrimWhitespace(...) abort
---      let confirm = a:0
---      execute a:firstline . ',' . a:lastline . 's/\s\+$//e' . (confirm ? 'c' : '')
---    endfunction
---
---    function! s:TrimCompletionOptions(A,L,P) abort
---      return "-confirm"
---    endfunction
---
---    function! TabFile() abort
---        set expandtab!
---        %retab!
---    endfunction
---
---    map <F9> :call TabFile()<CR>
---
---
+-- Close quickfix menu after selecting choice
+vim.api.nvim_create_autocmd( "FileType", {
+		pattern = {"qf"},
+		command = [[nnoremap <silent><buffer> <CR> <CR>:cclose<CR>]]})

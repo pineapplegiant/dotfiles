@@ -1,5 +1,8 @@
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
+# Give Z-lua a try
+eval "$(lua /usr/local/Cellar/z.lua/1.8.16/share/z.lua/z.lua --init zsh)"
+
 #----------------------------------------------------------------------
 #       Set Spaceship ZSH as a prompt "npm install -g spaceship"
 #----------------------------------------------------------------------
@@ -162,18 +165,6 @@ SPACESHIP_PROMPT_ORDER=(
     function google()
     {
         open $@ -a "Google Chrome"
-    }
-
-# Open in firefox
-    function firefox()
-    {
-        open $@ -a "Firefox"
-    }
-
-# Notion script
-    function notion()
-    {
-         pipenv run python /Users/Gmo/Blog/notion_scripts.py -f $@
     }
 
 # Tmux create session

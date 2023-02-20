@@ -6,7 +6,7 @@
 # Environmental variables are set here first
 
 # Set Work or Personal
-IS_WORK=true
+export IS_WORK=true
 
 # TODO: check if brew installed, should be packmanager
 if [ -d "/usr/local/" ] && type brew >/dev/null 2>&1; then
@@ -73,14 +73,7 @@ fi
 # FZF Default command
     export FZF_DEFAULT_COMMAND='rg --files'
 
-# Z cd Command Jumping ->
-	if $BREW_INSTALLED; then
-		. /usr/local/etc/profile.d/z.sh
-	fi
-
 # Neovim-Remote add to Path Python3
-    PATH=/Users/Gmo/Library/Python/3.7/bin:$PATH
-    PATH=/Library/Frameworks/Python.framework/Versions/3.8/bin:$PATH
     PATH=$HOME/.cargo/bin:$PATH
 
 # YARN PATH stuff
@@ -95,6 +88,7 @@ fi
 
 # Add Personal Scripts to my path
 	if $IS_WORK; then
-		PATH="$PATH:$HOME/dotfiles/.local/work"
+		PATH=$PATH:$HOME/dotfiles/.local/work/bin
 	fi
-    PATH="$PATH:$HOME/dotfiles/.local/bin"
+
+	PATH=$PATH:$HOME/dotfiles/.local/bin

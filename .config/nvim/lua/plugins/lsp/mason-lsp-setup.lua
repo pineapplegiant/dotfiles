@@ -36,7 +36,7 @@ local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
 -- Initial Servers Used for Mason
 local servers = {
-	"sumneko_lua",
+	"lua_ls",
 	"cssls",
 	"html",
 	"tsserver",
@@ -68,8 +68,8 @@ mason_config.setup_handlers({
 	["rust_analyzer"] = function()
 		rust_tools.setup({})
 	end,
-	["sumneko_lua"] = function()
-		lsp_config["sumneko_lua"].setup({
+	["lua_ls"] = function()
+		lsp_config["lua_ls"].setup({
 			settings = {
 				Lua = {
 					diagnostics = {
