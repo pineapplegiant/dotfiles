@@ -10,6 +10,9 @@
 -- Good starting reference: https://github.com/nvim-lua/kickstart.nvim/blob/master/init.lua
 
 -- General Settings, mappings, etc.
+-- disable netrw at the very start of your init.lua (strongly advised)
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
 require("plugins-conf")          -- $XDG_CONFIG_HOME/nvim/lua/plugins-conf.lua
 require("core.base")             -- $XDG_CONFIG_HOME/nvim/lua/core/base.lua
 require("core.maps")             -- $XDG_CONFIG_HOME/nvim/lua/core/maps.lua

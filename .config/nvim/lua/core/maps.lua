@@ -12,7 +12,7 @@ vim.g.localmapleader = "\\"
 -- Remap for dealing with word wrap
 keymap.set('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
 keymap.set('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
-keymap.set('n', '<leader>s', ':update<CR>', { desc = 'QuickSave with space key' })
+-- keymap.set('n', '<leader>s', ':update<CR>', { desc = 'QuickSave with space key' })
 keymap.set('n', '<C-S>', ':update<CR>', { desc = 'QuickSave with control key' })
 keymap.set('n', '<leader>q', ':q!<CR>', { desc = 'An attempt at quitting vim' })
 keymap.set('n', ',<leader>', ':nohlsearch<CR>', { desc = 'Turn off highlighted search' })

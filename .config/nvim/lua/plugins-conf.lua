@@ -40,12 +40,11 @@ packer.startup(function(use)
 	use 'rebelot/kanagawa.nvim' -- Kanagawa Theme?? :3
 	-- use 'pineapplegiant/spaceduck' -- Spaceduck <33
 	use 'shaunsingh/solarized.nvim' --NeoSolorazide
-
 	use({ "spaceduck-theme/nvim", branch = "dev" }) -- Spaceduck V2<33
-
 	use 'rose-pine/neovim' -- RosePine
 	use { 'catppuccin/nvim', as = 'catppuccin' }
 	use 'Mofiqul/vscode.nvim' -- VSCODE Theme :')'
+	use 'marko-cerovac/material.nvim'
 
 
 	-- PRETTY
