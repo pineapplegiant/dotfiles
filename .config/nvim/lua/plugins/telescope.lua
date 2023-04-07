@@ -18,7 +18,7 @@ local function generateOpts(opts)
 	sorting_strategy = "ascending",
 	layout_strategy = "center",
 	layout_config = {
-	  width = 80,
+	  width = 82,
 	  height = 28
 	},
 	border = true,

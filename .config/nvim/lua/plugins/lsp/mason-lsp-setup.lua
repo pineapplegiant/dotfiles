@@ -3,13 +3,10 @@
 -- LSPConfig for the lazy
 -------------------------------------
 local deps_ok, mason, mason_config, rust_tools, lsp_config = pcall(function()
-    return require "mason",
-        require "mason-lspconfig",
-        require "rust-tools",
-        require "lspconfig"
+	return require("mason"), require("mason-lspconfig"), require("rust-tools"), require("lspconfig")
 end)
 if not deps_ok then
-    return
+	return
 end
 
 -- Use an on_attach function to only map the following keys

@@ -114,43 +114,29 @@ n_tree.setup {
 	},
 }
 
-vim.keymap.set('n', '<C-n>', 
-	function() 
-		api.tree.toggle(false, true) 
-	end, 
+vim.keymap.set('n', '<C-n>',
+	function()
+		api.tree.toggle(false, true)
+	end,
 	{ desc = 'Toggle Nvim tree lua with no focus' }
 )
 
+-- Open Tree in current buffer when opening a directory
 local function open_nvim_tree(data)
-  -- buffer is a real file on the disk
-  local real_file = vim.fn.filereadable(data.file) == 1
 
-  -- buffer is a [No Name]
-  local no_name = data.file == "" and vim.bo[data.buf].buftype == ""
+  -- buffer is a directory
+  local directory = vim.fn.isdirectory(data.file) == 1
 
-  if not real_file and not no_name then
+  if not directory then
     return
   end
 
-  -- open the tree, find the file but don't focus it
-  require("nvim-tree.api").tree.toggle({ focus = false, find_file = true, })
+  -- change to the directory
+  vim.cmd.cd(data.file)
+
+  -- open the tree
+  require("nvim-tree.api").tree.open()
 end
 
 vim.api.nvim_create_autocmd({ "VimEnter" }, { callback = open_nvim_tree })
 
--- -- Ehh not really needed since I have telescope
--- local function toggle_replace()
---   local view = require"nvim-tree.view"
---   if view.is_visible() then
--- 	view.close()
---   else
--- 	require"nvim-tree".open_replacing_current_buffer()
---   end
--- end
---  
-
--- vim.keymap.set('n', '<leader>n', 
--- 		function() toggle_replace() end,
--- 	{ desc = 'Open Nvim tree centered in a floating window' }
--- )
---
