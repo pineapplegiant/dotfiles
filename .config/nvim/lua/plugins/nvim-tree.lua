@@ -85,13 +85,14 @@ local on_attach = function(bufnr)
   vim.keymap.set('n', 'v', api.node.open.vertical, opts('Open: Vertical Split'))
   vim.keymap.set('n', 'R', api.tree.reload, opts('Refresh'))
 
+  -- vim.keymap.set('n', '<C-n>', api.tree.toggle(), opts('Toggle Nvim tree lua with no focus'))
+
 end
 
 n_tree.setup {
 	on_attach = on_attach,
-	disable_netrw = true,
-	-- sync_root_with_cwd = false,
-	reload_on_bufenter = true,
+	sync_root_with_cwd = false,
+	reload_on_bufenter = false,
 	respect_buf_cwd = true,
 	sort_by = "case_sensitive",
 	view = {
@@ -116,27 +117,28 @@ n_tree.setup {
 
 vim.keymap.set('n', '<C-n>',
 	function()
-		api.tree.toggle(false, true)
+		api.tree.toggle()
 	end,
 	{ desc = 'Toggle Nvim tree lua with no focus' }
 )
 
+vim.keymap.set('n', '<C-r>',
+	function()
+		api.tree.toggle({current_window=true})
+	end,
+	{ desc = 'Open Nvim tree in current window' }
+)
 -- Open Tree in current buffer when opening a directory
-local function open_nvim_tree(data)
-
-  -- buffer is a directory
-  local directory = vim.fn.isdirectory(data.file) == 1
-
-  if not directory then
-    return
-  end
-
-  -- change to the directory
-  vim.cmd.cd(data.file)
-
-  -- open the tree
-  require("nvim-tree.api").tree.open()
-end
-
-vim.api.nvim_create_autocmd({ "VimEnter" }, { callback = open_nvim_tree })
+-- local function open_nvim_tree(data)
+--   -- buffer is a directory
+--   local directory = vim.fn.isdirectory(data.file) == 1
+--
+--   if not directory then
+--     return
+--   end
+--   -- open the tree
+--   require("nvim-tree.api").tree.open()
+-- end
+--
+-- vim.api.nvim_create_autocmd({ "VimEnter" }, { callback = open_nvim_tree })
 
