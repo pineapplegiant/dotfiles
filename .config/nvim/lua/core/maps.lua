@@ -73,9 +73,9 @@ keymap.set('n', ',csss', ':-1read $XDG_CONFIG_HOME/nvim/snippets/reset.css<CR>',
 keymap.set('n', ',block', ':read $XDG_CONFIG_HOME/nvim/snippets/block.txt<CR>jA', { desc = 'Block Snippet' })
 keymap.set('n', ',yaml', ':-1read $XDG_CONFIG_HOME/nvim/snippets/yaml.md<CR>', { desc = 'YAML snippet' })
 keymap.set('n', ',mlk', ':read $XDG_CONFIG_HOME/nvim/snippets/mlk.txt<CR>', { desc = 'MLK Speech Snippet' })
-keymap.set('n', ',snap', ':read $XDG_CONFIG_HOME/nvim/snippets/snap.md<CR>', { desc = 'Snap keymap' })
 
 -- See `:help vim.diagnostic.*` for documentation on any of the below functions
+keymap.set('n', ',snap', ':read $XDG_CONFIG_HOME/nvim/snippets/snap.md<CR>', { desc = 'Snap keymap' })
 local opts = { noremap=true, silent=true }
 keymap.set('n', '[d', vim.diagnostic.goto_prev, opts)
 keymap.set('n', ']d', vim.diagnostic.goto_next, opts)
@@ -84,3 +84,5 @@ keymap.set('n', ']d', vim.diagnostic.goto_next, opts)
 vim.api.nvim_create_autocmd( "FileType", {
 		pattern = {"qf"},
 		command = [[nnoremap <silent><buffer> <CR> <CR>:cclose<CR>]]})
+
+keymap.set("n", "gx", [[:silent execute '!open ' . shellescape(expand('<cfile>'), 1)<CR>]], opts)

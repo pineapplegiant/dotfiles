@@ -109,9 +109,12 @@ SPACESHIP_PROMPT_ORDER=(
 	if type tmux >/dev/null 2>&1; then
 		alias rr="source $XDG_CONFIG_HOME/zsh/.zshrc && tmux source-file $XDG_CONFIG_HOME/tmux/tmux.conf" # Source bash profile & Tmux
 		alias tfix="tmux select-layout even-horizontal"
-		alias tfixv="tmux select-layout even-vertical"
-		alias tfixy="tmux resize-pane -y 40"
 		alias tfixx="tmux resize-pane -x 145"
+		alias tfixxx="tmux resize-pane -x 20"
+
+		alias tfixv="tmux select-layout even-vertical"
+		alias tfixvv="tmux resize-pane -y 40"
+		alias tfixvvv="tmux resize-pane -y 10"
 	fi
 
     alias ..="cd .."          # Shortcut up a directory
