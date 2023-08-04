@@ -17,7 +17,7 @@ local sources = {
 	formatting.clang_format,
 	diagnostics.eslint,
 	completion.spell,
-	-- formatting.prettier,
+	formatting.prettierd,
 	-- formatting.latexindent,
 }
 

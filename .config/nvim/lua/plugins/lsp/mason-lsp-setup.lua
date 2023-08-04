@@ -2,8 +2,8 @@
 -- Mason.nvim
 -- LSPConfig for the lazy
 -------------------------------------
-local deps_ok, mason, mason_config, rust_tools, lsp_config = pcall(function()
-	return require("mason"), require("mason-lspconfig"), require("rust-tools"), require("lspconfig")
+local deps_ok, mason, mason_config, rust_tools, lsp_config, mason_null_ls = pcall(function()
+	return require("mason"), require("mason-lspconfig"), require("rust-tools"), require("lspconfig"), require ("mason-null-ls")
 end)
 if not deps_ok then
 	return
@@ -20,7 +20,7 @@ local on_attach = function(client, bufnr)
 	vim.keymap.set("n", "K", vim.lsp.buf.hover, bufopts)
 	vim.keymap.set("n", "gi", vim.lsp.buf.implementation, bufopts)
 	vim.keymap.set("n", "<leader>D", vim.lsp.buf.type_definition, bufopts)
-	vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, bufopts)
+	vim.keymap.set("n", "<leader>r", vim.lsp.buf.rename, bufopts)
 	vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, bufopts)
 	vim.keymap.set("n", "gr", vim.lsp.buf.references, bufopts)
 	vim.keymap.set("n", "<leader>f", function()
@@ -83,16 +83,35 @@ mason_config.setup_handlers({
 	end,
 })
 
-local mason_null_ls_status, mason_null_ls = pcall(require, "mason-null-ls")
-if not mason_null_ls_status then
-	return
-end
+-- Normal Null-ls
+local status, null_ls = pcall(require, "null-ls")
+if (not status) then return end
 
 mason_null_ls.setup({
-	ensure_installed = {
-		"prettier",
-		"stylua",
-		"eslint_d",
-	},
-	automatic_installation = true,
+    ensure_installed = {
+        -- Opt to list sources here, when available in mason.
+    },
+    automatic_installation = false,
+    handlers = {},
+})
+
+local formatting = null_ls.builtins.formatting
+local diagnostics = null_ls.builtins.diagnostics
+local completion = null_ls.builtins.completion
+
+
+null_ls.setup({
+	-- Anything not supported by mason.
+	debug = true,
+	sources = {
+		-- formatting.prettier.with({ extra_args = { "--no-semi", "--single-quote", "--jsx-single-quote" } }),
+		-- formatting.eslint,
+		-- formatting.autopep8,
+		-- formatting.stylua,
+		-- formatting.clang_format,
+		-- diagnostics.eslint,
+		-- completion.spell,
+		-- formatting.prettierd,
+		-- formatting.latexindent,
+	}
 })

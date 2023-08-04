@@ -28,7 +28,7 @@ require("plugins.lualine")       -- $XDG_CONFIG_HOME/nvim/lua/plugins/lualine.lu
 require("plugins.neoscroll")     -- $XDG_CONFIG_HOME/nvim/lua/plugins/neoscroll.lua
 require("plugins.nvim-surround") -- $XDG_CONFIG_HOME/nvim/lua/plugins/nvim-surround.lua
 require("plugins.nvim-tree")     -- $XDG_CONFIG_HOME/nvim/lua/plugins/nvim-tree.lua
-require("plugins.prettier")      -- $XDG_CONFIG_HOME/nvim/lua/plugins/prettier.lua
+-- require("plugins.prettier")      -- $XDG_CONFIG_HOME/nvim/lua/plugins/prettier.lua
 require("plugins.symbols")       -- $XDG_CONFIG_HOME/nvim/lua/plugins/symbols.lua
 require("plugins.telescope")     -- $XDG_CONFIG_HOME/nvim/lua/plugins/telescope.lua
 require("plugins.tmux")          -- $XDG_CONFIG_HOME/nvim/lua/plugins/tmux.lua
@@ -38,7 +38,7 @@ require("plugins.zenmode")       -- $XDG_CONFIG_HOME/nvim/lua/plugins/zenmode.lu
 -- LSP
 require("plugins.lsp.mason-lsp-setup") -- $XDG_CONFIG_HOME/nvim/lua/plugins/lsp/mason-lsp-setup.lua
 require("plugins.lsp.lspsaga")   -- $XDG_CONFIG_HOME/nvim/lua/plugins/lsp/lspsaga.lua
-require("plugins.lsp.null-ls")   -- $XDG_CONFIG_HOME/nvim/lua/plugins/lsp/null-ls.lua
+-- require("plugins.lsp.null-ls")   -- $XDG_CONFIG_HOME/nvim/lua/plugins/lsp/null-ls.lua
 require("plugins.nvim-cmp")      -- $XDG_CONFIG_HOME/nvim/lua/plugins/nvim-cmp.lua
 
 -- ETC

@@ -111,3 +111,9 @@ vim.keymap.set('n', '<C-c>',
 	end,
 	{ desc = 'Fzf find old files' }
 )
+
+vim.keymap.set('n', '<C-g>',
+	function() builtin.git_files()
+	end,
+	{ desc = 'Fzf find git files' }
+)

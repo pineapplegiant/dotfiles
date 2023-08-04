@@ -200,6 +200,93 @@ function tkill()
         mkdir -p "$(dirname "$1")" && touch "$1"
     }
 
+# Convert text to b64
+	# convertfont -c -f "My Custom Font" -w bold font-name.woff
+function convertfont() {
+	local copy_css=0
+	local font_family="FontFamilyHere"
+	local font_weight="normal"
+
+	# Define the help text
+	local help_text="Usage: convertfont [OPTIONS] FILE
+Convert a font file to base64 and copy it to the clipboard.
+
+Options:
+  -c        Copy CSS code to clipboard.
+  -f NAME   Update font-family to NAME in the CSS code.
+  -w WEIGHT Update font-weight to WEIGHT in the CSS code.
+  -h        Show this help text."
+
+	# Parse command-line options using getopts
+	while getopts ":cf:w:h" opt; do
+		case $opt in
+			c)
+				copy_css=1
+				;;
+			f)
+				font_family="$OPTARG"
+				;;
+			w)
+				font_weight="$OPTARG"
+				;;
+			h)
+				echo "$help_text"
+				return 0
+				;;
+			\?)
+				echo "Invalid option: -$OPTARG" >&2
+				echo "$help_text" >&2
+				return 1
+				;;
+		esac
+	done
+
+	# Shift the arguments to get the filename
+	shift $((OPTIND - 1))
+
+	if [ -z "$1" ]; then
+		echo "Error: Please provide a filename."
+		return 1
+	fi
+
+	if [ ! -e "$1" ]; then
+		echo "Error: File '$1' not found."
+		return 1
+	fi
+
+	local input_file="$1"
+	local output_file="${input_file%.woff}-b64.txt"
+
+	echo "Converting '$input_file' to '$output_file'..."
+	openssl base64 -A -in "$input_file" -out "$output_file"
+	echo "Conversion complete."
+
+	if [ "$copy_css" -eq 1 ]; then
+		# Read the CSS template file and replace COPIED_TEXT with the output
+		local css_template="@font-face {
+	font-family: '$font_family';
+	src: url(data:font/opentype;base64,COPIED_TEXT);
+	font-weight: $font_weight;
+	font-style: normal;
+}"
+
+		local css_content=$(cat "$output_file")
+		local css_with_content="${css_template/COPIED_TEXT/$css_content}"
+
+		# Copy the CSS with the replaced content to the clipboard
+		echo -n "$css_with_content" | pbcopy
+		echo "CSS code copied to clipboard."
+	else
+		# Copy the output file to the clipboard
+		pbcopy < "$output_file"
+		echo "Content copied to clipboard."
+	fi
+}
+
+
+
+
+
 #----------------------------------------------------------------------
 #                       VI like prompt stuff thanks Luke
 #----------------------------------------------------------------------

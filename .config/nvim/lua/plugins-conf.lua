@@ -132,12 +132,13 @@ packer.startup(function(use)
 	use "andersevenrud/cmp-tmux"
 	use 'David-Kunz/cmp-npm'
 	use 'rafamadriz/friendly-snippets'
-	use 'MunifTanjim/prettier.nvim' -- Prettier plugin for Neovim's built-in LSP client
+	-- use 'MunifTanjim/prettier.nvim' -- Prettier plugin for Neovim's built-in LSP client
 
 
-	-- Diagnostics, code actions, and more via Lua
+	-- Diagnostics, code actions, formatting and more
 	use 'jose-elias-alvarez/null-ls.nvim'
-	use("jayp0521/mason-null-ls.nvim")
+	use 'jay-babu/mason-null-ls.nvim'
+
 
 	if packer_bootstrap then
 		require("packer").sync()
