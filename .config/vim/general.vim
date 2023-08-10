@@ -53,7 +53,7 @@
     set wildcharm=<C-z>            " Juggling with buffers
     set list                       " Be aware of trailing spaces
     set listchars=tab:‣\ ,trail:·
-    set colorcolumn=99999           " Fix indentblankline
+    set colorcolumn=99999          " Indentblankline quick fix
 
 " Disable automatic comment insertion
     augroup betterComments

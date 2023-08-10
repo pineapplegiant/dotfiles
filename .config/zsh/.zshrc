@@ -69,8 +69,16 @@ SPACESHIP_PROMPT_ORDER=(
 #----------------------------------------------------------------------
 # System Stuff
 
-# Safe-RM ALias
-	type safe-rm >/dev/null 2>&1 && alias rm='safe-rm'
+# Vim to Nvim
+    export VISUAL=nvim
+    alias v=nvim
+    alias vim=nvim
+    alias vimrc='nvim $XDG_CONFIG_HOME/nvim/init.vim'     # Open nvimrc in nvim
+    alias ctags="`brew --prefix`/bin/ctags"              # Ctags alias
+    alias rc='nvim $XDG_CONFIG_HOME/zsh/.zshrc'           # Get to bash-profile faster
+    alias bp='nvim $XDG_CONFIG_HOME/shell/profile'        # Get to env faster
+    alias tmuxrc='nvim $XDG_CONFIG_HOME/tmux/tmux.conf'   # Tmux settings
+    alias alrc='nvim ~/.config/alacritty.yml'             # Alacritty settings
 
 # Nvim alias
 	if type nvim >/dev/null 2>&1; then

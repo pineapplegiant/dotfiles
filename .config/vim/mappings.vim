@@ -64,9 +64,41 @@
         tnoremap hh <C-\><C-n>
     endif
 
-" Ctrl-/ to cyle tabs
+" Shift Tab to cyle tabs
     nnoremap gn :bn<CR>
     nnoremap gp :bp<CR>
+
+" Better opening of filepath under the cursor
+nnoremap gX :silent :execute
+            \ "!open" expand('%:p:h') . "/" . expand("<cfile>") " &"<cr>
+
+" Create file under cursor
+    function! s:openOrCreateFile()
+        let s:bundle = expand('<cfile>:p')
+        let path = expand('<cfile>:p:h')
+        let suffixes = split(&suffixesadd, ',')
+        let isExists = 0
+        for s in suffixes
+            if empty(glob(s:bundle . s))
+                let isExists = 1
+            endif
+        endfor
+        if !isExists
+            let answer = input("file doesn't exists; create file ?")
+            if answer ==? 'y'
+                if !isdirectory(path)
+                    echomsg path . ' created'
+                    "netrw_localmkdiropts("p")
+                    "netrw_localmkdir(path)
+                    :call mkdir(path, 'p')
+                endif
+            endif
+        endif
+        :edit <cfile> " create or edit now path is available
+        ":norm! gf
+    endfunction
+    command -nargs=0 OpenOrCreateFile call s:openOrCreateFile()
+    nnoremap <leader>cf :OpenOrCreateFile<CR>
 
 "----------------------------------------------------------------------
 "               Map Leader to '<space>'
@@ -94,6 +126,9 @@
 " Copy & Paste into vim in normal mode
     map<leader>p  "+p
     map<leader>y  "+y
+
+" Better vim replace with r in visual mode
+    vmap r "_dP
 
 " Quicksave and Quickquit in vim using leader!
     nnoremap <leader>s :update<cr>

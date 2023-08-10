@@ -1,7 +1,7 @@
 # This is Git's per-user configuration file.  Credit: [ scottnonnenberg ]( https://gist.github.com/scottnonnenberg/fefa3f65fdb3715d25882f3023b31c29 )
 [user]
     name = Guillermo Rodriguez
-    email = guillermo.rodriguez@searchspring.com
+    email = grod937@gmail.com
 	signingkey = 7CF700E041EEFAEC
 
 [core]
@@ -17,13 +17,13 @@
     st = "status"
     d = "diff"
     dt = "difftool"
-	gl = "log  --graph --abbrev-commit --pretty=oneline --decorate --all"
+    gl = "log  --graph --abbrev-commit --pretty=oneline --decorate --all"
     l = "log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset'"
-	lg = "log -p"
+    lg = "log -p"
     lit = "!git add -A && git commit"
     p = "push"
     s = "status"
-	stat = "status"
+    stat = "status"
     zip = "!git archive --format=zip -o latest.zip HEAD"
     list ="log -1 HEAD"
 
@@ -33,9 +33,9 @@
 
 [color]
     ui = true
-	diff = auto
-	status = auto
-	branch = auto
+    diff = auto
+    status = auto
+    branch = auto
 
 [status]
 # Sometimes a newly-added folder, since it's only one line in git status, can slip under the radar.
@@ -62,19 +62,15 @@
     difftool = true
 
 [pull]
-	rebase = true
-
+    rebase = true
 [credential]
-	helper = cache
-
+    helper = osxkeychain
 [init]
-	defaultBranch = main
+    defaultBranch = main
 
 [gpg]
 	program = /usr/local/bin/gpg
-
 [commit]
 	gpgsign = true
-
 [tag]
 	gpgsign = true

@@ -115,8 +115,10 @@ font:
     #   - (Linux/BSD) monospace
     #   - (Windows) Consolas
     family: 'SauceCodePro Nerd Font'
+    #family: 'MonoLisa Nerd Font'
 
     # The `style` can be specified to pick a specific face.
+    #style: Regular
     style: Regular
 
   # Bold font face
@@ -458,8 +460,9 @@ cursor:
 
 # Send ESC (\x1b) before characters when alt is pressed.
 #alt_send_esc: true
-
-#mouse:
+# New hints section???
+hints:
+  mouse:
   # Click settings
   #
   # The `double_click` and `triple_click` settings control the time
@@ -472,6 +475,7 @@ cursor:
   #hide_when_typing: false
 
   #url:
+    url:
     # URL launcher
     #
     # This program is executed when clicking on a text which is recognized as a
@@ -483,8 +487,8 @@ cursor:
     #   - (macOS) open
     #   - (Linux/BSD) xdg-open
     #   - (Windows) explorer
-    #launcher:
-      #program: open
+      launcher:
+        program: open
     #  args: []
 
     # URL modifiers
@@ -492,7 +496,7 @@ cursor:
     # These are the modifiers that need to be held down for opening URLs when
     # clicking on them. The available modifiers are documented in the key
     # binding section.
-    #modifiers: Command
+      mods: Control
 
 # Mouse bindings
 #

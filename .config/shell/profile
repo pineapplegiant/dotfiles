@@ -85,6 +85,9 @@ fi
     export GOPATH="$HOME/.local/share/go"
     export GOBIN="$HOME/.local/share/go/bin"
 
+# GNUPG
+export GNUPGHOME=${XDG_CONFIG_HOME}/gnupg
+export GPG_TTY=$(tty)
 
 # Add Personal Scripts to my path
 	if $IS_WORK; then
