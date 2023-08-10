@@ -1,10 +1,10 @@
-" ________    ___      ___  ___   _____ ______    ________   ________
-" |\   ___  \ |\  \    /  /||\  \ |\   _ \  _   \ |\   __  \ |\   ____\
-" \ \  \\ \  \\ \  \  /  / /\ \  \\ \  \\\__\ \  \\ \  \|\  \\ \  \___|
-"  \ \  \\ \  \\ \  \/  / /  \ \  \\ \  \\|__| \  \\ \   _  _\\ \  \
-"   \ \  \\ \  \\ \    / /    \ \  \\ \  \    \ \  \\ \  \\  \|\ \  \____
-"    \ \__\\ \__\\ \__/ /      \ \__\\ \__\    \ \__\\ \__\\ _\ \ \_______\
-"     \|__| \|__| \|__|/        \|__| \|__|     \|__| \|__|\|__| \|_______|
+"  ___      ___  ___   _____ ______    ________   ________
+"  |\  \    /  /||\  \ |\   _ \  _   \ |\   __  \ |\   ____\
+"  \ \  \  /  / /\ \  \\ \  \\\__\ \  \\ \  \|\  \\ \  \___|
+"   \ \  \/  / /  \ \  \\ \  \\|__| \  \\ \   _  _\\ \  \
+"    \ \    / /    \ \  \\ \  \    \ \  \\ \  \\  \|\ \  \____
+"     \ \__/ /      \ \__\\ \__\    \ \__\\ \__\\ _\ \ \_______\
+"      \|__|/        \|__| \|__|     \|__| \|__|\|__| \|_______|
 
 
 "----------------------------------------------------------------------
@@ -24,10 +24,10 @@
 " Set U as Ctrl R which means Redo
     nnoremap U <C-R>
 
-" Use B to move to beginning of line
+" Use B to move to the beginning of the line
     map B ^
 
-" Use E to move to end of line in
+" Use E to move to the end of the line
     map E $
 
 " Better Yank
@@ -41,10 +41,14 @@
     vmap > >gv
 
 " Lots of Time-Stamp Options here in normal/insert mode to paste timestamp and F4 To Date Stamp
-    nnoremap <F5> a"<ESC>"=strftime("%Y-%m-%d %H:%M:%S")<CR>pa"<ESC>
-    inoremap <F5> <C-R>=strftime("%Y-%m-%d %H:%M:%S")<CR>
-    nnoremap <F6> "=strftime("%A %B %d %Y, at %I:%M %p %Z")<CR>P
-    inoremap <F6> <C-R>=strftime("%A %B %d, at %I:%M %p %Z")<CR>
+    "nnoremap <F5> a"<ESC>"=strftime("%Y-%m-%d %H:%M:%S")<CR>pa"<ESC>
+    "inoremap <F5> <C-R>=strftime("%Y-%m-%d %H:%M:%S")<CR>
+    "nnoremap <F6> "=strftime("%A %B %d %Y, at %I:%M %p %Z")<CR>P
+    "inoremap <F6> <C-R>=strftime("%A %B %d, at %I:%M %p %Z")<CR>
+    nnoremap <F5> a<ESC>"=strftime("%Y-%m-%d")<CR>pa<ESC>
+    inoremap <F5> <C-R>=strftime("%Y-%m-%d")<CR>
+    nnoremap <F6> "=strftime("%A %B %d, %Y")<CR>P
+    inoremap <F6> <C-R>=strftime("%A %B %d, %Y")<CR>
 
 " Source vimrc
     nnoremap <F10> :source $MYVIMRC<CR>
@@ -53,7 +57,7 @@
     nnoremap gb :ls<CR>:b<Space>
 
 " List all recently opened files and open a new buffer
-    nnoremap gs :browse oldfiles<CR>
+     nnoremap gs :browse oldfiles<CR>
 
 " Map hh to escape out of vi mode when in the terminal
     if exists(':terminal')
@@ -178,9 +182,9 @@ nnoremap gX :silent :execute
 
 " Markdown Remaps
     function! PandocCreate()
-      let curr_file = expand('%:t')                             " Name of current file
+      let curr_file = expand('%:p')                             " Name of current file
       let pdf_file = expand('%:r') . '.pdf'                     " Name of file with pdf extension
-      execute '!pandoc --pdf-engine=xelatex ' . curr_file . ' -o ' . pdf_file
+      execute '!pandoc --columns=10 --pdf-engine=xelatex ' . curr_file . ' -o ' . pdf_file
       if filereadable(pdf_file)
           execute '!open ' . pdf_file
       endif
@@ -188,39 +192,84 @@ nnoremap gX :silent :execute
 
 " Make/Compile current Latex File
     function! LatexCreate()
-      let curr_file = expand('%:t')                             " Name of current file
+      let curr_file = expand('%:p')                             " Name of current file
       let pdf_file = expand('%:r') . '.pdf'                     " Name of file with pdf extension
       execute '!pdflatex  ./' . curr_file
       execute '!open ' . pdf_file
-      execute '!open -a "iterm.app"'
+      execute '!open -a "alacritty.app"'
     endfunction
 
     augroup markdownHelpers
         autocmd!
     " LaTeX Remaps
-        autocmd FileType tex nnoremap ,comp :update<CR>:call LatexCreate()<CR>
-        autocmd FileType tex nnoremap ,top :-1read $XDG_CONFIG_HOME//nvim/snippets/blockLatex.txt<CR>
+        autocmd FileType tex nnoremap <F7> :update<CR>:call LatexCreate()<CR>
+        autocmd FileType tex nnoremap ,top :-1read $XDG_CONFIG_HOME/nvim/snippets/blockLatex.txt<CR>
     " Pandoc Remaps
         autocmd BufRead,BufNewFile *.md,*.markdown set filetype=markdown
         autocmd FileType markdown nnoremap <F7> :update<CR>:call PandocCreate()<CR>
     augroup END
 
-    " Expose StripTrailingWhitespace Command to remove spaces
-    command! -nargs=? -range=% -complete=custom,s:StripCompletionOptions
-      \ StripTrailingWhitespace <line1>,<line2>call s:StripTrailingWhitespace(<f-args>)
+    " Expose TrimWhitespace Command to remove spaces
+    command! -nargs=? -range=% -complete=custom,s:TrimCompletionOptions
+      \ TrimWhitespace <line1>,<line2>call s:TrimWhitespace(<f-args>)
 
-    function! s:StripTrailingWhitespace(...) abort
+    function! s:TrimWhitespace(...) abort
       let confirm = a:0
       execute a:firstline . ',' . a:lastline . 's/\s\+$//e' . (confirm ? 'c' : '')
     endfunction
 
-    function! s:StripCompletionOptions(A,L,P) abort
+    function! s:TrimCompletionOptions(A,L,P) abort
       return "-confirm"
     endfunction
+
+    function! TabFile() abort
+        set expandtab!
+        %retab!
+    endfunction
+
+    map <F9> :call TabFile()<CR>
+
+
+" Create file under cursor
+    function! s:openOrCreateFile()
+        let s:bundle = expand('<cfile>:p')
+        let path = expand('<cfile>:p:h')
+
+        let suffixes = split(&suffixesadd, ',')
+        let isExists = 0
+
+        for s in suffixes
+            if empty(glob(s:bundle . s))
+                let isExists = 1
+            endif
+        endfor
+
+        if !isExists
+            let answer = input("file doesn't exists; create file ?")
+
+            if answer ==? 'y'
+                if !isdirectory(path)
+                    echomsg path . ' created'
+                    "netrw_localmkdiropts("p")
+                    "netrw_localmkdir(path)
+                    :call mkdir(path, 'p')
+                endif
+            endif
+        endif
+        :edit <cfile> " create or edit now path is available
+        ":norm! gf
+    endfunction
+
+    command -nargs=0 OpenOrCreateFile call s:openOrCreateFile()
+
+    nnoremap gF :OpenOrCreateFile<CR>
 
 "----------------------------------------------------------------------
 "                           Snippets! -> Comma
 "----------------------------------------------------------------------
+" Mockup
+    nnoremap ,mock :-1read $XDG_CONFIG_HOME/nvim/snippets/mock.txt<CR>A
+
 " Basic HTML Snippet!
     nnoremap ,html :-1read $XDG_CONFIG_HOME/nvim/snippets/skeleton.html<CR>7jf>a
 
@@ -239,3 +288,6 @@ nnoremap gX :silent :execute
 
 " MLK's Dream Speech
     nnoremap ,mlk :read $XDG_CONFIG_HOME/nvim/snippets/mlk.txt<CR>
+
+" MLK's Dream Speech
+    nnoremap ,snap :read $XDG_CONFIG_HOME/nvim/snippets/snap.md<CR>

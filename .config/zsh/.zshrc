@@ -1,7 +1,7 @@
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-# FOR Z JUMPING
-. /usr/local/etc/profile.d/z.sh
+# Give Z-lua a try
+eval "$(lua /usr/local/Cellar/z.lua/1.8.16/share/z.lua/z.lua --init zsh)"
 
 #----------------------------------------------------------------------
 #       Set Spaceship ZSH as a prompt "npm install -g spaceship"
@@ -67,13 +67,7 @@ SPACESHIP_PROMPT_ORDER=(
 #----------------------------------------------------------------------
 #                       ALIASES
 #----------------------------------------------------------------------
-
-# Login to school!
-    alias osu='ssh flip'
-
 # System Stuff
-    alias rm='safe-rm'                       # Safe-RM
-    alias dog='ccat'                         # Use that new ccat plugin
 
 # Vim to Nvim
     export VISUAL=nvim
@@ -86,12 +80,33 @@ SPACESHIP_PROMPT_ORDER=(
     alias tmuxrc='nvim $XDG_CONFIG_HOME/tmux/tmux.conf'   # Tmux settings
     alias alrc='nvim ~/.config/alacritty.yml'             # Alacritty settings
 
-# I HAVE SWITCHED TO EXA
-    alias l="exa -FG --git"   # Just make ls  chill
-    alias ls="exa -FG --git"  # Make ls pretty
-    alias ll="exa -l --git"   # ls long tag
-    alias s="exa -ahlF"
-    alias ss="exa -aF --git"
+# Nvim alias
+	if type nvim >/dev/null 2>&1; then
+		export VISUAL=nvim
+		alias v=nvim
+		alias vi=nvim
+		alias vim=nvim
+		alias vimrc='vim $XDG_CONFIG_HOME/nvim/init.lua'      # Open nvimrc in nvim
+		alias rc='vim $XDG_CONFIG_HOME/zsh/.zshrc'           # Get to bash-profile faster
+		alias bp='vim $XDG_CONFIG_HOME/shell/profile'        # Get to env faster
+		alias tmuxrc='vim $XDG_CONFIG_HOME/tmux/tmux.conf'   # Tmux settings
+		alias alrc='vim ~/.config/alacritty.yml'             # Alacritty settings
+	fi
+
+# alias to EXA if exists
+	if type exa >/dev/null 2>&1; then
+		alias l="exa -FG --git --icons"   # Just make ls  chill
+		alias ls="exa -FG --git --icons"  # Make ls pretty
+		alias ll="exa -l --git --icons"   # ls long tag
+		alias s="exa -ahlF --icons"
+		alias ss="exa -aF --git --icons"
+	else
+		alias l="ls -FG"
+		alias ls="ls -FG"
+		alias ll="ls -l"   # ls long tag
+		alias s="exa -ahlF"
+		alias ss="ls -aF"
+	fi
 
 # Safety aliases
     alias rm="rm -iv"         # Make rm safer
@@ -99,15 +114,25 @@ SPACESHIP_PROMPT_ORDER=(
     alias mv="mv -i"          # Make mv safer
 
 # Laziness at its finest
-    alias rr="source $XDG_CONFIG_HOME/zsh/.zshrc && tmux source-file $XDG_CONFIG_HOME/tmux/tmux.conf" # Source bash profile & Tmux
-    alias tfix="tmux select-layout even-horizontal"
-    alias tfixv="tmux select-layout even-vertical"
-    alias tfixd="tmux resize-pane -y 8"
+	if type tmux >/dev/null 2>&1; then
+		alias rr="source $XDG_CONFIG_HOME/zsh/.zshrc && tmux source-file $XDG_CONFIG_HOME/tmux/tmux.conf" # Source bash profile & Tmux
+		alias tfix="tmux select-layout even-horizontal"
+		alias tfixx="tmux resize-pane -x 145"
+		alias tfixxx="tmux resize-pane -x 20"
+
+		alias tfixv="tmux select-layout even-vertical"
+		alias tfixvv="tmux resize-pane -y 40"
+		alias tfixvvv="tmux resize-pane -y 10"
+	fi
+
     alias ..="cd .."          # Shortcut up a directory
     alias ...="cd ../.."      # Shorcut 2 directory
     alias c="clear"           # Faster clearing of the screen
     alias matrix="cmatrix"    # Stupid text on the screen
     alias lg="lazygit"
+    alias scope="echo 'SearchSpring.Catalog.elems.container.scope()' &&  echo 'SearchSpring.Catalog.elems.container.scope()' | pbcopy"
+    alias store="echo 'searchspring.controller.search.store.toJSON()' &&  echo 'searchspring.controller.search.store.toJSON()' | pbcopy"
+    alias dic="wkdict"
 
 # Better Less
     export LESS="-iXR --RAW-CONTROL-CHARS"
@@ -116,12 +141,6 @@ SPACESHIP_PROMPT_ORDER=(
 #                       Functions
 #----------------------------------------------------------------------
 
-# Minify uglycss to file taken in
-    function min()
-    {
-        uglifycss $1 --output $1
-    }
-
 # Make and CD into the directory
     function mcdir () {
         mkdir -p -- "$1" &&
@@ -129,18 +148,12 @@ SPACESHIP_PROMPT_ORDER=(
     }
 
 # Let's be nice to our terminal
-function pls() {
-    if [ "$1" ]; then
-        sudo $@
-    else
-        sudo "$BASH" -c "$(history -p !!)"
-    fi
-}
-
-# Pipe bat to less
-    function lat()
-    {
-        bat --color=always $1 | less
+    function pls() {
+        if [ "$1" ]; then
+            sudo $@
+        else
+            sudo "$BASH" -c "$(history -p !!)"
+        fi
     }
 
 # Web Baby
@@ -148,12 +161,6 @@ function pls() {
     function web()
     {
         open "$URLprefix$@" -a "Google Chrome"
-    }
-
-# Browsersync alias
-function webdev()
-    {
-        browser-sync start --server --files ./*
     }
 
 # CD && LS all at once
@@ -171,18 +178,6 @@ function webdev()
         open $@ -a "Google Chrome"
     }
 
-# Open in firefox
-    function firefox()
-    {
-        open $@ -a "Firefox"
-    }
-
-# Notion script
-    function notion()
-    {
-         pipenv run python /Users/Gmo/Blog/notion_scripts.py -f $@
-    }
-
 # Tmux create session
     function tnew()
     {
@@ -194,12 +189,111 @@ function webdev()
     {
          tmux rename-window $@
     }
+# Tmux script to rename session
+    function tsesh()
+    {
+         tmux rename-session $@
+    }
+
 
 # Kill a specific tmux session
 function tkill()
     {
         tmux kill-session -t $@
     }
+
+
+# Create directories alongside files
+    function mktouch() {
+        mkdir -p "$(dirname "$1")" && touch "$1"
+    }
+
+# Convert text to b64
+	# convertfont -c -f "My Custom Font" -w bold font-name.woff
+function convertfont() {
+	local copy_css=0
+	local font_family="FontFamilyHere"
+	local font_weight="normal"
+
+	# Define the help text
+	local help_text="Usage: convertfont [OPTIONS] FILE
+Convert a font file to base64 and copy it to the clipboard.
+
+Options:
+  -c        Copy CSS code to clipboard.
+  -f NAME   Update font-family to NAME in the CSS code.
+  -w WEIGHT Update font-weight to WEIGHT in the CSS code.
+  -h        Show this help text."
+
+	# Parse command-line options using getopts
+	while getopts ":cf:w:h" opt; do
+		case $opt in
+			c)
+				copy_css=1
+				;;
+			f)
+				font_family="$OPTARG"
+				;;
+			w)
+				font_weight="$OPTARG"
+				;;
+			h)
+				echo "$help_text"
+				return 0
+				;;
+			\?)
+				echo "Invalid option: -$OPTARG" >&2
+				echo "$help_text" >&2
+				return 1
+				;;
+		esac
+	done
+
+	# Shift the arguments to get the filename
+	shift $((OPTIND - 1))
+
+	if [ -z "$1" ]; then
+		echo "Error: Please provide a filename."
+		return 1
+	fi
+
+	if [ ! -e "$1" ]; then
+		echo "Error: File '$1' not found."
+		return 1
+	fi
+
+	local input_file="$1"
+	local output_file="${input_file%.woff}-b64.txt"
+
+	echo "Converting '$input_file' to '$output_file'..."
+	openssl base64 -A -in "$input_file" -out "$output_file"
+	echo "Conversion complete."
+
+	if [ "$copy_css" -eq 1 ]; then
+		# Read the CSS template file and replace COPIED_TEXT with the output
+		local css_template="@font-face {
+	font-family: '$font_family';
+	src: url(data:font/opentype;base64,COPIED_TEXT);
+	font-weight: $font_weight;
+	font-style: normal;
+}"
+
+		local css_content=$(cat "$output_file")
+		local css_with_content="${css_template/COPIED_TEXT/$css_content}"
+
+		# Copy the CSS with the replaced content to the clipboard
+		echo -n "$css_with_content" | pbcopy
+		echo "CSS code copied to clipboard."
+	else
+		# Copy the output file to the clipboard
+		pbcopy < "$output_file"
+		echo "Content copied to clipboard."
+	fi
+}
+
+
+
+
 
 #----------------------------------------------------------------------
 #                       VI like prompt stuff thanks Luke
@@ -252,32 +346,37 @@ function tkill()
     preexec() { echo -ne '\e[5 q' ;} # Use beam shape cursor for each new prompt.
 
 #----------------------------------------------------------------------
-#                       Better then bash
+#                       ZSH Settings
 #----------------------------------------------------------------------
 
-# Load zsh-autosuggestions
-    source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+# Setup NVM
+export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
 
-# Load zsh-syntax-highlighting
-    source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+# Load zsh plugins
+	if $BREW_INSTALLED; then
+		source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+		source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+		source /usr/local/share/zsh-history-substring-search/zsh-history-substring-search.zsh
 
-# Load zsh-history-substring-search
-    source /usr/local/share/zsh-history-substring-search/zsh-history-substring-search.zsh
+	# To search via vim keybindings
+		bindkey -M vicmd 'k' history-substring-search-up
+		bindkey -M vicmd 'j' history-substring-search-down
 
-# To search via vim keybindings
-    bindkey -M vicmd 'k' history-substring-search-up
-    bindkey -M vicmd 'j' history-substring-search-down
+		export PATH="/usr/local/sbin:$PATH"
+		fpath+=${ZDOTDIR:-~}/.zsh_functions
 
-    export PATH="/usr/local/sbin:$PATH"
-    fpath+=${ZDOTDIR:-~}/.zsh_functions
+	# Setup fzf
+		if [[ ! "$PATH" == */usr/local/opt/fzf/bin* ]]; then
+		  export PATH="${PATH:+${PATH}:}/usr/local/opt/fzf/bin"
+		fi
 
-# Setup fzf
-    if [[ ! "$PATH" == */usr/local/opt/fzf/bin* ]]; then
-      export PATH="${PATH:+${PATH}:}/usr/local/opt/fzf/bin"
-    fi
+	# Auto-completion
+		[[ $- == *i* ]] && source "/usr/local/opt/fzf/shell/completion.zsh" 2> /dev/null
 
-# Auto-completion
-    [[ $- == *i* ]] && source "/usr/local/opt/fzf/shell/completion.zsh" 2> /dev/null
+	# Key bindings
+		source "/usr/local/opt/fzf/shell/key-bindings.zsh"
+	fi
 
-# Key bindings
-    source "/usr/local/opt/fzf/shell/key-bindings.zsh"
+# Set GPG
+export GPG_TTY=$(tty)

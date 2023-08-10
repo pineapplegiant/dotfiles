@@ -2,7 +2,7 @@
 [user]
     name = Guillermo Rodriguez
     email = grod937@gmail.com
-    signingkey = grod937@gmail.com
+	signingkey = 7CF700E041EEFAEC
 
 [core]
     editor = nvim
@@ -13,6 +13,8 @@
     a = "add"
     c = "commit"
     co = "checkout"
+    br = "branch"
+    st = "status"
     d = "diff"
     dt = "difftool"
     gl = "log  --graph --abbrev-commit --pretty=oneline --decorate --all"
@@ -23,6 +25,7 @@
     s = "status"
     stat = "status"
     zip = "!git archive --format=zip -o latest.zip HEAD"
+    list ="log -1 HEAD"
 
 # Because I constantly forget how to do this
 # https://git-scm.com/docs/git-fetch#git-fetch--p
@@ -57,6 +60,7 @@
 
 [pager]
     difftool = true
+
 [pull]
     rebase = true
 [credential]

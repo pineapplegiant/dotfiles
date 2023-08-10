@@ -1,10 +1,26 @@
 #!/bin/zsh
 
-# profile file. Runs on login. Environmental variables are set here.
+# ~/.profile is only loaded when running zsh in sh compatibility mode, otherwise it reads .zprofile
+# as well as .zshrc for interactive and .zlogin for login shells.
+
+# Environmental variables are set here first
+
+# Set Work or Personal
+export IS_WORK=true
+
+# TODO: check if brew installed, should be packmanager
+if [ -d "/usr/local/" ] && type brew >/dev/null 2>&1; then
+	export BREW_INSTALLED=true
+else
+	export BREW_INSTALLED=false
+fi
 
 # Default Programs
     export EDITOR="nvim"
-    export SHELL="/usr/local/bin/zsh"
+	if $BREW_INSTALLED; then
+		export SHELL="/usr/local/bin/zsh"
+	fi
+
 
 #----------------------------------------------------------------------
 #                       PATH
@@ -14,6 +30,7 @@
     export XDG_CONFIG_HOME="$HOME/dotfiles/.config"       # /etc
     export XDG_DATA_HOME="$HOME/dotfiles/.local/share"    # /usr/share
     export XDG_CACHE_HOME="$HOME/dotfiles/.cache"         # /var/cache
+	export XDG_STATE_HOME="$HOME/dotfiles/.local/state"
 
 # Cleanup for programs that don't listen to XDG SPEC
     # VIMINIT will be sourced by neovim too, so I set this: XDG for NVIM & EXINIT for Vim
@@ -26,36 +43,55 @@
     export WEECHAT_HOME="${XDG_CONFIG_HOME:-$HOME/.config}/weechat"
     export HISTFILE="${XDG_DATA_HOME:-$HOME/.local/share}/share/history"
     export CARGO_HOME="${XDG_DATA_HOME:-$HOME/.local}/share/cargo"
+
+	# Node.js
+	export N_PREFIX="${XDG_DATA_HOME:-$HOME/.local/share}/node"
+	export N_CACHE_PREFIX="$XDG_CACHE_HOME"
+	export N_PRESERVE_NPM=1
+	export N_PRESERVE_COREPACK=1
+	export NPM_CONFIG_USERCONFIG=${XDG_CONFIG_HOME:-$HOME/.config}/npm/npmrc
+	export COREPACK_HOME="${XDG_DATA_HOME:-$HOME/.local}/corepack"
+	export NODE_REPL_HISTORY="$XDG_STATE_HOME/node_repl/history"
+
+	# Add Node.js to PATH
+	if [[ $PATH != *"$N_PREFIX/bin"* ]]; then
+		export PATH="$PATH:$N_PREFIX/bin";
+	fi
+
     # export TMUX_TMPDIR="$XDG_RUNTIME_DIR"
+
 # less
     export LESSHISTFILE="${XDG_CONFIG_HOME}/less/history"
     export LESSKEY="${XDG_CONFIG_HOME}/less/keys"
+
 # mplayer
     export MPLAYER_HOME=$XDG_CONFIG_HOME/mplayer
+
 # subversion
     export SUBVERSION_HOME=$XDG_CONFIG_HOME/subversion
 
 # FZF Default command
     export FZF_DEFAULT_COMMAND='rg --files'
 
-# Z cd Command Jumping ->
-    . /usr/local/etc/profile.d/z.sh
-
 # Neovim-Remote add to Path Python3
-    PATH=/Users/Gmo/Library/Python/3.7/bin:$PATH
-    PATH=/Library/Frameworks/Python.framework/Versions/3.8/bin:$PATH
     PATH=$HOME/.cargo/bin:$PATH
 
 # YARN PATH stuff
-    PATH=$PATH:/usr/local/opt/go/libexec/bin
+	if $BREW_INSTALLED; then
+		PATH=$PATH:/usr/local/opt/go/libexec/bin
+	fi
 
 # GO Lang
-    export GOPATH="$HOME/.local/share}/go"
-    export GOBIN="$HOME/.local/share}/go/bin"
+    export GOPATH="$HOME/.local/share/go"
+    export GOBIN="$HOME/.local/share/go/bin"
 
 # GNUPG
 export GNUPGHOME=${XDG_CONFIG_HOME}/gnupg
 export GPG_TTY=$(tty)
 
 # Add Personal Scripts to my path
-    PATH="$PATH:$HOME/dotfiles/.local/bin"
+	if $IS_WORK; then
+		PATH=$PATH:$HOME/dotfiles/.local/work/bin
+	fi
+
+	PATH=$PATH:$HOME/dotfiles/.local/bin

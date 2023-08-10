@@ -1,10 +1,10 @@
-" ________    ___      ___  ___   _____ ______    ________   ________
-" |\   ___  \ |\  \    /  /||\  \ |\   _ \  _   \ |\   __  \ |\   ____\
-" \ \  \\ \  \\ \  \  /  / /\ \  \\ \  \\\__\ \  \\ \  \|\  \\ \  \___|
-"  \ \  \\ \  \\ \  \/  / /  \ \  \\ \  \\|__| \  \\ \   _  _\\ \  \
-"   \ \  \\ \  \\ \    / /    \ \  \\ \  \    \ \  \\ \  \\  \|\ \  \____
-"    \ \__\\ \__\\ \__/ /      \ \__\\ \__\    \ \__\\ \__\\ _\ \ \_______\
-"     \|__| \|__| \|__|/        \|__| \|__|     \|__| \|__|\|__| \|_______|
+" ___      ___  ___   _____ ______    ________   ________
+" |\  \    /  /||\  \ |\   _ \  _   \ |\   __  \ |\   ____\
+" \ \  \  /  / /\ \  \\ \  \\\__\ \  \\ \  \|\  \\ \  \___|
+"  \ \  \/  / /  \ \  \\ \  \\|__| \  \\ \   _  _\\ \  \
+"   \ \    / /    \ \  \\ \  \    \ \  \\ \  \\  \|\ \  \____
+"    \ \__/ /      \ \__\\ \__\    \ \__\\ \__\\ _\ \ \_______\
+"     \|__|/        \|__| \|__|     \|__| \|__|\|__| \|_______|
 
 
 "----------------------------------------------------------------------
@@ -35,7 +35,7 @@
     set numberwidth=4              " Padding of space in the side number column
     set hlsearch                   " Highlight search results
     set incsearch                  " Turn on incremental searching
-    set showcmd                    " Show (partial) command in the last line of the screen
+    set showcmd                    " Show (partial) command in the last line of the ocreen
     set scrolloff=2                " When scrolling, keep cursor 2 lines away from screen border
     set nowrap                     " Don't wrap lines when they are too long
     set title                      " Title of the window is set to 'titlestring' or filename
@@ -76,3 +76,7 @@
         autocmd InsertLeave,WinEnter * set cursorline
         autocmd InsertEnter,WinLeave * set nocursorline
     augroup END
+
+" Fold code in markdown
+    autocmd BufWinLeave *.md mkview
+    autocmd BufWinEnter *.md silent loadview 

@@ -7,13 +7,19 @@ COUNTER=0
 echo ""
 echo "ಠ_ಠ"
 echo ""
-sleep 1s
+sleep 1
 echo "Oops! I fucked up..."
-sleep 1s
-while [  $COUNTER -lt 5 ]; do
- echo "really,"
- sleep 1s
- let COUNTER=COUNTER+1
+sleep 1
+
+while [  $COUNTER -lt 3 ]; do
+	echo "really,"
+	sleep 1
+
+	if [[ "$COUNTER" == '2' ]]; then
+		sleep 2
+	fi
+
+	let COUNTER=COUNTER+1
 done
 
 echo "really bad."
