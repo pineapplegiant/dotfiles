@@ -6,7 +6,7 @@
 # Environmental variables are set here first
 
 # Set Work or Personal
-export IS_WORK=true
+export IS_WORK=false
 
 # TODO: check if brew installed, should be packmanager
 if [ -d "/usr/local/" ] && type brew >/dev/null 2>&1; then
@@ -32,6 +32,9 @@ fi
     export XDG_CACHE_HOME="$HOME/dotfiles/.cache"         # /var/cache
 	export XDG_STATE_HOME="$HOME/dotfiles/.local/state"
 
+# Spaceship
+	export SPACESHIP_CONFIG="$HOME/dotfiles/.config/spaceship/spaceship.zsh"
+
 # Cleanup for programs that don't listen to XDG SPEC
     # VIMINIT will be sourced by neovim too, so I set this: XDG for NVIM & EXINIT for Vim
     export EXINIT='let $MYVIMRC="$XDG_CONFIG_HOME/vim/vimrc" | source $MYVIMRC'
@@ -51,6 +54,7 @@ fi
 	export N_PRESERVE_COREPACK=1
 	export NPM_CONFIG_USERCONFIG=${XDG_CONFIG_HOME:-$HOME/.config}/npm/npmrc
 	export COREPACK_HOME="${XDG_DATA_HOME:-$HOME/.local}/corepack"
+	export NODE_REPL_HISTORY="$XDG_STATE_HOME/node_repl/history"
 	export NODE_REPL_HISTORY="$XDG_STATE_HOME/node_repl/history"
 
 	# Add Node.js to PATH
@@ -86,8 +90,8 @@ fi
     export GOBIN="$HOME/.local/share/go/bin"
 
 # GNUPG
-export GNUPGHOME=${XDG_CONFIG_HOME}/gnupg
-export GPG_TTY=$(tty)
+	export GNUPGHOME=${XDG_CONFIG_HOME}/gnupg
+	export GPG_TTY=$(tty)
 
 # Add Personal Scripts to my path
 	if $IS_WORK; then
@@ -95,3 +99,10 @@ export GPG_TTY=$(tty)
 	fi
 
 	PATH=$PATH:$HOME/dotfiles/.local/bin
+
+
+
+export NVM_DIR="$HOME/dotfiles/.config/nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+
+eval "$(/opt/homebrew/bin/brew shellenv)"

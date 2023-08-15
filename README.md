@@ -23,7 +23,7 @@
 ├── .zprofile -> ~/.zprofile (symlinked to $HOME)
 ├── README.md
 ├── neofetch.png
-└── setup/ -> Brew packages and mac setup
+└── install/ -> Brew packages & MacOSX setup
 
 4 directories, 4 files
 
@@ -37,7 +37,7 @@
 - [ZShell](http://zsh.sourceforge.net/ "The Z shell's Homepage") - Better than bash experience 🤓
   - [Spaceship-prompt](https://github.com/denysdovhan/spaceship-prompt "Spaceship prompt Github") - Configurable, pretty, and works 🚀
 - [Karabiner](https://karabiner-elements.pqrs.org/ "Karabiner Elements home page") - I like to remap the right command on MacOSX to Ctrl ⌨
-- [Spectacle](https://www.spectacleapp.com/ "Spectacle Elements home page") - A better window managing experience on Mac 👓
+- [Rectangle](https://rectangleapp.com/ "Rectangle Home Page") - A better window managing experience on Mac 👓
 - [Vscode](https://code.visualstudio.com "VSCode's homepage") - Can't lie, I use this too... Pair programming my guy.
 
 ## Colors:
@@ -49,10 +49,10 @@
 1. Run mac-setup (macos) to install brew, git, and additional brew packages and settings:
 
 ```bash
-curl "https://raw.githubusercontent.com/pineapplegiant/dotfiles/supreme-overlord/setup/macos" | bash
+curl "https://raw.githubusercontent.com/pineapplegiant/dotfiles/supreme-overlord/install/mac-os-setup" | bash
 ```
 
-##### Brew Packages I really like :')
+##### Essential Brew Packages I really like :')
 
 cmatrix
 exa
@@ -72,6 +72,7 @@ ripgrep
 tldr
 tmux
 tree
+spaceship-prompt
 unzip
 yarn
 z
@@ -95,7 +96,7 @@ cask "font-sauce-code-pro-nerd-font"
 
 [Spaceship prompt](https://github.com/denysdovhan/spaceship-prompt)
 
-- `npm install -g spaceship-prompt`
+- `brew install -g spaceship-prompt`
 
 #### System Settings:
 
