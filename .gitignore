@@ -40,3 +40,5 @@
 # Escape = caps_lock
 # Right windows command = left control
 !.config/karabiner
+
+.config/gnupg/*

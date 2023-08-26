@@ -38,6 +38,7 @@ local function try_color_scheme(theme, theme_opts)
 
 	vim.cmd(color_theme_string)
 end
+
 require('material').setup({
 
     contrast = {
@@ -101,6 +102,7 @@ require('material').setup({
 
     custom_highlights = {}, -- Overwrite highlights with your own
 })
+
 if pcall(try_color_scheme, gmos_colorscheme, colorscheme_opts) then
 	--"no errors in loading colorscheme"
 else

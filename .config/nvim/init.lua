@@ -9,39 +9,45 @@
 
 -- Good starting reference: https://github.com/nvim-lua/kickstart.nvim/blob/master/init.lua
 
--- General Settings, mappings, etc.
--- disable netrw at the very start of your init.lua (strongly advised)
-vim.g.loaded_netrw = 1
-vim.g.loaded_netrwPlugin = 1
-require("plugins-conf")          -- $XDG_CONFIG_HOME/nvim/lua/plugins-conf.lua
-require("core.base")             -- $XDG_CONFIG_HOME/nvim/lua/core/base.lua
-require("core.maps")             -- $XDG_CONFIG_HOME/nvim/lua/core/maps.lua
-require("core.colorscheme")      -- $XDG_CONFIG_HOME/nvim/lua/core/colorscheme.lua
+require("core.base") -- $XDG_CONFIG_HOME/nvim/lua/core/base.lua
 
--- PLUGINS
-require("plugins.barbar")        -- $XDG_CONFIG_HOME/nvim/lua/plugins/barbar.lua
-require("plugins.colorizer")     -- $XDG_CONFIG_HOME/nvim/lua/plugins/colorizer.lua
-require("plugins.comment")       -- $XDG_CONFIG_HOME/nvim/lua/plugins/comment.lua
-require("plugins.hop")           -- $XDG_CONFIG_HOME/nvim/lua/plugins/hop.lua
-require("plugins.indent-blankline") -- $XDG_CONFIG_HOME/nvim/lua/plugins/indent-blankline.lua
-require("plugins.lualine")       -- $XDG_CONFIG_HOME/nvim/lua/plugins/lualine.lua
-require("plugins.neoscroll")     -- $XDG_CONFIG_HOME/nvim/lua/plugins/neoscroll.lua
-require("plugins.nvim-surround") -- $XDG_CONFIG_HOME/nvim/lua/plugins/nvim-surround.lua
-require("plugins.nvim-tree")     -- $XDG_CONFIG_HOME/nvim/lua/plugins/nvim-tree.lua
--- require("plugins.prettier")      -- $XDG_CONFIG_HOME/nvim/lua/plugins/prettier.lua
-require("plugins.symbols")       -- $XDG_CONFIG_HOME/nvim/lua/plugins/symbols.lua
-require("plugins.telescope")     -- $XDG_CONFIG_HOME/nvim/lua/plugins/telescope.lua
-require("plugins.tmux")          -- $XDG_CONFIG_HOME/nvim/lua/plugins/tmux.lua
-require("plugins.todo-comments") -- $XDG_CONFIG_HOME/nvim/lua/plugins/todo-comments.lua
-require("plugins.zenmode")       -- $XDG_CONFIG_HOME/nvim/lua/plugins/zenmode.lua
+-------------------------------------
+-- Install LazyNvim if not installed
+-------------------------------------
+vim.g.mapleader = " "
+vim.g.localmapleader = "\\"
 
--- LSP
-require("plugins.lsp.mason-lsp-setup") -- $XDG_CONFIG_HOME/nvim/lua/plugins/lsp/mason-lsp-setup.lua
-require("plugins.lsp.lspsaga")   -- $XDG_CONFIG_HOME/nvim/lua/plugins/lsp/lspsaga.lua
--- require("plugins.lsp.null-ls")   -- $XDG_CONFIG_HOME/nvim/lua/plugins/lsp/null-ls.lua
-require("plugins.nvim-cmp")      -- $XDG_CONFIG_HOME/nvim/lua/plugins/nvim-cmp.lua
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+if not vim.loop.fs_stat(lazypath) then
+	vim.fn.system({
+		"git",
+		"clone",
+		"--filter=blob:none",
+		"https://github.com/folke/lazy.nvim.git",
+		"--branch=stable", -- latest stable release
+		lazypath,
+	})
+end
 
--- ETC
-require("plugins.autopairs")     -- $XDG_CONFIG_HOME/nvim/lua/plugins/autopairs.lua
-require("plugins.treesitter")    -- $XDG_CONFIG_HOME/nvim/lua/plugins/treesitter.lua
-require("plugins.gitsigns")      -- $XDG_CONFIG_HOME/nvim/lua/plugins/gitsigns.lua
+vim.opt.rtp:prepend(lazypath)
+
+-------------------------------------
+-- Lazy Plugins
+-------------------------------------
+
+-- $XDG_CONFIG_HOME/nvim/lua/plugins/init.lua
+require("lazy").setup({
+	{ import = "plugins" },
+	{ import = "plugins.lsp" },
+}, {
+	checker = {
+		enabled = true,
+		notify = false,
+	},
+	change_detection = {
+		notify = false,
+	},
+})
+
+require("core.maps") -- $XDG_CONFIG_HOME/nvim/lua/core/maps.lua
+require("core.colorscheme") -- $XDG_CONFIG_HOME/nvim/lua/core/colorscheme.lua

@@ -11,6 +11,12 @@
 -- shortcut
 local set = vim.opt
 
+-- Disable netrw at the very start of your init.lua (strongly advised)
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
+-- set termguicolors to enable highlight groups
+vim.opt.termguicolors = true
+
 -- Sensible Settings
 vim.wo.number = true -- Show line numbers
 set.backspace = { 'start', 'eol', 'indent' } -- Allow backspace in insert mode
@@ -21,7 +27,7 @@ set.mouse = "a" -- Enabling Mouse support
 set.autoindent = true -- Keep Indent generally when using <CR> or hitting o
 set.smartindent = true -- Editor will be smart about indenting or not
 
-set.expandtab = false -- Use tabs
+set.expandtab = true -- Tabs are spaces
 set.tabstop = 4 -- Tab becomes 4 spaces
 set.softtabstop = 4 -- Tab becomes 4 spaces in Vim operations
 set.shiftwidth = 4 -- Number of spaces for indentation
@@ -42,6 +48,10 @@ set.splitright = true -- Vertical splitting a window default open to the right
 set.swapfile = false -- Idk what swapfiles are, so no i dont want it sir
 -- vim.opt.listchars = { space = '·' }
 -- set.list = false -- Show trailing spaces
+set.list = true
+-- Show trailing spaces, but keep tabs as blank spaces
+set.listchars:append "trail:⋅"
+set.listchars:append "tab:   "
 
 set.wildignorecase = true -- Ignore casing when completing file names and directories
 
@@ -54,7 +64,8 @@ set.completeopt = 'menuone,noselect' -- Set completeopt to have a better complet
 -- set.backup = false             -- don't create backup files
 
 -- Ignore these filetypes when trying to navigate files
-set.wildignore = { '*.swp', '*.bak', '*.pyc',
+set.wildignore = { 
+	'*.swp', '*.bak', '*.pyc',
 	'*.class', '*.sln', '*.Master',
 	'*.csproj', '*.csproj', '.user',
 	'*.cache', '*.dll', '*.pdb',

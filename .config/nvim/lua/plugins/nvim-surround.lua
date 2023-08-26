@@ -2,7 +2,10 @@
 -- Nvim Surround
 -- See `:help nvim-surround.txt`
 -------------------------------------
-local status, surround = pcall(require, 'nvim-surround')
-if (not status) then return end
-
-surround.setup()
+---
+return {
+    "kylechui/nvim-surround",
+    version = "*", -- Use for stability; omit to use `main` branch for the latest features
+    event = "VeryLazy",
+    config = true
+}

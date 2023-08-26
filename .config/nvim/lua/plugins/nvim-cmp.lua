@@ -3,144 +3,145 @@
 -- Complete the things
 -- :h `nvim-cmp`
 -------------------------------------
-local status, cmp = pcall(require, 'cmp')
-local kind_status, lspkind = pcall(require, 'lspkind')
-local luasnip_status, luasnip = pcall(require, 'luasnip')
 
-if (not status) and (not kind_status) and (not luasnip_status) then return end
+return {
+    "hrsh7th/nvim-cmp",
+    event = "InsertEnter",
+    dependencies = {
+        "hrsh7th/cmp-buffer", -- source for text in buffer
+        "hrsh7th/cmp-path", -- source for file system paths
+        'hrsh7th/cmp-nvim-lsp',
+        'hrsh7th/cmp-nvim-lua',
+        'David-Kunz/cmp-npm',
+        'andersevenrud/cmp-tmux',
+        "onsails/lspkind.nvim",
+        "L3MON4D3/LuaSnip", -- snippet engine
+        "saadparwaiz1/cmp_luasnip", -- for autocompletion
+        "rafamadriz/friendly-snippets", -- useful snippets
+    },
 
-local cmp_sources = {
-	{ name = 'nvim_lsp' },
-	{ name = 'nvim_lua' },
-	{ name = 'luasnip' },
-	{ name = 'buffer' },
-	{ name = 'tmux' },
-	{ name = 'path' },
-	{ name = 'calc' },
-}
+    config = function()
+        --   פּ ﯟ   some other good icons
+        -- local kind_icons = {
+        --     Text = "",
+        --     Method = "m",
+        --     Function = "",
+        --     Constructor = "",
+        --     Field = "",
+        --     Variable = "",
+        --     Class = "",
+        --     Interface = "",
+        --     Module = "",
+        --     Property = "",
+        --     Unit = "",
+        --     Value = "",
+        --     Enum = "",
+        --     Keyword = "",
+        --     Snippet = "",
+        --     Color = "",
+        --     File = "",
+        --     Reference = "",
+        --     Folder = "",
+        --     EnumMember = "",
+        --     Constant = "",
+        --     Struct = "",
+        --     Event = "",
+        --     Operator = "",
+        --     TypeParameter = "",
+        -- }
 
--- Check NPM Completion exists
-local npmStatus, cmp_npm = pcall(require,'cmp-npm')
-if (npmStatus) then
-	cmp_npm.setup({})
-	table.insert(cmp_sources, {name = 'npm', keyword_length = 4})
-end
+        local cmp = require("cmp")
+        local luasnip = require("luasnip")
+        local lspkind = require("lspkind")
 
--- Check Git Completion exists
-local gitStatus, cmp_git = pcall(require,'cmp_git')
-if (gitStatus) then
-	cmp_git.setup({})
-	table.insert(cmp_sources, {name = 'git'})
-end
+        -- load vs-code like snippets from plugins (e.g. friendly-snippets)
+        require("luasnip.loaders.from_vscode").lazy_load()
 
+        vim.opt.completeopt = "menu,menuone,noselect"
+        cmp.setup({
+            snippet = {
+                expand = function(args)
+                luasnip.lsp_expand(args.body)
+            end,
+        },
+        mapping = cmp.mapping.preset.insert({
+            ["<C-p>"] = cmp.mapping.select_prev_item(), -- previous suggestion
+            ["<C-n>"] = cmp.mapping.select_next_item(), -- next suggestion
+            ["<C-d>"] = cmp.mapping.scroll_docs(-4),
+            ["<C-f>"] = cmp.mapping.scroll_docs(4),
+            ["<C-Space>"] = cmp.mapping.complete(), -- show completion suggestions
+            ["<C-e>"] = cmp.mapping.abort(), -- close completion window
+            ["<CR>"] = cmp.mapping.confirm({
+                behavior = cmp.ConfirmBehavior.Replace,
+                select = true,
+            }),
+            ['<TAB>'] = cmp.mapping.confirm({
+                behavior = cmp.ConfirmBehavior.Replace,
+                select = true
+            }),
+        }),
+        -- sources for autocompletion
+        sources = cmp.config.sources({
+            { name = "nvim_lsp" }, -- lsp
+            { name = 'nvim_lua' },
+            { name = "luasnip" }, -- snippets
+            { name = "buffer" }, -- text within current buffer
+            { name = "path" }, -- file system paths
+            { name = 'buffer' },
+            { name = 'tmux' },
+            { name = 'path' },
+            { name = 'calc' },
+        }),
 
+        -- configure lspkind for vs-code like icons
+        formatting = {
+          format = lspkind.cmp_format({
+            maxwidth = 50,
+            ellipsis_char = "...",
 
---   פּ ﯟ   some other good icons
-local kind_icons = {
-	Text = "",
-	Method = "m",
-	Function = "",
-	Constructor = "",
-	Field = "",
-	Variable = "",
-	Class = "",
-	Interface = "",
-	Module = "",
-	Property = "",
-	Unit = "",
-	Value = "",
-	Enum = "",
-	Keyword = "",
-	Snippet = "",
-	Color = "",
-	File = "",
-	Reference = "",
-	Folder = "",
-	EnumMember = "",
-	Constant = "",
-	Struct = "",
-	Event = "",
-	Operator = "",
-	TypeParameter = "",
-}
+            -- The function below will be called before any actual modifications from lspkind
+            -- so that you can provide more controls on popup customization. (See [#30](https://github.com/onsails/lspkind-nvim/pull/30))
+            -- before = function (entry, vim_item)
+            --     -- Kind icons
+            --     vim_item.kind = string.format("%s", kind_icons[vim_item.kind])
+            --
+            --     -- vim_item.kind = string.format('%s %s', kind_icons[vim_item.kind], vim_item.kind) -- This concatonates the icons with the name of the item kind
+            --             --
+            --     vim_item.menu = ({
+            --         nvim_lsp = "[LSP]",
+            --         nvim_lua = "[NVIM_LUA]",
+            --         luasnip = "[Snippet]",
+            --         buffer = "[Buffer]",
+            --         path = "[Path]",
+            --     })[entry.source.name]
+            --
+            --     return vim_item
+            -- end,
+          })
+        },
 
+        -- Set configuration for specific filetype.
+        cmp.setup.filetype('gitcommit', {
+            sources = cmp.config.sources({
+                { name = 'cmp_git' }, -- You can specify the `cmp_git` source if you were installed it.
+            }, {
+                { name = 'buffer' },
+            })
+        }),
+        confirm_opts = {
+            behavior = cmp.ConfirmBehavior.Replace,
+            select = false,
+        },
 
-cmp.setup({
-	snippet = {
-		expand = function(args)
-			luasnip.lsp_expand(args.body)
-		end,
-	},
-	mapping = {
-		["<C-p>"] = cmp.mapping.select_prev_item(),
-		["<C-n>"] = cmp.mapping.select_next_item(),
-		["<C-d>"] = cmp.mapping.scroll_docs(-4),
-		["<C-f>"] = cmp.mapping.scroll_docs(4),
-		["<C-Space>"] = cmp.mapping.complete(),
-		["<C-e>"] = cmp.mapping.close(),
-		["<CR>"] = cmp.mapping.confirm({
-			behavior = cmp.ConfirmBehavior.Replace,
-			select = true,
-		}),
-		['<TAB>'] = cmp.mapping.confirm({
-			behavior = cmp.ConfirmBehavior.Replace,
-			select = true
-		}),
-		-- ["<Tab>"] = function(fallback)
-		-- 	if cmp.visible() then
-		-- 		cmp.select_next_item()
-		-- 	elseif luasnip.expand_or_jumpable() then
-		-- 		luasnip.expand_or_jump()
-		-- 	else
-		-- 		fallback()
-		-- 	end
-		-- end,
-		-- ["<S-Tab>"] = function(fallback)
-		-- 	if cmp.visible() then
-		-- 		cmp.select_prev_item()
-		-- 	elseif luasnip.jumpable(-1) then
-		-- 		luasnip.jump(-1)
-		-- 	else
-		-- 		fallback()
-		-- 	end
-		-- end,
-	},
-	formatting = {
-		fields = { "kind", "abbr", "menu" },
-		format = function(entry, vim_item)
-		  -- Kind icons
-		  vim_item.kind = string.format("%s", kind_icons[vim_item.kind])
-		  -- vim_item.kind = string.format('%s %s', kind_icons[vim_item.kind], vim_item.kind) -- This concatonates the icons with the name of the item kind
-		  vim_item.menu = ({
-			nvim_lsp = "[LSP]",
-			nvim_lua = "[NVIM_LUA]",
-			luasnip = "[Snippet]",
-			buffer = "[Buffer]",
-			path = "[Path]",
-		  })[entry.source.name]
-		  return vim_item
-		end,
-	},
-	sources = cmp.config.sources(cmp_sources),
+        window = {
+            completion = cmp.config.window.bordered(),
+            documentation = cmp.config.window.bordered(),
+        },
 
-	-- Set configuration for specific filetype.
-	cmp.setup.filetype('gitcommit', {
-		sources = cmp.config.sources({
-		  { name = 'cmp_git' }, -- You can specify the `cmp_git` source if you were installed it.
-		}, {
-		  { name = 'buffer' },
-		})
-	}),
-	confirm_opts = {
-		behavior = cmp.ConfirmBehavior.Replace,
-		select = false,
-	},
-	window = {
-		completion = cmp.config.window.bordered(),
-		documentation = cmp.config.window.bordered(),
-	},
-	experimental = {
-		ghost_text = false,
-		native_menu = false,
-	},
+        experimental = {
+            ghost_text = false,
+            native_menu = false,
+        },
 })
+    end,
+}
