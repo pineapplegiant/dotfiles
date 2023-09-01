@@ -5,7 +5,7 @@
 -------------------------------------
 return {
 	"folke/zen-mode.nvim",
-	lazy = true,
+	-- lazy = true,
 	opts = {
 		-- your configuration comes here
 		-- or leave it empty to use the default settings
@@ -16,7 +16,7 @@ return {
 			-- * an absolute number of cells when > 1
 			-- * a percentage of the width / height of the editor when <= 1
 			-- * a function that returns the width or the height
-			width = 120, -- width of the Zen window
+			width = 150, -- width of the Zen window
 			height = 1, -- height of the Zen window
 			-- by default, no options are changed for the Zen window
 			-- uncomment any of the options below, or add other vim.wo options you want to apply
@@ -51,8 +51,12 @@ return {
 			},
 		},
 		-- callback where you can add custom code when the Zen window opens
-		on_open = function(win) end,
+		on_open = function(win)
+			vim.wo.wrap = true
+		end,
 		-- callback where you can add custom code when the Zen window closes
-		on_close = function() end,
+		on_close = function()
+			vim.wo.wrap = false
+		end,
 	},
 }

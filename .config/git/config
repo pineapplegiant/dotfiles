@@ -1,8 +1,9 @@
-# This is Git's per-user configuration file.  Credit: [ scottnonnenberg ]( https://gist.github.com/scottnonnenberg/fefa3f65fdb3715d25882f3023b31c29 )
+# This is Git's per-user configuration file.  
+# Credit: [ scottnonnenberg ]( https://gist.github.com/scottnonnenberg/fefa3f65fdb3715d25882f3023b31c29 )
 [user]
     name = Guillermo Rodriguez
     email = grod937@gmail.com
-	signingkey = 7CF700E041EEFAEC
+	signingkey = 73A9CBD3984A9198
 
 [core]
     editor = nvim
@@ -13,8 +14,6 @@
     a = "add"
     c = "commit"
     co = "checkout"
-    br = "branch"
-    st = "status"
     d = "diff"
     dt = "difftool"
     gl = "log  --graph --abbrev-commit --pretty=oneline --decorate --all"
@@ -25,7 +24,6 @@
     s = "status"
     stat = "status"
     zip = "!git archive --format=zip -o latest.zip HEAD"
-    list ="log -1 HEAD"
 
 # Because I constantly forget how to do this
 # https://git-scm.com/docs/git-fetch#git-fetch--p
@@ -60,17 +58,25 @@
 
 [pager]
     difftool = true
-
 [pull]
     rebase = true
 [credential]
     helper = osxkeychain
+	helper = 
+	helper = /usr/local/share/gcm-core/git-credential-manager
 [init]
     defaultBranch = main
 
 [gpg]
-	program = /usr/local/bin/gpg
+	program = gpg
 [commit]
 	gpgsign = true
 [tag]
-	gpgsign = true
+	gpgsign = false
+[filter "lfs"]
+	process = git-lfs filter-process
+	required = true
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+[credential "https://dev.azure.com"]
+	useHttpPath = true

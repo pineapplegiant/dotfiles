@@ -19,10 +19,10 @@ vim.opt.termguicolors = true
 
 -- Sensible Settings
 vim.wo.number = true -- Show line numbers
-set.backspace = { 'start', 'eol', 'indent' } -- Allow backspace in insert mode
+set.backspace = { "start", "eol", "indent" } -- Allow backspace in insert mode
 set.lazyredraw = false -- Makes vim redraw while performing macros
 set.ignorecase = true -- Case insensitive searching UNLESS /C or capital in search
-set.spelllang = 'en_us' -- US engwish
+set.spelllang = "en_us" -- US engwish
 set.mouse = "a" -- Enabling Mouse support
 set.autoindent = true -- Keep Indent generally when using <CR> or hitting o
 set.smartindent = true -- Editor will be smart about indenting or not
@@ -33,8 +33,8 @@ set.softtabstop = 4 -- Tab becomes 4 spaces in Vim operations
 set.shiftwidth = 4 -- Number of spaces for indentation
 set.numberwidth = 4 -- Padding of space in the side number column
 
-set.backupskip = { '/tmp/*', '/private/tmp/*' }
-set.inccommand = 'split' -- shows effects of command incrementally
+set.backupskip = { "/tmp/*", "/private/tmp/*" }
+set.inccommand = "split" -- shows effects of command incrementally
 set.hlsearch = true -- Mantain highlights on previous search
 set.incsearch = true -- Show incremental searching
 set.scrolloff = 3 -- Distance cursor stays from the bottom of the screen
@@ -50,36 +50,46 @@ set.swapfile = false -- Idk what swapfiles are, so no i dont want it sir
 -- set.list = false -- Show trailing spaces
 set.list = true
 -- Show trailing spaces, but keep tabs as blank spaces
-set.listchars:append "trail:⋅"
-set.listchars:append "tab:   "
+set.listchars:append("trail:⋅")
+set.listchars:append("tab:   ")
 
 set.wildignorecase = true -- Ignore casing when completing file names and directories
 
 set.updatetime = 250 -- Decrease update time
-vim.wo.signcolumn = 'yes'
-set.completeopt = 'menuone,noselect' -- Set completeopt to have a better completion experience
+vim.wo.signcolumn = "yes"
+set.completeopt = "menuone,noselect" -- Set completeopt to have a better completion experience
 
 --set.wilcharm = "<C-z>"       -- Keypress to start expansion when in a Macro
 -- set.colorcolumn=99999       -- Fix indentblankline
 -- set.backup = false             -- don't create backup files
 
 -- Ignore these filetypes when trying to navigate files
-set.wildignore = { 
-	'*.swp', '*.bak', '*.pyc',
-	'*.class', '*.sln', '*.Master',
-	'*.csproj', '*.csproj', '.user',
-	'*.cache', '*.dll', '*.pdb',
-	'*.min.*', '*/.git/**/*,*/.hg/**/*,*/.svn/**/*',
-	'tags', '*.tar.*', '*/node_modules/*'
+set.wildignore = {
+	"*.swp",
+	"*.bak",
+	"*.pyc",
+	"*.class",
+	"*.sln",
+	"*.Master",
+	"*.csproj",
+	"*.csproj",
+	".user",
+	"*.cache",
+	"*.dll",
+	"*.pdb",
+	"*.min.*",
+	"*/.git/**/*,*/.hg/**/*,*/.svn/**/*",
+	"tags",
+	"*.tar.*",
+	"*/node_modules/*",
 }
 
 -- Explicitly set utf-8 encoding bc why not?
-vim.scriptencoding = 'utf-8'
-set.encoding = 'utf-8'
-set.fileencoding = 'utf-8'
+vim.scriptencoding = "utf-8"
+set.encoding = "utf-8"
+set.fileencoding = "utf-8"
 
 --&t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
 --&t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
-
 
 --autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o

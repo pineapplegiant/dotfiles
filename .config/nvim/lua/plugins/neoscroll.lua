@@ -9,6 +9,8 @@ return {
 		require("neoscroll").setup({
 			easing_function = "quadratic", -- Default easing function Set any other options as needed
 			hide_cursor = true,
+			-- All these keys will be mapped to their corresponding default scrolling animation
+			mappings = { "<C-u>", "<C-d>", "<C-y>", "<C-e>", "zt", "zz", "zb" },
 		})
 
 		local t = {}
@@ -16,9 +18,9 @@ return {
 		t["<C-u>"] = { "scroll", { "-vim.wo.scroll", "true", "550", nil } }
 		t["<C-d>"] = { "scroll", { "vim.wo.scroll", "true", "550", nil } }
 
-		---- Use the "circular" easing function
-		t["<C-b>"] = { "scroll", { "-vim.api.nvim_win_get_height(0)", "true", "500", [['circular']] } }
-		t["<C-f>"] = { "scroll", { "vim.api.nvim_win_get_height(0)", "true", "500", [['circular']] } }
+		-- ---- Use the "circular" easing function
+		-- t["<C-b>"] = { "scroll", { "-vim.api.nvim_win_get_height(0)", "true", "500", [['circular']] } }
+		-- t["<C-f>"] = { "scroll", { "vim.api.nvim_win_get_height(0)", "true", "500", [['circular']] } }
 
 		---- Pass "nil" to disable the easing animation (constant scrolling speed)
 		t["<C-y>"] = { "scroll", { "-0.10", "false", "100", nil } }

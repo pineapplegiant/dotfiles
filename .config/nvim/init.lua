@@ -49,5 +49,5 @@ require("lazy").setup({
 	},
 })
 
-require("core.maps") -- $XDG_CONFIG_HOME/nvim/lua/core/maps.lua
 require("core.colorscheme") -- $XDG_CONFIG_HOME/nvim/lua/core/colorscheme.lua
+require("core.maps") -- $XDG_CONFIG_HOME/nvim/lua/core/maps.lua
