@@ -38,7 +38,7 @@ keymap.set("n", "<F10>", ":source $MYVIMRC<CR>", { desc = "Source VIMRC" })
 keymap.set("n", "<F6>", ":r !date<CR>", { desc = "Quick Timestamp" })
 keymap.set("n", ",gcc", ':!tmux send-keys -t1 "\\!! " ENTER <CR><CR>', { desc = "Run last command in tmux window" })
 
--- U to redo
+-- U to redo instead of C-R
 keymap.set("n", "U", "<C-R>", { desc = "Redo last change" })
 
 -- Increment/decrement

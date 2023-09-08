@@ -14,6 +14,7 @@ local set = vim.opt
 -- Disable netrw at the very start of your init.lua (strongly advised)
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
+
 -- set termguicolors to enable highlight groups
 vim.opt.termguicolors = true
 
@@ -46,10 +47,12 @@ set.wildmenu = true -- Set autocomplete for the command menu
 set.splitbelow = true -- Horizontal split default opens at bottom
 set.splitright = true -- Vertical splitting a window default open to the right
 set.swapfile = false -- Idk what swapfiles are, so no i dont want it sir
+
 -- vim.opt.listchars = { space = '·' }
--- set.list = false -- Show trailing spaces
 set.list = true
+
 -- Show trailing spaces, but keep tabs as blank spaces
+set.listchars:append("space: ")
 set.listchars:append("trail:⋅")
 set.listchars:append("tab:   ")
 

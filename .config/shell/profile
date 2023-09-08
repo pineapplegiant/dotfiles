@@ -1,41 +1,51 @@
 #!/bin/zsh
 
-# ~/.profile is only loaded when running zsh in sh compatibility mode, otherwise it reads .zprofile
+# ~/.profile is only loaded when running zsh in sh compatibility mode,
+# otherwise it reads .zprofile
 # as well as .zshrc for interactive and .zlogin for login shells.
-
 # Environmental variables are set here first
 
-# Set Work or Personal
-export IS_WORK=false
+# Loads brew
+    eval "$(/opt/homebrew/bin/brew shellenv)"
 
-# TODO: check if brew installed, should be packmanager
-if [ -d "/usr/local/" ] && type brew >/dev/null 2>&1; then
-	export BREW_INSTALLED=true
-else
-	export BREW_INSTALLED=false
-fi
+
+
+# Set Work or Personal Setting Var
+    export IS_WORK=false
 
 # Default Programs
-    export EDITOR="nvim"
-	if $BREW_INSTALLED; then
-		export SHELL="/usr/local/bin/zsh"
-	fi
-
+    if type nvim >/dev/null 2>&1; then
+        export EDITOR="nvim"
+        export VISUAL=nvim
+    else
+        export EDITOR="vim"
+        export VISUAL=vim
+    fi
 
 #----------------------------------------------------------------------
 #                       PATH
 #----------------------------------------------------------------------
 
 # XDG Location
-    export XDG_CONFIG_HOME="$HOME/dotfiles/.config"       # /etc
-    export XDG_DATA_HOME="$HOME/dotfiles/.local/share"    # /usr/share
-    export XDG_CACHE_HOME="$HOME/dotfiles/.cache"         # /var/cache
-	export XDG_STATE_HOME="$HOME/dotfiles/.local/state"
+    export DOTFILES="$HOME/dotfiles"                 # preference
+    export XDG_CONFIG_HOME="$DOTFILES/.config"       # /etc
+    export XDG_DATA_HOME="$DOTFILES/.local/share"    # /usr/share
+    export XDG_CACHE_HOME="$DOTFILES/.cache"         # /var/cache
+	export XDG_STATE_HOME="$DOTFILES/.local/state"
+
+# Add Work Scripts to path if on work comp
+	if $IS_WORK; then
+		PATH=$PATH:$DOTFILES/.local/work/bin
+	fi
+
+# Add Personal Scripts to path
+    PATH=$PATH:$DOTFILES/.local/bin
+
 
 # Spaceship
-	export SPACESHIP_CONFIG="$HOME/dotfiles/.config/spaceship/spaceship.zsh"
+	export SPACESHIP_CONFIG="${XDG_CONFIG_HOME:-$HOME/.config}/spaceship/spaceship.zsh"
 
-# Cleanup for programs that don't listen to XDG SPEC
+# Cleanup for programs that don't listen to XDG SPEC :'(
     # VIMINIT will be sourced by neovim too, so I set this: XDG for NVIM & EXINIT for Vim
     export EXINIT='let $MYVIMRC="$XDG_CONFIG_HOME/vim/vimrc" | source $MYVIMRC'
     export VIMDOTDIR="${XDG_CONFIG_HOME:-$HOME/.config}/vim"
@@ -44,8 +54,11 @@ fi
     export WGETRC="${XDG_CONFIG_HOME:-$HOME/.config}/wget/wgetrc"
     export ZDOTDIR="${XDG_CONFIG_HOME:-$HOME/.config}/zsh"
     export WEECHAT_HOME="${XDG_CONFIG_HOME:-$HOME/.config}/weechat"
-    export HISTFILE="${XDG_DATA_HOME:-$HOME/.local/share}/share/history"
-    export CARGO_HOME="${XDG_DATA_HOME:-$HOME/.local}/share/cargo"
+    export CARGO_HOME="${XDG_DATA_HOME:-$HOME/.local/share}/cargo"
+
+    # GO Lang
+    export GOPATH="${XDG_DATA_HOME:-$HOME/.local/share}/go"
+    export GOBIN="${XDG_DATA_HOME:-$HOME/.local/share}/go/bin"
 
 	# Node.js
 	export N_PREFIX="${XDG_DATA_HOME:-$HOME/.local/share}/node"
@@ -74,35 +87,41 @@ fi
 # subversion
     export SUBVERSION_HOME=$XDG_CONFIG_HOME/subversion
 
-# FZF Default command
-    export FZF_DEFAULT_COMMAND='rg --files'
-
 # Neovim-Remote add to Path Python3
     PATH=$HOME/.cargo/bin:$PATH
 
-# YARN PATH stuff
-	if $BREW_INSTALLED; then
-		PATH=$PATH:/usr/local/opt/go/libexec/bin
-	fi
-
-# GO Lang
-    export GOPATH="$HOME/.local/share/go"
-    export GOBIN="$HOME/.local/share/go/bin"
 
 # GNUPG
 	export GNUPGHOME=${XDG_CONFIG_HOME}/gnupg
 	export GPG_TTY=$(tty)
 
-# Add Personal Scripts to my path
-	if $IS_WORK; then
-		PATH=$PATH:$HOME/dotfiles/.local/work/bin
-	fi
-
-	PATH=$PATH:$HOME/dotfiles/.local/bin
-
-
 
 export NVM_DIR="$HOME/dotfiles/.config/nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 
-eval "$(/opt/homebrew/bin/brew shellenv)"
+#----------------------------------------------------------------------
+#                       FZF
+#----------------------------------------------------------------------
+# FZF Default command
+    export FZF_DEFAULT_COMMAND='rg --files --hidden'
+    export FZF_DEFAULT_OPTS='--layout=reverse --border --inline-info --height=80%'
+
+# Preview file content using bat (https://github.com/sharkdp/bat)
+    export FZF_CTRL_T_OPTS="
+      --preview 'bat -n --color=always {}'
+      --bind 'ctrl-/:change-preview-window(down|hidden|)'"
+
+# Print tree structure in the preview window
+    export FZF_ALT_C_OPTS="--preview 'tree -C {}'"
+
+    export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS'
+         --color=fg:#dedede,bg:#121212,hl:#666666
+         --color=fg+:#eeeeee,bg+:#282828,hl+:#cf73e6
+         --color=info:#cf73e6,prompt:#FF0000,pointer:#cf73e6
+         --color=marker:#f0d50c,spinner:#cf73e6,header:#91aadf'
+
+# export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS'
+#     --color=fg:#ecf0c1,bg:#0f111b,hl:#00a3cc
+#     --color=fg+:#ffffff,bg+:#0f111b,hl+:#b3a1e6
+#     --color=info:#afaf87,prompt:#ce6f8f,pointer:#7a5ccc
+#     --color=marker:#5ccc96,spinner:#7a5ccc,header:#5ccc96'
