@@ -9,15 +9,20 @@
 # Load fzf
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-# Switch <C-T> to <C-P>
-bindkey -r '^T'
-bindkey '^P' fzf-file-widget
+# Switch <C-T> to <C-P> for fzf
+    bindkey -r '^T'
+    bindkey '^P' fzf-file-widget
 
 #----------------------------------------------------------------------
 #                       VI like prompt stuff thanks Luke
+#   More Info - https://zsh.sourceforge.io/Doc/Release/Zsh-Line-Editor.html#Zle-Widgets
+#   More Info - https://stackoverflow.com/questions/18042685/list-of-zsh-bindkey-commands
 #----------------------------------------------------------------------
 # Spaceship prompt
-source $(brew --prefix)/opt/spaceship/spaceship.zsh
+    source $(brew --prefix)/opt/spaceship/spaceship.zsh
+
+# Auto Suggestions
+    source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 # # History in cache directory:
 #     HISTSIZE=10000
@@ -42,13 +47,10 @@ source $(brew --prefix)/opt/spaceship/spaceship.zsh
     if type brew &>/dev/null; then
         # Load ZSH completions
         FPATH=$(brew --prefix)/share/zsh-completions:$FPATH
-        autoload -Uz compinit
-        zstyle ':completion:*' menu select
-        # zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
-        zmodload zsh/complist
-        compinit
-        _comp_options+=(globdots)		# Include hidden files.
     fi
+
+    # Should be called before compinit
+    zmodload zsh/complist
 
 # Setup vim mode
     bindkey -v
@@ -59,7 +61,61 @@ source $(brew --prefix)/opt/spaceship/spaceship.zsh
     bindkey -M menuselect 'k' vi-up-line-or-history
     bindkey -M menuselect 'l' vi-forward-char
     bindkey -M menuselect 'j' vi-down-line-or-history
+
+    # bindkey -M menuselect '^xg' clear-screen
+    # bindkey -M menuselect '^xi' vi-insert                      # Insert
+    # bindkey -M menuselect '^xh' accept-and-hold                # Hold
+    # bindkey -M menuselect '^xn' accept-and-infer-next-history  # Next
+    # bindkey -M menuselect '^xu' undo                           # Undo
     bindkey -v '^?' backward-delete-char
+
+    autoload -U compinit; compinit
+    _comp_options+=(globdots) # With hidden files
+
+    setopt MENU_COMPLETE        # Automatically highlight first element of completion menu
+    setopt AUTO_LIST            # Automatically list choices on ambiguous completion.
+    setopt COMPLETE_IN_WORD     # Complete from both ends of a word.
+
+# Be in-sensitive pls
+    zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
+
+# First try the usual completion
+    # zstyle ':completion:*' keep-prefix true
+
+# Define completers
+    zstyle ':completion:*' completer _extensions _complete _approximate
+
+# Use cache for commands using cache
+    zstyle ':completion:*' use-cache on
+    zstyle ':completion:*' cache-path "$XDG_CACHE_HOME/zsh/.zcompcache"
+
+# Allow you to select in a menu
+    zstyle ':completion:*' menu select
+
+# Autocomplete options for cd instead of directory stack
+    # zstyle ':completion:*' complete-options true
+    zstyle ':completion:*' file-sort modification
+
+# Show Full file list details
+    # zstyle ':completion:*' file-list all
+
+    zstyle ':completion:*:*:*:*:corrections' format '%F{red}!- %d (errors: %e) -!%f'
+    zstyle ':completion:*:*:*:*:descriptions' format '%F{yellow}-- %D %d --%f'
+    zstyle ':completion:*:*:*:*:messages' format ' %F{cyan} -- %d --%f'
+    zstyle ':completion:*:*:*:*:warnings' format ' %F{red}-- no matches found --%f'
+
+# Colors for files and directory
+    zstyle ':completion:*:*:*:*:default' list-colors ${(s.:.)LS_COLORS}
+
+# Only display some tags for the command cd
+    zstyle ':completion:*:*:cd:*' tag-order local-directories directory-stack path-directories
+
+# Required for completion to be in good groups (named after the tags)
+    zstyle ':completion:*' group-name ''
+    zstyle ':completion:*:*:-command-:*:*' group-order aliases builtins functions commands
+
+# See ZSHCOMPWID "completion matching control"
+# zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
 
 # Change cursor shape for different vi modes.
     function zle-keymap-select {
@@ -90,30 +146,26 @@ source $(brew --prefix)/opt/spaceship/spaceship.zsh
     bindkey '^e' edit-command-line
 
 # SubSearch
-source $(brew --prefix)/share/zsh-history-substring-search/zsh-history-substring-search.zsh
+    source $(brew --prefix)/share/zsh-history-substring-search/zsh-history-substring-search.zsh
 
 # To search via vim keybindings
-bindkey -M vicmd 'k' history-substring-search-up
-bindkey -M vicmd 'j' history-substring-search-down
+    bindkey -M vicmd 'k' history-substring-search-up
+    bindkey -M vicmd 'j' history-substring-search-down
 
 # Update FZF To listen to alt C
-bindkey "ç" fzf-cd-widget
+    # bindkey "ç" fzf-cd-widget
 
-# Auto-completion
-# [[ $- == *i* ]] && source "$(brew --prefix)/fzf/shell/completion.zsh" 2> /dev/null
 
 #----------------------------------------------------------------------
 #                       Setup ZSH & Plugins
 #----------------------------------------------------------------------
 
 # Give Z-lua a try
-eval "$(lua $(brew --prefix z.lua)/share/z.lua/z.lua --init zsh)"
+    eval "$(lua $(brew --prefix z.lua)/share/z.lua/z.lua --init zsh)"
 
-# Syntax highlighting: using fast-syntax-highlighting
-source $(brew --prefix)/opt/zsh-fast-syntax-highlighting/share/zsh-fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh
-
-# Auto Suggestions
-source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+# Syntax highlighting
+    source $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+    export ZSH_HIGHLIGHT_HIGHLIGHTERS_DIR=$(brew --prefix)/share/zsh-syntax-highlighting/highlighters
 
 #----------------------------------------------------------------------
 #                       ALIASES

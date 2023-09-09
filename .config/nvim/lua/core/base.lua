@@ -28,10 +28,10 @@ set.mouse = "a" -- Enabling Mouse support
 set.autoindent = true -- Keep Indent generally when using <CR> or hitting o
 set.smartindent = true -- Editor will be smart about indenting or not
 
-set.expandtab = true -- Tabs are spaces
+set.expandtab = true -- Setting expandtabs means no \t ever again
 set.tabstop = 4 -- Tab becomes 4 spaces
 set.softtabstop = 4 -- Tab becomes 4 spaces in Vim operations
-set.shiftwidth = 4 -- Number of spaces for indentation
+set.shiftwidth = 4 -- How many columns of whitespace a "level of indentation" \t is worth
 set.numberwidth = 4 -- Padding of space in the side number column
 
 set.backupskip = { "/tmp/*", "/private/tmp/*" }
