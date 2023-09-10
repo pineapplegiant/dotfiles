@@ -5,11 +5,6 @@
 # as well as .zshrc for interactive and .zlogin for login shells.
 # Environmental variables are set here first
 
-# Loads brew
-    eval "$(/opt/homebrew/bin/brew shellenv)"
-
-
-
 # Set Work or Personal Setting Var
     export IS_WORK=false
 
@@ -56,6 +51,9 @@
     export WEECHAT_HOME="${XDG_CONFIG_HOME:-$HOME/.config}/weechat"
     export CARGO_HOME="${XDG_DATA_HOME:-$HOME/.local/share}/cargo"
 
+    # Add Rust
+    PATH=$HOME/.cargo/bin:$PATH
+
     # GO Lang
     export GOPATH="${XDG_DATA_HOME:-$HOME/.local/share}/go"
     export GOBIN="${XDG_DATA_HOME:-$HOME/.local/share}/go/bin"
@@ -75,6 +73,9 @@
 		export PATH="$PATH:$N_PREFIX/bin";
 	fi
 
+    # Add Python to Path
+    # PATH=$HOME/.cargo/bin:$PATH
+
     # export TMUX_TMPDIR="$XDG_RUNTIME_DIR"
 
 # less
@@ -86,9 +87,6 @@
 
 # subversion
     export SUBVERSION_HOME=$XDG_CONFIG_HOME/subversion
-
-# Neovim-Remote add to Path Python3
-    PATH=$HOME/.cargo/bin:$PATH
 
 
 # GNUPG

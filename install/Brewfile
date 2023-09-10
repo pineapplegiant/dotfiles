@@ -73,14 +73,16 @@ brew "up"
 brew "vim", args: ["HEAD"]
 brew "yarn"
 
-# Needed
+# ZSH - Needed
 brew  "z.lua"
 brew "zsh"
 brew "zsh-autosuggestions"
 brew "zsh-completions"
+brew "zsh-autocomplete"
 brew "zsh-history-substring-search"
 brew "zsh-syntax-highlighting"
-# brew "zsh-fast-syntax-highlighting" # Shit freezes a lot
+brew "zsh-vi-mode"
+# brew "zsh-fast-syntax-highlighting" # Shit freezes a lot, esp on man files
 brew "jesseduffield/lazygit/lazygit"
 brew "universal-ctags/universal-ctags/universal-ctags", args: ["HEAD", "with-jansson"]
 

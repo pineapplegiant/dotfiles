@@ -52,11 +52,8 @@ echo "ln -s $HOME/dotfiles/.zprofile ~/.zprofile"
 ln -s $HOME/dotfiles/.zprofile ~/.zprofile
 
 
-echo "installing brew utilities and packages..."
+echo "installing brew utilities, packages, spaceship prompt and all the things..."
 brew bundle
-
-echo "installing prompt"
-npm install -g spaceship-prompt
 
 ###############################################################################
 # General UI/UX                                                               #
