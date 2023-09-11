@@ -5,6 +5,15 @@
 #                       Plugins
 #----------------------------------------------------------------------
 
+# Default Programs
+    if type nvim >/dev/null 2>&1; then
+       export EDITOR="nvim"
+       export VISUAL=nvim
+    else
+       export EDITOR="vim"
+       export VISUAL=vim
+    fi
+
 # Spaceship prompt
     source $HOMEBREW_PREFIX/opt/spaceship/spaceship.zsh
 
@@ -129,6 +138,9 @@
 
 # Initialize
     zstyle '*:compinit' arguments -D -i -u -C -w
+
+# Don't show any completions unless TAB hit
+    zstyle ':autocomplete:*' ignored-input '*'
 
 # Make Tab and ShiftTab cycle completions on the command line
     bindkey '\t' menu-complete "$terminfo[kcbt]" reverse-menu-complete
