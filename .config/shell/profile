@@ -81,6 +81,9 @@
 
 
 # GNUPG
+# NOTE: If your git process gets stuck during the gpg signing phase, 
+# You can restart gpg by running:
+# `gpgconf --kill gpg-agent`
 	export GNUPGHOME=${XDG_CONFIG_HOME}/gnupg
 	export GPG_TTY=$(tty)
 

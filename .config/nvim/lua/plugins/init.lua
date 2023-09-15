@@ -2,14 +2,14 @@
 return {
 	-- COLORSCHEMES
     { 'folke/tokyonight.nvim', priority = 1000 },
-	'rebelot/kanagawa.nvim', -- Kanagawa Theme?? :3
-	'pineapplegiant/spaceduck', -- Spaceduck <33
-	'shaunsingh/solarized.nvim', --NeoSolorazide
+	{'rebelot/kanagawa.nvim', lazy = true}, -- Kanagawa Theme?? :3
+	{'pineapplegiant/spaceduck', lazy=true}, -- Spaceduck <33
+	{'shaunsingh/solarized.nvim', lazy=true}, --NeoSolorazide
 	-- { "spaceduck-theme/nvim", branch = "dev" }, -- Spaceduck V2<33
-	'rose-pine/neovim', -- RosePine
-	{ 'catppuccin/nvim', as = 'catppuccin' },
-	'Mofiqul/vscode.nvim', -- VSCODE Theme :')'
-	'marko-cerovac/material.nvim',
+	{'rose-pine/neovim', lazy=true}, -- RosePine
+	{ 'catppuccin/nvim', as = 'catppuccin' , lazy=true},
+	{'Mofiqul/vscode.nvim', lazy=true}, -- VSCODE Theme :')'
+	{'marko-cerovac/material.nvim', lazy=true},
 
 	-- 'windwp/nvim-ts-autotag', -- Html autotag stuff
 	-- LSP
