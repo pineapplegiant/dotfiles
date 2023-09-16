@@ -12,10 +12,10 @@
 "----------------------------------------------------------------------
 
 " Remap Capital J/K to move up and down blocks
-    nnoremap J }
-    vmap J }
-    nnoremap K {
-    vmap K {
+"    nnoremap J }
+"    vmap J }
+"    nnoremap K {
+"    vmap K {
 
 " Next level text moving
     vnoremap <C-J> :m '>+1<CR>gv=gv
@@ -25,7 +25,7 @@
     nnoremap U <C-R>
 
 " Use B to move to the beginning of the line
-    map B ^
+    map B 0
 
 " Use E to move to the end of the line
     map E $
@@ -93,7 +93,7 @@ nnoremap gX :silent :execute
     nnoremap <leader>d :bdelete!<CR>
 
 " Fixing vim because I break it Later -> Move between blocks 'better'
-    nnoremap <leader>j J
+"    nnoremap <leader>j J
 
 " Copy & Paste into vim in normal mode
     map<leader>p  "+p
@@ -103,7 +103,7 @@ nnoremap gX :silent :execute
     vmap r "_dP
 
 " Quicksave and Quickquit in vim using leader!
-    nnoremap <leader>s :update<cr>
+    nnoremap <C-S> :update<cr>
     nnoremap <leader>q :q!<CR>
 
 " Split window
@@ -153,33 +153,33 @@ nnoremap gX :silent :execute
 "----------------------------------------------------------------------
 
 " Markdown Remaps
-    function! PandocCreate()
-      let curr_file = expand('%:p')                             " Name of current file
-      let pdf_file = expand('%:r') . '.pdf'                     " Name of file with pdf extension
-      execute '!pandoc --columns=10 --pdf-engine=xelatex ' . curr_file . ' -o ' . pdf_file
-      if filereadable(pdf_file)
-          execute '!open ' . pdf_file
-      endif
-    endfunction
+"    function! PandocCreate()
+"      let curr_file = expand('%:p')                             " Name of current file
+"      let pdf_file = expand('%:r') . '.pdf'                     " Name of file with pdf extension
+"      execute '!pandoc --columns=10 --pdf-engine=xelatex ' . curr_file . ' -o ' . pdf_file
+"      if filereadable(pdf_file)
+"          execute '!open ' . pdf_file
+"      endif
+"    endfunction
 
 " Make/Compile current Latex File
-    function! LatexCreate()
-      let curr_file = expand('%:p')                             " Name of current file
-      let pdf_file = expand('%:r') . '.pdf'                     " Name of file with pdf extension
-      execute '!pdflatex  ./' . curr_file
-      execute '!open ' . pdf_file
-      execute '!open -a "alacritty.app"'
-    endfunction
+"    function! LatexCreate()
+"      let curr_file = expand('%:p')                             " Name of current file
+"      let pdf_file = expand('%:r') . '.pdf'                     " Name of file with pdf extension
+"      execute '!pdflatex  ./' . curr_file
+"      execute '!open ' . pdf_file
+"      execute '!open -a "alacritty.app"'
+"    endfunction
 
-    augroup markdownHelpers
-        autocmd!
-    " LaTeX Remaps
-        autocmd FileType tex nnoremap <F7> :update<CR>:call LatexCreate()<CR>
-        autocmd FileType tex nnoremap ,top :-1read $XDG_CONFIG_HOME/nvim/snippets/blockLatex.txt<CR>
-    " Pandoc Remaps
-        autocmd BufRead,BufNewFile *.md,*.markdown set filetype=markdown
-        autocmd FileType markdown nnoremap <F7> :update<CR>:call PandocCreate()<CR>
-    augroup END
+"    augroup markdownHelpers
+"        autocmd!
+"    " LaTeX Remaps
+"        autocmd FileType tex nnoremap <F7> :update<CR>:call LatexCreate()<CR>
+"        autocmd FileType tex nnoremap ,top :-1read $XDG_CONFIG_HOME/nvim/snippets/blockLatex.txt<CR>
+"    " Pandoc Remaps
+"        autocmd BufRead,BufNewFile *.md,*.markdown set filetype=markdown
+"        autocmd FileType markdown nnoremap <F7> :update<CR>:call PandocCreate()<CR>
+"    augroup END
 
     " Expose TrimWhitespace Command to remove spaces
     command! -nargs=? -range=% -complete=custom,s:TrimCompletionOptions

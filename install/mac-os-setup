@@ -127,4 +127,9 @@ defaults write com.apple.finder OpenWindowForNewRemovableDisk -bool true
 # Show indicator lights for open applications in the Dock
 defaults write com.apple.dock show-process-indicators -bool true
 
+# - Set hostname: tetsuko
+#     scutil --set HostName hostname
+
+scutil --set HostName tetsuko
+
 echo "Done. Note that some of these changes require a logout/restart to take effect."

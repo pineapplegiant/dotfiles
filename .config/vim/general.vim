@@ -36,7 +36,7 @@
     set hlsearch                   " Highlight search results
     set incsearch                  " Turn on incremental searching
     set showcmd                    " Show (partial) command in the last line of the ocreen
-    set scrolloff=2                " When scrolling, keep cursor 2 lines away from screen border
+    set scrolloff=3                " When scrolling, keep cursor 2 lines away from screen border
     set nowrap                     " Don't wrap lines when they are too long
     set title                      " Title of the window is set to 'titlestring' or filename
     set wildmode=longest,list,full " First tab complete to longest string second tab will complete to first full match and open the wildmenu
