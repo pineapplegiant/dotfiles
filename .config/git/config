@@ -1,9 +1,9 @@
-# This is Git's per-user configuration file.  
+# This is Git's per-user configuration file.
 # Credit: [ scottnonnenberg ]( https://gist.github.com/scottnonnenberg/fefa3f65fdb3715d25882f3023b31c29 )
 [user]
     name = Guillermo Rodriguez
     email = grod937@gmail.com
-	signingkey = 73A9CBD3984A9198
+	signingkey = /Users/gmo/.ssh/id_ed25519
 
 [core]
     editor = nvim
@@ -69,6 +69,7 @@
 
 [gpg]
 	program = gpg
+	format = ssh
 [commit]
 	gpgsign = true
 [tag]
