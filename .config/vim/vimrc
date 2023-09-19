@@ -8,3 +8,34 @@
 
 source $XDG_CONFIG_HOME/vim/general.vim        " General Settings point to nvim (less code duplication)
 source $XDG_CONFIG_HOME/vim/mappings.vim       " Remappings for Vim
+
+" Plugin  testing
+call plug#begin()
+
+    " More Syntax highlighting
+    Plug 'sheerun/vim-polyglot'
+
+    " Spaceduck
+    Plug 'pineapplegiant/spaceduck', { 'branch': 'dev' }
+
+    " Vim Airline
+    Plug 'vim-airline/vim-airline'
+
+    " If you don't have nodejs and yarn
+    Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
+
+    " If you have nodejs and yarn
+    Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install' }
+call plug#end()
+
+" SET SPACEDUCK
+if exists('+termguicolors')
+  let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+  let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+  set termguicolors
+endif
+
+set background=dark
+colorscheme spaceduck
+
+let g:airline_theme = 'spaceduck'

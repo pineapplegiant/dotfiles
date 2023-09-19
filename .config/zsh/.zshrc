@@ -20,29 +20,6 @@
 #----------------------------------------------------------------------
 #                       ZSH VI MODE
 #----------------------------------------------------------------------
-# Change cursor shape for different vi modes.
-    # function zle-keymap-select {
-    #   if [[ ${KEYMAP} == vicmd ]] ||
-    #      [[ $1 = 'block' ]]; then
-    #     echo -ne '\e[1 q'
-    #   elif [[ ${KEYMAP} == main ]] ||
-    #        [[ ${KEYMAP} == viins ]] ||
-    #        [[ ${KEYMAP} = '' ]] ||
-    #        [[ $1 = 'beam' ]]; then
-    #     echo -ne '\e[5 q'
-    #   fi
-    # }
-
-    # zle -N zle-keymap-select
-    #
-    # function zle-line-init() {
-    #     zle -K viins # initiate `vi insert` as keymap (can be removed if `bindkey -V` has been set elsewhere)
-    #     echo -ne "\e[5 q"
-    # }
-
-    # zle -N zle-line-init
-    # echo -ne '\e[5 q' # Use beam shape cursor on startup.
-    # preexec() { echo -ne '\e[5 q' ;} # Use beam shape cursor for each new prompt.
 
 # Edit line in vim with <C-e>
     autoload edit-command-line; zle -N edit-command-line
@@ -186,8 +163,8 @@
 #                       Setup ZSH & Plugins
 #----------------------------------------------------------------------
 
-# Give Z-lua a try
-    eval "$(lua $(brew --prefix z.lua)/share/z.lua/z.lua --init zsh)"
+# Zoxide my new z command
+    eval "$(zoxide init zsh)"
 
 # Syntax highlighting
     source $HOMEBREW_PREFIX/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
@@ -206,18 +183,19 @@
 
 # Shortcut to edit system files
     alias vimrc="$EDITOR $XDG_CONFIG_HOME/nvim/init.lua"      # Open nvimrc in nvim
+    alias vimrc_old="\vim $XDG_CONFIG_HOME/vim/vimrc"      # Open nvimrc in nvim
     alias rc="$EDITOR $XDG_CONFIG_HOME/zsh/.zshrc"           # Get to bash-profile faster
     alias bp="$EDITOR $XDG_CONFIG_HOME/shell/profile"        # Get to env faster
     alias tmuxrc="$EDITOR $XDG_CONFIG_HOME/tmux/tmux.conf"   # Tmux settings
     alias alrc="$EDITOR ~/.config/alacritty.yml"             # Alacritty settings
 
-# alias to EXA if exists
-    if type exa >/dev/null 2>&1; then
-        alias l="exa -FG --git --icons"   # Just make ls  chill
-        alias ls="exa -FG --git --icons"  # Make ls pretty
-        alias ll="exa -l --git --icons"   # ls long tag
-        alias s="exa -ahlF --icons"
-        alias ss="exa -aF --git --icons"
+# alias to EZA if exists
+    if type eza >/dev/null 2>&1; then
+        alias l="eza -FG --git --icons"   # Just make ls  chill
+        alias ls="eza -FG --git --icons"  # Make ls pretty
+        alias ll="eza -l --git --icons"   # ls long tag
+        alias s="eza -ahlF --icons"
+        alias ss="eza -aF --git --icons"
     else
         alias l="ls -FG"
         alias ls="ls -FG"

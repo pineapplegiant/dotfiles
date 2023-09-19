@@ -125,6 +125,9 @@ nnoremap gX :silent :execute
 " leader+r to search and replace in file
     nnoremap <leader>r :%s/\<<C-r><C-w>\>//gI<Left><Left><Left>
 
+" Set U as Ctrl N To Explore
+    nnoremap <C-N> :Explore<CR>
+
 "----------------------------------------------------------------------
 "               Terminal -> z
 "----------------------------------------------------------------------

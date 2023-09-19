@@ -58,6 +58,7 @@
 	export COREPACK_HOME="${XDG_DATA_HOME:-$HOME/.local}/corepack"
 	export NODE_REPL_HISTORY="$XDG_STATE_HOME/node_repl/history"
 	export NODE_REPL_HISTORY="$XDG_STATE_HOME/node_repl/history"
+    export NODE_OPTIONS=--openssl-legacy-provider
 
 	# Add Node.js to PATH
 	if [[ $PATH != *"$N_PREFIX/bin"* ]]; then

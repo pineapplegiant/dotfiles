@@ -23,6 +23,7 @@
     let &t_SI = "\e[6 q"           " Just block vim cursor things
     let &t_EI = "\e[2 q"           " Just block vim cursor things
     set ignorecase                 " Ignorecase when searching stuff
+    set noesckeys                  " Hopefully make nvim escape faster
     set spelllang=en_us            " english muthafucka do you speak it?
     set nospell                    " Turn off spellcheck
     set mouse=a                    " Allow the mouse to work, what? sue me

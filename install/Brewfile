@@ -20,7 +20,7 @@ brew "cmake"
 brew "cmatrix"
 brew "cowsay"
 brew "ctags"
-brew "exa"
+brew "eza"
 brew "ffmpeg"
 brew "fontforge"
 brew "fzf"
@@ -74,7 +74,8 @@ brew "vim", args: ["HEAD"]
 brew "yarn"
 
 # ZSH - Needed
-brew  "z.lua"
+# brew  "z.lua"
+brew "zoxide"
 brew "zsh"
 brew "zsh-autosuggestions"
 brew "zsh-completions"

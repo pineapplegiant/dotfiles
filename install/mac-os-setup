@@ -67,6 +67,9 @@ sudo nvram SystemAudioVolume=" "
 # Set a blazingly fast keyboard repeat rate, increased for NVIM
 defaults write NSGlobalDomain KeyRepeat -int 0
 
+# normal minimum is 15 (225 ms), normal minimum is 2 (30 ms)
+defaults write -g InitialKeyRepeat -int 15 && defaults write -g KeyRepeat -int 2
+
 # Use plain text mode for new TextEdit documents
 defaults write com.apple.TextEdit RichText -int 0
 
