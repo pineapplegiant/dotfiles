@@ -34,6 +34,7 @@ return {
 			sync_root_with_cwd = false,
 			reload_on_bufenter = false,
 			respect_buf_cwd = true,
+      hijack_unnamed_buffer_when_opening = true,
 			sort_by = "case_sensitive",
 			view = {
 				adaptive_size = false,
@@ -53,7 +54,7 @@ return {
 		})
 	end,
 	keys = {
-		{ "<C-n>", "<cmd>NvimTreeToggle<CR>", desc = "Toggle file explorer on current file" },
-		{ "<C-r>", "<cmd>NvimTreeFocus<CR>", desc = "Focus file explorer" },
+		{ "<C-n>", "<cmd>NvimTreeFindFileToggle<CR>", desc = "Toggle file explorer on current file" },
+		-- { "<C-r>", "<cmd>NvimTreeFocus<CR>", desc = "Focus file explorer" },
 	},
 }

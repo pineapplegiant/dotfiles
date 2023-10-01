@@ -100,3 +100,6 @@ cask "font-fira-mono-nerd-font"
 cask "git-credential-manager"
 cask "keycastr"
 cask "wkhtmltopdf"
+
+# Gay command
+# pip3 install -U gay

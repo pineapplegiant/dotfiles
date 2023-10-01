@@ -2,7 +2,6 @@
 
 -- shortcuts
 local set = vim.opt
-local cmd = vim.api.nvim_command
 
 set.cursorline = true -- Show cursorline
 set.termguicolors = true -- If term supports ui color then enable
