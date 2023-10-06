@@ -7,6 +7,7 @@
 --     \|__| \|__| \|__|/        \|__| \|__|     \|__| \|__|\|__| \|_______|
 --
 
+-- $XDG_CONFIG_HOME/nvim/lua/plugins/init.lua
 -- Good starting reference: https://github.com/nvim-lua/kickstart.nvim/blob/master/init.lua
 
 require("core.base") -- $XDG_CONFIG_HOME/nvim/lua/core/base.lua
@@ -17,6 +18,7 @@ require("core.base") -- $XDG_CONFIG_HOME/nvim/lua/core/base.lua
 vim.g.mapleader = " "
 vim.g.localmapleader = "\\"
 
+-- Bootstrap Lazy Plugin
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
 	vim.fn.system({
@@ -35,7 +37,7 @@ vim.opt.rtp:prepend(lazypath)
 -- Lazy Plugins
 -------------------------------------
 
--- $XDG_CONFIG_HOME/nvim/lua/plugins/init.lua
+-- Lazy Lua Modules
 require("lazy").setup({
 	{ import = "plugins" },
 	{ import = "plugins.lsp" },

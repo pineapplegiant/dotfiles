@@ -23,4 +23,12 @@ return {
 		-- show_current_context = true,
 		-- space_char_blankline = " ",
 	},
+  config = {
+    -- indent = {
+    --   smart_indent_cap = false
+    -- }
+    -- scope = {
+    --   enabled = false
+    -- }
+  }
 }
