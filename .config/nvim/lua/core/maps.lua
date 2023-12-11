@@ -88,3 +88,7 @@ vim.api.nvim_create_autocmd("FileType", {
 })
 
 keymap.set("n", "gx", [[:silent execute '!open ' . shellescape(expand('<cfile>'), 1)<CR>]], opts)
+
+-- Macros
+keymap.set("n", "Q", "@qj", { desc = "Run q Macro on current line" })
+keymap.set("x", "Q", "norm @q<CR>", { desc = "Run q Macro on selection" })

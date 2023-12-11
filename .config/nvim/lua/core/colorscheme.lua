@@ -10,8 +10,8 @@ vim.o.background = 'dark' -- Tell nvim we're using a dark theme
 		-- catppuccin: [latte, frappe, macchiato, mocha],
 		-- material:   [darker, lighter, oceanic, palenight, deep ocean]
 	-- }
-local gmos_colorscheme = 'tokyonight-night' -- catppuccin, tokyonight, vscode, material
-local colorscheme_opts = ''
+local gmos_colorscheme = 'catppuccin' -- catppuccin, tokyonight, vscode, material
+local colorscheme_opts = 'mocha'
 
 --Colorscheme Error Wrapper
 local function try_color_scheme(theme, theme_opts)
