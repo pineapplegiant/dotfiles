@@ -6,7 +6,6 @@
 return {
 	"folke/zen-mode.nvim",
 	-- lazy = true,
-  cmd = "ZenMode",
 	opts = {
 		-- your configuration comes here
 		-- or leave it empty to use the default settings
@@ -59,5 +58,8 @@ return {
 		on_close = function()
 			vim.wo.wrap = false
 		end,
+	},
+	keys = {
+		{ "<Leader>g", "<cmd>ZenMode<CR>", desc = "Toggle Zen Mode Note-taking" },
 	},
 }

@@ -4,7 +4,6 @@
 -------------------------------------
 return {
 	"andrewferrier/wrapping.nvim",
-  cmd = "ZenMode",
 	config = true,
 	opts = {
 		auto_set_mode_filetype_allowlist = {

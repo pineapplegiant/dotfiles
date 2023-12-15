@@ -19,7 +19,7 @@ return {
     config = function()
       -- import nvim-treesitter plugin
       local treesitter = require("nvim-treesitter.configs")
-
+      local comment_string =  require('ts_context_commentstring').setup {}
       -- configure treesitter
       treesitter.setup({ -- enable syntax highlighting
         highlight = {
@@ -42,11 +42,6 @@ return {
             scope_incremental = false,
             node_decremental = "<bs>",
           },
-        },
-        -- enable nvim-ts-context-commentstring plugin for commenting tsx and jsx
-        context_commentstring = {
-          enable = true,
-          enable_autocmd = false,
         },
         -- auto install above language parsers
         auto_install = true,

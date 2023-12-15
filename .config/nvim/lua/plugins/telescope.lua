@@ -71,7 +71,8 @@ return {
 		{ "<C-P>", "<cmd>Telescope find_files<CR>", desc = "Fuzzy Find Files in CWD" },
 		{ "<C-C>", "<cmd>Telescope oldfiles<CR>", desc = "Fuzzy Find Recent Files" },
 		{ "<C-F>", "<cmd>lua require('telescope.builtin').current_buffer_fuzzy_find({layout_config={width=0.5}, previewer=false})<CR>", desc = "Find String in Current Buffer" },
-		{ "<C-G>", "<cmd> Telescope live_grep<CR>", desc = "Find string in CWD" },
+		{ "<C-S-F>", "<cmd> Telescope live_grep<CR>", desc = "Find string in CWD" },
+		{ "<C-G>", "<cmd> Telescope git_files<CR>", desc = "Find Git Files in CWD" },
 		{ "<C-B>", "<cmd>lua require('telescope.builtin').buffers({layout_config={width=0.5}, previewer=false})<CR>", desc = "Show open buffers" },
 	},
 }
