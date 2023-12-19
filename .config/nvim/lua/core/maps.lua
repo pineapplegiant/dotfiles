@@ -14,7 +14,7 @@ keymap.set("n", "j", "v:count ? 'j' : 'gj'", { expr = true, silent = true })
 -- keymap.set('n', '<leader>s', ':update<CR>', { desc = 'QuickSave with space key' })
 keymap.set("n", "<C-S>", ":update<CR>", { desc = "QuickSave with control key" })
 keymap.set("n", "<leader>q", ":q!<CR>", { desc = "An attempt at quitting vim" })
-keymap.set("n", ",<leader>", "<cmd> :nohlsearch<CR>", { desc = "Turn off highlighted search" })
+keymap.set("n", ",<leader>", "<cmd>:nohlsearch<CR>", { desc = "Turn off highlighted search" })
 keymap.set("n", "<leader>d", ":bdelete!<CR>", { desc = "Close the current buffer" })
 -- keymap.set('n', '<leader>j', 'J', { desc = 'Use leader J as default J' })
 

@@ -1,7 +1,8 @@
--- Plugin Init lua
+-- PLUGIN Init lua
 return {
 	-- COLORSCHEMES
-	{ 'catppuccin/nvim', as = 'catppuccin' , lazy=false, priority = 1000 },
+	{ 'catppuccin/nvim', name = 'catppuccin' , lazy=false, priority = 1000 },
+	{ 'Biscuit-Colorscheme/nvim', name='biscuit', event="VeryLazy"}, --Biscuit Colorscheme
   { 'folke/tokyonight.nvim', event = "VeryLazy" },
 	{'rebelot/kanagawa.nvim', event = "VeryLazy"  }, -- Kanagawa Theme?? :3
 	{'pineapplegiant/spaceduck', event = "VeryLazy" }, -- Spaceduck <33

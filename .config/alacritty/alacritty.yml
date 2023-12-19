@@ -577,6 +577,9 @@ shell:
 
 # Key bindings
 #
+key_bindings:
+  - { key: F, mods: Control|Shift, chars: "\x1b[70;6u" }
+  - { key: A, mods: Control|Shift, chars: "\x1b[65;5u" }
 # Key bindings are specified as a list of objects. For example, this is the
 # default paste binding:
 #
