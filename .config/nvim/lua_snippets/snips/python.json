@@ -1,0 +1,18 @@
+{
+  "Leet Code Solution": {
+    "prefix": "solu",
+    "body": [
+      "class Solution:",
+      "    def __init__(self) -> None:",
+      "        pass",
+      "",
+      "    def ${1:my_func}(self):",
+      "        return",
+      "",
+      "test = Solution()",
+      "test.${1:my_func}()"
+    ],
+    "description": "Create a Python Solution class with my_func",
+    "descriptionMore": "Expands with the cursor on my_func"
+  }
+}

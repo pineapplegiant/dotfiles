@@ -67,16 +67,14 @@ keymap.set("n", "gp", ":bp<CR>", { desc = "Cycle previous buffer" })
 keymap.set("t", "hh", "<C-\\><C-n>", { desc = "Exit normal mode when using terminal inside nvim" })
 
 -- Old Snippets
-keymap.set("n", ",mock", ":-1read $XDG_CONFIG_HOME/nvim/snippets/mock.txt<CR>A", { desc = "Mock snippet" })
-keymap.set("n", ",html", ":-1read $XDG_CONFIG_HOME/nvim/snippets/skeleton.html<CR>7jf>a", { desc = "Base HTML" })
-keymap.set("n", ",css", ":-1read $XDG_CONFIG_HOME/nvim/snippets/cssComment.css<CR>jA", { desc = "CSS Block Comment" })
-keymap.set("n", ",csss", ":-1read $XDG_CONFIG_HOME/nvim/snippets/reset.css<CR>", { desc = "Reset CSS" })
+-- keymap.set("n", ",html", ":-1read $XDG_CONFIG_HOME/nvim/snippets/skeleton.html<CR>7jf>a", { desc = "Base HTML" })
+-- keymap.set("n", ",css", ":-1read $XDG_CONFIG_HOME/nvim/snippets/cssComment.css<CR>jA", { desc = "CSS Block Comment" })
+keymap.set("n", ",css", ":-1read $XDG_CONFIG_HOME/nvim/snippets/reset.css<CR>", { desc = "Reset CSS" })
 keymap.set("n", ",block", ":read $XDG_CONFIG_HOME/nvim/snippets/block.txt<CR>jA", { desc = "Block Snippet" })
-keymap.set("n", ",yaml", ":-1read $XDG_CONFIG_HOME/nvim/snippets/yaml.md<CR>", { desc = "YAML snippet" })
+-- keymap.set("n", ",yaml", ":-1read $XDG_CONFIG_HOME/nvim/snippets/yaml.md<CR>", { desc = "YAML snippet" })
 keymap.set("n", ",mlk", ":read $XDG_CONFIG_HOME/nvim/snippets/mlk.txt<CR>", { desc = "MLK Speech Snippet" })
 
 -- See `:help vim.diagnostic.*` for documentation on any of the below functions
-keymap.set("n", ",snap", ":read $XDG_CONFIG_HOME/nvim/snippets/snap.md<CR>", { desc = "Snap keymap" })
 local opts = { noremap = true, silent = true }
 keymap.set("n", "[d", vim.diagnostic.goto_prev, opts)
 keymap.set("n", "]d", vim.diagnostic.goto_next, opts)

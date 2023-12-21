@@ -57,6 +57,9 @@ return {
         -- load vs-code like snippets from plugins (e.g. friendly-snippets)
         require("luasnip.loaders.from_vscode").lazy_load()
 
+        -- load snippets from path/of/your/nvim/config/my-cool-snippets
+        require("luasnip.loaders.from_vscode").load({ paths = { "./lua_snippets" } })
+
         vim.opt.completeopt = "menu,menuone,noselect"
         cmp.setup({
             snippet = {

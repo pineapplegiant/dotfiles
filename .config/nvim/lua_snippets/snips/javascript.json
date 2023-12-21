@@ -1,0 +1,7 @@
+{
+  "JavaScript Block Comment": {
+    "prefix": "comment",
+    "body": ["/**", " * ${1:Comment}", " */"],
+    "description": "Create a JavaScript block comment"
+  }
+}
