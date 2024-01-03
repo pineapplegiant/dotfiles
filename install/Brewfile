@@ -99,6 +99,7 @@ cask "font-arimo-nerd-font"
 cask "font-fira-mono-nerd-font"
 cask "git-credential-manager"
 cask "keycastr"
+cask "nodebox"
 cask "wkhtmltopdf"
 
 # Gay command

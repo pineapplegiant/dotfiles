@@ -1,6 +1,6 @@
 {
   "Leet Code Solution": {
-    "prefix": "solu",
+    "prefix": "solution",
     "body": [
       "class Solution:",
       "    def __init__(self) -> None:",

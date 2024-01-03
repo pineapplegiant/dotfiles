@@ -1,5 +1,5 @@
 {
-  "name": "example-snippets",
+  "name": "my-cool-snippets",
   "contributes": {
     "snippets": [
       {
@@ -17,7 +17,8 @@
       {
         "language": [
           "javascript",
-          "typescript"
+          "typescript",
+          "jsx"
         ],
         "path": "./snips/javascript.json"
       },
