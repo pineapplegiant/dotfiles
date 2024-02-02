@@ -7,9 +7,7 @@ return {
   },
   config = function()
     local mason_null_ls = require("mason-null-ls")
-
     local null_ls = require("null-ls")
-
     local null_ls_utils = require("null-ls.utils")
 
     mason_null_ls.setup({
@@ -19,6 +17,7 @@ return {
         "black", -- python formatter
         "pylint", -- python linter
         "eslint_d", -- js linter
+        "golangcli" -- golang
       },
     })
 
@@ -42,8 +41,8 @@ return {
         }), -- js/ts formatter
         formatting.stylua, -- lua formatter
         formatting.isort,
-        formatting.black,
-        diagnostics.pylint,
+        formatting.black, --python formatter
+        diagnostics.pylint, --python linter
         diagnostics.eslint_d.with({ -- js/ts linter
           condition = function(utils)
             return utils.root_has_file({ ".eslintrc.js", ".eslintrc.cjs" }) -- only enable if root has .eslintrc.js or .eslintrc.cjs

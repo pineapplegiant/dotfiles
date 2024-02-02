@@ -34,9 +34,12 @@ keymap.set(
 keymap.set("n", "<leader>cd", ":cd %:p:h<CR>:pwd<CR>", { desc = "Move current directory" })
 
 -- Quick Tricks
-keymap.set("n", "<F10>", ":source $MYVIMRC<CR>", { desc = "Source VIMRC" })
+-- keymap.set("n", "<F10>", ":source $MYVIMRC<CR>", { desc = "Source VIMRC" })
+
 -- keymap.set('n', '<F6>', '<C-R>=lua print(os.date("%A %B %d, %Y"))<CR>', { desc = "Quick Timestamp" })
-keymap.set("n", "<F6>", ":r !date<CR>", { desc = "Quick Timestamp" })
+keymap.set({"n", "i"}, "<F6>", "<C-R>=strftime('%Y-%m-%dT%H:%M:%S%z')<CR>", { desc = "Golang time convention" })
+keymap.set({"n", "i"}, "<F7>", "<ESC>:r !date<CR>", { desc = "Quick Timestamp" })
+
 keymap.set("n", ",gcc", ':!tmux send-keys -t1 "\\!! " ENTER <CR><CR>', { desc = "Run last command in tmux window" })
 
 -- U to redo instead of C-R

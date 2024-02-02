@@ -6,5 +6,7 @@ return {
 	-- PRETTY
 	'norcalli/nvim-colorizer.lua', -- Display the pretty colors
     event = { "BufReadPre", "BufNewFile" },
-    config = true
+    config = function()
+			require 'colorizer'.setup(nil, { css = true; })
+    end
 }

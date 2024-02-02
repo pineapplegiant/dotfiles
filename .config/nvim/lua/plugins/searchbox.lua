@@ -51,9 +51,9 @@ return {
         })
     end,
 	keys = {
-        { "<C-F>", "<Esc><cmd>'<,'>SearchBoxIncSearch visual_mode=true<cr>", mode = "v", desc = "Search for Words in a visual range" },
-        { "/", "<cmd>SearchBoxMatchAll<CR>", desc = "Search for Words" },
-        { "<C-F>", "<cmd>SearchBoxMatchAll<CR>", desc = "Search for Words" },
-        { "<C-R>", "<cmd>SearchBoxReplace exact=true<CR>", desc = "Replace Words" },
+        -- { "<C-F>", "<Esc><cmd>'<,'>SearchBoxIncSearch visual_mode=true<cr>", mode = "v", desc = "Search for Words in a visual range" },
+        -- { "/", "<cmd>SearchBoxMatchAll<CR>", desc = "Search for Words" },
+        -- { "<C-F>", "<cmd>SearchBoxMatchAll<CR>", desc = "Search for Words" },
+        { "<C-R>", "<cmd>SearchBoxReplace <CR>", desc = "Replace Words" },
     }
 }

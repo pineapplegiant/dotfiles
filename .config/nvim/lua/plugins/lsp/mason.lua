@@ -18,7 +18,15 @@ return {
 		local mason_tool_installer = require("mason-tool-installer")
 
 		-- enable mason
-		mason.setup()
+		mason.setup({
+			ui = {
+				icons = {
+					package_installed = "✓",
+					package_pending = "➜",
+					package_uninstalled = "✗",
+				},
+			},
+		})
 
 		mason_lspconfig.setup({
 			-- list of servers for mason to install
@@ -33,6 +41,7 @@ return {
 				"emmet_ls",
 				"prismals",
         "pyright",
+				"gopls"
 			},
 			-- auto-install configured servers (with lspconfig)
 			automatic_installation = true, -- not the same as ensure_installed
