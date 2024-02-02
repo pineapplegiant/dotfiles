@@ -2,7 +2,7 @@
 
 # ~/macos — https://mths.be/macos
 # Run without downloading:
-# curl "https://raw.githubusercontent.com/pineapplegiant/dotfiles/supreme-overlord/setup/macos" | bash
+# `curl "https://raw.githubusercontent.com/pineapplegiant/dotfiles/supreme-overlord/setup/macos-os-setup" | bash`
 
 # Close any open System Preferences panes, to prevent them from overriding
 # settings we’re about to change
@@ -38,18 +38,21 @@ git clone "https://github.com/pineapplegiant/dotfiles.git"
 echo "Moving into dotfiles repo."
 cd $HOME/dotfiles/setup
 
-echo "Symlinking config into place"
+# PROFILE
+echo "Symlinking config into place..."
+echo "PROFILE-------------"
 echo "ln -s $HOME/dotfiles/.profile ~/.profile"
 ln -s $HOME/dotfiles/.profile ~/.profile
 
+# Z SHell
+echo "Z PROFILE-------------"
 echo "ln -s $HOME/dotfiles/.zprofile ~/.zprofile"
 ln -s $HOME/dotfiles/.zprofile ~/.zprofile
 
-echo "ln -s $HOME/dotfiles/.config/alacritty/alacritty.yml ~/.config/alacritty.yml"
-ln -s $HOME/dotfiles/.config/alacritty/alacritty.yml ~/.config/alacritty.yml
-
-echo "ln -s $HOME/dotfiles/.zprofile ~/.zprofile"
-ln -s $HOME/dotfiles/.zprofile ~/.zprofile
+# ALACRITTY
+echo "Alacritty ------------"
+echo "ln -s $HOME/dotfiles/.config/alacritty/alacritty.toml ~/.config/alacritty.toml"
+ln -s $HOME/dotfiles/.config/alacritty/alacritty.toml ~/.config/alacritty.toml
 
 
 echo "installing brew utilities, packages, spaceship prompt and all the things..."
@@ -133,9 +136,10 @@ defaults write com.apple.dock show-process-indicators -bool true
 # Make calendar app run in light mode bc I'm weird (YES = "light", NO = "dark")
 defaults write com.apple.iCal NSRequiresAquaSystemAppearance -bool YES
 
-# - Set hostname: tetsuko
+# - Set hostname to tetsuko: tetsuko
 #     scutil --set HostName hostname
 
 scutil --set HostName tetsuko
 
-echo "Done. Note that some of these changes require a logout/restart to take effect."
+echo "Done."
+echo "NOTE: that some of these changes require a logout/restart to take effect."
