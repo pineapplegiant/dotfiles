@@ -1,0 +1,79 @@
+[colors.bright]
+black = "#686f9a"
+blue = "#59c2ff"
+cyan = "#936ad9"
+green = "#5ccc96"
+magenta = "#f2e15c"
+red = "#f24535"
+white = "#f0f1ce"
+yellow = "#b3a1e6"
+
+[colors.normal]
+black = "#000000"
+blue = "#59c2ff"
+cyan = "#936ad9"
+green = "#5ccc96"
+magenta = "#f2e15c"
+red = "#f24535"
+white = "#535f97"
+yellow = "#b3a1e6"
+
+[colors.primary]
+background = "#0f111b"
+foreground = "#ecf0c1"
+
+[colors.selection]
+background = "#686f9a"
+text = "#ffffff"
+
+[env]
+TERM = "xterm-256color"
+
+[font]
+size = 15.5
+
+[font.bold]
+style = "Bold"
+
+[font.glyph_offset]
+x = 0
+y = 0
+
+[font.normal]
+family = "SauceCodePro Nerd Font"
+style = "Regular"
+
+[font.offset]
+x = 1
+y = 1
+
+[[keyboard.bindings]]
+chars = "\u001B[70;6u"
+key = "F"
+mods = "Control|Shift"
+
+[[keyboard.bindings]]
+chars = "\u001B[65;5u"
+key = "A"
+mods = "Control|Shift"
+
+[scrolling]
+history = 10000
+
+[shell]
+args = ["--login"]
+program = "/bin/zsh"
+
+[window]
+dynamic_padding = false
+dynamic_title = false
+opacity = 1.0
+startup_mode = "Windowed"
+
+[window.dimensions]
+columns = 80
+lines = 25
+
+[window.padding]
+x = 6
+y = 2
