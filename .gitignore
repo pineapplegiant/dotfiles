@@ -1,5 +1,4 @@
 *
-.DS_Store
 !.profile
 !.zprofile
 !setup/
@@ -31,6 +30,9 @@
 !.config/vim/**
 !.config/vim/
 .config/nvim/plugin/packer_compiled.lua
+.config/nvim/**.DS_Store**
+.config/nvim/lua/.DS_Store
+.config/nvim/lua/plugins/.DS_Store
 
 # VS Code Settings
 !.config/vscode/**
