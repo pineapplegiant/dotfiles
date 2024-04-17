@@ -27,6 +27,9 @@
 # Add Personal Scripts to path
     PATH=$PATH:$DOTFILES/.local/bin
 
+# VSCODE path
+    PATH="$PATH:/Applications/Visual Studio Code.app/Contents/Resources/app/bin"
+
 
 # Spaceship
 	export SPACESHIP_CONFIG="${XDG_CONFIG_HOME:-$HOME/.config}/spaceship/spaceship.zsh"
@@ -79,6 +82,10 @@
 
 # subversion
     export SUBVERSION_HOME=$XDG_CONFIG_HOME/subversion
+
+# Wezterm config file
+    export WEZTERM_CONFIG_FILE="$XDG_CONFIG_HOME/wezterm/wezterm.lua"
+
 
 
 # GNUPG

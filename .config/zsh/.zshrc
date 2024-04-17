@@ -27,11 +27,11 @@
 
 
 # To search via vim keybindings
-    bindkey -M vicmd 'k' history-substring-search-up
-    bindkey -M vicmd 'j' history-substring-search-down
+    # bindkey -M vicmd 'k' history-substring-search-up
+    # bindkey -M vicmd 'j' history-substring-search-down
 
 # Update FZF To listen to alt C
-    bindkey "ç" fzf-cd-widget
+    # bindkey "ç" fzf-cd-widget
 
 # Setup vim mode
     bindkey -v
@@ -175,6 +175,7 @@
 #----------------------------------------------------------------------
 # Python is python3
     alias python="python3"
+    alias pn="pnpm"
 
 # Shorthand for editor
     alias v="$EDITOR"
@@ -187,7 +188,7 @@
     alias rc="$EDITOR $XDG_CONFIG_HOME/zsh/.zshrc"           # Get to bash-profile faster
     alias bp="$EDITOR $XDG_CONFIG_HOME/shell/profile"        # Get to env faster
     alias tmuxrc="$EDITOR $XDG_CONFIG_HOME/tmux/tmux.conf"   # Tmux settings
-    alias alrc="$EDITOR ~/.config/alacritty.yml"             # Alacritty settings
+    alias alrc="$EDITOR $XDG_CONFIG_HOME/alacritty/alacritty.toml"             # Alacritty settings
 
 # alias to EZA if exists
     if type eza >/dev/null 2>&1; then
@@ -203,6 +204,12 @@
         alias s="ls -ahlF"
         alias ss="ls -aF"
     fi
+
+# Magick Heic
+    if type magick >/dev/null 2>&1; then
+        alias convertheic="magick mogrify -format jpg *.heic"
+    fi
+
 
 # Safety aliases
     alias rm="rm -iv"         # Make rm safer
@@ -263,12 +270,12 @@
 
 # This will open manpages in preview!
     function preman() {
-        man -t $@ | open -f -a "preview"
+        man -t $@ | open -f -a /System/Applications/Preview.app
     }
 
 # Open in google
     function google() {
-        open $@ -a "Google Chrome"
+        open $@ -a /Applications/Google\ Chrome.app
     }
 
 # Tmux create session
@@ -295,3 +302,14 @@ function mktouch() {
     mkdir -p "$(dirname "$1")" && touch "$1"
 }
 
+# pnpm
+export PNPM_HOME="$DOTFILES/.local/share/pnpm"
+
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
+# pnpm end
+#
+export VOLTA_HOME="$HOME/.volta"
+export PATH="$VOLTA_HOME/bin:$PATH"

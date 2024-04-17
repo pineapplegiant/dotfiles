@@ -34,7 +34,7 @@ return {
 			sync_root_with_cwd = false,
 			reload_on_bufenter = false,
 			respect_buf_cwd = true,
-      hijack_unnamed_buffer_when_opening = true,
+			hijack_unnamed_buffer_when_opening = true,
 			sort_by = "case_sensitive",
 			view = {
 				adaptive_size = false,
