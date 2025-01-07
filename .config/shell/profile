@@ -27,21 +27,17 @@
 # Add Personal Scripts to path
     PATH=$PATH:$DOTFILES/.local/bin
 
-# VSCODE path
-    PATH="$PATH:/Applications/Visual Studio Code.app/Contents/Resources/app/bin"
-
-
 # Spaceship
 	export SPACESHIP_CONFIG="${XDG_CONFIG_HOME:-$HOME/.config}/spaceship/spaceship.zsh"
 
 # Cleanup for programs that don't listen to XDG SPEC :'(
     # VIMINIT will be sourced by neovim too, so I set this: XDG for NVIM & EXINIT for Vim
     export EXINIT='let $MYVIMRC="$XDG_CONFIG_HOME/vim/vimrc" | source $MYVIMRC'
-    export VIMDOTDIR="${XDG_CONFIG_HOME:-$HOME/.config}/vim"
-    export GTK2_RC_FILES="${XDG_CONFIG_HOME:-$HOME/.config}/gtk-2.0/gtkrc-2.0"
-    export INPUTRC="${XDG_CONFIG_HOME:-$HOME/.config}/shell/inputrc"
-    export WGETRC="${XDG_CONFIG_HOME:-$HOME/.config}/wget/wgetrc"
-    export ZDOTDIR="${XDG_CONFIG_HOME:-$HOME/.config}/zsh"
+    export VIMDOTDIR="${XDG_CONFIG_HOME:-$HOME/dotfiles/.config}/vim"
+    export GTK2_RC_FILES="${XDG_CONFIG_HOME:-$HOME/dotfiles/.config}/gtk-2.0/gtkrc-2.0"
+    export INPUTRC="${XDG_CONFIG_HOME:-$HOME/dotfiles/.config}/shell/inputrc"
+    export WGETRC="${XDG_CONFIG_HOME:-$HOME/dotfiles/.config}/wget/wgetrc"
+    export ZDOTDIR="${XDG_CONFIG_HOME:-$HOME/dotfiles/.config}/zsh"
     export WEECHAT_HOME="${XDG_CONFIG_HOME:-$HOME/.config}/weechat"
     export CARGO_HOME="${XDG_DATA_HOME:-$HOME/.local/share}/cargo"
 
@@ -61,7 +57,7 @@
 	export COREPACK_HOME="${XDG_DATA_HOME:-$HOME/.local}/corepack"
 	export NODE_REPL_HISTORY="$XDG_STATE_HOME/node_repl/history"
 	export NODE_REPL_HISTORY="$XDG_STATE_HOME/node_repl/history"
-    export NODE_OPTIONS=--openssl-legacy-provider
+    # export NODE_OPTIONS=--openssl-legacy-provider
 
 	# Add Node.js to PATH
 	if [[ $PATH != *"$N_PREFIX/bin"* ]]; then
@@ -119,6 +115,14 @@ export NVM_DIR="$HOME/dotfiles/.config/nvm"
          --color=fg+:#eeeeee,bg+:#282828,hl+:#cf73e6
          --color=info:#cf73e6,prompt:#FF0000,pointer:#cf73e6
          --color=marker:#f0d50c,spinner:#cf73e6,header:#91aadf'
+
+#----------------------------------------------------------------------
+#                       VSCODE
+#----------------------------------------------------------------------
+    PATH="$PATH:/Applications/Visual Studio Code.app/Contents/Resources/app/bin"
+
+    # Manually sourcing zhrc
+    [[ "$TERM_PROGRAM" == "vscode" ]] && . "$ZDOTDIR/.zshrc"
 
 # export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS'
 #     --color=fg:#ecf0c1,bg:#0f111b,hl:#00a3cc

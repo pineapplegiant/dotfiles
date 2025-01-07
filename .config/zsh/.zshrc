@@ -192,24 +192,26 @@
 
 # alias to EZA if exists
     if type eza >/dev/null 2>&1; then
-        alias l="eza -FG --git --icons"   # Just make ls  chill
-        alias ls="eza -FG --git --icons"  # Make ls pretty
-        alias ll="eza -l --git --icons"   # ls long tag
-        alias s="eza -ahlF --icons"
-        alias ss="eza -aF --git --icons"
+        alias l="eza -F -G --git --icons=always"   # Just make ls  chill
+        alias ls="eza -F -G --git --icons=always"  # Make ls pretty
+        alias ll="eza -l --git --icons=always"   # ls long tag
+        alias s="eza -a -h -l -F --icons=always"
     else
         alias l="ls -FG"
         alias ls="ls -FG"
         alias ll="ls -l"   # ls long tag
         alias s="ls -ahlF"
-        alias ss="ls -aF"
     fi
+
+    if type eza >/dev/null 2>&1; then
+        alias lllama="ollama run llama3.1"
+    fi
+
 
 # Magick Heic
     if type magick >/dev/null 2>&1; then
-        alias convertheic="magick mogrify -format jpg *.heic"
+        alias heic2jpg="magick mogrify -format jpg *.heic"
     fi
-
 
 # Safety aliases
     alias rm="rm -iv"         # Make rm safer
@@ -302,6 +304,11 @@ function mktouch() {
     mkdir -p "$(dirname "$1")" && touch "$1"
 }
 
+# Flush Cache
+function flushcache() {
+    sudo dscacheutil -flushcache; sudo killall -HUP mDNSResponder
+}
+
 # pnpm
 export PNPM_HOME="$DOTFILES/.local/share/pnpm"
 
@@ -313,3 +320,9 @@ esac
 #
 export VOLTA_HOME="$HOME/.volta"
 export PATH="$VOLTA_HOME/bin:$PATH"
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '$DOTFILES/google-cloud-sdk/path.zsh.inc' ]; then . '$DOTFILES/google-cloud-sdk/path.zsh.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '$DOTFILES/google-cloud-sdk/completion.zsh.inc' ]; then . '$DOTFILES/google-cloud-sdk/completion.zsh.inc'; fi

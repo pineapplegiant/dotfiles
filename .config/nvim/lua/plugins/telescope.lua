@@ -79,9 +79,7 @@ return {
 		{ "<C-S-F>", "<cmd>lua require('telescope.builtin').live_grep()<CR>", desc = "Find string in CWD" },
 		{ "<C-G>", "<cmd>lua require('telescope.builtin').git_files()<CR>", desc = "Find Git Files in CWD" },
 		{
-			"<C-B>",
-			"<cmd>lua require('telescope.builtin').buffers({layout_config={width=0.5}, previewer=false})<CR>",
-			desc = "Show open buffers",
+			"<C-B>", "<cmd>lua require('telescope.builtin').buffers({layout_config={width=0.5}, previewer=false})<CR>", desc = "Show open buffers",
 		},
 	},
 }

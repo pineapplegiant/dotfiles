@@ -60,7 +60,7 @@ mods = "Control|Shift"
 [scrolling]
 history = 10000
 
-[shell]
+[terminal.shell]
 args = ["--login"]
 program = "/bin/zsh"
 
@@ -77,3 +77,5 @@ lines = 25
 [window.padding]
 x = 6
 y = 2
+
+[terminal]
