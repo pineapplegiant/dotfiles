@@ -2,6 +2,7 @@
 -- Telescope
 -- See `:help Telescope`
 -------------------------------------
+
 return {
 	"nvim-telescope/telescope.nvim",
 	branch = "0.1.x",
@@ -24,6 +25,8 @@ return {
 
 		-- import telescope-ui-select safely
 		local themes = require("telescope.themes")
+
+		local builtin = require("telescope.builtin")
 
 		-- configure telescope
 		telescope.setup({
@@ -66,11 +69,12 @@ return {
 		telescope.load_extension("ui-select")
 		-- telescope.load_extension("harpoon")
 	end,
+
 	keys = {
 		{ "<C-A>", "<cmd>Telescope<CR>", desc = "View Builtin Telescope Functions" },
 		-- { "<C-P>", "<cmd>Telescope('telescope.builtin').find_files()<CR>", desc = "Fuzzy Find Files in CWD" },
 		{ "<C-P>", "<cmd>Telescope find_files<cr>", desc = "Fuzzy Find Files in CWD" },
-		{ "<C-C>", "<cmd>lua require('telescope.builtin').oldfiles()<CR>", desc = "Fuzzy Find Recent Files" },
+		{ "<C-C>", "<cmd>lua require('telescope.builtin').oldfiles()<CR>", desc = "[C] Recent Files" },
 		{
 			"<C-F>",
 			"<cmd>lua require('telescope.builtin').current_buffer_fuzzy_find({layout_config={width=0.5}, previewer=false})<CR>",
@@ -79,7 +83,14 @@ return {
 		{ "<C-S-F>", "<cmd>lua require('telescope.builtin').live_grep()<CR>", desc = "Find string in CWD" },
 		{ "<C-G>", "<cmd>lua require('telescope.builtin').git_files()<CR>", desc = "Find Git Files in CWD" },
 		{
-			"<C-B>", "<cmd>lua require('telescope.builtin').buffers({layout_config={width=0.5}, previewer=false})<CR>", desc = "Show open buffers",
+			"<C-B>",
+			"<cmd>lua require('telescope.builtin').buffers({layout_config={width=0.5}, previewer=false})<CR>",
+			desc = "Show open [B]uffers",
+		},
+		{
+			"<C-S-P>",
+			"<cmd>lua require('telescope.builtin').find_files({ cwd = vim.fn.stdpath('config') })<CR>",
+			desc = "Search Neovim",
 		},
 	},
 }

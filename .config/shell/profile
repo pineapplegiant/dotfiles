@@ -13,7 +13,7 @@
 #----------------------------------------------------------------------
 
 # XDG Location
-    export DOTFILES="$HOME/dotfiles"                 # preference
+    export DOTFILES="$HOME/dotfiles"                 # preference -> location for dotfiles
     export XDG_CONFIG_HOME="$DOTFILES/.config"       # /etc
     export XDG_DATA_HOME="$DOTFILES/.local/share"    # /usr/share
     export XDG_CACHE_HOME="$DOTFILES/.cache"         # /var/cache

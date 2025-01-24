@@ -9,10 +9,10 @@
 "----------------------------------------------------------------------
 
 " Remap Capital J/K to move up and down blocks
-    nnoremap J }
-    vmap J }
-    nnoremap K {
-    vmap K {
+    " nnoremap J }
+    " vmap J }
+    " nnoremap K {
+    " vmap K {
 
 " Set U as Ctrl R which means Redo
     nnoremap U <C-R>
@@ -38,7 +38,7 @@
     nnoremap ,<Space> :nohlsearch<CR>
 
 " Fixing vim because I break it Later -> Move between blocks 'better'
-    nnoremap <Space>j J
+    " nnoremap <Space>j J
 
 " Split window
     "nnoremap <Space>vs :split<Return>

@@ -89,6 +89,7 @@ brew "universal-ctags/universal-ctags/universal-ctags", args: ["HEAD", "with-jan
 
 # Cask
 cask "alacritty"
+cask "ghostty"
 cask "karabiner-elements"
 cask "chrome"
 cask "firefox"

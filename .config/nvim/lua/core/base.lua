@@ -15,17 +15,29 @@ local set = vim.opt
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 
+-- Set to true if you have a Nerd Font installed and selected in the terminal
+vim.g.have_nerd_font = true
+
 -- Sensible Settings
+set.number = true -- Show line numbers
 vim.wo.number = true -- Show line numbers
 set.backspace = { "start", "eol", "indent" } -- Allow backspace in insert mode
 set.termguicolors = true -- set termguicolors to enable highlight groups
 set.cursorline = true -- Show cursorline
-vim.o.background = 'dark' -- Tell nvim we're using a dark theme
+set.background = "dark" -- Tell nvim we're using a dark theme
 set.lazyredraw = false -- Makes vim redraw while performing macros
+
+-- Don't show the mode, since it's already in the status line
+set.showmode = false
+
+-- views can only be fully collapsed with the global statusline
+set.laststatus = 3
 
 -- Casing
 set.ignorecase = true -- Case insensitive searching UNLESS /C or capital in search
 set.smartcase = true -- if you include mixed case in your search, assumes you want case-sensitive
+set.wildignorecase = true -- Ignore casing when completing file names and directories
+
 set.spelllang = "en_us" -- US engwish
 set.signcolumn = "yes" -- show sign column so that text doesn't shift
 set.mouse = "a" -- Enabling Mouse support
@@ -46,6 +58,8 @@ set.incsearch = true -- Show incremental searching
 
 set.scrolloff = 3 -- Distance cursor stays from the bottom of the screen
 set.wrap = false -- Don't wrap lines when they are too long
+
+-- Enable break indent
 set.breakindent = true -- Make wrapped text better?
 set.title = true -- Show all the info on the title
 
@@ -66,9 +80,9 @@ set.listchars:append("space: ")
 set.listchars:append("trail:⋅")
 set.listchars:append("tab:   ")
 
-set.wildignorecase = true -- Ignore casing when completing file names and directories
 
 set.updatetime = 250 -- Decrease update time
+set.timeoutlen = 300 -- Decrease mapped sequence wait time
 set.completeopt = "menuone,noselect" -- Set completeopt to have a better completion experience
 
 --set.wilcharm = "<C-z>"       -- Keypress to start expansion when in a Macro
@@ -101,38 +115,38 @@ vim.scriptencoding = "utf-8"
 set.encoding = "utf-8"
 set.fileencoding = "utf-8"
 
--- Autocommands `:h nvim_create_autocmd()`
+-- [[ Basic Autocommands ]]
+--  See `:help lua-guide-autocommands`
 
--- [[ Highlight on yank ]]
--- See `:help vim.highlight.on_yank()`
-local highlight_group = vim.api.nvim_create_augroup('YankHighlight', { clear = true })
-
+-- Highlight when yanking (copying) text
+--  Try it with `yap` in normal mode
+--  See `:help vim.highlight.on_yank()`
 vim.api.nvim_create_autocmd('TextYankPost', {
-	callback = function()
-		vim.highlight.on_yank({timeout = 170})
-	end,
-	group = highlight_group,
-	pattern = '*',
+  desc = 'Highlight when yanking (copying) text',
+  group = vim.api.nvim_create_augroup('kickstart-highlight-yank', { clear = true }),
+  callback = function()
+    vim.highlight.on_yank()
+  end,
 })
 
 -- Turn off The Cursor line in insert and when navigating away from window
-local cursor_line_on_augroup = vim.api.nvim_create_augroup('cursor_line_on', { clear = true })
-local cursor_line_off_augroup = vim.api.nvim_create_augroup('cursor_line_off', { clear = true })
+local cursor_line_on_augroup = vim.api.nvim_create_augroup("cursor_line_on", { clear = true })
+local cursor_line_off_augroup = vim.api.nvim_create_augroup("cursor_line_off", { clear = true })
 
--- Set Cursor Line On when leaving Insert mode
-vim.api.nvim_create_autocmd({ 'InsertLeave', 'WinEnter' }, {
+-- -- Set Cursor Line On when leaving Insert mode
+vim.api.nvim_create_autocmd({ "InsertLeave", "WinEnter" }, {
 	group = cursor_line_on_augroup,
-	desc = 'Turn on cursor line',
+	desc = "Turn on cursor line",
 	callback = function()
 		vim.opt.cursorline = true
-	end
+	end,
 })
 
--- Cursor Line off when Exting Insert Mode
-vim.api.nvim_create_autocmd({ 'InsertEnter', 'WinLeave' }, {
+-- -- Cursor Line off when Exting Insert Mode
+vim.api.nvim_create_autocmd({ "InsertEnter", "WinLeave" }, {
 	group = cursor_line_off_augroup,
-	desc = 'Turn off cursor line',
+	desc = "Turn off cursor line",
 	callback = function()
 		vim.opt.cursorline = false
-	end
+	end,
 })

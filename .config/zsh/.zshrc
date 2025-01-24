@@ -1,4 +1,4 @@
-# Loads brew
+# Loads brew package manager
     eval "$(/opt/homebrew/bin/brew shellenv)"
 
 #----------------------------------------------------------------------
@@ -22,13 +22,13 @@
 #----------------------------------------------------------------------
 
 # Edit line in vim with <C-e>
-    autoload edit-command-line; zle -N edit-command-line
-    bindkey '^e' edit-command-line
+    # autoload edit-command-line; zle -N edit-command-line
+    # bindkey '^e' edit-command-line
 
 
 # To search via vim keybindings
-    # bindkey -M vicmd 'k' history-substring-search-up
-    # bindkey -M vicmd 'j' history-substring-search-down
+    bindkey -M vicmd 'k' history-substring-search-up
+    bindkey -M vicmd 'j' history-substring-search-down
 
 # Update FZF To listen to alt C
     # bindkey "ç" fzf-cd-widget
@@ -47,11 +47,11 @@
 
 
 # Load fzf
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+# [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 # Switch <C-T> to <C-P> for fzf
-    bindkey -r '^T'
-    bindkey '^P' fzf-file-widget
+    # bindkey -r '^T'
+    # bindkey '^P' fzf-file-widget
 
 #----------------------------------------------------------------------
 #   More Info - https://zsh.sourceforge.io/Doc/Release/Zsh-Line-Editor.html#Zle-Widgets
@@ -189,6 +189,7 @@
     alias bp="$EDITOR $XDG_CONFIG_HOME/shell/profile"        # Get to env faster
     alias tmuxrc="$EDITOR $XDG_CONFIG_HOME/tmux/tmux.conf"   # Tmux settings
     alias alrc="$EDITOR $XDG_CONFIG_HOME/alacritty/alacritty.toml"             # Alacritty settings
+    alias grc="$EDITOR $XDG_CONFIG_HOME/ghostty/config"             # Alacritty settings
 
 # alias to EZA if exists
     if type eza >/dev/null 2>&1; then
@@ -203,7 +204,7 @@
         alias s="ls -ahlF"
     fi
 
-    if type eza >/dev/null 2>&1; then
+    if type ollama >/dev/null 2>&1; then
         alias lllama="ollama run llama3.1"
     fi
 
@@ -236,6 +237,7 @@
     alias lg="lazygit"
     alias dic="wkdict"
 
+# Work
     alias scope="echo 'SearchSpring.Catalog.elems.container.scope()' &&  echo 'SearchSpring.Catalog.elems.container.scope()' | pbcopy"
     alias store="echo 'searchspring.controller.search.store.toJSON()' &&  echo 'searchspring.controller.search.store.toJSON()' | pbcopy"
 
@@ -295,19 +297,19 @@
     }
 
 # Kill a specific tmux session
-function tkill() {
-        tmux kill-session -t $@
+    function tkill() {
+            tmux kill-session -t $@
     }
 
 # Create directories alongside files
-function mktouch() {
-    mkdir -p "$(dirname "$1")" && touch "$1"
-}
+    function mktouch() {
+        mkdir -p "$(dirname "$1")" && touch "$1"
+    }
 
-# Flush Cache
-function flushcache() {
-    sudo dscacheutil -flushcache; sudo killall -HUP mDNSResponder
-}
+# Flush DNS Cache
+    function flushdns() {
+        sudo dscacheutil -flushcache; sudo killall -HUP mDNSResponder
+    }
 
 # pnpm
 export PNPM_HOME="$DOTFILES/.local/share/pnpm"

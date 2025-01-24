@@ -49,10 +49,10 @@ echo "Z PROFILE-------------"
 echo "ln -s $HOME/dotfiles/.zprofile ~/.zprofile"
 ln -s $HOME/dotfiles/.zprofile ~/.zprofile
 
-# ALACRITTY
-echo "Alacritty ------------"
-echo "ln -s $HOME/dotfiles/.config/alacritty/alacritty.toml ~/.config/alacritty.toml"
-ln -s $HOME/dotfiles/.config/alacritty/alacritty.toml ~/.config/alacritty.toml
+# Config Symbolic Link
+echo "Terminal Updates ------------"
+echo "ln -s $HOME/dotfiles/.config/ ~/.config/"
+ln -s $HOME/dotfiles/.config/ ~/.config/
 
 
 echo "installing brew utilities, packages, spaceship prompt and all the things..."
