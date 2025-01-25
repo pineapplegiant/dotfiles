@@ -1,0 +1,54 @@
+# UI
+font-family = "SauceCodePro Nerd Font Mono"
+font-size = 16
+window-padding-x = 10
+window-padding-y = 10
+
+# THEME
+# theme = "tokyonight"
+background = #0f111b
+foreground = #ecf0c1
+selection-background = #686f9a
+selection-foreground = #ffffff
+cursor-color = #ecf0c1
+cursor-text = #0f111b
+palette = 0=#000000
+palette = 1=#f24535
+palette = 2=#5ccc96
+palette = 3=#f2e15c
+palette = 4=#59c2ff
+palette = 5=#936ad9
+palette = 6=#b3a1e6
+palette = 7=#535f97
+palette = 8=#686f9a
+palette = 9=#f24535
+palette = 10=#5ccc96
+palette = 11=#f2e15c
+palette = 12=#59c2ff
+palette = 13=#936ad9
+palette = 14=#b3a1e6
+palette = 15=#f0f1ce
+
+
+# OTHER
+mouse-hide-while-typing = true
+window-padding-balance = true
+macos-titlebar-style = transparent
+macos-titlebar-proxy-icon = "hidden"
+mouse-scroll-multiplier = 2
+copy-on-select = clipboard
+clipboard-read = allow
+clipboard-write = allow
+
+# KEYBINDINGS
+keybind = cmd+s>r=reload_config
+
+keybind = cmd+s>shift+v=new_split:right
+keybind = cmd+s>shift+h=new_split:down
+
+keybind = cmd+s>j=goto_split:bottom
+keybind = cmd+s>k=goto_split:top
+keybind = cmd+s>h=goto_split:left
+keybind = cmd+s>l=goto_split:right
+keybind = cmd+s>z=toggle_split_zoom
+keybind = cmd+s>e=equalize_splits
