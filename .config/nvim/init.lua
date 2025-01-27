@@ -9,7 +9,6 @@
 
 -- $XDG_CONFIG_HOME/nvim/lua/plugins/init.lua
 -- Good starting reference: https://github.com/nvim-lua/kickstart.nvim/blob/master/init.lua
-
 require("core.base") -- $XDG_CONFIG_HOME/nvim/lua/core/base.lua
 
 -------------------------------------
@@ -19,7 +18,7 @@ vim.g.mapleader = " "
 vim.g.localmapleader = "\\"
 
 -- Bootstrap lazy.nvim
-local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"  -- /dotfiles.local/share/nvim
 
 if not (vim.uv or vim.loop).fs_stat(lazypath) then
 	local lazyrepo = "https://github.com/folke/lazy.nvim.git"
@@ -34,7 +33,7 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
 		os.exit(1)
 	end
 end
-vim.opt.rtp:prepend(lazypath)
+vim.opt.runtimepath:prepend(lazypath)
 
 -------------------------------------
 -- Lazy Plugins
@@ -43,6 +42,7 @@ vim.opt.rtp:prepend(lazypath)
 -- Lazy Lua Modules
 require("lazy").setup({
 	{ import = "plugins" },
+	{ import = "plugins.ts" },
 	{ import = "plugins.lsp" },
 }, {
 	checker = {

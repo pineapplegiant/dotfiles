@@ -1,8 +1,9 @@
 # UI
 font-family = "SauceCodePro Nerd Font Mono"
 font-size = 16
-window-padding-x = 10
-window-padding-y = 10
+window-padding-x = 8
+window-padding-y = 0
+background-opacity = 1
 
 # THEME
 # theme = "tokyonight"
@@ -32,10 +33,10 @@ palette = 15=#f0f1ce
 
 # OTHER
 mouse-hide-while-typing = true
+adjust-underline-position = 4
 window-padding-balance = true
 macos-titlebar-style = transparent
 macos-titlebar-proxy-icon = "hidden"
-mouse-scroll-multiplier = 2
 copy-on-select = clipboard
 clipboard-read = allow
 clipboard-write = allow

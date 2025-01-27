@@ -193,10 +193,10 @@
 
 # alias to EZA if exists
     if type eza >/dev/null 2>&1; then
-        alias l="eza -F -G --git --icons=always"   # Just make ls  chill
-        alias ls="eza -F -G --git --icons=always"  # Make ls pretty
-        alias ll="eza -l --git --icons=always"   # ls long tag
-        alias s="eza -a -h -l -F --icons=always"
+        alias ll="eza -F -G --git --no-filesize --color=always --icons=always"   # Just make ls  chill
+        alias ls="eza -F -G --git --color=always --icons=always"  # Make ls pretty
+        alias l="eza -l --no-filesize --git --color=always --icons=always"   # ls long tag
+        alias s="eza -a -h -l -F --no-filesize --color=always --icons=always"
     else
         alias l="ls -FG"
         alias ls="ls -FG"
