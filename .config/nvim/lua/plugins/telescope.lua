@@ -91,10 +91,10 @@ return {
 			"<cmd>lua require('telescope.builtin').find_files({ cwd = vim.fn.stdpath('config') })<CR>",
 			desc = "Search Config Files",
 		},
-		{
-			"<C-M>",
-			"<cmd>Telescope marks theme=ivy<CR>",
-			desc = "Search Neovim [M]arks",
-		},
+		-- {
+		-- 	"<C-M>",
+		-- 	"<cmd>Telescope marks theme=ivy<CR>",
+		-- 	desc = "Search Neovim [M]arks",
+		-- },
 	},
 }

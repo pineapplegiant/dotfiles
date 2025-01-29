@@ -1,9 +1,11 @@
 # UI
 font-family = "SauceCodePro Nerd Font Mono"
 font-size = 16
+adjust-cell-height = 0%
 window-padding-x = 8
 window-padding-y = 0
 background-opacity = 1
+window-colorspace = "display-p3"
 
 # THEME
 # theme = "tokyonight"
@@ -34,7 +36,7 @@ palette = 15=#f0f1ce
 # OTHER
 mouse-hide-while-typing = true
 adjust-underline-position = 4
-window-padding-balance = true
+macos-option-as-alt = true
 macos-titlebar-style = transparent
 macos-titlebar-proxy-icon = "hidden"
 copy-on-select = clipboard
@@ -47,9 +49,10 @@ keybind = cmd+s>r=reload_config
 keybind = cmd+s>shift+v=new_split:right
 keybind = cmd+s>shift+h=new_split:down
 
+keybind = cmd+s>z=toggle_split_zoom
+keybind = cmd+s>e=equalize_splits
+
 keybind = cmd+s>j=goto_split:bottom
 keybind = cmd+s>k=goto_split:top
 keybind = cmd+s>h=goto_split:left
 keybind = cmd+s>l=goto_split:right
-keybind = cmd+s>z=toggle_split_zoom
-keybind = cmd+s>e=equalize_splits

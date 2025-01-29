@@ -2,6 +2,7 @@
 -- Keymaps for better default experience
 -- See `:help vim.keymap.set()`
 local keymap = vim.keymap
+local opts = { noremap = true, silent = true }
 
 vim.g.mapleader = " "
 vim.g.localmapleader = "\\"
@@ -76,23 +77,18 @@ keymap.set("t", "hh", "<C-\\><C-n>", { desc = "Exit normal mode when using termi
 -- Old Snippets
 -- keymap.set("n", ",html", ":-1read $XDG_CONFIG_HOME/nvim/snippets/skeleton.html<CR>7jf>a", { desc = "Base HTML" })
 -- keymap.set("n", ",css", ":-1read $XDG_CONFIG_HOME/nvim/snippets/cssComment.css<CR>jA", { desc = "CSS Block Comment" })
+-- keymap.set("n", ",yaml", ":-1read $XDG_CONFIG_HOME/nvim/snippets/yaml.md<CR>", { desc = "YAML snippet" })
 keymap.set("n", ",css", ":-1read $XDG_CONFIG_HOME/nvim/snippets/reset.css<CR>", { desc = "Reset CSS" })
 keymap.set("n", ",block", ":read $XDG_CONFIG_HOME/nvim/snippets/block.txt<CR>jA", { desc = "Block Snippet" })
--- keymap.set("n", ",yaml", ":-1read $XDG_CONFIG_HOME/nvim/snippets/yaml.md<CR>", { desc = "YAML snippet" })
 keymap.set("n", ",mlk", ":read $XDG_CONFIG_HOME/nvim/snippets/mlk.txt<CR>", { desc = "MLK Speech Snippet" })
 
 -- See `:help vim.diagnostic.*` for documentation on any of the below functions
-local opts = { noremap = true, silent = true }
 keymap.set("n", "[d", vim.diagnostic.goto_prev, opts)
 keymap.set("n", "]d", vim.diagnostic.goto_next, opts)
 
--- Close quickfix menu after selecting choice
-vim.api.nvim_create_autocmd("FileType", {
-	pattern = { "qf" },
-	command = [[nnoremap <silent><buffer> <CR> <CR>:cclose<CR>]],
-})
 
-keymap.set("n", "gx", [[:silent execute '!open ' . shellescape(expand('<cfile>'), 1)<CR>]], opts)
+keymap.set("n", "<M-j>", "<cmd>cnext<CR>", {desc = "C stands for qui[C]kfix [N]ext"})
+keymap.set("n", "<M-k>", "<cmd>cprev<CR>", {desc = "C stands for qui[C]kfix [P]revious"})
 
 -- Macros
 keymap.set("n", "Q", "@qj", { desc = "Run q Macro on current line" })

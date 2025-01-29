@@ -18,7 +18,7 @@ vim.g.mapleader = " "
 vim.g.localmapleader = "\\"
 
 -- Bootstrap lazy.nvim
-local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"  -- /dotfiles.local/share/nvim
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim" -- /dotfiles.local/share/nvim
 
 if not (vim.uv or vim.loop).fs_stat(lazypath) then
 	local lazyrepo = "https://github.com/folke/lazy.nvim.git"
@@ -55,4 +55,4 @@ require("lazy").setup({
 })
 
 require("core.colorscheme") -- $XDG_CONFIG_HOME/nvim/lua/core/colorscheme.lua
-require("core.maps")        -- $XDG_CONFIG_HOME/nvim/lua/core/maps.lua
+require("core.maps") -- $XDG_CONFIG_HOME/nvim/lua/core/maps.lua
