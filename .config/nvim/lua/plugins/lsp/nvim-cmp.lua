@@ -10,16 +10,15 @@ return {
 	dependencies = {
 		"hrsh7th/cmp-buffer", -- source for text in buffer
 		"hrsh7th/cmp-path", -- source for file system paths
-		"hrsh7th/cmp-nvim-lsp",
-		"hrsh7th/cmp-nvim-lua",
-		"David-Kunz/cmp-npm",
-		"andersevenrud/cmp-tmux",
+		"hrsh7th/cmp-nvim-lsp", -- nvim-cmp source for displaying function signatures with the current parameter emphasized:
+		"hrsh7th/cmp-cmdline", --nvim-cmp source for vim's cmdline.
+		"hrsh7th/cmp-nvim-lua", -- Lua API
+		"David-Kunz/cmp-npm", -- Complete NPM packages
 		"onsails/lspkind.nvim", --vs-code like pictograms
 		"L3MON4D3/LuaSnip", -- snippet engine
 		"saadparwaiz1/cmp_luasnip", -- for autocompletion
 		"rafamadriz/friendly-snippets", -- useful snippets
 	},
-
 	config = function()
 		local cmp = require("cmp")
 		local luasnip = require("luasnip")
@@ -28,7 +27,7 @@ return {
 		-- load vs-code like snippets from plugins (e.g. friendly-snippets)
 		require("luasnip.loaders.from_vscode").lazy_load()
 
-		-- load snippets from path/of/your/nvim/config/my-cool-snippets
+		-- load snippets from my path of /nvim/config/my-cool-snippets
 		require("luasnip.loaders.from_vscode").load({ paths = { "./lua_snippets" } })
 
 		vim.opt.completeopt = "menu,menuone,noselect"
@@ -39,11 +38,10 @@ return {
 				end,
 			},
 			mapping = cmp.mapping.preset.insert({
-				["<C-p>"] = cmp.mapping.select_prev_item(), -- previous suggestion
 				["<C-n>"] = cmp.mapping.select_next_item(), -- next suggestion
+				["<C-p>"] = cmp.mapping.select_prev_item(), -- previous suggestion
 				["<C-d>"] = cmp.mapping.scroll_docs(-4),
 				["<C-u>"] = cmp.mapping.scroll_docs(4),
-				["<C-Space>"] = cmp.mapping.complete(), -- show completion suggestions
 				["<C-e>"] = cmp.mapping.abort(), -- close completion window
 				["<CR>"] = cmp.mapping.confirm({
 					behavior = cmp.ConfirmBehavior.Replace,
@@ -57,13 +55,12 @@ return {
 			-- sources for autocompletion
 			sources = cmp.config.sources({
 				{ name = "nvim_lsp" }, -- lsp
-				{ name = "nvim_lua" },
+				{ name = "nvim_lsp_signature_help" },
+				{ name = "nvim_lua", priority = 100 },
+				{ name = "npm", keyword_length = 4 },
 				{ name = "luasnip" }, -- snippets
 				{ name = "buffer" }, -- text within current buffer
 				{ name = "path" }, -- file system paths
-				{ name = "buffer" },
-				{ name = "tmux" },
-				{ name = "path" },
 				{ name = "calc" },
 			}),
 
@@ -85,6 +82,28 @@ return {
 					{ name = "buffer" },
 				}),
 			}),
+
+			-- -- `/` cmdline setup.
+			-- cmp.setup.cmdline({ "/", "?" }, {
+			-- 	mapping = cmp.mapping.preset.cmdline(),
+			-- 	sources = {
+			-- 		{ name = "buffer" },
+			-- 	},
+			-- 	performance = { max_view_entries = 10 },
+			-- }),
+
+			-- `:` cmdline setup.
+			cmp.setup.cmdline(":", {
+				mapping = cmp.mapping.preset.cmdline(),
+				sources = cmp.config.sources({ { name = "path" } }, {
+					{
+						name = "cmdline",
+					},
+					matching = { disallow_symbol_nonprefix_matching = false },
+					performance = { max_view_entries = 15 },
+				}),
+			}),
+
 			confirm_opts = {
 				behavior = cmp.ConfirmBehavior.Replace,
 				select = false,

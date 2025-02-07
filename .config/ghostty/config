@@ -34,10 +34,11 @@ palette = 15=#f0f1ce
 
 
 # OTHER
+confirm-close-surface = false
 mouse-hide-while-typing = true
 adjust-underline-position = 4
 macos-option-as-alt = true
-macos-titlebar-style = transparent
+macos-titlebar-style = "transparent"
 macos-titlebar-proxy-icon = "hidden"
 copy-on-select = clipboard
 clipboard-read = allow
@@ -51,6 +52,8 @@ keybind = cmd+s>shift+h=new_split:down
 
 keybind = cmd+s>z=toggle_split_zoom
 keybind = cmd+s>e=equalize_splits
+
+keybind = cmd+s>x=close_surface
 
 keybind = cmd+s>j=goto_split:bottom
 keybind = cmd+s>k=goto_split:top

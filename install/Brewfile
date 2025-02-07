@@ -20,6 +20,7 @@ brew "ccls"
 brew "cmake"
 brew "cmatrix"
 brew "cowsay"
+brew "curlie"
 brew "ctags"
 brew "docx2txt"
 brew "espeak-ng"
@@ -93,6 +94,7 @@ brew "unzip"
 brew "up"
 brew "vim", args: ["HEAD"]
 brew "wget"
+brew "xh"
 brew "yarn"
 brew "youtube-dl", args: ["HEAD"]
 

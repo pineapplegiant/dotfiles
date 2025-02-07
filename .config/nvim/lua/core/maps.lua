@@ -13,15 +13,14 @@ keymap.set("n", "k", "v:count ? 'k' : 'gk'", { expr = true, silent = true })
 keymap.set("n", "j", "v:count ? 'j' : 'gj'", { expr = true, silent = true })
 
 -- keymap.set('n', '<leader>s', ':update<CR>', { desc = 'QuickSave with space key' })
-keymap.set("n", "<C-S>", ":update<CR>", { desc = "QuickSave with control key" })
-keymap.set("n", "<C-q>", ":q!<CR>", { desc = "An attempt at quitting vim" })
+keymap.set("n", "<C-S>", ":update<CR>", { desc = "Control [S]ave" })
+keymap.set("n", "<C-q>", ":q!<CR>", { desc = "Contral [Q]uit Vim" })
 
 -- Diagnostic keymaps
-vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
+-- vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
 
 keymap.set("n", ",<leader>", "<cmd>:nohlsearch<CR>", { desc = "Turn off highlighted search" })
 keymap.set("n", "<leader>d", ":bdelete!<CR>", { desc = "Close the current buffer" })
--- keymap.set('n', '<leader>j', 'J', { desc = 'Use leader J as default J' })
 
 -- Copying & Pasting
 keymap.set({ "n", "v" }, "<leader>y", '"+y', { desc = "Copy from Vim into system clipboard" })
@@ -36,23 +35,18 @@ keymap.set(
 	":!open dict://<cword><cr><cr>",
 	{ desc = "Open word under Cursor in dictionary app", silent = true }
 )
-keymap.set("n", "<leader>cd", ":cd %:p:h<CR>:pwd<CR>", { desc = "Move current directory" })
+-- keymap.set("n", "<leader>cd", ":cd %:p:h<CR>:pwd<CR>", { desc = "Move current directory" })
 
--- Quick Tricks
--- keymap.set("n", "<F10>", ":source $MYVIMRC<CR>", { desc = "Source VIMRC" })
+-- Source VIMRC
+keymap.set("n", "<F10>", ":source $MYVIMRC<CR>", { desc = "Source VIMRC" })
 
--- keymap.set('n', '<F6>', '<C-R>=lua print(os.date("%A %B %d, %Y"))<CR>', { desc = "Quick Timestamp" })
 keymap.set({"n", "i"}, "<F6>", "<C-R>=strftime('%Y-%m-%dT%H:%M:%S%z')<CR>", { desc = "Golang time convention" })
-keymap.set({"n", "i"}, "<F7>", "<ESC>:r !date<CR>", { desc = "Quick Timestamp" })
+keymap.set({"n", "i"}, "<F7>", "<ESC>:r !date<CR>", { desc = "Set Timestamp in Insert Mode" })
 
 keymap.set("n", ",gcc", ':!tmux send-keys -t1 "\\!! " ENTER <CR><CR>', { desc = "Run last command in tmux window" })
 
 -- U to redo instead of C-R
 keymap.set("n", "U", "<C-R>", { desc = "Redo last change" })
-
--- Increment/decrement
--- keymap.set("n", "+", "<C-a>", { desc = "Increment number under cursor" })
--- keymap.set("n", "-", "<C-x>", { desc = "Decrement number under cursor" })
 
 -- Front and end of line movement
 keymap.set({ "n", "v" }, "B", "g^", { desc = "Move to the Beginning of the line" })

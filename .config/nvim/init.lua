@@ -44,6 +44,7 @@ require("lazy").setup({
 	{ import = "plugins" },
 	{ import = "plugins.ts" },
 	{ import = "plugins.lsp" },
+	{ import = "plugins.ai" },
 }, {
 	checker = {
 		enabled = true,

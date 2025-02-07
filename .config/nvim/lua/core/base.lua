@@ -80,7 +80,6 @@ set.listchars:append("space: ")
 set.listchars:append("trail:⋅")
 set.listchars:append("tab:   ")
 
-
 set.updatetime = 250 -- Decrease update time
 set.timeoutlen = 300 -- Decrease mapped sequence wait time
 set.completeopt = "menuone,noselect" -- Set completeopt to have a better completion experience
@@ -121,6 +120,7 @@ set.fileencoding = "utf-8"
 -- Highlight when yanking (copying) text
 --  Try it with `yap` in normal mode
 --  See `:help vim.highlight.on_yank()`
+
 vim.api.nvim_create_autocmd('TextYankPost', {
   desc = 'Highlight when yanking (copying) text',
   group = vim.api.nvim_create_augroup('kickstart-highlight-yank', { clear = true }),

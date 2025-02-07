@@ -3,6 +3,7 @@
 -- See `:h zen-mode`
 -- Toggle Zen Mode with `:ZenMode`
 -------------------------------------
+---
 return {
 	"folke/zen-mode.nvim",
 	-- lazy = true,

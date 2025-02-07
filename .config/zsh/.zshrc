@@ -190,13 +190,14 @@
     alias tmuxrc="$EDITOR $XDG_CONFIG_HOME/tmux/tmux.conf"   # Tmux settings
     alias alrc="$EDITOR $XDG_CONFIG_HOME/alacritty/alacritty.toml"             # Alacritty settings
     alias grc="$EDITOR $XDG_CONFIG_HOME/ghostty/config"             # Alacritty settings
+    alias brewrc="$EDITOR $DOTFILES/install/Brewfile"
 
 # alias to EZA if exists
     if type eza >/dev/null 2>&1; then
-        alias ll="eza -F -G --git --no-filesize --color=always --icons=always"   # Just make ls  chill
-        alias ls="eza -F -G --git --color=always --icons=always"  # Make ls pretty
-        alias l="eza -l --no-filesize --git --color=always --icons=always"   # ls long tag
-        alias s="eza -a -h -l -F --no-filesize --color=always --icons=always"
+        alias ll="eza -F -G --git --color=always --icons=always"
+        alias ls="eza -F -G --git --color=always --icons=always"
+        alias l="eza -a -h -l -F --git --color=always --icons=always"   # ls long tag
+        alias s="eza -a -h -l -F --no-user --no-permissions --color=always --icons=always"
     else
         alias l="ls -FG"
         alias ls="ls -FG"
@@ -206,6 +207,8 @@
 
     if type ollama >/dev/null 2>&1; then
         alias lllama="ollama run llama3.1"
+        alias deepseek="ollama run deepseek-r1:8b"
+        alias deepseek-coder="ollama run deepseek-coder-v2:latest"
     fi
 
 

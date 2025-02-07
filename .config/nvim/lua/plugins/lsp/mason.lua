@@ -1,6 +1,7 @@
 ------------------------------------
 -- Mason.nvim
 -- LSPConfig for the lazy
+-- Installs LSP Servers, linters, formatters
 -------------------------------------
 return {
 	"williamboman/mason.nvim",
@@ -9,12 +10,8 @@ return {
 		"WhoIsSethDaniel/mason-tool-installer.nvim",
 	},
 	config = function()
-		-- import mason plugin safely
 		local mason = require("mason")
-
-		-- import mason-lspconfig plugin safely
 		local mason_lspconfig = require("mason-lspconfig")
-
 		local mason_tool_installer = require("mason-tool-installer")
 
 		-- enable mason
@@ -40,8 +37,8 @@ return {
 				"graphql",
 				"emmet_ls",
 				"prismals",
-        "pyright",
-				"gopls"
+				"pyright",
+				"gopls",
 			},
 			-- auto-install configured servers (with lspconfig)
 			automatic_installation = true, -- not the same as ensure_installed
@@ -54,8 +51,11 @@ return {
 				"isort", -- python formatter
 				"black", -- python formatter
 				"pylint", -- python linter
+				"yamllint", -- YAML
+				"stylelint", -- CSS
 				"eslint_d", -- js linter
 				"proselint", -- markdown
+				"vale", -- markdown linter
 			},
 		})
 	end,

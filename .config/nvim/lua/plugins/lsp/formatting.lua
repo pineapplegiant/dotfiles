@@ -1,3 +1,4 @@
+-- Lightweight yet powerful formatter plugin for Neovim
 return {
 	"stevearc/conform.nvim",
 	event = { "BufReadPre", "BufNewFile" },
@@ -11,15 +12,18 @@ return {
 				javascriptreact = { "prettier" },
 				typescriptreact = { "prettier" },
 				svelte = { "prettier" },
-				css = { "prettier" },
+				css = { "prettier", "stylelint" },
 				html = { "prettier" },
 				json = { "prettier" },
-				yaml = { "prettier" },
+				yaml = { "prettier", "yamlfmt" },
 				markdown = { "prettier" },
+				ruby = { "rubyfmt" },
 				graphql = { "prettier" },
+				sql = { "sqlfmt" },
 				lua = { "stylua" },
 				python = { "isort", "black" },
 				bash = { "beautysh" },
+				go = { "crlfmt" },
 			},
 			-- format_on_save = {
 			--   lsp_fallback = true,
