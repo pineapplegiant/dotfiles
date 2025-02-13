@@ -7,7 +7,7 @@ return {
 	"karb94/neoscroll.nvim", -- Smooth scrolling, but with lua
 	event = "BufEnter",
 	config = function()
-		neoscroll = require("neoscroll")
+		local neoscroll = require("neoscroll")
 
 		neoscroll.setup({
 			easing = "quadratic", -- Default easing function Set any other options as needed

@@ -35,7 +35,6 @@ return {
 				-- 	total = 500, -- maximum duration
 				-- },
 			},
-			---@class snacks.indent.Scope.Config: snacks.scope.Config
 			scope = {
 				enabled = true, -- enable highlighting the current scope
 				priority = 200,

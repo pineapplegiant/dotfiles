@@ -20,7 +20,7 @@ keymap.set("n", "<C-q>", ":q!<CR>", { desc = "Contral [Q]uit Vim" })
 -- vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
 
 keymap.set("n", ",<leader>", "<cmd>:nohlsearch<CR>", { desc = "Turn off highlighted search" })
-keymap.set("n", "<leader>d", ":bdelete!<CR>", { desc = "Close the current buffer" })
+keymap.set("n", "<c-x>", ":bdelete!<CR>", { desc = "Close the current buffer" })
 
 -- Copying & Pasting
 keymap.set({ "n", "v" }, "<leader>y", '"+y', { desc = "Copy from Vim into system clipboard" })
@@ -77,8 +77,8 @@ keymap.set("n", ",block", ":read $XDG_CONFIG_HOME/nvim/snippets/block.txt<CR>jA"
 keymap.set("n", ",mlk", ":read $XDG_CONFIG_HOME/nvim/snippets/mlk.txt<CR>", { desc = "MLK Speech Snippet" })
 
 -- See `:help vim.diagnostic.*` for documentation on any of the below functions
-keymap.set("n", "[d", vim.diagnostic.goto_prev, opts)
-keymap.set("n", "]d", vim.diagnostic.goto_next, opts)
+-- keymap.set("n", "[d", vim.diagnostic.goto_prev, opts)
+-- keymap.set("n", "]d", vim.diagnostic.goto_next, opts)
 
 
 keymap.set("n", "<M-j>", "<cmd>cnext<CR>", {desc = "C stands for qui[C]kfix [N]ext"})

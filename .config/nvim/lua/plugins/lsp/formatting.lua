@@ -14,7 +14,7 @@ return {
 				svelte = { "prettier" },
 				css = { "prettier", "stylelint" },
 				html = { "prettier" },
-				json = { "prettier" },
+				json = { "prettier", "jsonls" },
 				yaml = { "prettier", "yamlfmt" },
 				markdown = { "prettier" },
 				ruby = { "rubyfmt" },

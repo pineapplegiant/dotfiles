@@ -15,7 +15,7 @@ return {
 		},
 		"nvim-telescope/telescope-ui-select.nvim",
 		"nvim-tree/nvim-web-devicons",
-		"xiyaowong/telescope-emoji.nvim"
+		"xiyaowong/telescope-emoji.nvim",
 	},
 	config = function()
 		-- import telescope plugin safely
@@ -26,7 +26,6 @@ return {
 
 		-- import telescope-ui-select safely
 		local themes = require("telescope.themes")
-
 
 		-- configure telescope
 		telescope.setup({
@@ -69,18 +68,17 @@ return {
 		telescope.load_extension("ui-select")
 		telescope.load_extension("fzf")
 		telescope.load_extension("emoji")
-		-- telescope.load_extension("harpoon")
 	end,
 
 	keys = {
 		{ "<C-A>", "<cmd>Telescope<CR>", desc = "View [A]ll Builtin Telescope Functions" },
 		{
 			"<C-P>",
-				function()
-					require("telescope.builtin").find_files({
-						cwd = require("oil").get_current_dir(),
-					})
-				end,
+			function()
+				require("telescope.builtin").find_files({
+					cwd = require("oil").get_current_dir(),
+				})
+			end,
 			desc = "Fuzzy Find [F]iles in CWD",
 		},
 		{ "<C-C>", "<cmd>lua require('telescope.builtin').oldfiles()<CR>", desc = "'[C]' Recent Files" },
@@ -89,17 +87,15 @@ return {
 			"<cmd>lua require('telescope.builtin').current_buffer_fuzzy_find({layout_config={width=0.5}, previewer=false})<CR>",
 			desc = "[F]ind String in Current Buffer",
 		},
-		{ "<C-S-F>", "<cmd>lua require('telescope.builtin').live_grep()<CR>", desc = "[F]ind [S]tring in CWD" },
-		-- {
-		-- 	"<C-S-F>",
-		-- 		function()
-		-- 			require("telescope.builtin").live_grep({
-		-- 				cwd = require("oil").get_current_dir(),
-		-- 			})
-		-- 		end,
-		-- 	desc = "[F]ind [S]tring in CWD",
-		-- },
-		{ "<C-G>", "<cmd>lua require('telescope.builtin').git_files()<CR>", desc = "Find [G]it Files in CWD" },
+		{
+			"<C-S-F>",
+			function()
+				require("telescope.builtin").live_grep({
+					cwd = require("oil").get_current_dir(),
+				})
+			end,
+			desc = "[F]ind [S]tring in CWD",
+		},
 		{
 			"<C-B>",
 			"<cmd>lua require('telescope.builtin').buffers({layout_config={width=0.5}, previewer=false})<CR>",
@@ -110,10 +106,5 @@ return {
 			"<cmd>lua require('telescope.builtin').find_files({ cwd = vim.fn.stdpath('config') })<CR>",
 			desc = "Search Config Files",
 		},
-		-- {
-		-- 	"<C-M>",
-		-- 	"<cmd>Telescope marks theme=ivy<CR>",
-		-- 	desc = "Search Neovim [M]arks",
-		-- },
 	},
 }

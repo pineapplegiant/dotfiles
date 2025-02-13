@@ -88,7 +88,7 @@ return {
 	},
 	version = "^1.0.0", -- optional: only update when a new 1.x version is released
 	keys = {
-		{ "<leader>d", "<Cmd>BufferClose<CR>", desc = "Close current buffer in barbar" },
+		{ "<C-x>", "<Cmd>BufferClose<CR>", desc = "Close current buffer in barbar" },
 		{ "gL", "<Cmd>BufferCloseAllButCurrent<CR>", desc = "Close all but current buffer in barbar" },
 		{ "gp", "<Cmd>BufferPrevious<CR>", desc = "Go to previous buffer in barbar" },
 		{ "gn", "<Cmd>BufferNext<CR>", desc = "Go to next buffer in barbar" },

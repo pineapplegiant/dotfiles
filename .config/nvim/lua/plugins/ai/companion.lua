@@ -11,8 +11,8 @@ return {
 	end,
 
 	keys = {
-		{ "<C-S-x>", "<cmd>CodeCompanionActions<cr>", desc = "Toggle [X] CodeCompanion Actions" },
-		{ "<C-x>", "<cmd>CodeCompanionChat Toggle<CR>", desc = "Toggle [X]-cute CodeCompanion Chat" },
+		{ "<C-S-g>", "<cmd>CodeCompanionActions<cr>", desc = "Toggle [X] CodeCompanion Actions" },
+		{ "<C-g>", "<cmd>CodeCompanionChat Toggle<CR>", desc = "Toggle [X]-cute CodeCompanion Chat" },
 		{ "ga", "<cmd>CodeCompanionChat Add<cr>", mode = "v", desc = "Add To CodeCompanion Chat" },
 	},
 }
