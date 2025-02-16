@@ -42,4 +42,7 @@ return {
 			},
 		})
 	end,
+	keys = {
+		{ "<leader>jj", "<CMD>Journal<CR>", { desc = "Create Journal Entry" } },
+	}
 }

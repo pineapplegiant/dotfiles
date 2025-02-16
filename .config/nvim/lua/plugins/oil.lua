@@ -239,10 +239,11 @@ return {
 			if oil_win then
 				vim.api.nvim_win_close(oil_win, true) -- Close the Oil buffer
 			else
-				-- Open Oil in a small left vertical split (20 columns wide)
+				local current_win = vim.api.nvim_get_current_win() -- Save the current window
 				vim.cmd("topleft vsplit")
 				vim.cmd("vertical resize 20") -- Set the width of the split to 20 columns
 				vim.cmd("Oil")
+				vim.api.nvim_set_current_win(current_win) -- Switch back to the original window
 			end
 		end, { desc = "Toggle Oil File Tree", noremap = true, silent = true })
 	end,

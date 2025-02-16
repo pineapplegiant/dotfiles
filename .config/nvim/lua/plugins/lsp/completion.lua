@@ -12,8 +12,9 @@ return {
 	-- check out recipes - https://cmp.saghen.dev/recipes
 	version = "*",
 	opts = {
+
 		enabled = function()
-			return not vim.tbl_contains({ "markdown", "text" }, vim.bo.filetype)
+			return not vim.tbl_contains({ "markdown" }, vim.bo.filetype)
 				and vim.bo.buftype ~= "prompt"
 				and vim.b.completion ~= false
 		end,
@@ -58,6 +59,7 @@ return {
 				},
 			},
 		},
+
 		signature = { window = { border = "single" } },
 
 		-- See the full "keymap" documentation for information on defining your own keymap.
@@ -69,8 +71,35 @@ return {
 		-- Default list of enabled providers defined so that you can extend it
 		-- elsewhere in your config, without redefining it, due to `opts_extend`
 		sources = {
-			default = { "lsp", "path", "snippets", "buffer" },
+			default = { "lsp", "path", "snippets", "buffer", "emoji", "dictionary" },
+			providers = {
+				emoji = {
+					module = "blink-emoji",
+					name = "Emoji",
+					score_offset = 15, -- Tune by preference
+					opts = { insert = true }, -- Insert emoji (default) or complete its name
+					should_show_items = function()
+						return vim.tbl_contains(
+							-- Enable emoji completion only for git commits and markdown.
+							-- By default, enabled for all file-types.
+							{ "gitcommit" },
+							vim.o.filetype
+						)
+					end,
+				},
+				dictionary = {
+					module = "blink-cmp-dictionary",
+					name = "Dict",
+					-- Make sure this is at least 2.
+					-- 3 is recommended
+					min_keyword_length = 3,
+					opts = {
+						-- options for blink-cmp-dictionary
+					},
+				},
+			},
 		},
+
 		snippets = { preset = "luasnip" },
 	},
 	opts_extend = { "sources.default" },

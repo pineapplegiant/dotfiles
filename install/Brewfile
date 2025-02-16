@@ -94,6 +94,7 @@ brew "unzip"
 brew "up"
 brew "vim", args: ["HEAD"]
 brew "wget"
+brew "wordnet"
 brew "xh"
 brew "yarn"
 brew "youtube-dl", args: ["HEAD"]
